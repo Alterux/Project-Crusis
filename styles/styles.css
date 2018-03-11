@@ -3,9 +3,9 @@
 .toolBar {
   box-shadow: 0px 0px 5px;
   width: auto;
-  height: 2em;
-  left: .5em;
-  right: .5em;
+  height: 3em;
+  left: 0;
+  right: 0;
   margin-bottom: .5em;
 }
 
@@ -13,22 +13,33 @@
 
 }
 
-#menuBar {
+#logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 15em;
+}
 
+#menuBar {
+  top: -1em;
+  margin: -.5em;
+  margin-bottom: .5em;
 }
 
 #menuItems {
   position: absolute;
-  margin-left: .5em;
+  margin-left: 1em;
+  top: .8em;
 }
 
 #bottomBar {
   position: absolute;
-  bottom: .5em;
+  margin-bottom: 0;
+  bottom: 0;
 }
 
 #langSelect {
   position: absolute;
-  top: .3em;
-  right: .5em;
+  top: .8em;
+  right: 1em;
 }

@@ -6,7 +6,7 @@ import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
 import { Menu, BottomBar } from './menu';
-import { SignIn, SignOut, SignUp } from './auth';
+import { SignIn, SignOut, SignUp, ForgotPass } from './auth';
 import { ErrorMessage, errorMessage } from './errorMessage';
 
 import { Home } from './home';
@@ -24,6 +24,7 @@ if(root) {
         <Switch>
           <Route exact path='/signin' component={SignIn} />
           <Route exact path='/signup' component={SignUp} />
+          <Route exact path='/forgotpass' component={ForgotPass} />
           <Route exact path='/signout' component={SignOut} />
           <Route exact path='/' component={Home} />
           <Route exact path='/friends' component={Members} />

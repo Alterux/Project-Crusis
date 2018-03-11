@@ -1,5 +1,13 @@
 #signInBar {
-  margin-bottom: .5em;
+  position: fixed;
+  top: 0;
+  box-shadow: none;
+}
+
+#signIn {
+  position: absolute;
+  margin-left: 1em;
+  top: .8em;
 }
 
 #signInHelp {
@@ -12,6 +20,7 @@
   position: absolute;
   margin-right: .5em;
   right: .5em;
+  top: .8em;
 }
 
 .form {

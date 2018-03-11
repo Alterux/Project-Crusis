@@ -30,12 +30,15 @@ class SignIn extends React.Component<{}> {
 
   render() {
     return (
-      <div className="inputForm">
-        <input className="form" type='text' ref='signInUsername' placeholder={lang.email} />
-          <img className="inputIcon" src="resources/loginUser.svg"></img>
-        <input className="form" type='password' ref='signInPassword' placeholder={lang.password} />
-          <img className="inputIcon" id="passIcon" src="resources/loginPass.svg"></img>
-        <button className="form" id="signInButton" ref='signInButton'>{lang.signIn}</button>
+      <div>
+        <img id="logo" src="resources/logo.svg"></img>
+        <div className="inputForm">
+          <input className="form" type='text' ref='signInUsername' placeholder={lang.email} />
+            <img className="inputIcon" src="resources/loginUser.svg"></img>
+          <input className="form" type='password' ref='signInPassword' placeholder={lang.password} />
+            <img className="inputIcon" id="passIcon" src="resources/loginPass.svg"></img>
+          <button className="form" id="signInButton" ref='signInButton'>{lang.signIn}</button>
+        </div>
       </div>
     );
   }
@@ -122,4 +125,15 @@ class SignUp extends React.Component<{}> {
   }
 }
 
-export { SignIn, SignOut, SignUp };
+class ForgotPass extends React.Component<{}> {
+
+  render() {
+    return (<div></div>);
+  }
+
+  componentDidMount() {
+
+  }
+}
+
+export { SignIn, SignOut, SignUp, ForgotPass };

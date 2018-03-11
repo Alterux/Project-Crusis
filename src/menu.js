@@ -26,9 +26,12 @@ class Menu extends React.Component<{}> {
     }
     return (
         <div id='signInBar' className="toolBar">
-          <div id='signInHelp'>
+          <div id="signIn">
             <NavLink activeStyle={{color: 'green'}} to='/signin'>{lang.signIn}</NavLink>{' '}
-            <NavLink activeStyle={{color: 'green'}} to='/signup'>{lang.signUp}</NavLink>
+          </div>
+          <div id='signInHelp'>
+            <NavLink activeStyle={{color: 'green'}} to='/signup'>{lang.signUp}</NavLink>{' '}
+            <NavLink activeStyle={{color: 'green'}} to='/forgotpass'>{lang.forgotPass}</NavLink>{' '}
           </div>
         </div>
     );

@@ -21,6 +21,7 @@ let en = {
   signIn: 'Sign in',
   signOut: 'Sign out',
   signUp: 'Create account',
+  forgotPass: 'Forgot password',
 
   errorLogin: 'Incorrect username or password!',
 
@@ -51,6 +52,7 @@ let no = {
   signIn: 'Logg inn',
   signOut: 'Logg ut',
   signUp: 'Opprett konto',
+  forgotPass: 'Glemt passord',
 
   errorLogin: 'Feil brukernavn eller passord!',
 
