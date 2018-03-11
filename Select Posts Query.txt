@@ -1,0 +1,14 @@
+SELECT
+	p.fromUserId,
+    p.toUserId,
+	p.text,
+    u1.firstName AS 'fromUser',
+    u2.firstName AS 'toUser'
+FROM
+	Posts p,
+    Users u1,
+    Users u2
+WHERE
+	p.fromUserId = u1.id
+  AND
+  	p.toUserId = u2.id
