@@ -71,6 +71,8 @@ class BottomBar extends React.Component<{}> {
         case 'no':
           localStorage.setItem('lang', 'en');
           break;
+        default:
+          localStorage.setItem('lang', 'no');
       }
       window.location.reload();
     };
