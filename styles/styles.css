@@ -1,0 +1,38 @@
+@import "auth.css";
+
+.toolBar {
+  box-shadow: 0px 0px 5px;
+  width: auto;
+  height: 3em;
+  left: 0;
+  right: 0;
+  margin-bottom: .5em;
+}
+
+.accountImg {
+
+}
+
+#menuBar {
+  top: -1em;
+  margin: -.5em;
+  margin-bottom: .5em;
+}
+
+#menuItems {
+  position: absolute;
+  margin-left: 1em;
+  top: .8em;
+}
+
+#bottomBar {
+  position: absolute;
+  margin-bottom: 0;
+  bottom: 0;
+}
+
+#langSelect {
+  position: absolute;
+  top: .8em;
+  right: 1em;
+}

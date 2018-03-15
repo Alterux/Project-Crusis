@@ -6,9 +6,9 @@ let connection;
 function connect() {
   connection = mysql.createConnection({
     host: 'mysql.stud.iie.ntnu.no',
-    user: '[username]',
-    password: '[password]',
-    database: '[username]'
+    user: 'g_oops_27',
+    password: 'lOrrO9HI',
+    database: 'g_oops_27'
   });
 
   // Connect to MySQL-server
@@ -30,14 +30,27 @@ connect();
 
 class User {
   id: number;
-  username: string;
+  email: string;
+  password: number;
   firstName: string;
+  lastName: string;
+  age: number;
+  city: string;
+}
+
+class Event {
+  id: number;
+  text: string;
+  fromUserId: number;
+  toUserId: number;
+  fromUser: string;
+  toUser: string;
 }
 
 class UserService {
-  signIn(username: string): Promise<void> {
+  signIn(email: string, password: number): Promise<void> {
     return new Promise((resolve, reject) => {
-      connection.query('SELECT * FROM Users where username=?', [username], (error, result) => {
+      connection.query('SELECT * FROM Users where email=? AND password=?', [email, password], (error, result) => {
         if(error) {
           reject(error);
           return;
@@ -53,6 +66,19 @@ class UserService {
     });
   }
 
+  signUp(email: string, password: number, firstName: string, lastName: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('INSERT INTO Users (email, password, firstName, lastName) VALUES (?, ?, ?, ?);', [email, password, firstName, lastName], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve();
+      });
+    });
+  }
+
   getSignedInUser(): ?User {
     let item = localStorage.getItem('signedInUser'); // Get User-object from browser
     if(!item) return null;
@@ -60,9 +86,22 @@ class UserService {
     return JSON.parse(item);
   }
 
-  getFriends(id: number): Promise<User[]> {
+  getMembers(id: number): Promise<User[]> {
     return new Promise((resolve, reject) => {
       connection.query('SELECT * FROM Users where id!=?', [id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
+  getEvents(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM Events', (error, result) => {
         if(error) {
           reject(error);
           return;
@@ -76,4 +115,4 @@ class UserService {
 
 let userService = new UserService();
 
-export { User, userService };
+export { User, Event, userService };
