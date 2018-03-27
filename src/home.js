@@ -16,7 +16,7 @@ class Home extends React.Component<{}> {
 
   render() {
     let signedInUser = userService.getSignedInUser();
-    let welcomeMsg = lang.welcomeMsg;
+    let welcomeMsg: string = lang.welcomeMsg;
     if (signedInUser) {
       welcomeMsg = lang.loggedInMsg;
     }

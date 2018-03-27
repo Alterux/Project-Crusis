@@ -14,6 +14,7 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
 
   render() {
     let user = this.user;
+    console.log(user.userType)
     let userTypeMsg;
     let listItems = [];
     for(let event of this.events) {
@@ -59,7 +60,6 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
     if(signedInUser) {
       userService.getUser(this.props.match.params.id).then((user) => {
         this.user = user[0];
-        // console.log(user[0].firstName)
         this.forceUpdate();
       }).catch((error: Error) => {
         if(errorMessage) errorMessage.set(lang.errorMembers);

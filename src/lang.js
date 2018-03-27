@@ -1,7 +1,9 @@
+// @flow
+
 /**************************************************/
 /* US English                                     */
 /**************************************************/
-let en: String = {
+let en = {
   home: 'Home',
   myPage: 'My Page',
   events: 'Events',
@@ -30,6 +32,7 @@ let en: String = {
   userTypeAdmin: 'Account type: Admin',
 
   errorLogin: 'Incorrect username or password!',
+  errorMembers: 'Error getting members!',
 
   switchLanguage: 'Bytt til Norsk',
   confirmSignOut: 'Log out?',
@@ -38,7 +41,7 @@ let en: String = {
 /**************************************************/
 /* Norsk Bokmål                                   */
 /**************************************************/
-let no: String = {
+let no = {
   home: 'Hjem',
   myPage: 'Min Side',
   events: 'Arrangementer',
@@ -67,14 +70,14 @@ let no: String = {
   userTypeAdmin: 'Kontotype: Admin',
 
   errorLogin: 'Feil brukernavn eller passord!',
+  errorMembers: 'Feil med henting av brukere!',
 
   switchLanguage: 'Change to English',
   confirmSignOut: 'Logg ut?',
 };
 
 // Language selection
-let lang: String;
-
+let lang;
 switch (localStorage.getItem("lang")) {
   case 'en':
     lang = en;
