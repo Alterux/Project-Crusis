@@ -5,7 +5,9 @@ import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 import { lang, en, no } from './lang';
 import { ErrorMessage, errorMessage } from './errorMessage';
 
-import { User, Event, userService } from './services';
+import { connection } from './connect';
+import { User, userService } from './userService';
+import { Event, eventService } from './eventService';
 
 class Events extends React.Component<{}> {
   events = [];
@@ -29,7 +31,7 @@ class Events extends React.Component<{}> {
   componentDidMount() {
     let signedInUser = userService.getSignedInUser();
     if(signedInUser) {
-      userService.getEvents().then(() => {
+      eventService.getEvents().then(() => {
         this.forceUpdate();
       }).catch((error: Error) => {
         if(errorMessage) errorMessage.set('Could not get events');

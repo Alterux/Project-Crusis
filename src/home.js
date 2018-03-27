@@ -7,7 +7,9 @@ const history = createHashHistory();
 import { lang, en, no } from './lang';
 import { ErrorMessage, errorMessage } from './errorMessage';
 
-import { User, Event, userService } from './services';
+import { connection } from './connect';
+import { User, userService } from './userService';
+import { Event, eventService } from './eventService';
 
 class Home extends React.Component<{}> {
   events = [];
@@ -18,6 +20,7 @@ class Home extends React.Component<{}> {
     if (signedInUser) {
       welcomeMsg = lang.loggedInMsg;
     }
+
     let listItems = [];
     for(let event of this.events) {
       listItems.push(<li key={event.id}>
@@ -39,7 +42,7 @@ class Home extends React.Component<{}> {
     if(signedInUser) {
 
       // events
-      userService.getEvents().then(() => {
+      eventService.getEvents().then(() => {
         this.forceUpdate();
       }).catch((error: Error) => {
         // if(errorMessage) errorMessage.set('Could not get events');

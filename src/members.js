@@ -5,7 +5,9 @@ import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 import { lang, en, no } from './lang';
 import { ErrorMessage, errorMessage } from './errorMessage';
 
-import { User, Event, userService } from './services';
+import { connection } from './connect';
+import { User, userService } from './userService';
+import { Event, eventService } from './eventService';
 
 class Members extends React.Component<{}> {
   members = [];

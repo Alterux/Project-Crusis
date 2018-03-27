@@ -3,7 +3,9 @@ import * as React from 'react';
 import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 
 import { lang, en, no } from './lang';
-import { User, Event, userService } from './services';
+import { connection } from './connect';
+import { User, userService } from './userService';
+import { Event, eventService } from './eventService';
 import { ErrorMessage, errorMessage } from './errorMessage';
 
 class Menu extends React.Component<{}> {

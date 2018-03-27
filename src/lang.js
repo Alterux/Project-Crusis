@@ -1,7 +1,7 @@
 /**************************************************/
 /* US English                                     */
 /**************************************************/
-let en = {
+let en: String = {
   home: 'Home',
   myPage: 'My Page',
   events: 'Events',
@@ -24,6 +24,11 @@ let en = {
   signUp: 'Create account',
   forgotPass: 'Forgot password',
 
+  userTypeNew: 'Account type: Deactivated',
+  userTypeUser: 'Account type: User',
+  userTypeLeader: 'Account type: Leader',
+  userTypeAdmin: 'Account type: Admin',
+
   errorLogin: 'Incorrect username or password!',
 
   switchLanguage: 'Bytt til Norsk',
@@ -33,7 +38,7 @@ let en = {
 /**************************************************/
 /* Norsk Bokmål                                   */
 /**************************************************/
-let no = {
+let no: String = {
   home: 'Hjem',
   myPage: 'Min Side',
   events: 'Arrangementer',
@@ -56,6 +61,11 @@ let no = {
   signUp: 'Opprett konto',
   forgotPass: 'Glemt passord',
 
+  userTypeNew: 'Kontotype: Deaktivert',
+  userTypeUser: 'Kontotype: Bruker',
+  userTypeLeader: 'Kontotype: Leder',
+  userTypeAdmin: 'Kontotype: Admin',
+
   errorLogin: 'Feil brukernavn eller passord!',
 
   switchLanguage: 'Change to English',
@@ -63,7 +73,7 @@ let no = {
 };
 
 // Language selection
-let lang;
+let lang: String;
 
 switch (localStorage.getItem("lang")) {
   case 'en':

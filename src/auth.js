@@ -5,7 +5,9 @@ import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
 import { lang, en, no } from './lang';
-import { User, Event, userService } from './services';
+import { connection } from './connect';
+import { User, userService } from './userService';
+import { Event, eventService } from './eventService';
 import { ErrorMessage, errorMessage } from './errorMessage';
 
 import { Menu, menu } from './menu';
@@ -48,7 +50,7 @@ class SignIn extends React.Component<{}> {
     if(menu) menu.forceUpdate();
 
     this.refs.signInButton.onclick = () => {
-      let hashedPass = this.hashCode(this.refs.signInPassword.value);
+      let hashedPass = this.hashCode(this.refs.signInPassword.value + this.refs.signInUsername.value);
       userService.signIn(this.refs.signInUsername.value, hashedPass).then(() => {
         history.push('/');
       }).catch((error: Error) => {
@@ -114,7 +116,7 @@ class SignUp extends React.Component<{}> {
 
 
     this.refs.signUpButton.onclick = () => {
-      let hashedPass = this.hashCode(this.refs.signUpPassword.value);
+      let hashedPass = this.hashCode(this.refs.signUpPassword.value + this.refs.signUpUsername.value);
       userService.signUp(this.refs.signUpUsername.value, hashedPass, this.refs.signUpFirstname.value, this.refs.signUpLastname.value).then(() => {
         userService.signIn(this.refs.signUpUsername.value, hashedPass).then(() => {
           history.push('/');
