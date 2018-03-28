@@ -54,7 +54,9 @@ class SignIn extends React.Component<{}> {
       userService.signIn(this.refs.signInUsername.value, hashedPass).then(() => {
         history.push('/');
       }).catch((error: Error) => {
-        if(errorMessage) errorMessage.set(lang.errorLogin);
+        // Converts error to string og removes "Error: " from the beginning.
+        // Output is only the errormessage from lang.js.
+        if(errorMessage) errorMessage.set(String(error).slice(7));
       });
     };
   }
@@ -68,6 +70,7 @@ class SignOut extends React.Component<{}> {
 
   componentDidMount() {
     if(menu) menu.forceUpdate();
+
     let result = confirm(lang.confirmSignOut);
     if (result) {
       localStorage.removeItem('signedInUser');

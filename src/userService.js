@@ -2,6 +2,8 @@
 import * as mysql from 'mysql';
 import { connection } from './connect';
 
+import { lang, en, no } from './lang';
+
 class User {
   id: number;
   userType: number;
@@ -22,7 +24,16 @@ class UserService {
           return;
         }
         if(result.length!=1) {
-          reject(new Error('Result length was not 1'))
+          reject(new Error(lang.errorLogin))
+          return;
+        }
+
+        if(result[0].userType === 0) {
+          reject(new Error(lang.errorLoginNewUser))
+        }
+
+        if(result[0].userType < 0) {
+          reject(new Error(lang.errorLoginDeletedUser))
           return;
         }
 
@@ -62,7 +73,20 @@ class UserService {
 
   getMembers(id: number): Promise<User[]> {
     return new Promise((resolve, reject) => {
-      connection.query('SELECT * FROM Users where id!=?', [id], (error, result) => {
+      connection.query('SELECT * FROM Users where id!=? AND userType>0', [id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
+  getNewMembers(id: number): Promise<User[]> {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM Users where id!=? AND userType=0', [id], (error, result) => {
         if(error) {
           reject(error);
           return;

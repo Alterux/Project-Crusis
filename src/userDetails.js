@@ -14,7 +14,7 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
 
   render() {
     let user = this.user;
-    console.log(user.userType)
+    // console.log(user.userType)
     let userTypeMsg;
     let listItems = [];
     for(let event of this.events) {
@@ -24,16 +24,16 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
     }
 
     switch (user.userType) {
-      case -1:
+      case 0:
         userTypeMsg = lang.userTypeNew
         break;
-      case 0:
+      case 1:
         userTypeMsg = lang.userTypeUser
         break;
-      case 1:
+      case 2:
         userTypeMsg = lang.userTypeLeader
         break;
-      case 2:
+      case 3:
         userTypeMsg = lang.userTypeAdmin
         break;
       default:

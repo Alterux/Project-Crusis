@@ -117,3 +117,9 @@ h1 {
   cursor: pointer;
   background-color: #024aa1;
 }
+
+.errorMessage {
+  position: absolute;
+  z-index: 1;
+  bottom: .8em;
+}
