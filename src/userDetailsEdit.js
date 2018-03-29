@@ -16,8 +16,11 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
     inputFirstName: HTMLInputElement,
     inputMiddleName: HTMLInputElement,
     inputLastName: HTMLInputElement,
-    inputAge: HTMLInputElement,
+    // inputAge: HTMLInputElement,
+    inputAge: any,
     inputCity: HTMLInputElement,
+    // inputUserType: HTMLSelectElement,
+    inputUserType: any,
   }
 
   user = {}
@@ -64,7 +67,7 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
         {/* Age */}
         <div class="row">
           <div class="col-25">
-            <label for="lname">{lang.age}</label>
+            <label for="age">{lang.age}</label>
           </div>
           <div class="col-75">
             <input type="text" className="formEdit" id="age" ref="inputAge"></input>
@@ -74,12 +77,28 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
         {/* City */}
         <div class="row">
           <div class="col-25">
-            <label for="lname">{lang.city}</label>
+            <label for="city">{lang.city}</label>
           </div>
           <div class="col-75">
             <input type="text" className="formEdit" id="city" ref="inputCity"></input>
           </div>
         </div>
+
+        {/* Account Type */}
+        <div class="row">
+          <div class="col-25">
+            <label for="userType">{lang.userType}</label>
+          </div>
+          <div class="col-75">
+            <select name="cars" id="userType" ref="inputUserType">
+              <option value="1">{lang.user}</option>
+              <option value="2">{lang.leader}</option>
+              <option value="3">{lang.admin}</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Save Button */}
         <div class="row">
           <input type="submit" ref="saveUserButton" value={lang.save}></input>
         </div>
@@ -103,7 +122,7 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
         this.refs.inputLastName.value = this.user.lastName;
         this.refs.inputAge.value = this.user.age;
         this.refs.inputCity.value = this.user.city;
-        this.user.id;
+        this.refs.inputUserType.value = this.user.userType;
 
         // Edit button
         this.refs.saveUserButton.onclick = () => {
@@ -112,9 +131,10 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
           let lastName = this.refs.inputLastName.value;
           let age = parseInt(this.refs.inputAge.value);
           let city = this.refs.inputCity.value;
+          let userType = parseInt(this.refs.inputUserType.value);
           let id = this.user.id;
 
-          userService.editUser(firstName, middleName, lastName, age, city, id);
+          userService.editUser(firstName, middleName, lastName, age, city, userType, id);
           console.log("User account updated.");
 
           history.push('/user/' + user[0].id);

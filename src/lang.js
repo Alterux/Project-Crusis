@@ -30,10 +30,11 @@ let en = {
   signUp: 'Create account',
   forgotPass: 'Forgot password',
 
-  userTypeNew: 'Account type: New',
-  userTypeUser: 'Account type: User',
-  userTypeLeader: 'Account type: Leader',
-  userTypeAdmin: 'Account type: Admin',
+  userType: 'Account type',
+  new: 'New',
+  user: 'User',
+  leader: 'Leader',
+  admin: 'Admin',
 
   // Error messages
   errorLogin: 'Incorrect username or password!',
@@ -78,10 +79,11 @@ let no = {
   signUp: 'Opprett konto',
   forgotPass: 'Glemt passord',
 
-  userTypeNew: 'Kontotype: Ny',
-  userTypeUser: 'Kontotype: Bruker',
-  userTypeLeader: 'Kontotype: Leder',
-  userTypeAdmin: 'Kontotype: Admin',
+  userType: 'Brukertype',
+  new: 'Ny',
+  user: 'Bruker',
+  leader: 'Leder',
+  admin: 'Admin',
 
   // Error meldinger
   errorLogin: 'Feil brukernavn eller passord!',

@@ -58,9 +58,10 @@ class UserService {
     });
   }
 
-  editUser(firstName: string, middleName: string, lastName: string, age: number, city: string, id: number): Promise<void> {
+  editUser(firstName: string, middleName: string, lastName: string, age: number, city: string, userType: number, id: number): Promise<void> {
     return new Promise((resolve, reject) => {
-      connection.query('UPDATE Users SET firstName=?, middleName=?, lastName=?, age=?, city=? WHERE id=?;', [firstName, middleName, lastName, age, city, id], (error, result) => {
+      connection.query('UPDATE Users SET firstName=?, middleName=?, lastName=?, age=?, city=?, userType=? WHERE id=?;',
+      [firstName, middleName, lastName, age, city, userType, id], (error, result) => {
         if(error) {
           reject(error);
           return;

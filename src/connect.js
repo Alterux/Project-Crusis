@@ -1,4 +1,3 @@
-// @flow
 import * as mysql from 'mysql';
 
 // Setup database server reconnection when server timeouts connection:

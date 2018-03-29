@@ -27,16 +27,16 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
 
     switch (user.userType) {
       case 0:
-        userTypeMsg = lang.userTypeNew
+        userTypeMsg = lang.userType + ": " + lang.new
         break;
       case 1:
-        userTypeMsg = lang.userTypeUser
+        userTypeMsg = lang.userType + ": " + lang.user
         break;
       case 2:
-        userTypeMsg = lang.userTypeLeader
+        userTypeMsg = lang.userType + ": " + lang.leader
         break;
       case 3:
-        userTypeMsg = lang.userTypeAdmin
+        userTypeMsg = lang.userType + ": " + lang.admin
         break;
       default:
         userTypeMsg = ""
