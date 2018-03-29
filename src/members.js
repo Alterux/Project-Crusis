@@ -25,8 +25,6 @@ class Members extends React.Component<{}> {
       listNewMembers.push(<li key={member.id}><Link to={'/user/' + member.id}>{member.firstName}</Link></li>);
     }
 
-    // console.log(signedInUser);
-
     switch (signedInUser.userType) {
 
       case 3:

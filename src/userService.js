@@ -10,6 +10,7 @@ class User {
   email: string;
   password: number;
   firstName: string;
+  middleName: string;
   lastName: string;
   age: number;
   city: string;
@@ -47,6 +48,19 @@ class UserService {
   signUp(email: string, password: number, firstName: string, lastName: string): Promise<void> {
     return new Promise((resolve, reject) => {
       connection.query('INSERT INTO Users (email, password, firstName, lastName) VALUES (?, ?, ?, ?);', [email, password, firstName, lastName], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve();
+      });
+    });
+  }
+
+  editUser(firstName: string, middleName: string, lastName: string, age: number, city: string, id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('UPDATE Users SET firstName=?, middleName=?, lastName=?, age=?, city=? WHERE id=?;', [firstName, middleName, lastName, age, city, id], (error, result) => {
         if(error) {
           reject(error);
           return;

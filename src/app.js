@@ -11,6 +11,7 @@ import { ErrorMessage, errorMessage } from './errorMessage';
 
 import { Home } from './home';
 import { UserDetails } from './userDetails';
+import { UserDetailsEdit } from './userDetailsEdit';
 import { Members } from './members';
 import { Events } from './events';
 
@@ -29,6 +30,7 @@ if(root) {
           <Route exact path='/' component={Home} />
           <Route exact path='/friends' component={Members} />
           <Route exact path='/user/:id' component={UserDetails} />
+          <Route exact path='/user/:id/edit' component={UserDetailsEdit} />
         </Switch>
         <BottomBar />
       </div>

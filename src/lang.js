@@ -13,10 +13,14 @@ let en = {
   welcomeMsg: 'Welcome to Red Cross!',
   loggedInMsg: 'My Events: ',
 
+  edit: 'Edit',
+  save: 'Save',
+
   username: 'Username',
   password: 'Password',
   email: 'Email',
   firstName: 'First name',
+  middleName: 'Middle name',
   lastName: 'Last name',
   age: 'Age',
   city: 'City',
@@ -40,6 +44,7 @@ let en = {
 
   switchLanguage: 'Bytt til Norsk',
   confirmSignOut: 'Log out?',
+  optional: 'Optional',
 };
 
 /**************************************************/
@@ -56,10 +61,14 @@ let no = {
   welcomeMsg: 'Velkommen til Røde Kors!',
   loggedInMsg: 'Mine Arrangementer: ',
 
+  edit: 'Rediger',
+  save: 'Lagre',
+
   username: 'Brukernavn',
   password: 'Passord',
   email: 'Epost',
   firstName: 'Fornavn',
+  middleName: 'Mellomnavn',
   lastName: 'Etternavn',
   age: 'Alder',
   city: 'By',
@@ -83,6 +92,7 @@ let no = {
 
   switchLanguage: 'Change to English',
   confirmSignOut: 'Logg ut?',
+  optional: 'Valgfritt',
 };
 
 // Language selection
