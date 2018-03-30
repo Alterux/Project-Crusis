@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-.formEdit, select, textarea {
+.formEdit /*select, textarea*/ {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -10,10 +10,12 @@
     resize: vertical;
 }
 
+/*
 label {
     padding: 12px 12px 12px 0;
     display: inline-block;
 }
+*/
 
 input[type=submit] {
     background-color: #4CAF50;
@@ -27,6 +29,10 @@ input[type=submit] {
 
 input[type=submit]:hover {
     background-color: #45a049;
+}
+
+.saveUserButton {
+  margin-top: 1em;
 }
 
 .container {
@@ -44,6 +50,10 @@ input[type=submit]:hover {
     float: left;
     width: 75%;
     margin-top: 6px;
+}
+
+.row {
+  margin-bottom: 1em;
 }
 
 /* Clear floats after the columns */

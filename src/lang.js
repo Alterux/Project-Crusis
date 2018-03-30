@@ -16,6 +16,10 @@ let en = {
   edit: 'Edit',
   save: 'Save',
 
+  language: 'Language',
+  english: 'English',
+  norwegian: 'Norwegian',
+
   username: 'Username',
   password: 'Password',
   email: 'Email',
@@ -64,6 +68,10 @@ let no = {
 
   edit: 'Rediger',
   save: 'Lagre',
+
+  language: 'Språk',
+  english: 'Engelsk',
+  norwegian: 'Norsk',
 
   username: 'Brukernavn',
   password: 'Passord',

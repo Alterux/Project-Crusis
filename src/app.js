@@ -19,10 +19,11 @@ let root = document.getElementById('root');
 if(root) {
   ReactDOM.render((
     <HashRouter>
-      <div>
+      <div class="main">
         <ErrorMessage />
         <Menu />
         <Switch>
+          <div class="content">
           <Route exact path='/signin' component={SignIn} />
           <Route exact path='/signup' component={SignUp} />
           <Route exact path='/forgotpass' component={ForgotPass} />
@@ -31,6 +32,7 @@ if(root) {
           <Route exact path='/friends' component={Members} />
           <Route exact path='/user/:id' component={UserDetails} />
           <Route exact path='/user/:id/edit' component={UserDetailsEdit} />
+          </div>
         </Switch>
         <BottomBar />
       </div>

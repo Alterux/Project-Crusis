@@ -90,7 +90,7 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
             <label for="userType">{lang.userType}</label>
           </div>
           <div class="col-75">
-            <select name="cars" id="userType" ref="inputUserType">
+            <select className="formEdit" id="userType" ref="inputUserType">
               <option value="1">{lang.user}</option>
               <option value="2">{lang.leader}</option>
               <option value="3">{lang.admin}</option>
@@ -99,7 +99,7 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
         </div>
 
         {/* Save Button */}
-        <div class="row">
+        <div class="row" className="saveUserButton">
           <input type="submit" ref="saveUserButton" value={lang.save}></input>
         </div>
       </div>

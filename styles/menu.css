@@ -1,0 +1,41 @@
+.toolBar {
+  box-shadow: 0px 0px 5px;
+  width: auto;
+  height: 3em;
+  left: 0;
+  right: 0;
+  margin-bottom: .5em;
+}
+
+#menuBar {
+  top: -1em;
+  margin: -.5em;
+  margin-right: 0;
+  margin-bottom: .5em;
+}
+
+#menuItems {
+  position: absolute;
+  margin-left: 1em;
+  top: .8em;
+}
+
+#bottomBar, main:after {
+  height: 2em;
+}
+
+#bottomBar {
+  box-shadow: 0px 0px 5px;
+  flex-shrink: 0;
+}
+
+#langSelect {
+  position: relative;
+  float: right;
+  top: .44em;
+  right: .44em;
+}
+
+#langButton {
+  margin-left: .5em;
+}

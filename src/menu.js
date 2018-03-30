@@ -51,32 +51,44 @@ let menu: ?Menu;
 
 class BottomBar extends React.Component<{}> {
   refs: {
-    langButton: HTMLButtonElement
+    lang: HTMLSelectElement,
+    langButton: HTMLButtonElement,
   }
+
 
   render() {
     return(
-      <div id='bottomBar' className="toolBar">
-        <div id='langSelect'>
-          <button ref='langButton'>{lang.switchLanguage}</button>
+      <div id="bottomBar">
+
+      {/* Language selection */}
+        <div id="langSelect">
+            <select name="lang" id="lang" ref="lang">
+              <option value="en">English</option>
+              <option value="no">Norsk</option>
+            </select>
+            <button ref='langButton' id="langButton">{lang.save}</button>
         </div>
       </div>
     );
   }
 
   componentDidMount() {
-    this.refs.langButton.onclick = () => {
-      switch (localStorage.getItem("lang")) {
-        case 'en':
-          localStorage.setItem('lang', 'no');
-          break;
-        case 'no':
-          localStorage.setItem('lang', 'en');
-          break;
-        default:
-          localStorage.setItem('lang', 'no');
-      }
+    // Get language or set language norwegian if none.
+    let cLang = localStorage.getItem('lang');
+    if (cLang) {
+      this.refs.lang.value = cLang
+    } else {
+      localStorage.setItem('lang', 'no');
       window.location.reload();
+    }
+
+    // Set language onclick save.
+    this.refs.langButton.onclick = () => {
+      let sLang = this.refs.lang.value;
+      if (cLang !== sLang) {
+        localStorage.setItem('lang', sLang);
+        window.location.reload();
+      }
     };
   }
 }
