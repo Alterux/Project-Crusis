@@ -39,7 +39,6 @@ class UserService {
         }
 
         localStorage.setItem('signedInUser', JSON.stringify(result[0])); // Store User-object in browser
-        localStorage.setItem('userType', result[0].userType); // Store User-object in browser
         resolve();
       });
     });

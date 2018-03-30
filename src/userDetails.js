@@ -24,7 +24,9 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
     let user = this.user;
 
     let userTypeMsg;
+    let editUserButton;
 
+    // Prints usertype.
     switch (user.userType) {
       case 0:
         userTypeMsg = lang.userType + ": " + lang.new
@@ -42,9 +44,14 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
         userTypeMsg = ""
     }
 
+    // Shows only edit button for admin or on your own page.
+    if (signedInUser.userType === 3 || signedInUser.id === user.id) {
+      editUserButton = <div><button ref="editUserButton">{lang.edit}</button></div>
+    }
+
       return (
         <div>
-          <button ref="editUserButton">{lang.edit}</button><br /><br />
+          {editUserButton}
           <img className="accountImg" src="resources/default.png" alt="Account Image" width="50px" height="50px"></img>
           <br />{user.firstName} {user.middleName} {user.lastName}<br />
           <br />{lang.age}: {user.age}
@@ -55,23 +62,23 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
   }
 
   componentDidMount() {
-
     // User
     let signedInUser = userService.getSignedInUser();
     if(signedInUser) {
       this.signedInUser = signedInUser;
+      this.forceUpdate();
 
       userService.getUser(this.props.match.params.id).then((user) => {
         this.user = user[0];
         this.forceUpdate();
 
         // Edit button
-        this.refs.editUserButton.onclick = () => {
-          history.push('/user/' + user[0].id + '/edit/');
+        if (signedInUser.userType === 3 || signedInUser.id === user[0].id) {
+          this.refs.editUserButton.onclick = () => {
+            history.push('/user/' + user[0].id + '/edit/');
+          }
         }
       }).catch((error: Error) => {
-        // Converts error to string og removes "Error: " from the beginning.
-        // Output is only the errormessage from lang.js.
         if(errorMessage) console.log(error);
       });
     }
