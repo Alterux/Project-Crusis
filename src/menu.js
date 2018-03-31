@@ -18,7 +18,7 @@ class Menu extends React.Component<{}> {
             <NavLink activeStyle={{color: 'green'}} exact to='/'>{lang.home}</NavLink>{' '}
             <NavLink activeStyle={{color: 'green'}} to={'/user/' + signedInUser.id}>{lang.myPage}</NavLink>{' '}
             <NavLink activeStyle={{color: 'green'}} to='/events'>{lang.events}</NavLink>{' '}
-            <NavLink activeStyle={{color: 'green'}} to='/friends'>{lang.members}</NavLink>{' '}
+            <NavLink activeStyle={{color: 'green'}} to='/members'>{lang.members}</NavLink>{' '}
           </div>
           <div id="signOut">
             <NavLink activeStyle={{color: 'green'}} to='/signout'>{lang.signOut}</NavLink>{' '}

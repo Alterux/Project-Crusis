@@ -29,7 +29,7 @@ if(root) {
           <Route exact path='/forgotpass' component={ForgotPass} />
           <Route exact path='/signout' component={SignOut} />
           <Route exact path='/' component={Home} />
-          <Route exact path='/friends' component={Members} />
+          <Route exact path='/members' component={Members} />
           <Route exact path='/user/:id' component={UserDetails} />
           <Route exact path='/user/:id/edit' component={UserDetailsEdit} />
           </div>

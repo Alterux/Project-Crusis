@@ -71,6 +71,19 @@ class UserService {
     });
   }
 
+  editUserType(userType: number, id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('UPDATE Users SET userType=? WHERE id=?;', [userType, id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve();
+      });
+    });
+  }
+
   getSignedInUser(): ?User {
     let item = localStorage.getItem('signedInUser'); // Get User-object from browser
     if(!item) return null;
@@ -120,6 +133,19 @@ class UserService {
         }
 
         resolve(result);
+      });
+    });
+  }
+
+  deleteUser(id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('DELETE FROM Users WHERE id=?;', [id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve();
       });
     });
   }

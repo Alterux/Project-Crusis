@@ -15,6 +15,9 @@ let en = {
 
   edit: 'Edit',
   save: 'Save',
+  accept: 'Accept',
+  reject: 'Reject',
+  contact: 'Contact',
 
   language: 'Language',
   english: 'English',
@@ -49,6 +52,7 @@ let en = {
 
   switchLanguage: 'Bytt til Norsk',
   confirmSignOut: 'Log out?',
+  confirmUserDelete: 'Delete user?',
   optional: 'Optional',
 };
 
@@ -68,6 +72,9 @@ let no = {
 
   edit: 'Rediger',
   save: 'Lagre',
+  accept: 'Godta',
+  reject: 'Avslå',
+  contact: 'Kontakt',
 
   language: 'Språk',
   english: 'Engelsk',
@@ -102,6 +109,7 @@ let no = {
 
   switchLanguage: 'Change to English',
   confirmSignOut: 'Logg ut?',
+  confirmUserDelete: 'Slett brukeren?',
   optional: 'Valgfritt',
 };
 

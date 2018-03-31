@@ -74,8 +74,10 @@ class SignOut extends React.Component<{}> {
     let result = confirm(lang.confirmSignOut);
     if (result) {
       localStorage.removeItem('signedInUser');
+      history.push('/');
+    } else {
+      history.goBack();
     }
-    history.push('/');
     this.forceUpdate();
   }
 }
@@ -125,7 +127,9 @@ class SignUp extends React.Component<{}> {
           history.push('/');
         });
       }).catch((error: Error) => {
-        if(errorMessage) errorMessage.set("Error");
+        // Converts error to string og removes "Error: " from the beginning.
+        // Output is only the errormessage from lang.js.
+        if(errorMessage) errorMessage.set(String(error).slice(7));
       });
     };
   }
