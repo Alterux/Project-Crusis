@@ -91,6 +91,8 @@ class SignUp extends React.Component<{}> {
     signUpButton: HTMLButtonElement
   }
 
+  accountCreated: number;
+
   hashCode(str: string) {
     let hash = 0;
     if (str.length == 0) return hash;
@@ -103,42 +105,113 @@ class SignUp extends React.Component<{}> {
   }
 
   render() {
-    return (
-      <div className="inputForm">
-        <input className="form" type='text' ref='signUpUsername' placeholder={lang.email} />
-          <img className="inputIcon" src="resources/loginUser.svg"></img>
-        <input className="form" type='text' ref='signUpPassword' placeholder={lang.password} />
-          <img className="inputIcon" id="passIcon" src="resources/loginPass.svg"></img>
-        <input className="form" type='text' ref='signUpFirstname' placeholder={lang.firstName} />
-        <input className="form" type='text' ref='signUpLastname' placeholder={lang.lastName} />
-        <button className="form" id="signUpButton" ref='signUpButton'>{lang.signUp}</button>
-      </div>
-    );
+    let accountCreated = this.accountCreated;
+
+    if (accountCreated === 1) {
+      return (
+        <div>
+          <div id="title">
+            <img id="logo" src="resources/logo.svg"></img>
+            <div className="titleText"><h1>{lang.title}</h1></div>
+          </div>
+          <div className="inputForm">
+            {lang.signedUpMsg}
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <div id="title">
+            <img id="logo" src="resources/logo.svg"></img>
+            <div className="titleText"><h1>{lang.title}</h1></div>
+          </div>
+
+
+          <div className="inputForm">
+
+            <div className="inputFormAuth">
+              <h3>{lang.signIn}</h3>
+              <input className="form" id="formUser" type='text' ref='signUpUsername' placeholder={lang.email} required />
+              <input className="form" id="formPass" type='password' ref='signUpPassword' placeholder={lang.password} required />
+            </div>
+
+            <div className="inputFormName">
+              <h3>{lang.name}</h3>
+              <input className="form" type='text' ref='signUpFirstname' placeholder={lang.firstName} required />
+              <input className="form" type='text' ref='signUpMiddlename' placeholder={lang.middleName} />
+              <input className="form" type='text' ref='signUpLastname' placeholder={lang.lastName} required />
+            </div>
+
+            <div className="inputFormBirth">
+              <h3>{lang.birthdate}</h3>
+              <input className="form" type='number' ref='signUpBirthDay' placeholder={lang.day} min='1' max='31' required />
+              <select className="form" id="signUpBirthMonth" ref="signUpBirthDay" required>
+                <option value="" disabled selected>{lang.month}</option>
+                <option value="1">{lang.jan}</option>
+                <option value="2">{lang.feb}</option>
+                <option value="3">{lang.mar}</option>
+                <option value="4">{lang.apr}</option>
+                <option value="5">{lang.may}</option>
+                <option value="6">{lang.jun}</option>
+                <option value="7">{lang.jul}</option>
+                <option value="8">{lang.aug}</option>
+                <option value="9">{lang.sep}</option>
+                <option value="10">{lang.oct}</option>
+                <option value="11">{lang.nov}</option>
+                <option value="12">{lang.dec}</option>
+              </select>
+              <input className="form" type='number' ref='signUpBirthYear' placeholder={lang.year} min='1905' max='2018' required />
+            </div>
+
+            <div className="inputFormAddress">
+              <h3>{lang.address}</h3>
+              <input className="form" type='text' ref='signUpCity' placeholder={lang.city} required />
+            </div>
+
+            <div className="inputFormButton">
+              <button className="form" id="signInButton" ref='signUpButton'>{lang.signUp}</button>
+            </div>
+
+          </div>
+        </div>
+      );
+    }
   }
 
   componentDidMount() {
     if(menu) menu.forceUpdate();
 
-
-    this.refs.signUpButton.onclick = () => {
-      let hashedPass = this.hashCode(this.refs.signUpPassword.value + this.refs.signUpUsername.value);
-      userService.signUp(this.refs.signUpUsername.value, hashedPass, this.refs.signUpFirstname.value, this.refs.signUpLastname.value).then(() => {
-        userService.signIn(this.refs.signUpUsername.value, hashedPass).then(() => {
-          history.push('/');
+    if (this.refs.signUpButton) {
+      this.refs.signUpButton.onclick = () => {
+        let hashedPass = this.hashCode(this.refs.signUpPassword.value + this.refs.signUpUsername.value);
+        userService.signUp(this.refs.signUpUsername.value, hashedPass, this.refs.signUpFirstname.value, this.refs.signUpLastname.value).then(() => {
+          this.accountCreated = 1;
+          this.forceUpdate();
+        }).catch((error: Error) => {
+          // Converts error to string og removes "Error: " from the beginning.
+          // Output is only the errormessage from lang.js.
+          if(errorMessage) errorMessage.set(String(error).slice(7));
         });
-      }).catch((error: Error) => {
-        // Converts error to string og removes "Error: " from the beginning.
-        // Output is only the errormessage from lang.js.
-        if(errorMessage) errorMessage.set(String(error).slice(7));
-      });
-    };
+      };
+    }
   }
 }
 
 class ForgotPass extends React.Component<{}> {
 
   render() {
-    return (<div></div>);
+    return (
+      <div>
+        <div id="title">
+          <img id="logo" src="resources/logo.svg"></img>
+          <div className="titleText"><h1>{lang.title}</h1></div>
+        </div>
+        <div className="inputForm">
+          {lang.forgotPassMsg}
+        </div>
+      </div>
+    );
   }
 
   componentDidMount() {

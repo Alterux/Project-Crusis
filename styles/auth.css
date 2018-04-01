@@ -41,6 +41,26 @@
   min-height: 2.75em;
   padding-left: 2.75em;
   box-sizing: border-box;
+  outline: none;
+}
+
+.form:required:invalid:focus {
+  border: solid 1px #e9322d;
+  border-right: solid 3px #e9322d;
+}
+
+.form:required:valid:focus {
+  border: solid 1px #1b9dec;
+  border-right: solid 3px #1b9dec;
+}
+
+.form:required:valid {
+  border: solid 1px #00b251;
+  border-right: solid 3px #00b251;
+}
+
+.form:required:invalid {
+  border-right: solid 3px #e9322d;
 }
 
 #formUser {

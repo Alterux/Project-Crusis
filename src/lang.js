@@ -12,6 +12,8 @@ let en = {
   title: 'Red Cross',
   welcomeMsg: 'Welcome to Red Cross!',
   loggedInMsg: 'My Events: ',
+  signedUpMsg: 'User account created, please wait for confirmation.',
+  forgotPassMsg: 'Page under construction.',
 
   edit: 'Edit',
   save: 'Save',
@@ -26,9 +28,12 @@ let en = {
   username: 'Username',
   password: 'Password',
   email: 'Email',
+  name: 'Name',
   firstName: 'First name',
   middleName: 'Middle name',
   lastName: 'Last name',
+  birthdate: 'Date of birth',
+  address: 'Address',
   age: 'Age',
   city: 'City',
 
@@ -54,6 +59,25 @@ let en = {
   confirmSignOut: 'Log out?',
   confirmUserDelete: 'Delete user?',
   optional: 'Optional',
+
+  // Dates
+  day: 'Day',
+  month: 'Month',
+  year: 'Year',
+
+  // Months
+  jan: 'January',
+  feb: 'February',
+  mar: 'March',
+  apr: 'April',
+  may: 'May',
+  jun: 'June',
+  jul: 'July',
+  aug: 'August',
+  sep: 'September',
+  oct: 'October',
+  nov: 'November',
+  dec: 'December',
 };
 
 /**************************************************/
@@ -69,6 +93,8 @@ let no = {
   title: 'Røde Kors',
   welcomeMsg: 'Velkommen til Røde Kors!',
   loggedInMsg: 'Mine Arrangementer: ',
+  signedUpMsg: 'Brukerkonto opprettet, vennligst vent på godkjenning.',
+  forgotPassMsg: 'Side under konstruksjon.',
 
   edit: 'Rediger',
   save: 'Lagre',
@@ -83,9 +109,12 @@ let no = {
   username: 'Brukernavn',
   password: 'Passord',
   email: 'Epost',
+  name: 'Navn',
   firstName: 'Fornavn',
   middleName: 'Mellomnavn',
   lastName: 'Etternavn',
+  birthdate: 'Fødselsdato',
+  address: 'Adresse',
   age: 'Alder',
   city: 'By',
 
@@ -111,6 +140,25 @@ let no = {
   confirmSignOut: 'Logg ut?',
   confirmUserDelete: 'Slett brukeren?',
   optional: 'Valgfritt',
+
+  // Datoer
+  day: 'Day',
+  month: 'Month',
+  year: 'Year',
+
+  // Months
+  jan: 'Januar',
+  feb: 'Februar',
+  mar: 'Mars',
+  apr: 'April',
+  may: 'Mai',
+  jun: 'Juni',
+  jul: 'Juli',
+  aug: 'August',
+  sep: 'September',
+  oct: 'Oktober',
+  nov: 'November',
+  dec: 'Desember',
 };
 
 // Language selection
