@@ -12,6 +12,7 @@ class User {
   firstName: string;
   middleName: string;
   lastName: string;
+  birthDate: string;
   age: number;
   city: string;
 }
@@ -44,9 +45,10 @@ class UserService {
     });
   }
 
-  signUp(email: string, password: number, firstName: string, lastName: string): Promise<void> {
+  signUp(email: string, password: number, firstName: string, middleName: string, lastName: string, birthDate: string, city: string): Promise<void> {
     return new Promise((resolve, reject) => {
-      connection.query('INSERT INTO Users (email, password, firstName, lastName) VALUES (?, ?, ?, ?);', [email, password, firstName, lastName], (error, result) => {
+      connection.query('INSERT INTO Users (email, password, firstName, middleName, lastName, birthDate, city) VALUES (?, ?, ?, ?, ?, ?, ?);',
+      [email, password, firstName, middleName, lastName, birthDate, city], (error, result) => {
         if(error) {
           reject(error);
           return;
@@ -57,10 +59,10 @@ class UserService {
     });
   }
 
-  editUser(firstName: string, middleName: string, lastName: string, age: number, city: string, userType: number, id: number): Promise<void> {
+  editUser(firstName: string, middleName: string, lastName: string, birthDate: string, city: string, userType: number, id: number): Promise<void> {
     return new Promise((resolve, reject) => {
-      connection.query('UPDATE Users SET firstName=?, middleName=?, lastName=?, age=?, city=?, userType=? WHERE id=?;',
-      [firstName, middleName, lastName, age, city, userType, id], (error, result) => {
+      connection.query('UPDATE Users SET firstName=?, middleName=?, lastName=?, birthDate=?, city=?, userType=? WHERE id=?;',
+      [firstName, middleName, lastName, birthDate, city, userType, id], (error, result) => {
         if(error) {
           reject(error);
           return;

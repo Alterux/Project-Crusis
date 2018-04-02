@@ -56,6 +56,7 @@ let en = {
   errorMembers: 'Error getting members!',
 
   switchLanguage: 'Bytt til Norsk',
+  saveChanges: 'Save changes',
   confirmSignOut: 'Log out?',
   confirmUserDelete: 'Delete user?',
   optional: 'Optional',
@@ -137,14 +138,15 @@ let no = {
   errorMembers: 'Feil med henting av brukere!',
 
   switchLanguage: 'Change to English',
+  saveChanges: 'Lagre endringer',
   confirmSignOut: 'Logg ut?',
   confirmUserDelete: 'Slett brukeren?',
   optional: 'Valgfritt',
 
   // Datoer
-  day: 'Day',
-  month: 'Month',
-  year: 'Year',
+  day: 'Dag',
+  month: 'Måned',
+  year: 'År',
 
   // Months
   jan: 'Januar',

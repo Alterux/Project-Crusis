@@ -10,14 +10,17 @@ import { User, userService } from './userService';
 import { Event, eventService } from './eventService';
 import { ErrorMessage, errorMessage } from './errorMessage';
 
+import { inputDays, inputMonths, inputYears, inputUserType } from './selectOptions';
+
 class UserDetailsEdit extends React.Component<{ match: { params: { id: number } } }> {
   refs: {
     saveUserButton: HTMLInputElement,
     inputFirstName: HTMLInputElement,
     inputMiddleName: HTMLInputElement,
     inputLastName: HTMLInputElement,
-    // inputAge: HTMLInputElement,
-    inputAge: any,
+    inputBirthDay: any,
+    inputBirthMonth: any,
+    inputBirthYear: any,
     inputCity: HTMLInputElement,
     // inputUserType: HTMLSelectElement,
     inputUserType: any,
@@ -32,76 +35,36 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
     let userTypeMsg;
 
     return (
-      <div class="container">
+      <div className="inputForm">
 
-        {/* First name */}
-        <div class="row">
-          <div class="col-25">
-            <label for="fname">{lang.firstName}</label>
-          </div>
-          <div class="col-75">
-            <input type="text" className="formEdit" id="fname" ref="inputFirstName"></input>
-          </div>
+        <div className="inputFormName">
+          <h3>{lang.name}</h3>
+          <input className="form" type='text' ref='inputFirstName' placeholder={lang.firstName} required />
+          <input className="form" type='text' ref='inputMiddleName' placeholder={lang.middleName} />
+          <input className="form" type='text' ref='inputLastName' placeholder={lang.lastName} required />
         </div>
 
-        {/* Middle name */}
-        <div class="row">
-          <div class="col-25">
-            <label for="mname">{lang.middleName}</label>
-          </div>
-          <div class="col-75">
-            <input type="text" className="formEdit" id="mname" ref="inputMiddleName" placeholder={lang.optional}></input>
-          </div>
+        <div className="inputFormBirth">
+          <h3>{lang.birthdate}</h3>
+          {inputDays()}
+          {inputMonths()}
+          {inputYears()}
         </div>
 
-        {/* Last name */}
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">{lang.lastName}</label>
-          </div>
-          <div class="col-75">
-            <input type="text" className="formEdit" id="lname" ref="inputLastName"></input>
-          </div>
+        <div className="inputFormAddress">
+          <h3>{lang.address}</h3>
+          <input className="form" type='text' ref='inputCity' placeholder={lang.city} required />
         </div>
 
-        {/* Age */}
-        <div class="row">
-          <div class="col-25">
-            <label for="age">{lang.age}</label>
-          </div>
-          <div class="col-75">
-            <input type="text" className="formEdit" id="age" ref="inputAge"></input>
-          </div>
+        <div className="inputFormUserType">
+          <h3>{lang.userType}</h3>
+          {inputUserType()}
         </div>
 
-        {/* City */}
-        <div class="row">
-          <div class="col-25">
-            <label for="city">{lang.city}</label>
-          </div>
-          <div class="col-75">
-            <input type="text" className="formEdit" id="city" ref="inputCity"></input>
-          </div>
+        <div className="inputFormButton">
+          <button className="form" id="signInButton" ref='saveUserButton'>{lang.saveChanges}</button>
         </div>
 
-        {/* Account Type */}
-        <div class="row">
-          <div class="col-25">
-            <label for="userType">{lang.userType}</label>
-          </div>
-          <div class="col-75">
-            <select className="formEdit" id="userType" ref="inputUserType">
-              <option value="1">{lang.user}</option>
-              <option value="2">{lang.leader}</option>
-              <option value="3">{lang.admin}</option>
-            </select>
-          </div>
-        </div>
-
-        {/* Save Button */}
-        <div class="row" className="saveUserButton">
-          <input type="submit" ref="saveUserButton" value={lang.save}></input>
-        </div>
       </div>
     );
   }
@@ -117,24 +80,29 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
         this.user = user[0];
         this.forceUpdate();
 
+        let age = new Date(user[0].birthDate);
+
         this.refs.inputFirstName.value = this.user.firstName;
         this.refs.inputMiddleName.value = this.user.middleName;
         this.refs.inputLastName.value = this.user.lastName;
-        this.refs.inputAge.value = this.user.age;
+        this.refs.inputBirthDay.value = age.getDate();
+        this.refs.inputBirthMonth.value = age.getMonth() + 1;
+        this.refs.inputBirthYear.value = age.getFullYear();
         this.refs.inputCity.value = this.user.city;
         this.refs.inputUserType.value = this.user.userType;
 
         // Edit button
         this.refs.saveUserButton.onclick = () => {
+
           let firstName = this.refs.inputFirstName.value;
           let middleName = this.refs.inputMiddleName.value;
           let lastName = this.refs.inputLastName.value;
-          let age = parseInt(this.refs.inputAge.value);
+          let birthDate = this.refs.inputBirthYear.value + '-' + this.refs.inputBirthMonth.value + '-' + this.refs.inputBirthDay.value;
           let city = this.refs.inputCity.value;
           let userType = parseInt(this.refs.inputUserType.value);
           let id = this.user.id;
 
-          userService.editUser(firstName, middleName, lastName, age, city, userType, id);
+          userService.editUser(firstName, middleName, lastName, birthDate, city, userType, id);
           console.log("User account updated.");
 
           history.push('/user/' + user[0].id);

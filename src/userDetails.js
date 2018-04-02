@@ -21,10 +21,12 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
 
   signedInUser = {};
   user = {};
+  age: number;
 
   render() {
     let signedInUser = this.signedInUser;
     let user = this.user;
+    let age = this.age;
 
     let userTypeMsg;
     let userButton;
@@ -72,7 +74,7 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
           {userButton}
           <img className="accountImg" src="resources/default.png" alt="Account Image" width="50px" height="50px"></img>
           <br />{user.firstName} {user.middleName} {user.lastName}<br />
-          <br />{lang.age}: {user.age}
+          <br />{lang.age}: {age}<br />
           <br />{lang.city}: {user.city}<br />
           <br />{userTypeMsg}
         </div>
@@ -87,6 +89,12 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
 
       userService.getUser(this.props.match.params.id).then((user) => {
         this.user = user[0];
+
+        // calculate user age
+        let today = new Date();
+        let birthDate = new Date(user[0].birthDate);
+        let age = Math.floor((today - birthDate) / (1000 * 60 * 60 * 24 * 365.25)); // calcualted age
+        this.age = age;
         this.forceUpdate();
 
         // Accept and reject buttons

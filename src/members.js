@@ -19,10 +19,10 @@ class Members extends React.Component<{}> {
     let listMembers = [];
     let listNewMembers = [];
     for(let member of this.members) {
-      listMembers.push(<li key={member.id}><Link to={'/user/' + member.id}>{member.firstName}</Link></li>);
+      listMembers.push(<li key={member.id}><Link to={'/user/' + member.id}>{member.firstName} {member.lastName}</Link></li>);
     }
     for(let member of this.newMembers) {
-      listNewMembers.push(<li key={member.id}><Link to={'/user/' + member.id}>{member.firstName}</Link></li>);
+      listNewMembers.push(<li key={member.id}><Link to={'/user/' + member.id}>{member.firstName} {member.lastName}</Link></li>);
     }
 
     switch (signedInUser.userType) {
