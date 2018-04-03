@@ -1,0 +1,14 @@
+.eventmain {
+
+}
+
+.eventlist {
+  border-collapse: collapse;
+}
+
+.eventlist td, .eventlist th {
+  min-width: 50px;
+  max-width: 350px;
+  padding: 5px;
+  border: 2px solid black;
+}
