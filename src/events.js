@@ -56,7 +56,7 @@ class Events extends React.Component<{}> {
   componentDidMount() {
     let signedInUser = userService.getSignedInUser();
     if(signedInUser) {
-      userService.getEvents().then(() => {
+      eventService.getEvents().then(() => {
         this.forceUpdate();
       }).catch((error: Error) => {
         //if(errorMessage) errorMessage.set('Could not get events');
