@@ -212,9 +212,9 @@ class SignUp extends React.Component<{}> {
         let firstName = this.refs.inputFirstname.value;
         let middleName = this.refs.inputMiddlename.value;
         let lastName = this.refs.inputLastname.value;
-        let birthYear = this.refs.inputBirthYear.value
-        let birthMonth = this.refs.inputBirthMonth.value
-        let birthDay = this.refs.inputBirthDay.value
+        let birthYear = this.refs.inputBirthYear.value;
+        let birthMonth = this.refs.inputBirthMonth.value;
+        let birthDay = this.refs.inputBirthDay.value;
         let birthDate = birthYear + '-' + birthMonth + '-' + birthDay;
         let city = this.refs.inputCity.value;
 
