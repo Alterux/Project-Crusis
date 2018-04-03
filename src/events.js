@@ -5,8 +5,8 @@ import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 import { lang, en, no } from './lang';
 import { ErrorMessage, errorMessage } from './errorMessage';
 
-import { User, Event, userService } from './services';
-import { Entry, eventService } from './eventServices';
+import { User, userService } from './userService';
+import { Event, eventService } from './eventService';
 
 
 
