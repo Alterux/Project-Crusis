@@ -79,6 +79,14 @@ let en = {
   oct: 'October',
   nov: 'November',
   dec: 'December',
+
+  //events page
+  eventHeader: 'Events',
+  tableName: 'Name',
+  tableLocation: 'Location',
+  tableCity: 'City',
+  tableDate: 'Date',
+  tableTime: 'Time',
 };
 
 /**************************************************/
@@ -161,6 +169,14 @@ let no = {
   oct: 'Oktober',
   nov: 'November',
   dec: 'Desember',
+
+  // Events Page
+  eventHeader: 'Arrangementer',
+  tableName: 'Navn',
+  tableLocation: 'Sted',
+  tableCity: 'By',
+  tableDate: 'Dato',
+  tableTime: 'Tid',
 };
 
 // Language selection

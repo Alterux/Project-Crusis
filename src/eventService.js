@@ -4,11 +4,11 @@ import { connection } from './connect';
 
 class Event {
   id: number;
-  text: string;
-  fromUserId: number;
-  toUserId: number;
-  fromUser: string;
-  toUser: string;
+  name: string;
+  location: string;
+  city: string;
+  date: object;
+  time: string;
 }
 
 class EventService {
