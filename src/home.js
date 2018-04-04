@@ -47,7 +47,7 @@ class Home extends React.Component<{}> {
 
       const script = document.createElement("script");
 
-      script.src = 'node_modules/simple-jscalendar/source/jsCalendar.js';
+      script.src = 'src/jsCalendar.js';
       script.async = true;
 
       document.body.appendChild(script);

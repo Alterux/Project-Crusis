@@ -2,7 +2,7 @@
 @import "menu.css";
 @import "userDetailsEdit.css";
 @import "events.css";
-@import "../node_modules/simple-jscalendar/source/jsCalendar.css";
+@import "jsCalendar.css";
 
 * {
   margin: 0;
