@@ -288,7 +288,7 @@ var jsCalendar = (function(){
                 return document.getElementsByClassName(element.substring(1))[0];
             }
         }
-        
+
         // or if it is HTML element (just a naive-simple check)
         else if (element.tagName && element.nodeName && element.ownerDocument && element.removeAttribute) {
             return element;
@@ -328,7 +328,7 @@ var jsCalendar = (function(){
 
         // Parse date
         date = this._parseDate(date);
-        
+
         // Check min
         if (this._options.min !== false && this._options.min.getTime() > date.getTime()) {
             return false;
@@ -390,7 +390,7 @@ var jsCalendar = (function(){
             date = new Date(date);
         }
 
-        // If it not a date 
+        // If it not a date
         else if (!(date instanceof Date)) {
             // Throw an error
             throw new Error("jsCalendar: Invalid date.");
@@ -1143,7 +1143,7 @@ var jsCalendar = (function(){
         var active = this._parseDate(this._date);
         active.setHours(0, 0, 0, 0);
         active.setDate(1);
-        
+
         // If same month
         if (month.getTime() === active.getTime()) {
             return true;
@@ -1208,7 +1208,7 @@ var jsCalendar = (function(){
             }
         }
     };
-    
+
     // Tools
     JsCalendar.tools = {};
     // String to date
@@ -1229,7 +1229,7 @@ var jsCalendar = (function(){
             [date, format]
         );
     };
-    
+
     // Get a new object
     JsCalendar.new = function(){
         // Create new object
@@ -1239,7 +1239,7 @@ var jsCalendar = (function(){
         // Return new object
         return obj;
     };
-    
+
     // Add a new language
     JsCalendar.addLanguage = function(language){
         // Check if language object is valid
@@ -1303,6 +1303,7 @@ var jsCalendar = (function(){
     return JsCalendar;
 })();
 
+/*
 // I love anonymous functions
 (function(){
     // Init auto calendars
@@ -1312,3 +1313,6 @@ var jsCalendar = (function(){
         jsCalendar.autoFind();
     }, false);
 })();
+*/
+
+export { jsCalendar };

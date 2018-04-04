@@ -11,9 +11,10 @@ import { connection } from './connect';
 import { User, userService } from './userService';
 import { Event, eventService } from './eventService';
 
+import { jsCalendar } from './jsCalendar';
+
 class Home extends React.Component<{}> {
   events = [];
-  appendChild: any;
 
   render() {
     let signedInUser = userService.getSignedInUser();
@@ -31,8 +32,8 @@ class Home extends React.Component<{}> {
 
     return (
       <div>
-        <div class="auto-jsCalendar"></div>
         <div id='welcomeMsg'>{welcomeMsg}
+        <div className="auto-jsCalendar"></div>
           <ul>
             {listItems}
           </ul>
@@ -44,13 +45,7 @@ class Home extends React.Component<{}> {
   componentDidMount() {
     let signedInUser = userService.getSignedInUser();
     if(signedInUser) {
-
-      const script = document.createElement("script");
-
-      script.src = 'src/jsCalendar.js';
-      script.async = true;
-
-      document.body.appendChild(script);
+      jsCalendar.autoFind();
 
       // events
       eventService.getEvents().then(() => {
