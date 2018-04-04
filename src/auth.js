@@ -200,15 +200,21 @@ class SignUp extends React.Component<{}> {
   componentDidMount() {
     if(menu) menu.forceUpdate();
 
-    this.refs.inputUsername.onchange = () => {validateEmail()};
-    this.refs.inputPassword.onchange = () => {validatePassword()};
+    // on input change => set to validate on input
+    this.refs.inputUsername.onchange = () => {validateEmail(); this.refs.inputUsername.oninput = () => {validateEmail()}};
+    this.refs.inputPassword.onchange = () => {validatePassword(); this.refs.inputPassword.oninput = () => {validatePassword()}};
+    this.refs.inputPasswordMatch.onchange = () => {validatePasswordMatch(); this.refs.inputPasswordMatch.oninput = () => {validatePasswordMatch()}};
+    this.refs.inputFirstname.onchange = () => {validateFirstName(); this.refs.inputFirstname.oninput = () => {validateFirstName()};};
+    this.refs.inputMiddlename.onchange = () => {validateMiddleName()};
+    this.refs.inputLastname.onchange = () => {validateLastName(); this.refs.inputLastname.oninput = () => {validateLastName()}};
+    this.refs.inputCity.onchange = () => {validateCity(); this.refs.inputCity.oninput = () => {validateCity()};};
 
+    // button loaded and clicked
     if (this.refs.inputButton) {
       this.refs.inputButton.onclick = () => {
 
+        // get values
         let userName = this.refs.inputUsername.value;
-        let password = this.refs.inputPassword.value;
-        let passwordMatch = this.refs.inputPasswordMatch.value;
         let hashedPass = this.hashCode(this.refs.inputPassword.value + this.refs.inputUsername.value);
         let firstName = this.refs.inputFirstname.value;
         let middleName = this.refs.inputMiddlename.value;
@@ -219,47 +225,38 @@ class SignUp extends React.Component<{}> {
         let birthDate = birthYear + '-' + birthMonth + '-' + birthDay;
         let city = this.refs.inputCity.value;
 
+        // birth validation only after button clicked
+        this.refs.inputBirthYear.onchange = () => {validateBirth()};
+        this.refs.inputBirthMonth.onchange = () => {validateBirth()};
+        this.refs.inputBirthDay.onchange = () => {validateBirth()};
+
+        // final validation
         validateEmail();
         validatePassword();
-        if (!firstName) this.errorFirstName = true;
-        if (!lastName) this.errorLastName = true;
-        if (!birthYear || !birthMonth || !birthDay) this.errorBirth = true;
-        if (!city) this.errorCity = true;
+        validatePasswordMatch();
+        validateFirstName();
+        validateLastName();
+        validateBirth();
+        validateBirth();
+        validateBirth();
+        validateCity();
 
-        if (this.errorEmail || this.errorPass || this.errorFirstName || this.errorLastName || this.errorBirth || this.errorCity) {
+        // validation fail
+        if (this.errorEmail || this.errorPass || this.errorPassMatch || this.errorFirstName || this.errorLastName || this.errorBirth || this.errorCity) {
           console.log('signup error');
         } else {
+          // validation pass
           userService.signUp(userName, hashedPass, firstName, middleName, lastName, birthDate, city).then(() => {
             this.accountCreated = 1;
             this.forceUpdate();
           }).catch((error: Error) => {
-            // Converts error to string og removes "Error: " from the beginning.
-            // Output is only the errormessage from lang.js.
-            if(errorMessage) errorMessage.set(String(error).slice(7));
+            if(errorMessage) console.log(error);
           });
-        }
-        this.forceUpdate();
-
-        this.refs.inputPassword.onchange = () => {
-          this.errorPass = false;
-          this.forceUpdate()
         };
-
-        this.refs.inputPasswordMatch.onchange = () => {
-          this.errorPassMatch = false;
-          if (passwordMatch === password) this.refs.inputPasswordMatch.setCustomValidity('');
-          this.forceUpdate()
-        };
-
-        this.refs.inputFirstname.onchange = () => {this.errorFirstName = false; this.forceUpdate()};
-        this.refs.inputLastname.onchange = () => {this.errorLastName = false; this.forceUpdate()};
-        this.refs.inputBirthYear.onchange = () => {this.errorBirth = false; this.forceUpdate()};
-        this.refs.inputBirthMonth.onchange = () => {this.errorBirth = false; this.forceUpdate()};
-        this.refs.inputBirthDay.onchange = () => {this.errorBirth = false; this.forceUpdate()};
-        this.refs.inputCity.onchange = () => {this.errorCity = false; this.forceUpdate()};
       };
     };
 
+    // constants for validating email and password
     const MAILFORMAT = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
     const LOWERCASE = /[a-z]/g;
     const UPPERCASE = /[A-Z]/g;
@@ -287,6 +284,76 @@ class SignUp extends React.Component<{}> {
       } else {
         this.errorPass = false;
         this.refs.inputPassword.setCustomValidity('');
+      };
+      this.forceUpdate();
+    };
+
+    // password confirmation
+    let validatePasswordMatch = () => {
+      let password = this.refs.inputPassword.value;
+      let passwordMatch = this.refs.inputPasswordMatch.value;
+      if (!this.errorPass && (!passwordMatch || passwordMatch !== password)) {
+        this.errorPassMatch = true;
+        this.refs.inputPasswordMatch.setCustomValidity('invalid');
+      } else {
+        this.errorPassMatch = false;
+        this.refs.inputPasswordMatch.setCustomValidity('');
+      };
+      this.forceUpdate();
+    };
+
+    // firstname validation
+    let validateFirstName = () => {
+      let firstName = this.refs.inputFirstname.value;
+      if (!firstName) {
+        this.errorFirstName = true;
+      } else {
+        this.errorFirstName = false;
+      };
+      this.forceUpdate();
+    };
+
+    // middlename validation
+    let validateMiddleName = () => {
+      let middleName = this.refs.inputMiddlename.value;
+      if (middleName) {
+        this.refs.inputMiddlename.style.border = 'solid 1px #00b251';
+        this.refs.inputMiddlename.style.borderRight = 'solid 3px #00b251';
+      };
+      this.forceUpdate();
+    };
+
+    // lastname validation
+    let validateLastName = () => {
+      let lastName = this.refs.inputLastname.value;
+      if (!lastName) {
+        this.errorLastName = true;
+      } else {
+        this.errorLastName = false;
+      };
+      this.forceUpdate();
+    };
+
+    // birthdate validation
+    let validateBirth = () => {
+      let birthYear = this.refs.inputBirthYear.value;
+      let birthMonth = this.refs.inputBirthMonth.value;
+      let birthDay = this.refs.inputBirthDay.value;
+      if (!birthYear || !birthMonth || !birthDay) {
+        this.errorBirth = true;
+      } else {
+        this.errorBirth = false;
+      };
+      this.forceUpdate();
+    };
+
+    // city validation
+    let validateCity = () => {
+      let city = this.refs.inputCity.value;
+      if (!city) {
+        this.errorCity = true;
+      } else {
+        this.errorCity = false;
       };
       this.forceUpdate();
     };
