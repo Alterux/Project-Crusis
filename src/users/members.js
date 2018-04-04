@@ -2,12 +2,12 @@
 import * as React from 'react';
 import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 
-import { lang, en, no } from './lang';
-import { ErrorMessage, errorMessage } from './errorMessage';
+import { connection } from '../services/connect';
+import { User, userService } from '../services/userService';
+import { Event, eventService } from '../services/eventService';
 
-import { connection } from './connect';
-import { User, userService } from './userService';
-import { Event, eventService } from './eventService';
+import { lang, en, no } from '../util/lang';
+import { ErrorMessage, errorMessage } from '../util/errorMessage';
 
 class Members extends React.Component<{}> {
   signedInUser = {};
@@ -19,10 +19,10 @@ class Members extends React.Component<{}> {
     let listMembers = [];
     let listNewMembers = [];
     for(let member of this.members) {
-      listMembers.push(<li key={member.id}><Link to={'/user/' + member.id}>{member.firstName} {member.lastName}</Link></li>);
+      listMembers.push(<li key={member.id}><Link to={'/user/' + member.id}>{member.firstName} {member.middleName} {member.lastName}</Link></li>);
     }
     for(let member of this.newMembers) {
-      listNewMembers.push(<li key={member.id}><Link to={'/user/' + member.id}>{member.firstName} {member.lastName}</Link></li>);
+      listNewMembers.push(<li key={member.id}><Link to={'/user/' + member.id}>{member.firstName} {member.middleName} {member.lastName}</Link></li>);
     }
 
     switch (signedInUser.userType) {
