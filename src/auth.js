@@ -155,8 +155,8 @@ class SignUp extends React.Component<{}> {
             <form>
 
             <div className="inputFormAuth">
-              <input className="form formAuth" id="formUser" type='text' ref='inputUsername' placeholder={lang.email} required />
-                {errorEmail ? <div className='errorInput'>{lang.errorEmail}<i /></div> : null}
+              <input className="form formAuth" id="formUser" type='email' ref='inputUsername' placeholder={lang.email} required />
+                {errorEmail ? <div className='errorInput'><i />{lang.errorEmail}</div> : null}
               <input className="form formAuth" id="formPass" type='password' ref='inputPassword' placeholder={lang.password} required />
                 {errorPass ? <div className='errorInput'><i />{lang.errorPass}</div> : null}
               <input className="form formAuth" id="formPass" type='password' ref='inputPasswordMatch' placeholder={lang.passwordMatch} required />
@@ -200,10 +200,11 @@ class SignUp extends React.Component<{}> {
   componentDidMount() {
     if(menu) menu.forceUpdate();
 
+    this.refs.inputUsername.onchange = () => {validateEmail()};
+    this.refs.inputPassword.onchange = () => {validatePassword()};
+
     if (this.refs.inputButton) {
       this.refs.inputButton.onclick = () => {
-
-        const MAILFORMAT = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
         let userName = this.refs.inputUsername.value;
         let password = this.refs.inputPassword.value;
@@ -218,9 +219,8 @@ class SignUp extends React.Component<{}> {
         let birthDate = birthYear + '-' + birthMonth + '-' + birthDay;
         let city = this.refs.inputCity.value;
 
-        if (!userName.match(MAILFORMAT)) this.errorEmail = true;
-        if (!password) this.errorPass = true;
-        if (passwordMatch !== password) this.errorPassMatch = true;
+        validateEmail();
+        validatePassword();
         if (!firstName) this.errorFirstName = true;
         if (!lastName) this.errorLastName = true;
         if (!birthYear || !birthMonth || !birthDay) this.errorBirth = true;
@@ -240,19 +240,59 @@ class SignUp extends React.Component<{}> {
         }
         this.forceUpdate();
 
-        this.refs.inputUsername.onchange = () => {this.errorEmail = false; this.forceUpdate();}
-        this.refs.inputPassword.onchange = () => {this.errorPass = false; this.forceUpdate();}
-        this.refs.inputPasswordMatch.onchange = () => {this.errorPassMatch = false; this.forceUpdate();}
-        this.refs.inputFirstname.onchange = () => {this.errorFirstName = false; this.forceUpdate();}
-        this.refs.inputLastname.onchange = () => {this.errorLastName = false; this.forceUpdate();}
-        this.refs.inputBirthYear.onchange = () => {this.errorBirth = false; this.forceUpdate();}
-        this.refs.inputBirthMonth.onchange = () => {this.errorBirth = false; this.forceUpdate();}
-        this.refs.inputBirthDay.onchange = () => {this.errorBirth = false; this.forceUpdate();}
-        this.refs.inputCity.onchange = () => {this.errorCity = false; this.forceUpdate();}
+        this.refs.inputPassword.onchange = () => {
+          this.errorPass = false;
+          this.forceUpdate()
+        };
+
+        this.refs.inputPasswordMatch.onchange = () => {
+          this.errorPassMatch = false;
+          if (passwordMatch === password) this.refs.inputPasswordMatch.setCustomValidity('');
+          this.forceUpdate()
+        };
+
+        this.refs.inputFirstname.onchange = () => {this.errorFirstName = false; this.forceUpdate()};
+        this.refs.inputLastname.onchange = () => {this.errorLastName = false; this.forceUpdate()};
+        this.refs.inputBirthYear.onchange = () => {this.errorBirth = false; this.forceUpdate()};
+        this.refs.inputBirthMonth.onchange = () => {this.errorBirth = false; this.forceUpdate()};
+        this.refs.inputBirthDay.onchange = () => {this.errorBirth = false; this.forceUpdate()};
+        this.refs.inputCity.onchange = () => {this.errorCity = false; this.forceUpdate()};
       };
-    }
-  }
-}
+    };
+
+    const MAILFORMAT = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+    const LOWERCASE = /[a-z]/g;
+    const UPPERCASE = /[A-Z]/g;
+    const NUMBERS = /[0-9]/g;
+
+    // email validation
+    let validateEmail = () => {
+      let userName = this.refs.inputUsername.value;
+      if (!userName || !userName.match(MAILFORMAT)) {
+        this.errorEmail = true;
+        this.refs.inputUsername.setCustomValidity('invalid');
+      } else {
+        this.errorEmail = false;
+        this.refs.inputUsername.setCustomValidity('');
+      };
+      this.forceUpdate();
+    };
+
+    // password validation
+    let validatePassword = () => {
+      let password = this.refs.inputPassword.value;
+      if (!password || password.length < 8 || !password.match(LOWERCASE) || !password.match(UPPERCASE) || !password.match(NUMBERS)) {
+        this.errorPass = true;
+        this.refs.inputPassword.setCustomValidity('invalid');
+      } else {
+        this.errorPass = false;
+        this.refs.inputPassword.setCustomValidity('');
+      };
+      this.forceUpdate();
+    };
+
+  };
+};
 
 class ForgotPass extends React.Component<{}> {
 

@@ -169,7 +169,7 @@ h1 {
   position: absolute;
   border-radius: .2em;
   max-width: 20em;
-  max-height: 3em;
+  max-height: 5em;
   margin-top: -3em;
   right: 50%;
   margin-right: 10.5em;
@@ -180,12 +180,13 @@ h1 {
 i {
   position: absolute;
   z-index: 1;
-  margin-top: -.2em;
-  right: 0;
-  margin-right: -.83em;
-  width: 0;
-  height: 0;
-  border-top: .8em solid transparent;
-  border-bottom: .8em solid transparent;
-  border-left: .8em solid #be4b49;
+  margin-top: -.1em;
+  margin-right: -1.15em;
+  height: 22px;
+  right: 7px;
+  width: 11px;
+  background-image: url(../resources/arrows.png);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: 0 -36px;
 }

@@ -13,13 +13,11 @@ import { Event, eventService } from './eventService';
 class Events extends React.Component<{}> {
 
   events = [];
+  data = []
 
   render() {
-    let data = eventService.getEvents();
-    console.log(data);
-
     let table = [];
-    for (let inputs of data) {
+    for(let inputs of this.data) {
       table.push(<tr key={inputs.id}><td>{inputs.name}</td><td>{inputs.location}</td><td>{inputs.city}</td><td>{inputs.date}</td><td>{inputs.time}</td></tr>);
     }
     let listItems = [];
@@ -56,7 +54,8 @@ class Events extends React.Component<{}> {
   componentDidMount() {
     let signedInUser = userService.getSignedInUser();
     if(signedInUser) {
-      eventService.getEvents().then(() => {
+      let data = eventService.getEvents().then(() => {
+        console.log(data);
         this.forceUpdate();
       }).catch((error: Error) => {
         //if(errorMessage) errorMessage.set('Could not get events');

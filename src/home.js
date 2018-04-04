@@ -13,6 +13,7 @@ import { Event, eventService } from './eventService';
 
 class Home extends React.Component<{}> {
   events = [];
+  appendChild: any;
 
   render() {
     let signedInUser = userService.getSignedInUser();
@@ -29,10 +30,13 @@ class Home extends React.Component<{}> {
     }
 
     return (
+      <div>
+        <div class="auto-jsCalendar"></div>
         <div id='welcomeMsg'>{welcomeMsg}
-        <ul>
-          {listItems}
-        </ul>
+          <ul>
+            {listItems}
+          </ul>
+        </div>
       </div>
     );
   }
@@ -40,6 +44,13 @@ class Home extends React.Component<{}> {
   componentDidMount() {
     let signedInUser = userService.getSignedInUser();
     if(signedInUser) {
+
+      const script = document.createElement("script");
+
+      script.src = 'node_modules/simple-jscalendar/source/jsCalendar.js';
+      script.async = true;
+
+      document.body.appendChild(script);
 
       // events
       eventService.getEvents().then(() => {
