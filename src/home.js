@@ -10,6 +10,7 @@ import { Event, eventService } from './services/eventService';
 
 import { lang, en, no } from './util/lang';
 import { jsCalendar } from './util/jsCalendar';
+// import { jsCalendarNO } from './util/jsCalendar.lang.no.js';
 import { ErrorMessage, errorMessage } from './util/errorMessage';
 
 class Home extends React.Component<{}> {
@@ -29,6 +30,13 @@ class Home extends React.Component<{}> {
         : {event.text}</li>);
     }
 
+/*
+    if (lang = no) {
+      jsCalendar.setLanguage("no");
+    } else {
+      jsCalendar.setLanguage("en");
+    }
+*/
     return (
       <div>
         <div id='welcomeMsg'>{welcomeMsg}
@@ -39,7 +47,7 @@ class Home extends React.Component<{}> {
             {listItems}
           </ul>
         </div>
-        <div>Nyheter</div>
+        <div id="news">Nyheter</div>
       </div>
     );
   }
