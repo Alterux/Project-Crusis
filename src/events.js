@@ -5,8 +5,8 @@ import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 import { lang, en, no } from './lang';
 import { ErrorMessage, errorMessage } from './errorMessage';
 
-import { User, Event, userService } from './services';
-import { Entry, eventService } from './eventServices';
+import { User, Event, userService } from './userService';
+import { Entry, eventService } from './eventService';
 
 
 
@@ -15,17 +15,18 @@ class Events extends React.Component<{}> {
   events = [];
 
   render() {
-    let data = eventService.getEvents();
-    console.log(data);
-
     let table = [];
-    for (let inputs of data) {
-      table.push(<tr key={inputs.id}><td>{inputs.name}</td><td>{inputs.location}</td><td>{inputs.city}</td><td>{inputs.date}</td><td>{inputs.time}</td></tr>);
+    for (let inputs of this.events) {
+      console.log(inputs.Date);
+      let day = inputs.Date.getDate();
+      let month = inputs.Date.getMonth() + 1;
+      let year = inputs.Date.getFullYear();
+      table.push(<tr key={inputs.Id}><td>{inputs.Name}</td><td>{inputs.Location}</td><td>{inputs.City}</td><td>{day} - {month} - {year}</td><td></td></tr>);
     }
-    let listItems = [];
+    /*let listItems = [];
     for(let event of this.events) {
       listItems.push(<li key={event.id}><Link to={'/user/' + event.id}>{event.firstName}</Link></li>);
-    }
+    }*/
 
     return (
       <div>
@@ -56,11 +57,23 @@ class Events extends React.Component<{}> {
   componentDidMount() {
     let signedInUser = userService.getSignedInUser();
     if(signedInUser) {
-      userService.getEvents().then(() => {
+      eventService.getEvents()
+        .then((response) => {
+          //console.log(response[0]);
+          for (let item of response) {
+
+            this.events.push(item);
+          }
+          this.forceUpdate();
+        }).catch((error: Error) => {
+          if(errorMessage) errorMessage.set(lang.errorMembers);
+        });
+
+      /*userService.getEvents().then(() => {
         this.forceUpdate();
       }).catch((error: Error) => {
         //if(errorMessage) errorMessage.set('Could not get events');
-      });
+      });*/
     }
   }
 }
