@@ -106,6 +106,9 @@ let en = {
   tableCity: 'City',
   tableDate: 'Date',
   tableTime: 'Time',
+
+  // News
+  newsheading: 'News',
 };
 
 /**************************************************/
@@ -215,6 +218,9 @@ let no = {
   tableCity: 'By',
   tableDate: 'Dato',
   tableTime: 'Tid',
+
+  // News
+  newsheading: 'Nyheter',
 };
 
 // Language selection
