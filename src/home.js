@@ -4,12 +4,14 @@ import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-import { lang, en, no } from './lang';
-import { ErrorMessage, errorMessage } from './errorMessage';
+import { connection } from './services/connect';
+import { User, userService } from './services/userService';
+import { Event, eventService } from './services/eventService';
 
-import { connection } from './connect';
-import { User, userService } from './userService';
-import { Event, eventService } from './eventService';
+import { lang, en, no } from './util/lang';
+import { jsCalendar } from './util/jsCalendar';
+// import { jsCalendarNO } from './util/jsCalendar.lang.no.js';
+import { ErrorMessage, errorMessage } from './util/errorMessage';
 
 class Home extends React.Component<{}> {
   events = [];
@@ -28,11 +30,24 @@ class Home extends React.Component<{}> {
         : {event.text}</li>);
     }
 
+/*
+    if (lang = no) {
+      jsCalendar.setLanguage("no");
+    } else {
+      jsCalendar.setLanguage("en");
+    }
+*/
     return (
+      <div>
         <div id='welcomeMsg'>{welcomeMsg}
-        <ul>
-          {listItems}
-        </ul>
+        <div className="auto-jsCalendar material-theme red"
+            data-month-format="month YYYY">
+        </div>
+          <ul>
+            {listItems}
+          </ul>
+        </div>
+        <div id="news">Nyheter</div>
       </div>
     );
   }
@@ -40,6 +55,7 @@ class Home extends React.Component<{}> {
   componentDidMount() {
     let signedInUser = userService.getSignedInUser();
     if(signedInUser) {
+      jsCalendar.autoFind();
 
       // events
       /*eventService.getEvents().then(() => {

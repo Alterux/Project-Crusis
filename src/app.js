@@ -5,15 +5,21 @@ import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-import { Menu, BottomBar } from './menu';
-import { SignIn, SignOut, SignUp, ForgotPass } from './auth';
-import { ErrorMessage, errorMessage } from './errorMessage';
-
 import { Home } from './home';
-import { UserDetails } from './userDetails';
-import { UserDetailsEdit } from './userDetailsEdit';
-import { Members } from './members';
-import { Events } from './events';
+import { Menu, BottomBar } from './menu';
+
+import { SignIn } from './auth/signIn';
+import { SignUp } from './auth/signUp';
+import { SignOut } from './auth/signOut';
+import { ForgotPass } from './auth/forgotPass';
+
+import { Events } from './events/events';
+
+import { Members } from './users/members';
+import { UserDetails } from './users/userDetails';
+import { UserDetailsEdit } from './users/userDetailsEdit';
+
+import { ErrorMessage, errorMessage } from './util/errorMessage';
 
 let root = document.getElementById('root');
 if(root) {

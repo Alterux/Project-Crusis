@@ -2,7 +2,7 @@
 import * as mysql from 'mysql';
 import { connection } from './connect';
 
-import { lang, en, no } from './lang';
+import { lang, en, no } from '../util/lang';
 
 class User {
   id: number;

@@ -27,6 +27,7 @@ let en = {
 
   username: 'Username',
   password: 'Password',
+  passwordMatch: 'Confirm Password',
   email: 'Email',
   name: 'Name',
   firstName: 'First name',
@@ -54,6 +55,13 @@ let en = {
   errorLoginNewUser: 'User account not yet activated. Please wait.',
   errorLoginDeletedUser: 'User account does not exist anymore.',
   errorMembers: 'Error getting members!',
+  errorEmail: 'Please enter a valid email-address!',
+  errorPass: 'Please enter a valid password!',
+  errorPassMatch: 'Passwords do not match!',
+  errorFirstName: 'Please enter your first name!',
+  errorLastName: 'Please enter your last name!',
+  errorBirth: 'Please enter your date of birth!',
+  errorCity: 'Please enter your city!',
 
   switchLanguage: 'Bytt til Norsk',
   saveChanges: 'Save changes',
@@ -117,6 +125,7 @@ let no = {
 
   username: 'Brukernavn',
   password: 'Passord',
+  passwordMatch: 'Bekreft Passordet',
   email: 'Epost',
   name: 'Navn',
   firstName: 'Fornavn',
@@ -144,6 +153,13 @@ let no = {
   errorLoginNewUser: 'Brukerkonto er ikke enda aktivert. Vennligst vent.',
   errorLoginDeletedUser: 'Brukerkontoen eksisterer ikke lenger.',
   errorMembers: 'Feil med henting av brukere!',
+  errorEmail: 'Vennligst skriv inn en gyldig epost-adresse!',
+  errorPass: 'Vennligst skriv inn et gyldig passord!',
+  errorPassMatch: 'Passordene stemmer ikke overens!',
+  errorFirstName: 'Vennligst skriv inn fornavnet ditt!',
+  errorLastName: 'Vennligst skriv inn etternavnet ditt!',
+  errorBirth: 'Vennligst skriv inn fødselsdatoen din!',
+  errorCity: 'Vennligst skriv inn byen din!',
 
   switchLanguage: 'Change to English',
   saveChanges: 'Lagre endringer',

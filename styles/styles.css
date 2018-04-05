@@ -2,6 +2,7 @@
 @import "menu.css";
 @import "userDetailsEdit.css";
 @import "events.css";
+@import "jsCalendar.css";
 
 * {
   margin: 0;

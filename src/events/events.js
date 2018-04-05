@@ -9,10 +9,13 @@ import { User, Event, userService } from './userService';
 import { Entry, eventService } from './eventService';
 
 
+import { lang, en, no } from '../util/lang';
+import { ErrorMessage, errorMessage } from '../util/errorMessage';
 
 class Events extends React.Component<{}> {
 
   events = [];
+  data = []
 
   render() {
     let table = [];

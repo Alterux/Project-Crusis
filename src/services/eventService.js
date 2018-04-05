@@ -7,7 +7,7 @@ class Event {
   name: string;
   location: string;
   city: string;
-  date: object;
+  date = {};
   time: string;
 }
 
