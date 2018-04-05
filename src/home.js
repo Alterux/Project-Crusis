@@ -25,29 +25,61 @@ class Home extends React.Component<{}> {
         : {event.text}</li>);
     }
     let target= document.getElementById('my-calendar-target');
-    
+
     return (
       <div>
         <div id='welcomeMsg'>{lang.loggedInMsg}
-        <div className="auto-jsCalendar material-theme red"
-            data-month-format="month YYYY">
+          <div className="auto-jsCalendar material-theme red"
+              data-month-format="month YYYY">
+          </div>
+            <ul>
+              {listItems}
+            </ul>
+          </div>
+          <div>
+            <button ref='popupboxbutton'>Test</button>
+            <div id='popup' class='popupstyle'>
+                <div class='popupcontent'>
+                  <div class='popupheader'>
+                    <span class='close'>&times;</span>
+                    <h2>Her skal navnet til arrangementet stå</h2>
+                  </div>
+                  <div class='popupbody'>
+                    <p>Trillebårkurs - Lerkendal stadio - Kl. 14:00</p>
+                </div>
+              </div>
+          </div>
+          <div id="news">{lang.newsheading}</div>
         </div>
-          <ul>
-            {listItems}
-          </ul>
-        </div>
-        <div id="news">{lang.newsheading}</div>
-      </div>
+    </div>
     );
   }
 
   componentDidMount() {
     let signedInUser = userService.getSignedInUser();
+    let popup = document.getElementById('popup');
+    let span = document.getElementsByClassName('close')[0];
+
     if(signedInUser) {
       jsCalendar.autoFind();
 
     } else {
       history.push('/signin');
+    }
+
+    if (this.refs.popupboxbutton) {
+      this.refs.popupboxbutton.onclick = () => {
+        popup.style.display = 'block';
+      }
+    }
+    span.onclick = function () {
+        popup.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      if (event.target == popup) {
+        popup.style.display = 'none';
+      }
     }
   }
 }
