@@ -4,11 +4,12 @@ import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-import { lang, en, no } from './lang';
-import { connection } from './connect';
-import { User, userService } from './userService';
-import { Event, eventService } from './eventService';
-import { ErrorMessage, errorMessage } from './errorMessage';
+import { connection } from '../services/connect';
+import { User, userService } from '../services/userService';
+import { Event, eventService } from '../services/eventService';
+
+import { lang, en, no } from '../util/lang';
+import { ErrorMessage, errorMessage } from '../util/errorMessage';
 
 class UserDetails extends React.Component<{ match: { params: { id: number } } }> {
   refs: {

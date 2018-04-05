@@ -4,14 +4,13 @@ import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-import { lang, en, no } from './lang';
-import { ErrorMessage, errorMessage } from './errorMessage';
+import { connection } from './services/connect';
+import { User, userService } from './services/userService';
+import { Event, eventService } from './services/eventService';
 
-import { connection } from './connect';
-import { User, userService } from './userService';
-import { Event, eventService } from './eventService';
-
-import { jsCalendar } from './jsCalendar';
+import { lang, en, no } from './util/lang';
+import { jsCalendar } from './util/jsCalendar';
+import { ErrorMessage, errorMessage } from './util/errorMessage';
 
 class Home extends React.Component<{}> {
   events = [];

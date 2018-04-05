@@ -4,85 +4,13 @@ import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-import { lang, en, no } from './lang';
-import { connection } from './connect';
-import { User, userService } from './userService';
-import { Event, eventService } from './eventService';
-import { ErrorMessage, errorMessage } from './errorMessage';
+import { Menu, menu } from '../menu';
 
-import { Menu, menu } from './menu';
+import { User, userService } from '../services/userService';
 
-import { inputDays, inputMonths, inputYears } from './selectOptions';
-
-class SignIn extends React.Component<{}> {
-  refs: {
-    signInUsername: HTMLInputElement,
-    signInPassword: HTMLInputElement,
-    signInButton: HTMLButtonElement,
-  }
-
-  hashCode(str: string) {
-    let hash = 0;
-    if (str.length == 0) return hash;
-    for (let i = 0; i < str.length; i++) {
-        let char = str.charCodeAt(i);
-        hash = ((hash<<5)-hash)+char;
-        hash = hash & hash; // Convert to 32bit integer
-    }
-    return hash;
-  }
-
-  render() {
-    return (
-      <div id="signInPage">
-        <div id="title">
-          <img id="logo" src="resources/logo.svg"></img>
-          <div className="titleText"><h1>{lang.title}</h1></div>
-        </div>
-        <div className="inputForm">
-          <input className="form formAuth" id="formUser" type='text' ref='signInUsername' placeholder={lang.email} />
-          <input className="form formAuth" id="formPass" type='password' ref='signInPassword' placeholder={lang.password} />
-          <button className="form" id="signInButton" ref='signInButton'>{lang.signIn}</button>
-        </div>
-      </div>
-    );
-  }
-
-  componentDidMount() {
-    if(menu) menu.forceUpdate();
-
-    this.refs.signInButton.onclick = () => {
-      let hashedPass = this.hashCode(this.refs.signInPassword.value + this.refs.signInUsername.value);
-      userService.signIn(this.refs.signInUsername.value, hashedPass).then(() => {
-        history.push('/');
-      }).catch((error: Error) => {
-        // Converts error to string og removes "Error: " from the beginning.
-        // Output is only the errormessage from lang.js.
-        if(errorMessage) errorMessage.set(String(error).slice(7));
-      });
-    };
-  }
-}
-
-class SignOut extends React.Component<{}> {
-
-  render() {
-    return (<div></div>);
-  }
-
-  componentDidMount() {
-    if(menu) menu.forceUpdate();
-
-    let result = confirm(lang.confirmSignOut);
-    if (result) {
-      localStorage.removeItem('signedInUser');
-      history.push('/');
-    } else {
-      history.goBack();
-    }
-    this.forceUpdate();
-  }
-}
+import { lang, en, no } from '../util/lang';
+import { ErrorMessage, errorMessage } from '../util/errorMessage';
+import { inputDays, inputMonths, inputYears } from '../util/selectOptions';
 
 class SignUp extends React.Component<{}> {
   refs: {
@@ -200,15 +128,21 @@ class SignUp extends React.Component<{}> {
   componentDidMount() {
     if(menu) menu.forceUpdate();
 
-    this.refs.inputUsername.onchange = () => {validateEmail()};
-    this.refs.inputPassword.onchange = () => {validatePassword()};
+    // on input change => set to validate on input
+    this.refs.inputUsername.onchange = () => {validateEmail(); this.refs.inputUsername.oninput = () => {validateEmail()}};
+    this.refs.inputPassword.onchange = () => {validatePassword(); this.refs.inputPassword.oninput = () => {validatePassword()}};
+    this.refs.inputPasswordMatch.onchange = () => {validatePasswordMatch(); this.refs.inputPasswordMatch.oninput = () => {validatePasswordMatch()}};
+    this.refs.inputFirstname.onchange = () => {validateFirstName(); this.refs.inputFirstname.oninput = () => {validateFirstName()};};
+    this.refs.inputMiddlename.onchange = () => {validateMiddleName()};
+    this.refs.inputLastname.onchange = () => {validateLastName(); this.refs.inputLastname.oninput = () => {validateLastName()}};
+    this.refs.inputCity.onchange = () => {validateCity(); this.refs.inputCity.oninput = () => {validateCity()};};
 
+    // button loaded and clicked
     if (this.refs.inputButton) {
       this.refs.inputButton.onclick = () => {
 
+        // get values
         let userName = this.refs.inputUsername.value;
-        let password = this.refs.inputPassword.value;
-        let passwordMatch = this.refs.inputPasswordMatch.value;
         let hashedPass = this.hashCode(this.refs.inputPassword.value + this.refs.inputUsername.value);
         let firstName = this.refs.inputFirstname.value;
         let middleName = this.refs.inputMiddlename.value;
@@ -219,47 +153,38 @@ class SignUp extends React.Component<{}> {
         let birthDate = birthYear + '-' + birthMonth + '-' + birthDay;
         let city = this.refs.inputCity.value;
 
+        // birth validation only after button clicked
+        this.refs.inputBirthYear.onchange = () => {validateBirth()};
+        this.refs.inputBirthMonth.onchange = () => {validateBirth()};
+        this.refs.inputBirthDay.onchange = () => {validateBirth()};
+
+        // final validation
         validateEmail();
         validatePassword();
-        if (!firstName) this.errorFirstName = true;
-        if (!lastName) this.errorLastName = true;
-        if (!birthYear || !birthMonth || !birthDay) this.errorBirth = true;
-        if (!city) this.errorCity = true;
+        validatePasswordMatch();
+        validateFirstName();
+        validateLastName();
+        validateBirth();
+        validateBirth();
+        validateBirth();
+        validateCity();
 
-        if (this.errorEmail || this.errorPass || this.errorFirstName || this.errorLastName || this.errorBirth || this.errorCity) {
+        // validation fail
+        if (this.errorEmail || this.errorPass || this.errorPassMatch || this.errorFirstName || this.errorLastName || this.errorBirth || this.errorCity) {
           console.log('signup error');
         } else {
+          // validation pass
           userService.signUp(userName, hashedPass, firstName, middleName, lastName, birthDate, city).then(() => {
             this.accountCreated = 1;
             this.forceUpdate();
           }).catch((error: Error) => {
-            // Converts error to string og removes "Error: " from the beginning.
-            // Output is only the errormessage from lang.js.
-            if(errorMessage) errorMessage.set(String(error).slice(7));
+            if(errorMessage) console.log(error);
           });
-        }
-        this.forceUpdate();
-
-        this.refs.inputPassword.onchange = () => {
-          this.errorPass = false;
-          this.forceUpdate()
         };
-
-        this.refs.inputPasswordMatch.onchange = () => {
-          this.errorPassMatch = false;
-          if (passwordMatch === password) this.refs.inputPasswordMatch.setCustomValidity('');
-          this.forceUpdate()
-        };
-
-        this.refs.inputFirstname.onchange = () => {this.errorFirstName = false; this.forceUpdate()};
-        this.refs.inputLastname.onchange = () => {this.errorLastName = false; this.forceUpdate()};
-        this.refs.inputBirthYear.onchange = () => {this.errorBirth = false; this.forceUpdate()};
-        this.refs.inputBirthMonth.onchange = () => {this.errorBirth = false; this.forceUpdate()};
-        this.refs.inputBirthDay.onchange = () => {this.errorBirth = false; this.forceUpdate()};
-        this.refs.inputCity.onchange = () => {this.errorCity = false; this.forceUpdate()};
       };
     };
 
+    // constants for validating email and password
     const MAILFORMAT = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
     const LOWERCASE = /[a-z]/g;
     const UPPERCASE = /[A-Z]/g;
@@ -291,28 +216,77 @@ class SignUp extends React.Component<{}> {
       this.forceUpdate();
     };
 
+    // password confirmation
+    let validatePasswordMatch = () => {
+      let password = this.refs.inputPassword.value;
+      let passwordMatch = this.refs.inputPasswordMatch.value;
+      if (!this.errorPass && (!passwordMatch || passwordMatch !== password)) {
+        this.errorPassMatch = true;
+        this.refs.inputPasswordMatch.setCustomValidity('invalid');
+      } else {
+        this.errorPassMatch = false;
+        this.refs.inputPasswordMatch.setCustomValidity('');
+      };
+      this.forceUpdate();
+    };
+
+    // firstname validation
+    let validateFirstName = () => {
+      let firstName = this.refs.inputFirstname.value;
+      if (!firstName) {
+        this.errorFirstName = true;
+      } else {
+        this.errorFirstName = false;
+      };
+      this.forceUpdate();
+    };
+
+    // middlename validation
+    let validateMiddleName = () => {
+      let middleName = this.refs.inputMiddlename.value;
+      if (middleName) {
+        this.refs.inputMiddlename.style.border = 'solid 1px #00b251';
+        this.refs.inputMiddlename.style.borderRight = 'solid 3px #00b251';
+      };
+      this.forceUpdate();
+    };
+
+    // lastname validation
+    let validateLastName = () => {
+      let lastName = this.refs.inputLastname.value;
+      if (!lastName) {
+        this.errorLastName = true;
+      } else {
+        this.errorLastName = false;
+      };
+      this.forceUpdate();
+    };
+
+    // birthdate validation
+    let validateBirth = () => {
+      let birthYear = this.refs.inputBirthYear.value;
+      let birthMonth = this.refs.inputBirthMonth.value;
+      let birthDay = this.refs.inputBirthDay.value;
+      if (!birthYear || !birthMonth || !birthDay) {
+        this.errorBirth = true;
+      } else {
+        this.errorBirth = false;
+      };
+      this.forceUpdate();
+    };
+
+    // city validation
+    let validateCity = () => {
+      let city = this.refs.inputCity.value;
+      if (!city) {
+        this.errorCity = true;
+      } else {
+        this.errorCity = false;
+      };
+      this.forceUpdate();
+    };
+
   };
 };
 
-class ForgotPass extends React.Component<{}> {
-
-  render() {
-    return (
-      <div>
-        <div id="title">
-          <img id="logo" src="resources/logo.svg"></img>
-          <div className="titleText"><h1>{lang.title}</h1></div>
-        </div>
-        <div className="inputForm">
-          {lang.forgotPassMsg}
-        </div>
-      </div>
-    );
-  }
-
-  componentDidMount() {
-
-  }
-}
-
-export { SignIn, SignOut, SignUp, ForgotPass };
+export { SignUp };
