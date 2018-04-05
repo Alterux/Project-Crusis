@@ -10,7 +10,6 @@ import { Event, eventService } from './services/eventService';
 
 import { lang, en, no } from './util/lang';
 import { jsCalendar } from './util/jsCalendar';
-// import { jsCalendarNO } from './util/jsCalendar.lang.no.js';
 import { ErrorMessage, errorMessage } from './util/errorMessage';
 
 class Home extends React.Component<{}> {
@@ -18,10 +17,6 @@ class Home extends React.Component<{}> {
 
   render() {
     let signedInUser = userService.getSignedInUser();
-    let welcomeMsg: string = lang.welcomeMsg;
-    if (signedInUser) {
-      welcomeMsg = lang.loggedInMsg;
-    }
 
     let listItems = [];
     for(let event of this.events) {
@@ -33,7 +28,7 @@ class Home extends React.Component<{}> {
     
     return (
       <div>
-        <div id='welcomeMsg'>{welcomeMsg}
+        <div id='welcomeMsg'>{lang.loggedInMsg}
         <div className="auto-jsCalendar material-theme red"
             data-month-format="month YYYY">
         </div>
@@ -51,12 +46,6 @@ class Home extends React.Component<{}> {
     if(signedInUser) {
       jsCalendar.autoFind();
 
-      // events
-      /*eventService.getEvents().then(() => {
-        this.forceUpdate();
-      }).catch((error: Error) => {
-        // if(errorMessage) errorMessage.set('Could not get events');
-      }); */
     } else {
       history.push('/signin');
     }
