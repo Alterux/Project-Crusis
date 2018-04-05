@@ -33,11 +33,14 @@ class Home extends React.Component<{}> {
     return (
       <div>
         <div id='welcomeMsg'>{welcomeMsg}
-        <div className="auto-jsCalendar"></div>
+        <div className="auto-jsCalendar material-theme red"
+            data-month-format="month YYYY">
+        </div>
           <ul>
             {listItems}
           </ul>
         </div>
+        <div>Nyheter</div>
       </div>
     );
   }
