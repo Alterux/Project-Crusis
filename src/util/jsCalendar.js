@@ -26,6 +26,8 @@
  *
  */
 
+import { lang, en, no } from '../util/lang';
+
 var jsCalendar = (function(){
 
     // Constructor
@@ -66,9 +68,9 @@ var jsCalendar = (function(){
         // Default English language
         en : {
             // Months Names
-            months : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+            months : [lang.jan, lang.feb, lang.mar, lang.apr, lang.may, lang.jun, lang.jul, lang.aug, lang.sep, lang.oct, lang.nov, lang.dec],
             // Days Names
-            days : ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+            days : [lang.sun, lang.mon, lang.tue, lang.wed, lang.thu, lang.fri, lang.sat]
         }
     };
 
