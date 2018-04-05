@@ -159,7 +159,7 @@ let no = {
   leader: 'Leder',
   admin: 'Admin',
 
-  // Error meldinger
+  // Error messages
   errorLogin: 'Feil brukernavn eller passord!',
   errorLoginLength: 'Vennligst skriv inn et brukernavn og passord.',
   errorLoginNewUser: 'Brukerkonto er ikke enda aktivert. Vennligst vent.',
@@ -180,7 +180,7 @@ let no = {
   confirmUserDeactivate: 'Er du sikker på at du vil deaktivere denn kontoen?',
   optional: 'Valgfritt',
 
-  // Datoer
+  // Dates
   day: 'Dag',
   month: 'Måned',
   year: 'År',
