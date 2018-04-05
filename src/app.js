@@ -36,6 +36,7 @@ if(root) {
           <Route exact path='/signout' component={SignOut} />
           <Route exact path='/' component={Home} />
           <Route exact path='/members' component={Members} />
+          <Route exact path='/events' component={Events} />
           <Route exact path='/user/:id' component={UserDetails} />
           <Route exact path='/user/:id/edit' component={UserDetailsEdit} />
           </div>
