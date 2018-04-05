@@ -47,7 +47,7 @@ class Home extends React.Component<{}> {
             {listItems}
           </ul>
         </div>
-        <div id="news">{newsheading}</div>
+        <div id="news">{lang.newsheading}</div>
       </div>
     );
   }
