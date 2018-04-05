@@ -58,11 +58,11 @@ class Home extends React.Component<{}> {
       jsCalendar.autoFind();
 
       // events
-      eventService.getEvents().then(() => {
+      /*eventService.getEvents().then(() => {
         this.forceUpdate();
       }).catch((error: Error) => {
         // if(errorMessage) errorMessage.set('Could not get events');
-      });
+      }); */
     } else {
       history.push('/signin');
     }
