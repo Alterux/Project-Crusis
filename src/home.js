@@ -29,14 +29,8 @@ class Home extends React.Component<{}> {
         <Link to={'/user/' + event.fromUserId}>{event.fromUser}</Link> &rarr; <Link to={'/user/' + event.toUserId}>{event.toUser}</Link>
         : {event.text}</li>);
     }
-
-/*
-    if (lang = no) {
-      jsCalendar.setLanguage("no");
-    } else {
-      jsCalendar.setLanguage("en");
-    }
-*/
+    let target= document.getElementById('my-calendar-target');
+    
     return (
       <div>
         <div id='welcomeMsg'>{welcomeMsg}
