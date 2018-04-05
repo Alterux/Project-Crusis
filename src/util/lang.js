@@ -203,13 +203,13 @@ let no = {
   dec: 'Desember',
 
   // Days
-  man: 'Mandag',
-  tir: 'Tirsdag',
-  ons: 'Onsdag',
-  tor: 'Torsdag',
-  fre: 'Fredag',
-  lør: 'Lørdag',
-  søn: 'Søndag',
+  mon: 'Mandag',
+  tue: 'Tirsdag',
+  wed: 'Onsdag',
+  thu: 'Torsdag',
+  fri: 'Fredag',
+  sat: 'Lørdag',
+  sun: 'Søndag',
 
   // Events Page
   eventHeader: 'Arrangementer',
