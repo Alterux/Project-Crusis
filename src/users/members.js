@@ -23,7 +23,7 @@ class Members extends React.Component<{}> {
     }
     for(let member of this.newMembers) {
       listNewMembers.push(<li key={member.id}><Link to={'/user/' + member.id}>{member.firstName} {member.middleName} {member.lastName}</Link></li>);
-    }
+    };
 
     switch (signedInUser.userType) {
 
