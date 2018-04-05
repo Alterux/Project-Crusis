@@ -18,10 +18,6 @@ class Home extends React.Component<{}> {
 
   render() {
     let signedInUser = userService.getSignedInUser();
-    let welcomeMsg: string = lang.welcomeMsg;
-    if (signedInUser) {
-      welcomeMsg = lang.loggedInMsg;
-    }
 
     let listItems = [];
     for(let event of this.events) {
@@ -30,16 +26,9 @@ class Home extends React.Component<{}> {
         : {event.text}</li>);
     }
 
-/*
-    if (lang = no) {
-      jsCalendar.setLanguage("no");
-    } else {
-      jsCalendar.setLanguage("en");
-    }
-*/
     return (
       <div>
-        <div id='welcomeMsg'>{welcomeMsg}
+        <div id='welcomeMsg'>{lang.loggedInMsg}
         <div className="auto-jsCalendar material-theme red"
             data-month-format="month YYYY">
         </div>
