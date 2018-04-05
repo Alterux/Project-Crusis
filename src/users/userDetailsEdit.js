@@ -40,7 +40,7 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
         <div className="inputForm">
 
           <div className='buttonMenu'>
-            <button ref="deactivateUserButton">{lang.deactivate} {lang.user}</button>
+            <button ref="deactivateUserButton">{lang.delete} {lang.user}</button>
           </div>
 
           <div className="inputFormName">
@@ -100,11 +100,18 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
 
         // deactivate button
         this.refs.deactivateUserButton.onclick = () => {
-          let result = confirm(lang.confirmUserDeactivate);
+          let result = confirm(lang.confirmUserDelete);
           if (result) {
-            console.log('deactivated');
+            userService.editUserType(-this.user.userType, this.props.match.params.id);
+            if (this.user.id === signedInUser.id) {
+              localStorage.removeItem('signedInUser');
+              history.push('/');
+            } else {
+              history.push('/members');
+            }
+            this.forceUpdate();
           }
-        };
+        }
 
         // save button
         this.refs.saveUserButton.onclick = () => {

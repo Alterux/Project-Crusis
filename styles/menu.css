@@ -1,7 +1,6 @@
 .toolBar {
   box-shadow: 0px 0px 5px;
   width: auto;
-  height: 3em;
   left: 0;
   right: 0;
   margin-bottom: .5em;
@@ -12,6 +11,7 @@
   margin: -.5em;
   margin-right: 0;
   margin-bottom: .5em;
+  padding-bottom: 3em;
 }
 
 #menuItems {
@@ -27,6 +27,7 @@
 #bottomBar {
   box-shadow: 0px 0px 5px;
   flex-shrink: 0;
+  height: 2em;
 }
 
 #langSelect {
