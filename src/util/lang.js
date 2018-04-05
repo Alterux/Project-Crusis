@@ -88,6 +88,15 @@ let en = {
   nov: 'November',
   dec: 'December',
 
+  //Days
+  mon: 'Monday',
+  tue: 'Tuesday',
+  wed: 'Wednesday',
+  thu: 'Thursday',
+  fri: 'Friday',
+  sat: 'Saturday',
+  sun: 'Sunday',
+
   //events page
   eventHeader: 'Events',
   tableName: 'Name',
@@ -185,6 +194,15 @@ let no = {
   oct: 'Oktober',
   nov: 'November',
   dec: 'Desember',
+
+  // Days
+  man: 'Mandag',
+  tir: 'Tirsdag',
+  ons: 'Onsdag',
+  tor: 'Torsdag',
+  fre: 'Fredag',
+  lør: 'Lørdag',
+  søn: 'Søndag',
 
   // Events Page
   eventHeader: 'Arrangementer',
