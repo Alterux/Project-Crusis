@@ -19,6 +19,7 @@ let en = {
   save: 'Save',
   accept: 'Accept',
   reject: 'Reject',
+  delete: 'Delete',
   deactivate: 'Deactivate',
   contact: 'Contact',
 
@@ -131,6 +132,7 @@ let no = {
   save: 'Lagre',
   accept: 'Godta',
   reject: 'Avslå',
+  delete: 'Slett',
   deactivate: 'Deaktiver',
   contact: 'Kontakt',
 
@@ -180,7 +182,7 @@ let no = {
   saveChanges: 'Lagre endringer',
   confirmSignOut: 'Logg ut?',
   confirmUserDelete: 'Slett brukeren?',
-  confirmUserDeactivate: 'Er du sikker på at du vil deaktivere denn kontoen?',
+  confirmUserDeactivate: 'Er du sikker på at du vil deaktivere denne kontoen?',
   optional: 'Valgfritt',
 
   // Dates
