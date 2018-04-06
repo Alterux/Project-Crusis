@@ -28,28 +28,28 @@ class Home extends React.Component<{}> {
     return (
       <div>
         <div id='welcomeMsg'>{lang.loggedInMsg}
-          <div className="auto-jsCalendar material-theme red"
-              data-month-format="month YYYY"
-              data-fdotw="2">
-          </div>
+            <div className="auto-jsCalendar material-theme red"
+                data-month-format="month YYYY"
+                data-fdotw="2">
+            </div>
+            </div>
             <ul>
               {listItems}
             </ul>
-          </div>
           <div>
             <button ref='popupboxbutton'>Test</button>
             <div id='popup' class='popupstyle'>
                 <div class='popupcontent'>
                   <div class='popupheader'>
                     <span class='close'>&times;</span>
-                    <h2>Her skal navnet til arrangementet stå</h2>
+                    <h3>Her skal navnet til arrangementet stå</h3>
                   </div>
                   <div class='popupbody'>
                     <p>Trillebårkurs - Lerkendal stadio - Kl. 14:00</p>
                 </div>
               </div>
           </div>
-          <div id="news">{lang.newsheading}</div>
+          <div className="news">{lang.newsheading}</div>
         </div>
     </div>
     );
@@ -59,7 +59,7 @@ class Home extends React.Component<{}> {
     let signedInUser = userService.getSignedInUser();
     let popup = document.getElementById('popup');
     let span = document.getElementsByClassName('close')[0];
-    let target= document.getElementById('my-calendar-target');
+    let target= ".auto-jsCalendar material-theme red";
 
     if(signedInUser) {
       jsCalendar.autoFind();
