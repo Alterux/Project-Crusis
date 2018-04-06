@@ -24,18 +24,18 @@ class Home extends React.Component<{}> {
         <Link to={'/user/' + event.fromUserId}>{event.fromUser}</Link> &rarr; <Link to={'/user/' + event.toUserId}>{event.toUser}</Link>
         : {event.text}</li>);
     }
-    let target= document.getElementById('my-calendar-target');
 
     return (
       <div>
         <div id='welcomeMsg'>{lang.loggedInMsg}
-          <div className="auto-jsCalendar material-theme red"
-              data-month-format="month YYYY">
-          </div>
+            <div className="auto-jsCalendar material-theme red"
+                data-month-format="month YYYY"
+                data-fdotw="2">
+            </div>
+            </div>
             <ul>
               {listItems}
             </ul>
-          </div>
           <div>
             <button ref='popupboxbutton'>Test</button>
             <div id='popup' ref='popup' className='popupstyle'>
@@ -49,7 +49,7 @@ class Home extends React.Component<{}> {
                 </div>
               </div>
           </div>
-          <div id="news">{lang.newsheading}</div>
+          <div className="news">{lang.newsheading}</div>
         </div>
     </div>
     );
@@ -58,6 +58,7 @@ class Home extends React.Component<{}> {
   componentDidMount() {
     let signedInUser = userService.getSignedInUser();
     let span = document.getElementsByClassName('close')[0];
+    let target= ".auto-jsCalendar material-theme red";
 
     if(signedInUser) {
       jsCalendar.autoFind();
@@ -80,6 +81,7 @@ class Home extends React.Component<{}> {
         this.refs.popup.style.display = 'none';
       }
     }
+    console.log(target);
   }
 }
 
