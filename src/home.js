@@ -1,3 +1,6 @@
+import 'fullcalendar';
+import $ from 'jquery';
+
 // @flow
 import * as React from 'react';
 import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
@@ -9,13 +12,22 @@ import { User, userService } from './services/userService';
 import { Event, eventService } from './services/eventService';
 
 import { lang, en, no } from './util/lang';
-import { jsCalendar } from './util/jsCalendar';
 import { ErrorMessage, errorMessage } from './util/errorMessage';
 
 class Home extends React.Component<{}> {
   events = [];
 
   render() {
+    $(function() {
+
+      // page is now ready, initialize the calendar...
+
+      $('#calendar').fullCalendar({
+        // put your options and callbacks here
+      })
+
+    });
+
     let signedInUser = userService.getSignedInUser();
 
     let listItems = [];
@@ -28,10 +40,11 @@ class Home extends React.Component<{}> {
     return (
       <div>
         <div id='welcomeMsg'>{lang.loggedInMsg}
-            <div className="auto-jsCalendar material-theme red"
+            {/* <div className="auto-jsCalendar material-theme red"
                 data-month-format="month YYYY"
                 data-fdotw="2">
-            </div>
+            </div> */}
+            <div id="calendar"></div>
             </div>
             <ul>
               {listItems}
@@ -58,10 +71,10 @@ class Home extends React.Component<{}> {
   componentDidMount() {
     let signedInUser = userService.getSignedInUser();
     let span = document.getElementsByClassName('close')[0];
-    let target= ".auto-jsCalendar material-theme red";
+    // let target= ".auto-jsCalendar material-theme red";
 
     if(signedInUser) {
-      jsCalendar.autoFind();
+      // jsCalendar.autoFind();
 
     } else {
       history.push('/signin');
@@ -81,7 +94,7 @@ class Home extends React.Component<{}> {
         this.refs.popup.style.display = 'none';
       }
     }
-    console.log(target);
+    // console.log(target);
   }
 }
 
