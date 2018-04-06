@@ -38,13 +38,13 @@ class Home extends React.Component<{}> {
           </div>
           <div>
             <button ref='popupboxbutton'>Test</button>
-            <div id='popup' class='popupstyle'>
-                <div class='popupcontent'>
-                  <div class='popupheader'>
-                    <span class='close'>&times;</span>
+            <div id='popup' ref='popup' className='popupstyle'>
+                <div className='popupcontent'>
+                  <div className='popupheader'>
+                    <span className='close'>&times;</span>
                     <h2>Her skal navnet til arrangementet stå</h2>
                   </div>
-                  <div class='popupbody'>
+                  <div className='popupbody'>
                     <p>Trillebårkurs - Lerkendal stadio - Kl. 14:00</p>
                 </div>
               </div>
@@ -57,7 +57,6 @@ class Home extends React.Component<{}> {
 
   componentDidMount() {
     let signedInUser = userService.getSignedInUser();
-    let popup = document.getElementById('popup');
     let span = document.getElementsByClassName('close')[0];
 
     if(signedInUser) {
@@ -69,16 +68,16 @@ class Home extends React.Component<{}> {
 
     if (this.refs.popupboxbutton) {
       this.refs.popupboxbutton.onclick = () => {
-        popup.style.display = 'block';
+        this.refs.popup.style.display = 'block';
       }
     }
-    span.onclick = function () {
-        popup.style.display = 'none';
+    span.onclick = () => {
+        this.refs.popup.style.display = 'none';
     }
 
-    window.onclick = function(event) {
-      if (event.target == popup) {
-        popup.style.display = 'none';
+    window.onclick = (event) => {
+      if (event.target == this.refs.popup) {
+        this.refs.popup.style.display = 'none';
       }
     }
   }
