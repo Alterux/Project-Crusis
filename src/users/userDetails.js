@@ -52,32 +52,51 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
 
     // signed in user is looking at own profile
     if (signedInUser.id === user.id) {
-      userButton = <div><button ref="editUserButton">{lang.edit}</button></div>
+      userButton = <div className="editUserButton"><button ref="editUserButton">{lang.edit}</button></div>
 
     // signed in user is of type admin
     } else if (signedInUser.userType === 3) {
       // user profile is new
       if (user.userType === 0) {
-        userButton = <div><button ref="acceptUserButton">{lang.accept}</button>
+        userButton = <div className="editUserButton"><button ref="acceptUserButton">{lang.accept}</button>
                      <button ref="rejectUserButton">{lang.reject}</button></div>
       // user profile is not new
       } else {
-        userButton = <div><button ref="editUserButton">{lang.edit}</button>
+        userButton = <div className="editUserButton"><button ref="editUserButton">{lang.edit}</button>
                      <button ref="contactUserButton">{lang.contact}</button></div>
       }
     // user is not looking at own profile and is not of type admin
     } else {
-      userButton = <div><button ref="contactUserButton">{lang.contact}</button></div>
+      userButton = <div className="editUserButton"><button ref="contactUserButton">{lang.contact}</button></div>
     }
 
       return (
-        <div>
-          {userButton}
-          <img className="accountImg" src="resources/default.png" alt="Account Image" width="50px" height="50px"></img>
-          <br />{user.firstName} {user.middleName} {user.lastName}<br />
-          <br />{lang.age}: {age}<br />
-          <br />{lang.city}: {user.city}<br />
-          <br />{userTypeMsg}
+        <div className="textBoxWrapper">
+          <div className="userDetailsBox">
+            <div className="textBoxHead">
+              <h3 className="textBoxTitle">{lang.userInfo}</h3>
+            </div>
+            <div className="textBox">
+              {userButton}
+              <img className="accountImg" src="resources/default.png" alt="Account Image" width="50px" height="50px"></img><br />
+              <br />{user.firstName} {user.middleName} {user.lastName}<br />
+              <br />{lang.age}: {age}<br />
+              <br />{lang.city}: {user.city}<br />
+              <br />{userTypeMsg}
+            </div>
+          </div>
+          <div className="competenceBox">
+            <div className="textBoxHead">
+              <h3 className="textBoxTitle">{lang.competence}</h3>
+            </div>
+            <div className="textBox">
+              {userButton}
+              {user.firstName} {user.middleName} {user.lastName}<br />
+              <br />{lang.age}: {age}<br />
+              <br />{lang.city}: {user.city}<br />
+              <br />{userTypeMsg}
+            </div>
+          </div>
         </div>
       );
   }

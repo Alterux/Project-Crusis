@@ -1,0 +1,35 @@
+.textBoxWrapper {
+  position: fixed;
+  /* background-color: #f1f1f1; */
+}
+
+.textBox {
+  display: inline-block;
+  width: 15em;
+  background: #f8f8f8;
+  border: solid 1px #d4d4d4;
+  padding: .5em;
+}
+
+.textBoxHead {
+  padding-bottom: 0;
+}
+
+.textBoxTitle {
+  display: inline-block;
+}
+
+.editUserButton {
+  float: right;
+}
+
+.userDetailsBox {
+  display: absolute;
+  float: left;
+}
+
+.competenceBox {
+  display: absolute;
+  float: right;
+  margin-left: .5em;
+}

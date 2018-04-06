@@ -14,6 +14,8 @@ let en = {
   loggedInMsg: 'My Events: ',
   signedUpMsg: 'User account created, please wait for confirmation.',
   forgotPassMsg: 'Page under construction.',
+  competence: 'Competence',
+  userInfo: 'Bio',
 
   edit: 'Edit',
   save: 'Save',
@@ -127,6 +129,8 @@ let no = {
   loggedInMsg: 'Mine Arrangementer: ',
   signedUpMsg: 'Brukerkonto opprettet, vennligst vent på godkjenning.',
   forgotPassMsg: 'Side under konstruksjon.',
+  competence: 'Kompetanse',
+  userInfo: 'Personalia',
 
   edit: 'Rediger',
   save: 'Lagre',
