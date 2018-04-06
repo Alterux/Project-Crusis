@@ -106,9 +106,10 @@
 
 #title {
   /* box-shadow: 0px 0px 5px; */
+
   width: 25em;
   margin: auto;
-  margin-top: -3em;
+  margin-top: -1em;
   vertical-align: middle;
   overflow: hidden;
   justify-content: center;

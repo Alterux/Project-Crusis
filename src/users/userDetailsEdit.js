@@ -29,10 +29,22 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
   user = {}
   signedInUser = {};
 
+
   render() {
     let user = this.user;
     let signedInUser = this.signedInUser;
     let userTypeMsg;
+
+    let inputFormUserType = () => {
+      if (signedInUser.userType === 3) {
+        return (
+          <div className="inputFormUserType">
+            <h3>{lang.userType}</h3>
+            {inputUserType()}
+          </div>
+        );
+      }
+    }
 
     return (
       <div className='content'>
@@ -62,10 +74,7 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
             <input className="form" type='text' ref='inputCity' placeholder={lang.city} required />
           </div>
 
-          <div className="inputFormUserType">
-            <h3>{lang.userType}</h3>
-            {inputUserType()}
-          </div>
+          {inputFormUserType()}
 
           <div className="inputFormButton">
             <button className="form" id="signInButton" ref='saveUserButton'>{lang.saveChanges}</button>
@@ -96,7 +105,7 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
         this.refs.inputBirthMonth.value = age.getMonth() + 1;
         this.refs.inputBirthYear.value = age.getFullYear();
         this.refs.inputCity.value = this.user.city;
-        this.refs.inputUserType.value = this.user.userType;
+        if (this.refs.inputUserType) this.refs.inputUserType.value = this.user.userType;
 
         // deactivate button
         this.refs.deactivateUserButton.onclick = () => {
