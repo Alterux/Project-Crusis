@@ -24,13 +24,13 @@ class Home extends React.Component<{}> {
         <Link to={'/user/' + event.fromUserId}>{event.fromUser}</Link> &rarr; <Link to={'/user/' + event.toUserId}>{event.toUser}</Link>
         : {event.text}</li>);
     }
-    let target= document.getElementById('my-calendar-target');
 
     return (
       <div>
         <div id='welcomeMsg'>{lang.loggedInMsg}
           <div className="auto-jsCalendar material-theme red"
-              data-month-format="month YYYY">
+              data-month-format="month YYYY"
+              data-fdotw="2">
           </div>
             <ul>
               {listItems}
@@ -59,6 +59,7 @@ class Home extends React.Component<{}> {
     let signedInUser = userService.getSignedInUser();
     let popup = document.getElementById('popup');
     let span = document.getElementsByClassName('close')[0];
+    let target= document.getElementById('my-calendar-target');
 
     if(signedInUser) {
       jsCalendar.autoFind();
@@ -81,6 +82,7 @@ class Home extends React.Component<{}> {
         popup.style.display = 'none';
       }
     }
+    console.log(target);
   }
 }
 
