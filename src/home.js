@@ -13,6 +13,7 @@ import { Event, eventService } from './services/eventService';
 
 import { lang, en, no } from './util/lang';
 import { ErrorMessage, errorMessage } from './util/errorMessage';
+//import { en-gb } from 'fullcalendar/lang-all.js'
 
 class Home extends React.Component<{}> {
   events = [];
@@ -24,6 +25,7 @@ class Home extends React.Component<{}> {
 
       $('#calendar').fullCalendar({
         // put your options and callbacks here
+        lang: "en-gb"
       })
 
     });
