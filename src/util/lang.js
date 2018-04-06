@@ -93,6 +93,20 @@ let en = {
   nov: 'November',
   dec: 'December',
 
+  //Months-short
+  jans: 'Jan',
+  febs: 'Feb',
+  mars: 'Mar',
+  aprs: 'Apr',
+  mays: 'May',
+  juns: 'Jun',
+  juls: 'Jul',
+  augs: 'Aug',
+  seps: 'Sep',
+  octs: 'Oct',
+  novs: 'Nov',
+  decs: 'Dec',
+
   //Days
   mon: 'Monday',
   tue: 'Tuesday',
@@ -101,6 +115,15 @@ let en = {
   fri: 'Friday',
   sat: 'Saturday',
   sun: 'Sunday',
+
+  //Days-short
+  mons: 'Mon',
+  tues: 'Tue',
+  weds: 'Wed',
+  thus: 'Thu',
+  fris: 'Fri',
+  sats: 'Sat',
+  suns: 'Sun',
 
   //events page
   eventHeader: 'Events',
@@ -208,6 +231,20 @@ let no = {
   nov: 'November',
   dec: 'Desember',
 
+  //Months-short
+  jans: 'Jan',
+  febs: 'Feb',
+  mars: 'Mar',
+  aprs: 'Apr',
+  mays: 'Mai',
+  juns: 'Jun',
+  juls: 'Jul',
+  augs: 'Aug',
+  seps: 'Sep',
+  octs: 'Okt',
+  novs: 'Nov',
+  decs: 'Des',
+
   // Days
   mon: 'Mandag',
   tue: 'Tirsdag',
@@ -216,6 +253,15 @@ let no = {
   fri: 'Fredag',
   sat: 'Lørdag',
   sun: 'Søndag',
+
+  //Days-short
+  mons: 'Man',
+  tues: 'Tir',
+  weds: 'Ons',
+  thus: 'Tor',
+  fris: 'Fre',
+  sats: 'Lør',
+  suns: 'Søn',
 
   // Events Page
   eventHeader: 'Arrangementer',
