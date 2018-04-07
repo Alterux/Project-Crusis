@@ -26,6 +26,14 @@ body, #root, .main {
   flex: 1 0 auto;
 }
 
+.entry {
+  margin-bottom: .5em;
+}
+
+.last {
+  margin-bottom: 0;
+}
+
 label {
   display: inline-block;
   padding: 0;

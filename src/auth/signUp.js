@@ -135,7 +135,7 @@ class SignUp extends React.Component<{}> {
     this.refs.inputFirstname.onchange = () => {validateFirstName(); this.refs.inputFirstname.oninput = () => {validateFirstName()};};
     this.refs.inputMiddlename.onchange = () => {validateMiddleName()};
     this.refs.inputLastname.onchange = () => {validateLastName(); this.refs.inputLastname.oninput = () => {validateLastName()}};
-    this.refs.inputCity.onchange = () => {validateCity(); this.refs.inputCity.oninput = () => {validateCity()};};
+    this.refs.inputCity.onchange = () => {validateCity(); this.refs.inputCity.oninput = () => {validateCity()}};
 
     // button loaded and clicked
     if (this.refs.inputButton) {
