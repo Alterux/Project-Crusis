@@ -119,11 +119,13 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
 
         // Accept and reject buttons
         if (this.refs.acceptUserButton && this.refs.rejectUserButton) {
+          
           // Accept button
           this.refs.acceptUserButton.onclick = () => {
             userService.editUserType(1, user[0].id);
             history.push('/members');
           }
+
           // Reject button
           this.refs.rejectUserButton.onclick = () => {
             let result = confirm(lang.confirmUserDelete);
