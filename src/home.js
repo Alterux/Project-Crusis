@@ -25,10 +25,12 @@ class Home extends React.Component<{}> {
 
       $('#calendar').fullCalendar({
         // put your options and callbacks here
-        monthNames: [lang.jan, lang.feb, lang.mar, lang.apr, lang.may, lang.jun, lang.jul, lang.aug, lang.sep, lang.oct, lang.nov, lang.dec]
-    //    monthNamesShort: [lang.jans,lang.febs, lang.mars, lang.aprs, lang.mays, lang.juns, lang.juls, lang.augs, lang.seps, lang.octs, lang.novs, lang.decs]
-   //    dayNames: [lang.mon, lang.tue, lang.wed, lang.thu, lang.fri, lang.sat, lang.sun]
-   //    dayNamesShort: [lang.mons, lang.tues, lang.weds, lang.thus, lang.fris, lang.sats, lang.suns]
+        monthNames: [lang.jan, lang.feb, lang.mar, lang.apr, lang.may, lang.jun, lang.jul, lang.aug, lang.sep, lang.oct, lang.nov, lang.dec],
+        weekNumberCalculation: "ISO",
+        monthNamesShort: [lang.jan, lang.febs, lang.mars, lang.aprs, lang.mays, lang.juns, lang.juls, lang.augs, lang.seps, lang.octs, lang.novs, lang.decs],
+        dayNames: [lang.mon, lang.tue, lang.wed, lang.thu, lang.fri, lang.sat, lang.sun],
+        dayNamesShort: [lang.suns, lang.mons, lang.tues, lang.weds, lang.thus, lang.fris, lang.sats],
+        buttonText:  {today:lang.tod},
       })
 
     });
