@@ -78,6 +78,7 @@ let en = {
   day: 'Day',
   month: 'Month',
   year: 'Year',
+  tod: 'Today',
 
   // Months
   jan: 'January',
@@ -217,6 +218,7 @@ let no = {
   day: 'Dag',
   month: 'Måned',
   year: 'År',
+  tod: 'I dag',
 
   // Months
   jan: 'Januar',
