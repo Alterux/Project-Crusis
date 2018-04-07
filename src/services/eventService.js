@@ -7,12 +7,13 @@ class Event {
   name: string;
   location: string;
   city: string;
-  date = {};
+  startDate: Date;
+  endDate: Date;
   time: string;
 }
 
 class EventService {
-  getEvents(): Promise<void> {
+  getEvents(): Promise<Event[]> {
     return new Promise((resolve, reject) => {
       connection.query('SELECT * FROM Events', (error, result) => {
         if(error) {
