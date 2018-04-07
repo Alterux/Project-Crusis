@@ -94,20 +94,6 @@ let en = {
   nov: 'November',
   dec: 'December',
 
-  //Months-short
-  jans: 'Jan',
-  febs: 'Feb',
-  mars: 'Mar',
-  aprs: 'Apr',
-  mays: 'May',
-  juns: 'Jun',
-  juls: 'Jul',
-  augs: 'Aug',
-  seps: 'Sep',
-  octs: 'Oct',
-  novs: 'Nov',
-  decs: 'Dec',
-
   //Days
   mon: 'Monday',
   tue: 'Tuesday',
@@ -117,14 +103,6 @@ let en = {
   sat: 'Saturday',
   sun: 'Sunday',
 
-  //Days-short
-  mons: 'Mon',
-  tues: 'Tue',
-  weds: 'Wed',
-  thus: 'Thu',
-  fris: 'Fri',
-  sats: 'Sat',
-  suns: 'Sun',
 
   //events page
   eventHeader: 'Events',
@@ -136,6 +114,7 @@ let en = {
 
   // News
   newsheading: 'News',
+  newsText: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
 };
 
 /**************************************************/
@@ -233,19 +212,6 @@ let no = {
   nov: 'November',
   dec: 'Desember',
 
-  //Months-short
-  jans: 'Jan',
-  febs: 'Feb',
-  mars: 'Mar',
-  aprs: 'Apr',
-  mays: 'Mai',
-  juns: 'Jun',
-  juls: 'Jul',
-  augs: 'Aug',
-  seps: 'Sep',
-  octs: 'Okt',
-  novs: 'Nov',
-  decs: 'Des',
 
   // Days
   mon: 'Mandag',
@@ -256,14 +222,6 @@ let no = {
   sat: 'Lørdag',
   sun: 'Søndag',
 
-  //Days-short
-  mons: 'Man',
-  tues: 'Tir',
-  weds: 'Ons',
-  thus: 'Tor',
-  fris: 'Fre',
-  sats: 'Lør',
-  suns: 'Søn',
 
   // Events Page
   eventHeader: 'Arrangementer',
@@ -275,6 +233,7 @@ let no = {
 
   // News
   newsheading: 'Nyheter',
+  newsText: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
 };
 
 // Language selection

@@ -25,12 +25,16 @@ class Home extends React.Component<{}> {
 
       $('#calendar').fullCalendar({
         // put your options and callbacks here
-        monthNames: [lang.jan, lang.feb, lang.mar, lang.apr, lang.may, lang.jun, lang.jul, lang.aug, lang.sep, lang.oct, lang.nov, lang.dec],
         weekNumberCalculation: "ISO",
-        monthNamesShort: [lang.jan, lang.febs, lang.mars, lang.aprs, lang.mays, lang.juns, lang.juls, lang.augs, lang.seps, lang.octs, lang.novs, lang.decs],
+        monthNames: [lang.jan, lang.feb, lang.mar, lang.apr, lang.may, lang.jun, lang.jul, lang.aug, lang.sep, lang.oct, lang.nov, lang.dec],
+        monthNamesShort: [lang.jan.slice(0, 3), lang.feb.slice(0, 3), lang.mar.slice(0, 3), lang.apr.slice(0, 3), lang.may.slice(0, 3), lang.jun.slice(0, 3), lang.jul.slice(0, 3), lang.aug.slice(0, 3), lang.sep.slice(0, 3), lang.oct.slice(0, 3), lang.nov.slice(0, 3), lang.dec.slice(0, 3)],
         dayNames: [lang.mon, lang.tue, lang.wed, lang.thu, lang.fri, lang.sat, lang.sun],
-        dayNamesShort: [lang.suns, lang.mons, lang.tues, lang.weds, lang.thus, lang.fris, lang.sats],
-        buttonText:  {today:lang.tod},
+        dayNamesShort: [lang.sun.slice(0, 3), lang.mon.slice(0, 3), lang.tue.slice(0, 3), lang.wed.slice(0, 3), lang.thu.slice(0, 3), lang.fri.slice(0, 3), lang.sat.slice(0, 3)],
+        buttonText: {today:lang.tod},
+        aspectRatio: 1.5,
+      //  height: auto,
+
+
       })
 
     });
@@ -46,11 +50,9 @@ class Home extends React.Component<{}> {
 
     return (
       <div>
-        <div id='welcomeMsg'>{lang.loggedInMsg}
-            {/* <div className="auto-jsCalendar material-theme red"
-                data-month-format="month YYYY"
-                data-fdotw="2">
-            </div> */}
+        <div className='home-headlines'>{lang.welcomeMsg}<br></br><br></br>{lang.loggedInMsg}
+        </div>
+        <div id='calendarwindow'>
             <div id="calendar"></div>
             </div>
             <ul>
@@ -69,7 +71,13 @@ class Home extends React.Component<{}> {
                 </div>
               </div>
           </div>
-          <div className="news">{lang.newsheading}</div>
+        <div className="news">
+          <div className="newsheading">{lang.newsheading}<br></br>
+          </div>
+          <div className="newsText">{lang.newsText}
+          </div>
+            <img src="http://www.stiftelsen-uni.no/r/img/P2191.jpg" id="news-image"></img>
+        </div>
         </div>
     </div>
     );

@@ -1,3 +1,44 @@
+/* Home-headlines*/
+.home-headlines{
+  font-size: 2em;
+}
+welcomeMsg {
+
+}
+.news {
+  border-style: solid;
+  border-color: black;
+  border-width: 0.01em;
+  padding-left: 0.5em;
+  width: 60%;
+  height: 110%;
+}
+#news-image {
+  padding-left: 0.5em;
+  padding-top: 2em;
+  padding-left: 2em;
+}
+.newsText {
+  font-size: 1em;
+  width: 100%;
+}
+.newsheading {
+  font-size: 2em;
+  padding-bottom: 0.5em;
+}
+
+
+
+/*Calendar-window */
+#calendarwindow {
+  width: 80%;
+  height: 80%;
+  margin-top: 2em;
+}
+
+
+/*POPUPBOX-EVENT */
+
 .popupstyle {
     display: none; /* Hidden by default */
     position: absolute; /* Stay in place */
@@ -18,7 +59,7 @@
     width: 65%;
     box-shadow: 2px 2px grey;
     -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0,4s; 
+    -webkit-animation-duration: 0,4s;
     animation-name: animatetop;
     animation-duration: 0,3s
 }
