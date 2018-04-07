@@ -8,6 +8,7 @@ let en = {
   events: 'Events',
   members: 'Members',
   newMembers: 'New Members',
+  participants: 'Participants',
 
   title: 'Red Cross',
   welcomeMsg: 'Welcome to Red Cross!',
@@ -39,6 +40,7 @@ let en = {
   lastName: 'Last name',
   birthdate: 'Date of birth',
   address: 'Address',
+  location: 'Location',
   age: 'Age',
   city: 'City',
 
@@ -148,6 +150,7 @@ let no = {
   events: 'Arrangementer',
   members: 'Medlemmer',
   newMembers: 'Nye Medlemmer',
+  participants: 'Deltakere',
 
   title: 'Røde Kors',
   welcomeMsg: 'Velkommen til Røde Kors!',
@@ -179,6 +182,7 @@ let no = {
   lastName: 'Etternavn',
   birthdate: 'Fødselsdato',
   address: 'Adresse',
+  location: 'Lokasjon',
   age: 'Alder',
   city: 'By',
 

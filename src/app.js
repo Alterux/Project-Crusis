@@ -14,6 +14,7 @@ import { SignOut } from './auth/signOut';
 import { ForgotPass } from './auth/forgotPass';
 
 import { Events } from './events/events';
+import { EventDetails } from './events/eventDetails';
 
 import { Members } from './users/members';
 import { UserDetails } from './users/userDetails';
@@ -36,9 +37,10 @@ if(root) {
           <Route exact path='/signout' component={SignOut} />
           <Route exact path='/' component={Home} />
           <Route exact path='/members' component={Members} />
-          <Route exact path='/events' component={Events} />
           <Route exact path='/user/:id' component={UserDetails} />
           <Route exact path='/user/:id/edit' component={UserDetailsEdit} />
+          <Route exact path='/events' component={Events} />
+          <Route exact path='/event/:id' component={EventDetails} />
           </div>
         </Switch>
         <BottomBar />

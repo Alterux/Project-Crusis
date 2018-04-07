@@ -52,7 +52,15 @@ class Events extends React.Component<{}> {
         return (hours + "h " + minutes + "min");
       }
 
-      table.push(<tr key={inputs.id}><td>{inputs.name}</td><td>{inputs.location}</td><td>{inputs.city}</td><td>{day}.{monthName()}.{year}</td><td>{getDuration()}</td></tr>);
+      table.push(
+        <tr key={inputs.id}>
+          <td><Link to={'/event/' + inputs.id}>{inputs.name}</Link></td>
+          <td>{inputs.location}</td>
+          <td>{inputs.city}</td>
+          <td>{day}.{monthName()}.{year}</td>
+          <td>{getDuration()}</td>
+        </tr>
+      );
     }
 
     return (
@@ -72,7 +80,7 @@ class Events extends React.Component<{}> {
               </tr>
             </thead>
             <tbody>
-              { table }
+              {table}
             </tbody>
           </table>
         </div>
