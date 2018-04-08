@@ -168,7 +168,7 @@ let no = {
   lastName: 'Etternavn',
   birthdate: 'Fødselsdato',
   address: 'Adresse',
-  location: 'Lokasjon',
+  location: 'Sted',
   age: 'Alder',
   city: 'By',
 

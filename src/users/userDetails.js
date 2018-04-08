@@ -17,6 +17,7 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
     acceptUserButton: HTMLInputElement,
     rejectUserButton: HTMLInputElement,
     editUserButton: HTMLInputElement,
+    editCompetenceButton: HTMLInputElement,
     inputFirstName: HTMLInputElement,
   }
 
@@ -31,6 +32,7 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
 
     let userTypeMsg;
     let userButton;
+    let competenceButton;
 
     // Switch for userType.
     switch (user.userType) {
@@ -53,6 +55,7 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
     // signed in user is looking at own profile
     if (signedInUser.id === user.id) {
       userButton = <div className="editUserButton"><button ref="editUserButton">{lang.edit}</button></div>
+      competenceButton = <div className="editCompetenceButton"><button ref="editCompetenceButton">{lang.edit}</button></div>
 
     // signed in user is of type admin
     } else if (signedInUser.userType === 3) {
@@ -64,6 +67,7 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
       } else {
         userButton = <div className="editUserButton"><button ref="editUserButton">{lang.edit}</button>
                      <button ref="contactUserButton">{lang.contact}</button></div>
+        competenceButton = <div className="editCompetenceButton"><button ref="editCompetenceButton">{lang.edit}</button></div>
       }
     // user is not looking at own profile and is not of type admin
     } else {
@@ -90,7 +94,7 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
               <h3 className="textBoxTitle">{lang.competence}</h3>
             </div>
             <div className="textBox">
-              {userButton}
+              {competenceButton}
               {user.firstName} {user.middleName} {user.lastName}<br />
               <br />{lang.age}: {age}<br />
               <br />{lang.city}: {user.city}<br />
@@ -119,7 +123,7 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
 
         // Accept and reject buttons
         if (this.refs.acceptUserButton && this.refs.rejectUserButton) {
-          
+
           // Accept button
           this.refs.acceptUserButton.onclick = () => {
             userService.editUserType(1, user[0].id);
@@ -136,10 +140,17 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
           }
         }
 
-        // Edit button
+        // Edit user button
         if (this.refs.editUserButton) {
           this.refs.editUserButton.onclick = () => {
             history.push('/user/' + user[0].id + '/edit/');
+          }
+        }
+
+        // Edit competence button
+        if (this.refs.editCompetenceButton) {
+          this.refs.editCompetenceButton.onclick = () => {
+            console.log("Competence Button Pressed");
           }
         }
 
