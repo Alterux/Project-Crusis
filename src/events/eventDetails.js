@@ -87,45 +87,40 @@ class EventDetails extends React.Component<{ match: { params: { id: number } } }
       });
 
       // get participants
-      eventService.getParticipants(this.props.match.params.id).then((participants) => {
-        this.participants = participants;
+      let getParticipants = () => {
+        eventService.getParticipants(this.props.match.params.id).then((participants) => {
+          this.participants = participants;
 
-        for (let participant of participants) {
-          if (participant.id === signedInUser.id) {
-            this.isParticipant = true;
-          }
-        }
-        this.forceUpdate();
-
-        // report interest button
-        if (this.refs.applyEventButton) {
-          this.refs.applyEventButton.onclick = () => {
-            eventService.applyEvent(signedInUser.id, this.props.match.params.id);
-            eventService.getParticipants(this.props.match.params.id).then((participants) => {
-              this.participants = participants;
+          for (let participant of participants) {
+            if (participant.id === signedInUser.id) {
               this.isParticipant = true;
-              this.forceUpdate();
-            });
-            this.forceUpdate();
+            }
           }
-        }
+          this.forceUpdate();
 
-        // remove interest button
-        if (this.refs.unapplyEventButton) {
-          this.refs.unapplyEventButton.onclick = () => {
-            eventService.unapplyEvent(signedInUser.id);
-            eventService.getParticipants(this.props.match.params.id).then((participants) => {
-              this.participants = participants;
+          // report interest button
+          if (this.refs.applyEventButton) {
+            this.refs.applyEventButton.onclick = () => {
+              this.isParticipant = true;
+              eventService.applyEvent(signedInUser.id, this.props.match.params.id);
+              getParticipants();
+            }
+          }
+
+          // remove interest button
+          if (this.refs.unapplyEventButton) {
+            this.refs.unapplyEventButton.onclick = () => {
               this.isParticipant = false;
-              this.forceUpdate();
-            });
-            this.forceUpdate();
+              eventService.unapplyEvent(signedInUser.id);
+              getParticipants();
+            }
           }
-        }
 
-      }).catch((error: Error) => {
-        if(errorMessage) console.log(error);
-      });
+        }).catch((error: Error) => {
+          if(errorMessage) console.log(error);
+        });
+      }
+      getParticipants();
     }
   }
 }
