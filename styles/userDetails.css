@@ -19,7 +19,7 @@
   display: inline-block;
 }
 
-.editUserButton {
+.editUserButton, .editCompetenceButton {
   float: right;
 }
 
