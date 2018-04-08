@@ -98,6 +98,10 @@ let en = {
   nov: 'November',
   dec: 'December',
 
+  //Popup-content
+  popupContentText: 'Details for the upcoming event on the date: ',
+
+
   //Days
   mon: 'Monday',
   tue: 'Tuesday',
@@ -120,6 +124,12 @@ let en = {
   // News
   newsheading: 'News',
   newsText: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+
+  //Upcoming Events (at homepage)
+  upcomingEventsHeadline: 'Upcoming events',
+  upcomingEventLocation: 'Address',
+  upcomingEventCity: 'City',
+  upcomingEventReadmore: 'Read more',
 };
 
 /**************************************************/
@@ -231,6 +241,9 @@ let no = {
   sat: 'Lørdag',
   sun: 'Søndag',
 
+  //Popup-content
+  popupContentText: 'Detaljer om det oppkommende arrangementet på datoen: ',
+
 
   // Events Page
   eventHeader: 'Arrangementer',
@@ -244,6 +257,12 @@ let no = {
   // News
   newsheading: 'Nyheter',
   newsText: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+
+  //Upcoming Events (at homepage)
+  upcomingEventsHeadline: 'Kommende arrangementer',
+  upcomingEventLocation: 'Adresse',
+  upcomingEventCity: 'By',
+  upcomingEventReadmore: 'Les mer',
 };
 
 // Language selection
