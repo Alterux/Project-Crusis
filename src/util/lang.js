@@ -125,6 +125,9 @@ let en = {
 
   //Upcoming Events (at homepage)
   upcomingEventsHeadline: 'Upcoming events',
+  upcomingEventLocation: 'Address',
+  upcomingEventCity: 'City',
+  upcomingEventReadmore: 'Read more',
 };
 
 /**************************************************/
@@ -253,6 +256,9 @@ let no = {
 
   //Upcoming Events (at homepage)
   upcomingEventsHeadline: 'Kommende arrangementer',
+  upcomingEventLocation: 'Adresse',
+  upcomingEventCity: 'By',
+  upcomingEventReadmore: 'Les mer',
 };
 
 // Language selection

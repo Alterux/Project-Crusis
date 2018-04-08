@@ -50,11 +50,10 @@ class Home extends React.Component<{}> {
 
     let listEvents = [];
     for(let event of this.events) {
-      listItems.push(<li key={event.id}>
-        <Link to={'/user/' + event.fromUserId}>{event.fromUser}</Link> &rarr; <Link to={'/user/' + event.toUserId}>{event.toUser}</Link>
-        : {event.text}</li>);
+      listEvents.push
+      (<li key={event.id}>
+        {event.name} - {event.location} - {event.city}<div><Link to={'/event/' + event.id}>{lang.upcomingEventReadmore}</Link></div></li>);
     }
-
     return (
       <div>
         <div className='home-headlines'>{lang.welcomeMsg}<br></br><br></br>{lang.loggedInMsg}
@@ -90,7 +89,9 @@ class Home extends React.Component<{}> {
           {lang.upcomingEventsHeadline}
         </div>
         <div className="upcomingEvents-events">
+          <ul>
           {listEvents}
+        </ul>
         </div>
       </div>
     </div>
@@ -103,12 +104,20 @@ class Home extends React.Component<{}> {
     // let target= ".auto-jsCalendar material-theme red";
 
     if(signedInUser) {
-      // jsCalendar.autoFind();
+      eventService.getEvents().then((response) => {
+          for (let item of response) {
+            this.events.push(item);
+          }
+          this.forceUpdate();
+        }).catch((error: Error) => {
+          if(errorMessage) console.log(error);
+        });
 
     } else {
       history.push('/signin');
     }
 
+//POPUPBOX FROM CALENDAR
     if (this.refs.popupboxbutton ) {
       this.refs.popupboxbutton.onclick = () => {
         this.refs.popup.style.display = 'block';
