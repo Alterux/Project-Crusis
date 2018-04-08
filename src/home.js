@@ -13,12 +13,12 @@ import { Event, eventService } from './services/eventService';
 
 import { lang, en, no } from './util/lang';
 import { ErrorMessage, errorMessage } from './util/errorMessage';
-//import { en-gb } from 'fullcalendar/lang-all.js'
 
 class Home extends React.Component<{}> {
   events = [];
 
   render() {
+
     $(function() {
 
       $('#calendar').fullCalendar({
@@ -33,9 +33,13 @@ class Home extends React.Component<{}> {
           aspectRatio: 1.5,
 
           // Click-function
-        dayClick: function(date, jsEvent, view) {
-          alert('Clicked on: ' + date.format());
-        }
+          dayClick: function(date, jsEvent, view) {
+            alert('Clicked on: ' + date.format());
+            popup.style.display = "block";
+            let theDate = date.format();
+            console.log(theDate);
+          }
+
 
       })
 
@@ -44,7 +48,7 @@ class Home extends React.Component<{}> {
 
     let signedInUser = userService.getSignedInUser();
 
-    let listItems = [];
+    let listEvents = [];
     for(let event of this.events) {
       listItems.push(<li key={event.id}>
         <Link to={'/user/' + event.fromUserId}>{event.fromUser}</Link> &rarr; <Link to={'/user/' + event.toUserId}>{event.toUser}</Link>
@@ -66,17 +70,27 @@ class Home extends React.Component<{}> {
             <img src="http://www.stiftelsen-uni.no/r/img/P2191.jpg" id="news-image"></img>
         </div>
         <div>
-          <button ref='popupboxbutton'>Test</button>
+          <div className="popupbuttonposition">
+              { /* <button ref='popupboxbutton'>Popup-Test</button> */}
+          </div>
           <div id='popup' ref='popup' className='popupstyle'>
               <div className='popupcontent'>
                 <div className='popupheader'>
                   <span className='close'>&times;</span>
-                  <h2>Her skal navnet til arrangementet stå</h2>
+                  <div>Her skal navnet til arrangementet stå</div>
                 </div>
                 <div className='popupbody'>
-                  <p>Trillebårkurs - Lerkendal stadio - Kl. 14:00</p>
+                  <div>{lang.popupContentText}</div>
               </div>
             </div>
+        </div>
+      </div>
+      <div className="upcomingEvents">
+        <div className="upcomingEvents-headline">
+          {lang.upcomingEventsHeadline}
+        </div>
+        <div className="upcomingEvents-events">
+          {listEvents}
         </div>
       </div>
     </div>
@@ -95,11 +109,12 @@ class Home extends React.Component<{}> {
       history.push('/signin');
     }
 
-    if (this.refs.popupboxbutton) {
+    if (this.refs.popupboxbutton ) {
       this.refs.popupboxbutton.onclick = () => {
         this.refs.popup.style.display = 'block';
       }
     }
+
     span.onclick = () => {
         this.refs.popup.style.display = 'none';
     }
