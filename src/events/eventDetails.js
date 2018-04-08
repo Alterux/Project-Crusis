@@ -9,21 +9,39 @@ import { lang, en, no } from '../util/lang';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
 
 class EventDetails extends React.Component<{ match: { params: { id: number } } }> {
+  refs: {
+    applyEventButton: HTMLInputElement,
+    unapplyEventButton: HTMLInputElement,
+  }
 
+  signedInUser = {};
   event = {};
   participants = [];
+  isParticipant: boolean = false;
 
   render() {
     let event = this.event;
     let listParticipants = [];
 
+    let eventButton;
+
+    // user has reported interest
+    if (this.isParticipant) {
+      eventButton = <div className="unapplyEventButton"><button ref="unapplyEventButton">{lang.reportNotInterested}</button></div>
+    // user has not reported interest
+    } else {
+      eventButton = <div className="applyEventButton"><button ref="applyEventButton">{lang.reportInterested}</button></div>
+    }
+
     for (let participant of this.participants) {
       listParticipants.push(<li key={participant.id}><Link to={'/user/' + participant.id}>{participant.firstName} {participant.middleName} {participant.lastName}</Link></li>)
     }
+
     return (
       <div className='textBoxWrapper'>
         <div className='userDetailsBox'>
           <div className='textBox'>
+            {eventButton}
             <div className='entry'>
               <h3>{lang.name}</h3>
               {event.name}
@@ -57,6 +75,9 @@ class EventDetails extends React.Component<{ match: { params: { id: number } } }
   componentDidMount() {
     let signedInUser = userService.getSignedInUser();
     if(signedInUser) {
+      this.signedInUser = signedInUser;
+
+      // get event
       eventService.getEvent(this.props.match.params.id).then((event) => {
         this.event = event[0];
         this.forceUpdate();
@@ -65,9 +86,42 @@ class EventDetails extends React.Component<{ match: { params: { id: number } } }
         if(errorMessage) console.log(error);
       });
 
+      // get participants
       eventService.getParticipants(this.props.match.params.id).then((participants) => {
         this.participants = participants;
+
+        for (let participant of participants) {
+          if (participant.id === signedInUser.id) {
+            this.isParticipant = true;
+          }
+        }
         this.forceUpdate();
+
+        // report interest button
+        if (this.refs.applyEventButton) {
+          this.refs.applyEventButton.onclick = () => {
+            eventService.applyEvent(signedInUser.id, this.props.match.params.id);
+            eventService.getParticipants(this.props.match.params.id).then((participants) => {
+              this.participants = participants;
+              this.isParticipant = true;
+              this.forceUpdate();
+            });
+            this.forceUpdate();
+          }
+        }
+
+        // remove interest button
+        if (this.refs.unapplyEventButton) {
+          this.refs.unapplyEventButton.onclick = () => {
+            eventService.unapplyEvent(signedInUser.id);
+            eventService.getParticipants(this.props.match.params.id).then((participants) => {
+              this.participants = participants;
+              this.isParticipant = false;
+              this.forceUpdate();
+            });
+            this.forceUpdate();
+          }
+        }
 
       }).catch((error: Error) => {
         if(errorMessage) console.log(error);

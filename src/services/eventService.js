@@ -62,6 +62,32 @@ class EventService {
       });
     });
   }
+
+  applyEvent(user_id: number, event_id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('INSERT INTO Participants (users_id, events_id) VALUES (?, ?)', [user_id, event_id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
+  unapplyEvent(user_id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('DELETE FROM Participants WHERE users_id=?', [user_id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
 }
 
 let eventService = new EventService();

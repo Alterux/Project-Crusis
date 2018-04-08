@@ -25,6 +25,8 @@ let en = {
   delete: 'Delete',
   deactivate: 'Deactivate',
   contact: 'Contact',
+  reportInterested: 'Report interest',
+  reportNotInterested: 'Remove interest',
 
   language: 'Language',
   english: 'English',
@@ -146,6 +148,8 @@ let no = {
   delete: 'Slett',
   deactivate: 'Deaktiver',
   contact: 'Kontakt',
+  reportInterested: 'Meld interresse',
+  reportNotInterested: 'Fjern interresse',
 
   language: 'Språk',
   english: 'Engelsk',

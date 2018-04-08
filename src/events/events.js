@@ -94,9 +94,9 @@ class Events extends React.Component<{}> {
     if(signedInUser) {
       eventService.getEvents().then((response) => {
 
-          for (let item of response) {
-            this.events.push(item);
-          }
+        for (let item of response) {
+          this.events.push(item);
+        }
 
           this.forceUpdate();
         }).catch((error: Error) => {

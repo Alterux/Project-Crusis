@@ -5,6 +5,7 @@
 @import "events.css";
 @import "fullcalendar.css";
 @import "home.css";
+@import "eventDetails.css";
 
 * {
   margin: 0;
