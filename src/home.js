@@ -21,21 +21,24 @@ class Home extends React.Component<{}> {
   render() {
     $(function() {
 
-      // page is now ready, initialize the calendar...
-
       $('#calendar').fullCalendar({
-        // put your options and callbacks here
-        weekNumberCalculation: "ISO",
-        monthNames: [lang.jan, lang.feb, lang.mar, lang.apr, lang.may, lang.jun, lang.jul, lang.aug, lang.sep, lang.oct, lang.nov, lang.dec],
-        monthNamesShort: [lang.jan.slice(0, 3), lang.feb.slice(0, 3), lang.mar.slice(0, 3), lang.apr.slice(0, 3), lang.may.slice(0, 3), lang.jun.slice(0, 3), lang.jul.slice(0, 3), lang.aug.slice(0, 3), lang.sep.slice(0, 3), lang.oct.slice(0, 3), lang.nov.slice(0, 3), lang.dec.slice(0, 3)],
-        dayNames: [lang.mon, lang.tue, lang.wed, lang.thu, lang.fri, lang.sat, lang.sun],
-        dayNamesShort: [lang.sun.slice(0, 3), lang.mon.slice(0, 3), lang.tue.slice(0, 3), lang.wed.slice(0, 3), lang.thu.slice(0, 3), lang.fri.slice(0, 3), lang.sat.slice(0, 3)],
-        buttonText: {today:lang.tod},
-        aspectRatio: 1.5,
-      //  height: auto,
 
+        //Customization of the calendar
+          weekNumberCalculation: "ISO",
+          monthNames: [lang.jan, lang.feb, lang.mar, lang.apr, lang.may, lang.jun, lang.jul, lang.aug, lang.sep, lang.oct, lang.nov, lang.dec],
+          monthNamesShort: [lang.jan.slice(0, 3), lang.feb.slice(0, 3), lang.mar.slice(0, 3), lang.apr.slice(0, 3), lang.may.slice(0, 3), lang.jun.slice(0, 3), lang.jul.slice(0, 3), lang.aug.slice(0, 3), lang.sep.slice(0, 3), lang.oct.slice(0, 3), lang.nov.slice(0, 3), lang.dec.slice(0, 3)],
+          dayNames: [lang.mon, lang.tue, lang.wed, lang.thu, lang.fri, lang.sat, lang.sun],
+          dayNamesShort: [lang.sun.slice(0, 3), lang.mon.slice(0, 3), lang.tue.slice(0, 3), lang.wed.slice(0, 3), lang.thu.slice(0, 3), lang.fri.slice(0, 3), lang.sat.slice(0, 3)],
+          buttonText: {today:lang.tod},
+          aspectRatio: 1.5,
+
+          // Click-function
+        dayClick: function(date, jsEvent, view) {
+          alert('Clicked on: ' + date.format());
+        }
 
       })
+
 
     });
 
@@ -53,24 +56,8 @@ class Home extends React.Component<{}> {
         <div className='home-headlines'>{lang.welcomeMsg}<br></br><br></br>{lang.loggedInMsg}
         </div>
         <div id='calendarwindow'>
-            <div id="calendar"></div>
-            </div>
-            <ul>
-              {listItems}
-            </ul>
-          <div>
-            <button ref='popupboxbutton'>Test</button>
-            <div id='popup' ref='popup' className='popupstyle'>
-                <div className='popupcontent'>
-                  <div className='popupheader'>
-                    <span className='close'>&times;</span>
-                    <h2>Her skal navnet til arrangementet stå</h2>
-                  </div>
-                  <div className='popupbody'>
-                    <p>Trillebårkurs - Lerkendal stadio - Kl. 14:00</p>
-                </div>
-              </div>
-          </div>
+          <div id="calendar"></div>
+        </div>
         <div className="news">
           <div className="newsheading">{lang.newsheading}<br></br>
           </div>
@@ -78,7 +65,20 @@ class Home extends React.Component<{}> {
           </div>
             <img src="http://www.stiftelsen-uni.no/r/img/P2191.jpg" id="news-image"></img>
         </div>
+        <div>
+          <button ref='popupboxbutton'>Test</button>
+          <div id='popup' ref='popup' className='popupstyle'>
+              <div className='popupcontent'>
+                <div className='popupheader'>
+                  <span className='close'>&times;</span>
+                  <h2>Her skal navnet til arrangementet stå</h2>
+                </div>
+                <div className='popupbody'>
+                  <p>Trillebårkurs - Lerkendal stadio - Kl. 14:00</p>
+              </div>
+            </div>
         </div>
+      </div>
     </div>
     );
   }

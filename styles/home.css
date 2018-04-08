@@ -9,31 +9,40 @@ welcomeMsg {
   border-style: solid;
   border-color: black;
   border-width: 0.01em;
-  padding-left: 0.5em;
-  width: 60%;
+  width: 40%;
   height: 110%;
+  float: right;
+  padding-bottom: 1.5em;
+  vertical-align: top;
 }
 #news-image {
   padding-left: 0.5em;
   padding-top: 2em;
-  padding-left: 2em;
+  padding-left: 1.5em;
+  padding-bottom: 1.5em;
+  width: 90%;
 }
 .newsText {
   font-size: 1em;
-  width: 100%;
+  width: 90%;
+  margin-left: 1.5em;
 }
 .newsheading {
   font-size: 2em;
   padding-bottom: 0.5em;
+  margin-left: 0.7em;
 }
 
 
 
 /*Calendar-window */
 #calendarwindow {
-  width: 80%;
-  height: 80%;
+  width: 50%;
+  height: 60%;
   margin-top: 2em;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.01em;
 }
 
 
