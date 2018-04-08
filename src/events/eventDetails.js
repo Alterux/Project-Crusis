@@ -100,7 +100,9 @@ class EventDetails extends React.Component<{ match: { params: { id: number } } }
 
           // report interest button
           if (this.refs.applyEventButton) {
+            this.refs.applyEventButton.disabled = false;
             this.refs.applyEventButton.onclick = () => {
+              this.refs.applyEventButton.disabled = true;
               this.isParticipant = true;
               eventService.applyEvent(signedInUser.id, this.props.match.params.id);
               getParticipants();
@@ -109,7 +111,9 @@ class EventDetails extends React.Component<{ match: { params: { id: number } } }
 
           // remove interest button
           if (this.refs.unapplyEventButton) {
+            this.refs.unapplyEventButton.disabled = false;
             this.refs.unapplyEventButton.onclick = () => {
+              this.refs.unapplyEventButton.disabled = true;
               this.isParticipant = false;
               eventService.unapplyEvent(signedInUser.id);
               getParticipants();
