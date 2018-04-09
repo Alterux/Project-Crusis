@@ -27,24 +27,24 @@ let root = document.getElementById('root');
 if(root) {
   ReactDOM.render((
     <HashRouter>
-      <div class="main">
+      <div className="main">
         <ErrorMessage />
         <Menu />
-        <Switch>
-          <div class="content">
-          <Route exact path='/signin' component={SignIn} />
-          <Route exact path='/signup' component={SignUp} />
-          <Route exact path='/forgotpass' component={ForgotPass} />
-          <Route exact path='/signout' component={SignOut} />
-          <Route exact path='/' component={Home} />
-          <Route exact path='/members' component={Members} />
-          <Route exact path='/user/:id' component={UserDetails} />
-          <Route exact path='/user/:id/edit' component={UserDetailsEdit} />
-          <Route exact path='/events' component={Events} />
-          <Route exact path='/event/:id' component={EventDetails} />
-          <Route exact path='/event/:id/edit' component={EventDetailsEdit} />
-          </div>
-        </Switch>
+        <div className="content">
+          <Switch>
+            <Route exact path='/signin' component={SignIn} />
+            <Route exact path='/signup' component={SignUp} />
+            <Route exact path='/forgotpass' component={ForgotPass} />
+            <Route exact path='/signout' component={SignOut} />
+            <Route exact path='/' component={Home} />
+            <Route exact path='/members' component={Members} />
+            <Route exact path='/user/:id' component={UserDetails} />
+            <Route exact path='/user/:id/edit' component={UserDetailsEdit} />
+            <Route exact path='/events' component={Events} />
+            <Route exact path='/event/:id' component={EventDetails} />
+            <Route exact path='/event/:id/edit' component={EventDetailsEdit} />
+          </Switch>
+        </div>
         <BottomBar />
       </div>
     </HashRouter>
