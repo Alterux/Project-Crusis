@@ -102,9 +102,9 @@ class SignUp extends React.Component<{}> {
 
             <div className="inputFormBirth">
               <h3>{lang.birthdate}</h3>
-              {inputDays()}
-              {inputMonths()}
-              {inputYears()}
+              {inputDays('inputBirthDay', 'form birth')}
+              {inputMonths('inputBirthMonth', 'form birth month')}
+              {inputYears('inputBirthYear', 'form birth year')}
                 {errorBirth ? <div className='errorInput'><i />{lang.errorBirth}</div> : null}
             </div>
 
