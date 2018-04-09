@@ -9,7 +9,7 @@ class Event {
   city: string;
   startDate: Date;
   endDate: Date;
-  time: string;
+  details: string;
 }
 
 class Participant {
@@ -18,10 +18,6 @@ class Participant {
   middleName: string;
   lastName: string;
 }
-
-// SELECT id, firstName, middleName, lastName
-// FROM Users u, Participants
-// WHERE u.id = users_id
 
 class EventService {
   getEvents(): Promise<Event[]> {
