@@ -56,19 +56,35 @@ class Home extends React.Component<{}> {
     }
     return (
       <div>
-        <div className='home-headlines'>{lang.welcomeMsg}<br></br><br></br>{lang.loggedInMsg}
+        <div className='home-headlines'>
+          {lang.welcomeMsg}<br />
+          <br />{lang.loggedInMsg}
         </div>
         <div id='calendarwindow'>
           <div id="calendar"></div>
         </div>
-        <div className="news">
-          <div className="newsheading">{lang.newsheading}<br></br>
-          </div>
-          <div className="newsText">{lang.newsText}
-          </div>
+        <div className='rightContainer'>
+          <div className="news">
+            <div className="newsheading">
+              {lang.newsheading}<br />
+            </div>
+            <div className="newsText">
+              {lang.newsText}
+            </div>
             <img src="http://www.stiftelsen-uni.no/r/img/P2191.jpg" id="news-image"></img>
+          </div>
+          <div className="upcomingEvents">
+            <div className="upcomingEvents-headline">
+              {lang.upcomingEventsHeadline}
+            </div>
+            <div className="upcomingEvents-events">
+              <ul>
+                {listEvents}
+              </ul>
+            </div>
+          </div>
+          <div>
         </div>
-        <div>
           <div className="popupbuttonposition">
               { /* <button ref='popupboxbutton'>Popup-Test</button> */}
           </div>
@@ -82,16 +98,6 @@ class Home extends React.Component<{}> {
                   <div>{lang.popupContentText}</div>
               </div>
             </div>
-        </div>
-      </div>
-      <div className="upcomingEvents">
-        <div className="upcomingEvents-headline">
-          {lang.upcomingEventsHeadline}
-        </div>
-        <div className="upcomingEvents-events">
-          <ul>
-          {listEvents}
-        </ul>
         </div>
       </div>
     </div>
