@@ -1,56 +1,13 @@
-@import "main/home.css";
-@import "main/menu.css";
+@import 'main/main.css';
+@import 'main/home.css';
+@import 'main/menu.css';
 
-@import "auth/auth.css";
+@import 'auth/auth.css';
 
-@import "events/events.css";
-@import "events/eventDetails.css";
+@import 'events/events.css';
+@import 'events/eventDetails.css';
 
-@import "users/userDetails.css";
-@import "users/userDetailsEdit.css";
+@import 'users/userDetails.css';
+@import 'users/userDetailsEdit.css';
 
-@import "util/fullcalendar.css";
-
-* {
-  margin: 0;
-}
-
-html, body, #root, .main {
-  height: 100%;
-  font-family: Arial;
-}
-
-body, #root, .main {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.content {
-  margin: 8px;
-  flex: 1 0 auto;
-}
-
-.entry {
-  margin-bottom: .5em;
-}
-
-.last {
-  margin-bottom: 0;
-}
-
-label {
-  display: inline-block;
-  padding: 0;
-  padding-bottom: .5em;
-  padding-left: .2em;
-}
-
-ul {
-  margin-bottom: 1em;
-}
-
-h3 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1em;
-}
+@import 'util/fullcalendar.css';
