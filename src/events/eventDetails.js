@@ -37,7 +37,7 @@ class EventDetails extends React.Component<{ match: { params: { id: number } } }
     if (event.startDate) {
       let date  = new Date(event.startDate);
       startDay = date.getDate();
-      startMonth = date.getMonth();
+      startMonth = date.getMonth() + 1;
       startMonthName = switchMonth(startMonth);
       startYear = date.getFullYear();
       startHour = date.getHours();
@@ -52,10 +52,10 @@ class EventDetails extends React.Component<{ match: { params: { id: number } } }
     let endYear;
     let endHour;
     let endMinute;
-    if (event.startDate) {
+    if (event.endDate) {
       let date  = new Date(event.endDate);
       endDay = date.getDate();
-      endMonth = date.getMonth();
+      endMonth = date.getMonth() + 1;
       endMonthName = switchMonth(endMonth);
       endYear = date.getFullYear();
       endHour = date.getHours();
