@@ -1,11 +1,15 @@
-@import "auth.css";
-@import "menu.css";
-@import "userDetails.css";
-@import "userDetailsEdit.css";
-@import "events.css";
-@import "fullcalendar.css";
-@import "home.css";
-@import "eventDetails.css";
+@import "main/home.css";
+@import "main/menu.css";
+
+@import "auth/auth.css";
+
+@import "events/events.css";
+@import "events/eventDetails.css";
+
+@import "users/userDetails.css";
+@import "users/userDetailsEdit.css";
+
+@import "util/fullcalendar.css";
 
 * {
   margin: 0;

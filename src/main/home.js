@@ -7,12 +7,12 @@ import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-import { connection } from './services/connect';
-import { User, userService } from './services/userService';
-import { Event, eventService } from './services/eventService';
+import { connection } from '../services/connect';
+import { User, userService } from '../services/userService';
+import { Event, eventService } from '../services/eventService';
 
-import { lang, en, no } from './util/lang';
-import { ErrorMessage, errorMessage } from './util/errorMessage';
+import { lang, en, no } from '../util/lang';
+import { ErrorMessage, errorMessage } from '../util/errorMessage';
 
 class Home extends React.Component<{}> {
   events = [];

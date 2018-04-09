@@ -4,7 +4,7 @@ import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-import { Menu, menu } from '../menu';
+import { Menu, menu } from '../main/menu';
 
 import { User, userService } from '../services/userService';
 

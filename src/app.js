@@ -5,8 +5,8 @@ import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-import { Home } from './home';
-import { Menu, BottomBar } from './menu';
+import { Home } from './main/home';
+import { Menu, BottomBar } from './main/menu';
 
 import { SignIn } from './auth/signIn';
 import { SignUp } from './auth/signUp';
