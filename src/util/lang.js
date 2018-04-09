@@ -41,8 +41,11 @@ let en = {
   middleName: 'Middle name',
   lastName: 'Last name',
   birthdate: 'Date of birth',
+  startDate: 'Start date',
+  endDate: 'End date',
   address: 'Address',
   location: 'Location',
+  details: 'Details',
   age: 'Age',
   city: 'City',
 
@@ -174,8 +177,11 @@ let no = {
   middleName: 'Mellomnavn',
   lastName: 'Etternavn',
   birthdate: 'Fødselsdato',
+  startDate: 'Startdato',
+  endDate: 'Sluttdato',
   address: 'Adresse',
   location: 'Sted',
+  details: 'Detaljer',
   age: 'Alder',
   city: 'By',
 
