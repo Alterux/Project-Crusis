@@ -13,6 +13,9 @@ import { ErrorMessage, errorMessage } from '../util/errorMessage';
 class EventDetailsEdit extends React.Component<{ match: { params: { id: number } } }> {
   refs: {
     saveEventButton: HTMLInputElement,
+    inputName: HTMLInputElement,
+    inputLocation: HTMLInputElement,
+    inputCity: HTMLInputElement,
   }
 
   signedInUser = {};
@@ -37,15 +40,15 @@ class EventDetailsEdit extends React.Component<{ match: { params: { id: number }
             {saveEventButton}
             <div className='entry'>
               <h3>{lang.name}</h3>
-              {event.name}
+              <input ref='inputName'></input>
             </div>
             <div className='entry'>
               <h3>{lang.location}</h3>
-              {event.location}
+              <input ref='inputLocation'></input>
             </div>
             <div className='last entry'>
               <h3>{lang.city}</h3>
-              {event.city}
+              <input ref='inputCity'></input>
             </div>
             <div>
               {/* {event.startDate} */}
@@ -67,6 +70,11 @@ class EventDetailsEdit extends React.Component<{ match: { params: { id: number }
       // get event
       eventService.getEvent(this.props.match.params.id).then((event) => {
         this.event = event[0];
+
+        this.refs.inputName.value = this.event.name;
+        this.refs.inputLocation.value = this.event.location;
+        this.refs.inputCity.value = this.event.city;
+
         this.forceUpdate();
 
       }).catch((error: Error) => {
