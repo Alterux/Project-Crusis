@@ -3,7 +3,7 @@ import * as React from 'react';
 import { lang, en, no } from './lang';
 
 // prints name of month
-export let switchMonth = (month: number) => {
+let switchMonth = (month: number) => {
   switch (month) {
     case 1: return lang.jan.slice(0, 3);
     case 2: return lang.feb.slice(0, 3);
@@ -19,3 +19,5 @@ export let switchMonth = (month: number) => {
     case 12: return lang.dec.slice(0, 3);
   }
 }
+
+export { switchMonth }
