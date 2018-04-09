@@ -8,6 +8,7 @@ import { User, userService } from '../services/userService';
 import { Event, eventService } from '../services/eventService';
 
 import { lang, en, no } from '../util/lang';
+import { switchMonth } from '../util/modules';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
 
 class EventDetails extends React.Component<{ match: { params: { id: number } } }> {
@@ -25,8 +26,43 @@ class EventDetails extends React.Component<{ match: { params: { id: number } } }
   render() {
     let event = this.event;
     let listParticipants = [];
-
     let eventButton;
+
+    let startDay;
+    let startMonth;
+    let startMonthName;
+    let startYear;
+    let startHour;
+    let startMinute;
+    if (event.startDate) {
+      let date  = new Date(event.startDate);
+      startDay = date.getDate();
+      startMonth = date.getMonth();
+      startMonthName = switchMonth(startMonth);
+      startYear = date.getFullYear();
+      startHour = date.getHours();
+      startHour = ("0" + startHour).slice(-2);
+      startMinute = date.getMinutes();
+      startMinute = ("0" + startMinute).slice(-2);
+    }
+
+    let endDay;
+    let endMonth;
+    let endMonthName;
+    let endYear;
+    let endHour;
+    let endMinute;
+    if (event.startDate) {
+      let date  = new Date(event.endDate);
+      endDay = date.getDate();
+      endMonth = date.getMonth();
+      endMonthName = switchMonth(endMonth);
+      endYear = date.getFullYear();
+      endHour = date.getHours();
+      endHour = ("0" + endHour).slice(-2);
+      endMinute = date.getMinutes();
+      endMinute = ("0" + endMinute).slice(-2);
+    }
 
     let editEventButton = <div className="editEventButton"><button ref="editEventButton">{lang.edit}</button></div>
 
@@ -56,15 +92,21 @@ class EventDetails extends React.Component<{ match: { params: { id: number } } }
               <h3>{lang.location}</h3>
               {event.location}
             </div>
-            <div className='last entry'>
+            <div className='entry'>
               <h3>{lang.city}</h3>
               {event.city}
             </div>
-            <div>
-              {/* {event.startDate} */}
+            <div className='entry'>
+              <h3>{lang.startDate}</h3>
+              {startDay}.{startMonthName}.{startYear}, {startHour}:{startMinute}
             </div>
-            <div>
-              {/* {event.endDate} */}
+            <div className='entry'>
+              <h3>{lang.endDate}</h3>
+              {endDay}.{endMonthName}.{endYear}, {endHour}:{endMinute}
+            </div>
+            <div className='last entry'>
+              <h3>{lang.details}</h3>
+              {event.details}
             </div>
           </div>
         </div>
