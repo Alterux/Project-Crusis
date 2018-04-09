@@ -40,7 +40,7 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
         return (
           <div className="inputFormUserType">
             <h3>{lang.userType}</h3>
-            {inputUserType()}
+            {inputUserType('inputUserType', 'form formUserType')}
           </div>
         );
       }
@@ -64,9 +64,9 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
 
           <div className="inputFormBirth">
             <h3>{lang.birthdate}</h3>
-            {inputDays()}
-            {inputMonths()}
-            {inputYears()}
+            {inputDays('inputBirthDay', 'form birth')}
+            {inputMonths('inputBirthMonth', 'form birth month')}
+            {inputYears('inputBirthYear', 'form birth year')}
           </div>
 
           <div className="inputFormAddress">
