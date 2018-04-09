@@ -46,6 +46,20 @@ class EventService {
     });
   }
 
+  editEvent(id: number, name: string, location: string, city: string, startDate: string, endDate: string, details: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('UPDATE Events SET name=?, location=?, city=?, startDate=?, endDate=?, details=? WHERE id=?;',
+      [name, location, city, startDate, endDate, details, id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve();
+      });
+    });
+  }
+
   getParticipants(id: number): Promise<Participant[]> {
     return new Promise((resolve, reject) => {
       connection.query('SELECT * FROM Users u, Participants WHERE u.id = users_id AND events_id = ?', [id], (error, result) => {
