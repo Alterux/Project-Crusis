@@ -1,0 +1,137 @@
+/* Home-headlines*/
+.home-headlines{
+  font-size: 2em;
+}
+.news {
+  border-style: solid;
+  border-color: black;
+  border-width: 0.01em;
+  width: 35%;
+  height: 60%;
+  float: right;
+  font-size: 0.9em;
+  margin-top: 2em;
+
+}
+#news-image {
+  padding-left: 0.5em;
+  padding-top: 2em;
+  padding-left: 1.5em;
+  padding-bottom: 1.5em;
+  width: 75%;
+  display:block;
+  margin:auto;
+}
+.newsText {
+  font-size: 1em;
+  width: 90%;
+  margin-left: 1.5em;
+}
+.newsheading {
+  font-size: 2em;
+  padding-bottom: 0.5em;
+  margin-left: 0.7em;
+  padding-top: 0.5em;
+}
+
+
+
+/*Calendar-window */
+#calendarwindow {
+  width: 50%;
+  height: 60%;
+  margin-top: 2em;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.01em;
+  float: left;
+}
+
+
+/*POPUPBOX-EVENT */
+
+.popupstyle {
+    display: none; /* Hidden by default */
+    position: relative; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 5.5em; /* Location of the box */
+    padding-left: 1em;
+    left: 0;
+    top: 0;
+    width: 40%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+}
+.popupcontent {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0px;
+    border: 1px solid #888;
+    width: 65%;
+    box-shadow: 2px 2px grey;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0,4s;
+    animation-name: animatetop;
+    animation-duration: 0,3s
+}
+.popupheader {
+    padding: 5px 16px;
+    background-color: #F6511D;
+    color: white;
+    font-size: 1em;
+}
+
+.popupbody {
+  padding: 2px 16px;
+  font-size: 0.8em;
+}
+.popupbuttonposition {
+  float:left;
+  position: relative;
+}
+
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/*Upcoming events */
+.upcomingEvents {
+  border-style: solid;
+  border-color: black;
+  border-width: 0.01em;
+  width: 35%;
+  height: 60%;
+  float: right;
+  font-size: 0.9em;
+  margin-top: 2em;
+  padding-top: 0.5em;
+}
+
+.upcomingEvents-headline {
+  font-size: 2em;
+  margin-left: 0.7em;
+}
+
+.upcomingEvents-events {
+  font-size: 1.1em;
+}

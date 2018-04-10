@@ -8,19 +8,25 @@ let en = {
   events: 'Events',
   members: 'Members',
   newMembers: 'New Members',
+  participants: 'Participants',
 
   title: 'Red Cross',
   welcomeMsg: 'Welcome to Red Cross!',
   loggedInMsg: 'My Events: ',
   signedUpMsg: 'User account created, please wait for confirmation.',
   forgotPassMsg: 'Page under construction.',
+  competence: 'Competence',
+  userInfo: 'Bio',
 
   edit: 'Edit',
   save: 'Save',
   accept: 'Accept',
   reject: 'Reject',
+  delete: 'Delete',
   deactivate: 'Deactivate',
   contact: 'Contact',
+  reportInterested: 'Report interest',
+  reportNotInterested: 'Remove interest',
 
   language: 'Language',
   english: 'English',
@@ -35,7 +41,11 @@ let en = {
   middleName: 'Middle name',
   lastName: 'Last name',
   birthdate: 'Date of birth',
+  startDate: 'Start date',
+  endDate: 'End date',
   address: 'Address',
+  location: 'Location',
+  details: 'Details',
   age: 'Age',
   city: 'City',
 
@@ -75,6 +85,9 @@ let en = {
   day: 'Day',
   month: 'Month',
   year: 'Year',
+  hour: 'Hour',
+  minute: 'Minute',
+  tod: 'Today',
 
   // Months
   jan: 'January',
@@ -90,6 +103,10 @@ let en = {
   nov: 'November',
   dec: 'December',
 
+  //Popup-content
+  popupContentText: 'Details for the upcoming event on the date: ',
+
+
   //Days
   mon: 'Monday',
   tue: 'Tuesday',
@@ -99,6 +116,7 @@ let en = {
   sat: 'Saturday',
   sun: 'Sunday',
 
+
   //events page
   eventHeader: 'Events',
   tableName: 'Name',
@@ -106,6 +124,17 @@ let en = {
   tableCity: 'City',
   tableDate: 'Date',
   tableTime: 'Time',
+  tableDuration: 'Duration',
+
+  // News
+  newsheading: 'News',
+  newsText: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+
+  //Upcoming Events (at homepage)
+  upcomingEventsHeadline: 'Upcoming events',
+  upcomingEventLocation: 'Address',
+  upcomingEventCity: 'City',
+  upcomingEventReadmore: 'Read more',
 };
 
 /**************************************************/
@@ -117,19 +146,25 @@ let no = {
   events: 'Arrangementer',
   members: 'Medlemmer',
   newMembers: 'Nye Medlemmer',
+  participants: 'Deltakere',
 
   title: 'Røde Kors',
   welcomeMsg: 'Velkommen til Røde Kors!',
   loggedInMsg: 'Mine Arrangementer: ',
   signedUpMsg: 'Brukerkonto opprettet, vennligst vent på godkjenning.',
   forgotPassMsg: 'Side under konstruksjon.',
+  competence: 'Kompetanse',
+  userInfo: 'Personalia',
 
   edit: 'Rediger',
   save: 'Lagre',
   accept: 'Godta',
   reject: 'Avslå',
+  delete: 'Slett',
   deactivate: 'Deaktiver',
   contact: 'Kontakt',
+  reportInterested: 'Meld interresse',
+  reportNotInterested: 'Fjern interresse',
 
   language: 'Språk',
   english: 'Engelsk',
@@ -144,7 +179,11 @@ let no = {
   middleName: 'Mellomnavn',
   lastName: 'Etternavn',
   birthdate: 'Fødselsdato',
+  startDate: 'Startdato',
+  endDate: 'Sluttdato',
   address: 'Adresse',
+  location: 'Sted',
+  details: 'Detaljer',
   age: 'Alder',
   city: 'By',
 
@@ -177,13 +216,16 @@ let no = {
   saveChanges: 'Lagre endringer',
   confirmSignOut: 'Logg ut?',
   confirmUserDelete: 'Slett brukeren?',
-  confirmUserDeactivate: 'Er du sikker på at du vil deaktivere denn kontoen?',
+  confirmUserDeactivate: 'Er du sikker på at du vil deaktivere denne kontoen?',
   optional: 'Valgfritt',
 
   // Dates
   day: 'Dag',
   month: 'Måned',
   year: 'År',
+  hour: 'Time',
+  minute: 'Minutt',
+  tod: 'I dag',
 
   // Months
   jan: 'Januar',
@@ -199,14 +241,19 @@ let no = {
   nov: 'November',
   dec: 'Desember',
 
+
   // Days
-  man: 'Mandag',
-  tir: 'Tirsdag',
-  ons: 'Onsdag',
-  tor: 'Torsdag',
-  fre: 'Fredag',
-  lør: 'Lørdag',
-  søn: 'Søndag',
+  mon: 'Mandag',
+  tue: 'Tirsdag',
+  wed: 'Onsdag',
+  thu: 'Torsdag',
+  fri: 'Fredag',
+  sat: 'Lørdag',
+  sun: 'Søndag',
+
+  //Popup-content
+  popupContentText: 'Detaljer om det oppkommende arrangementet på datoen: ',
+
 
   // Events Page
   eventHeader: 'Arrangementer',
@@ -215,6 +262,17 @@ let no = {
   tableCity: 'By',
   tableDate: 'Dato',
   tableTime: 'Tid',
+  tableDuration: 'Varighet',
+
+  // News
+  newsheading: 'Nyheter',
+  newsText: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+
+  //Upcoming Events (at homepage)
+  upcomingEventsHeadline: 'Kommende arrangementer',
+  upcomingEventLocation: 'Adresse',
+  upcomingEventCity: 'By',
+  upcomingEventReadmore: 'Les mer',
 };
 
 // Language selection

@@ -4,7 +4,7 @@ import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-import { Menu, menu } from '../menu';
+import { Menu, menu } from '../main/menu';
 
 import { User, userService } from '../services/userService';
 
@@ -102,9 +102,9 @@ class SignUp extends React.Component<{}> {
 
             <div className="inputFormBirth">
               <h3>{lang.birthdate}</h3>
-              {inputDays()}
-              {inputMonths()}
-              {inputYears()}
+              {inputDays('inputBirthDay', 'form birth')}
+              {inputMonths('inputBirthMonth', 'form birth month')}
+              {inputYears('inputBirthYear', 'form birth year')}
                 {errorBirth ? <div className='errorInput'><i />{lang.errorBirth}</div> : null}
             </div>
 
@@ -135,7 +135,7 @@ class SignUp extends React.Component<{}> {
     this.refs.inputFirstname.onchange = () => {validateFirstName(); this.refs.inputFirstname.oninput = () => {validateFirstName()};};
     this.refs.inputMiddlename.onchange = () => {validateMiddleName()};
     this.refs.inputLastname.onchange = () => {validateLastName(); this.refs.inputLastname.oninput = () => {validateLastName()}};
-    this.refs.inputCity.onchange = () => {validateCity(); this.refs.inputCity.oninput = () => {validateCity()};};
+    this.refs.inputCity.onchange = () => {validateCity(); this.refs.inputCity.oninput = () => {validateCity()}};
 
     // button loaded and clicked
     if (this.refs.inputButton) {

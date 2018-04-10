@@ -1,0 +1,3 @@
+.applyEventButton, .unapplyEventButton, .editEventButton, .saveEventButton {
+  float: right;
+}

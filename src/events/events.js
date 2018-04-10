@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 
 import { lang, en, no } from '../util/lang';
+import { switchMonth } from '../util/modules';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
 
 import { User, Event, userService } from '../services/userService';
@@ -16,16 +17,34 @@ class Events extends React.Component<{}> {
   render() {
     let table = [];
     for (let inputs of this.events) {
-      console.log(inputs.Date);
-      let day = inputs.Date.getDate();
-      let month = inputs.Date.getMonth() + 1;
-      let year = inputs.Date.getFullYear();
-      table.push(<tr key={inputs.Id}><td>{inputs.Name}</td><td>{inputs.Location}</td><td>{inputs.City}</td><td>{day} - {month} - {year}</td><td></td></tr>);
+      let day = inputs.startDate.getDate();
+      let month = inputs.startDate.getMonth() + 1;
+      let year = inputs.startDate.getFullYear();
+
+      // calculate event duration
+      let getDuration = () => {
+        let endDate = new Date(inputs.endDate);
+        let startDate = new Date(inputs.startDate);
+        let days = Math.floor((endDate - startDate) / (1000 * 60 * 60 * 24)); // duration in days
+        let hours = Math.floor((endDate - startDate) / (1000 * 60 * 60) % 24); // duration in hours
+        let minutes = Math.floor((endDate - startDate) / (1000 * 60) % 60); // duration in minutes
+
+        if (days) {
+          return (days + "d " + hours + "h " + minutes + "min");
+        }
+        return (hours + "h " + minutes + "min");
+      }
+
+      table.push(
+        <tr key={inputs.id}>
+          <td><Link to={'/event/' + inputs.id}>{inputs.name}</Link></td>
+          <td>{inputs.location}</td>
+          <td>{inputs.city}</td>
+          <td>{day}.{switchMonth(month)}.{year}</td>
+          <td>{getDuration()}</td>
+        </tr>
+      );
     }
-    /*let listItems = [];
-    for(let event of this.events) {
-      listItems.push(<li key={event.id}><Link to={'/user/' + event.id}>{event.firstName}</Link></li>);
-    }*/
 
     return (
       <div>
@@ -40,11 +59,11 @@ class Events extends React.Component<{}> {
                 <th>{ lang.tableLocation }</th>
                 <th>{ lang.tableCity }</th>
                 <th>{ lang.tableDate }</th>
-                <th>{ lang.tableTime }</th>
+                <th>{ lang.tableDuration }</th>
               </tr>
             </thead>
             <tbody>
-              { table }
+              {table}
             </tbody>
           </table>
         </div>
@@ -56,23 +75,16 @@ class Events extends React.Component<{}> {
   componentDidMount() {
     let signedInUser = userService.getSignedInUser();
     if(signedInUser) {
-      eventService.getEvents()
-        .then((response) => {
-          //console.log(response[0]);
-          for (let item of response) {
+      eventService.getEvents().then((response) => {
 
-            this.events.push(item);
-          }
+        for (let item of response) {
+          this.events.push(item);
+        }
+
           this.forceUpdate();
         }).catch((error: Error) => {
-          if(errorMessage) errorMessage.set(lang.errorMembers);
+          if(errorMessage) console.log(error);
         });
-
-      /*userService.getEvents().then(() => {
-        this.forceUpdate();
-      }).catch((error: Error) => {
-        //if(errorMessage) errorMessage.set('Could not get events');
-      });*/
     }
   }
 }

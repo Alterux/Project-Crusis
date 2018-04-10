@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+}
+
+html, body, #root, .main {
+  height: 100%;
+  font-family: Arial;
+}
+
+body, #root, .main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: inline-block;
+  padding: 0;
+  padding-bottom: .5em;
+  padding-left: .2em;
+}
+
+ul {
+  margin-bottom: 1em;
+}
+
+h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+}
+
+.content {
+  margin: 8px;
+  flex: 1 0 auto;
+}
+
+.entry {
+  margin-bottom: .5em;
+}
+
+.last {
+  margin-bottom: 0;
+}
+
+.inputForm {
+  width: 20em;
+  margin: auto;
+  background: #f8f8f8;
+  border: solid 1px #d4d4d4;
+  padding: 1em;
+}
+
+.form {
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: .5em;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 3px #ddd;
+  min-height: 2.75em;
+  padding-left: .5em;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.birth {
+  width: 5em;
+  padding-left: .2em;
+  margin-right: 1.43em;
+}
+
+.month {
+  width: 7em;
+}
+
+.year {
+  float: right;
+  margin-right: 0;
+}

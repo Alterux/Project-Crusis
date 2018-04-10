@@ -7,14 +7,88 @@ class Event {
   name: string;
   location: string;
   city: string;
-  date = {};
-  time: string;
+  startDate: Date;
+  endDate: Date;
+  details: string;
+}
+
+class Participant {
+  id: number;
+  firstName: string;
+  middleName: string;
+  lastName: string;
 }
 
 class EventService {
-  getEvents(): Promise<void> {
+  getEvents(): Promise<Event[]> {
     return new Promise((resolve, reject) => {
       connection.query('SELECT * FROM Events', (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
+  getEvent(id: number): Promise<Event[]> {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM Events WHERE id=?', [id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
+  editEvent(id: number, name: string, location: string, city: string, startDate: string, endDate: string, details: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('UPDATE Events SET name=?, location=?, city=?, startDate=?, endDate=?, details=? WHERE id=?;',
+      [name, location, city, startDate, endDate, details, id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve();
+      });
+    });
+  }
+
+  getParticipants(id: number): Promise<Participant[]> {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM Users u, Participants WHERE u.id = users_id AND events_id = ?', [id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
+  applyEvent(user_id: number, event_id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('INSERT INTO Participants (users_id, events_id) VALUES (?, ?)', [user_id, event_id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
+  unapplyEvent(user_id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('DELETE FROM Participants WHERE users_id=?', [user_id], (error, result) => {
         if(error) {
           reject(error);
           return;

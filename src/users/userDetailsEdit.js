@@ -29,10 +29,22 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
   user = {}
   signedInUser = {};
 
+
   render() {
     let user = this.user;
     let signedInUser = this.signedInUser;
     let userTypeMsg;
+
+    let inputFormUserType = () => {
+      if (signedInUser.userType === 3) {
+        return (
+          <div className="inputFormUserType">
+            <h3>{lang.userType}</h3>
+            {inputUserType('inputUserType', 'form formUserType')}
+          </div>
+        );
+      }
+    }
 
     return (
       <div className='content'>
@@ -40,7 +52,7 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
         <div className="inputForm">
 
           <div className='buttonMenu'>
-            <button ref="deactivateUserButton">{lang.deactivate} {lang.user}</button>
+            <button ref="deactivateUserButton">{lang.delete} {lang.user}</button>
           </div>
 
           <div className="inputFormName">
@@ -52,9 +64,9 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
 
           <div className="inputFormBirth">
             <h3>{lang.birthdate}</h3>
-            {inputDays()}
-            {inputMonths()}
-            {inputYears()}
+            {inputDays('inputBirthDay', 'form birth')}
+            {inputMonths('inputBirthMonth', 'form birth month')}
+            {inputYears('inputBirthYear', 'form birth year')}
           </div>
 
           <div className="inputFormAddress">
@@ -62,10 +74,7 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
             <input className="form" type='text' ref='inputCity' placeholder={lang.city} required />
           </div>
 
-          <div className="inputFormUserType">
-            <h3>{lang.userType}</h3>
-            {inputUserType()}
-          </div>
+          {inputFormUserType()}
 
           <div className="inputFormButton">
             <button className="form" id="signInButton" ref='saveUserButton'>{lang.saveChanges}</button>
@@ -96,15 +105,22 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
         this.refs.inputBirthMonth.value = age.getMonth() + 1;
         this.refs.inputBirthYear.value = age.getFullYear();
         this.refs.inputCity.value = this.user.city;
-        this.refs.inputUserType.value = this.user.userType;
+        if (this.refs.inputUserType) this.refs.inputUserType.value = this.user.userType;
 
         // deactivate button
         this.refs.deactivateUserButton.onclick = () => {
-          let result = confirm(lang.confirmUserDeactivate);
+          let result = confirm(lang.confirmUserDelete);
           if (result) {
-            console.log('deactivated');
+            userService.editUserType(-this.user.userType, this.props.match.params.id);
+            if (this.user.id === signedInUser.id) {
+              localStorage.removeItem('signedInUser');
+              history.push('/');
+            } else {
+              history.push('/members');
+            }
+            this.forceUpdate();
           }
-        };
+        }
 
         // save button
         this.refs.saveUserButton.onclick = () => {
