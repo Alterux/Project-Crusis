@@ -156,3 +156,22 @@ i {
   background-size: auto;
   background-position: 0 -36px;
 }
+
+/****************/
+/* Forgotten password page */
+/****************/
+
+
+#forgotPassButton {
+  padding-left: 0;
+  margin-top: 1em;
+  margin-bottom: 0;
+  background-color: #0051b2;
+  box-shadow: none;
+  color: #ffffff;
+}
+
+#forgotPassButton:hover {
+  cursor: pointer;
+  background-color: #024aa1;
+}
