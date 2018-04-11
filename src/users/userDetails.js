@@ -89,10 +89,11 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
     // signed in user is looking at own profile
     if (signedInUser.id === user.id) {
       userButton = <div className="editUserButton"><button ref="editUserButton">{lang.edit}</button></div>
-      editCompetenceButton = <div className="editCompetenceButton"><button ref="editCompetenceButton">{lang.edit}</button></div>
-      saveCompetenceButton = <div className="saveCompetenceButton"><button ref="saveCompetenceButton">{lang.save}</button></div>
-      addCompetenceButton = <div className="addCompetenceButton"><button ref="addCompetenceButton">{lang.add}</button></div>
-      removeCompetenceButton = <div className="removeCompetenceButton"><button ref="removeCompetenceButton">{lang.remove}</button></div>
+      // user is admin
+      if (signedInUser.userType === 3) {
+        editCompetenceButton = <div className="editCompetenceButton"><button ref="editCompetenceButton">{lang.edit}</button></div>
+        saveCompetenceButton = <div className="saveCompetenceButton"><button ref="saveCompetenceButton">{lang.save}</button></div>
+      }
 
     // signed in user is of type admin
     } else if (signedInUser.userType === 3) {
@@ -106,8 +107,6 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
                      <button ref="contactUserButton">{lang.contact}</button></div>
         editCompetenceButton = <div className="editCompetenceButton"><button ref="editCompetenceButton">{lang.edit}</button></div>
         saveCompetenceButton = <div className="saveCompetenceButton"><button ref="saveCompetenceButton">{lang.save}</button></div>
-        addCompetenceButton = <div className="addCompetenceButton"><button ref="addCompetenceButton">{lang.add}</button></div>
-        removeCompetenceButton = <div className="removeCompetenceButton"><button ref="removeCompetenceButton">x</button></div>
       }
     // user is not looking at own profile and is not of type admin
     } else {
