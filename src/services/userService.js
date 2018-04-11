@@ -15,6 +15,7 @@ class User {
   birthDate: string;
   age: number;
   city: string;
+  competence: string;
 }
 
 class UserService {
