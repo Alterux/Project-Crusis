@@ -18,21 +18,55 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
     rejectUserButton: HTMLInputElement,
     editUserButton: HTMLInputElement,
     editCompetenceButton: HTMLInputElement,
+    saveCompetenceButton: HTMLInputElement,
+    addCompetenceButton: HTMLInputElement,
+    removeCompetenceButton: HTMLInputElement,
     inputFirstName: HTMLInputElement,
+
+    competence1: HTMLInputElement,
+    competence2: HTMLInputElement,
+    competence3: HTMLInputElement,
+    competence4: HTMLInputElement,
+    competence5: HTMLInputElement,
+    competence6: HTMLInputElement,
+    competence7: HTMLInputElement,
+    competence8: HTMLInputElement,
+    competence9: HTMLInputElement,
+    competence10: HTMLInputElement,
+    competence11: HTMLInputElement,
+    competence12: HTMLInputElement,
+    competence13: HTMLInputElement,
+    competence14: HTMLInputElement,
+    competence15: HTMLInputElement,
+    competence16: HTMLInputElement,
+    competence17: HTMLInputElement,
   }
 
   signedInUser = {};
   user = {};
   age: number;
+  editCompetence: boolean;
 
   render() {
     let signedInUser = this.signedInUser;
     let user = this.user;
     let age = this.age;
 
+    // prints competence separated by comma
+    let listSkills = [];
+    let skills;
+    if (user.competence) {
+      skills = user.competence.split(',');
+    }
+
+    let editCompetence = this.editCompetence;
+
     let userTypeMsg;
     let userButton;
-    let competenceButton;
+    let editCompetenceButton;
+    let saveCompetenceButton;
+    let addCompetenceButton;
+    let removeCompetenceButton;
 
     // Switch for userType.
     switch (user.userType) {
@@ -55,7 +89,10 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
     // signed in user is looking at own profile
     if (signedInUser.id === user.id) {
       userButton = <div className="editUserButton"><button ref="editUserButton">{lang.edit}</button></div>
-      competenceButton = <div className="editCompetenceButton"><button ref="editCompetenceButton">{lang.edit}</button></div>
+      editCompetenceButton = <div className="editCompetenceButton"><button ref="editCompetenceButton">{lang.edit}</button></div>
+      saveCompetenceButton = <div className="saveCompetenceButton"><button ref="saveCompetenceButton">{lang.save}</button></div>
+      addCompetenceButton = <div className="addCompetenceButton"><button ref="addCompetenceButton">{lang.add}</button></div>
+      removeCompetenceButton = <div className="removeCompetenceButton"><button ref="removeCompetenceButton">{lang.remove}</button></div>
 
     // signed in user is of type admin
     } else if (signedInUser.userType === 3) {
@@ -67,11 +104,95 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
       } else {
         userButton = <div className="editUserButton"><button ref="editUserButton">{lang.edit}</button>
                      <button ref="contactUserButton">{lang.contact}</button></div>
-        competenceButton = <div className="editCompetenceButton"><button ref="editCompetenceButton">{lang.edit}</button></div>
+        editCompetenceButton = <div className="editCompetenceButton"><button ref="editCompetenceButton">{lang.edit}</button></div>
+        saveCompetenceButton = <div className="saveCompetenceButton"><button ref="saveCompetenceButton">{lang.save}</button></div>
+        addCompetenceButton = <div className="addCompetenceButton"><button ref="addCompetenceButton">{lang.add}</button></div>
+        removeCompetenceButton = <div className="removeCompetenceButton"><button ref="removeCompetenceButton">x</button></div>
       }
     // user is not looking at own profile and is not of type admin
     } else {
       userButton = <div className="editUserButton"><button ref="contactUserButton">{lang.contact}</button></div>
+    }
+
+    let userDetailsShow = () => {
+      return (
+        <div className="textBox">
+          {userButton}
+          <img className="accountImg" src="resources/default.png" alt="Account Image" width="50px" height="50px"></img><br />
+          <br />{user.firstName} {user.middleName} {user.lastName}<br />
+          <br />{lang.age}: {age}<br />
+          <br />{lang.city}: {user.city}<br />
+          <br />{userTypeMsg}
+        </div>
+      );
+    }
+
+    let competenceShow = () => {
+      if (user.competence) {
+        for (let skill of skills) {
+          let skillName = lang['competence' + skill];
+          listSkills.push(<li>{skillName}</li>);
+        }
+      // prints no competence if user has not registered competence
+      } else {
+        listSkills.push(<li>{lang.noCompetence}</li>);
+      }
+
+      return (
+        <div className="textBox">
+          {editCompetenceButton}
+          <div className='last entry'>
+            <ul className='competence'>
+              {listSkills}
+            </ul>
+          </div>
+        </div>
+      );
+    }
+
+    let checkCompetence = () => {
+      return (
+        <form>
+          <div className='first title'><h3>Førerkort</h3></div>
+          <div><input type='checkbox' ref='competence1' />Førerkort 160 utrykningskjøring</div>
+          <div><input type='checkbox' ref='competence2' />Førerkort BE tilhenger</div>
+          <div><input type='checkbox' ref='competence3' />Førerkort S snøscooter</div>
+          <div><input type='checkbox' ref='competence4' />Båtførerprøven</div>
+          <div><input type='checkbox' ref='competence5' />Kvalifisert ATV kurs</div>
+          <div><input type='checkbox' ref='competence6' />Kvalifisert snøscooterkurs</div>
+
+          <div className='title'><h3>Førstehjelp</h3></div>
+          <div><input type='checkbox' ref='competence7' />Videregående førstehjelpskurs</div>
+          <div><input type='checkbox' ref='competence8' />Hjelpekorpsprøve (gyldighet 3 år)</div>
+          <div><input type='checkbox' ref='competence9' />Ambulansesertifisering (gyldig 1 år)</div>
+
+          <div className='title'><h3>Sjøredning</h3></div>
+          <div><input type='checkbox' ref='competence10' c/>Maritimt VHF-sertifikat</div>
+          <div><input type='checkbox' ref='competence11' c/>Kvalifisert sjøredningskurs</div>
+          <div><input type='checkbox' ref='competence12' c/>Videregående sjøredningskurs</div>
+
+          <div className='title'><h3>Søk og redning</h3></div>
+          <div><input type='checkbox' ref='competence13' c/>Kvalifisert kurs søk og redning</div>
+          <div><input type='checkbox' ref='competence14' c/>Kvalifisert kurs søk og redning sommer</div>
+          <div><input type='checkbox' ref='competence15' c/>Kvalifisert kurs søk og redning vinter</div>
+
+          <div className='title'><h3>Ledelse</h3></div>
+          <div><input type='checkbox' ref='competence16' c/>Vaktlederkurs</div>
+          <div><input type='checkbox' ref='competence17' c/>Distriktsensorkurs (gyldighet 3 år)</div>
+        </form>
+      );
+    }
+
+    let competenceEdit = () => {
+
+      return (
+        <div className="textBox">
+          {saveCompetenceButton}
+          <div className='last entry'>
+            {checkCompetence()}
+          </div>
+        </div>
+      );
     }
 
       return (
@@ -80,26 +201,13 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
             <div className="textBoxHead">
               <h3 className="textBoxTitle">{lang.userInfo}</h3>
             </div>
-            <div className="textBox">
-              {userButton}
-              <img className="accountImg" src="resources/default.png" alt="Account Image" width="50px" height="50px"></img><br />
-              <br />{user.firstName} {user.middleName} {user.lastName}<br />
-              <br />{lang.age}: {age}<br />
-              <br />{lang.city}: {user.city}<br />
-              <br />{userTypeMsg}
-            </div>
+            {userDetailsShow()}
           </div>
           <div className="competenceBox">
             <div className="textBoxHead">
               <h3 className="textBoxTitle">{lang.competence}</h3>
             </div>
-            <div className="textBox">
-              {competenceButton}
-              {user.firstName} {user.middleName} {user.lastName}<br />
-              <br />{lang.age}: {age}<br />
-              <br />{lang.city}: {user.city}<br />
-              <br />{userTypeMsg}
-            </div>
+            {editCompetence ? competenceEdit() : competenceShow()}
           </div>
         </div>
       );
@@ -148,10 +256,48 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
         }
 
         // Edit competence button
-        if (this.refs.editCompetenceButton) {
+        let editCompetenceButton = () => {
           this.refs.editCompetenceButton.onclick = () => {
-            console.log("Competence Button Pressed");
+
+            this.editCompetence = true;
+            this.forceUpdate();
+            saveCompetenceButton();
+
+            let skills = [];
+            if (this.user.competence) {
+            skills = this.user.competence.split(',');
+            }
+
+            for (let skill of skills) {
+              this.refs['competence' + skill].checked = true;
+            }
           }
+        }
+
+        // Save competence button
+        let saveCompetenceButton = () => {
+          this.refs.saveCompetenceButton.onclick = () => {
+
+            let competence = '';
+            for (let i = 1; i < 18; i++) {
+              if (this.refs['competence' + i].checked) {
+                competence += i + ',';
+              }
+            }
+            // remove last comma
+            competence = competence.slice(0, -1);
+            userService.editCompetence(competence, user[0].id);
+            this.user.competence = competence;
+
+            this.editCompetence = false;
+            this.forceUpdate();
+            editCompetenceButton();
+          }
+        }
+
+        // Edit competence button has loaded
+        if (this.refs.editCompetenceButton) {
+          editCompetenceButton();
         }
 
         // Contact button

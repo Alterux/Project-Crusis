@@ -74,6 +74,19 @@ class UserService {
     });
   }
 
+  editCompetence(competence: string, id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('UPDATE Users SET competence=? WHERE id=?;', [competence, id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve();
+      });
+    });
+  }
+
   editUserType(userType: number, id: number): Promise<void> {
     return new Promise((resolve, reject) => {
       connection.query('UPDATE Users SET userType=? WHERE id=?;', [userType, id], (error, result) => {

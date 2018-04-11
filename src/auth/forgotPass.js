@@ -47,7 +47,7 @@ class ForgotPass extends React.Component<{}> {
         //Validate
         this.refs.inputForgotPassEmail.onchange = () => {validateEmail()};
 
-        if (this.errorEmail) {
+        if (!forgotPassEmail || this.errorEmail) {
           console.log('Password reset failed');
         } else {
       // Kommer snart validateForgotPassEmail();

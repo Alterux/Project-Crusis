@@ -141,6 +141,28 @@ let en = {
   upcomingEventLocation: 'Address',
   upcomingEventCity: 'City',
   upcomingEventReadmore: 'Read more',
+
+  // Skills from competence
+  competence1 : 'Førerkort 160 utrykningskjøring',
+  competence2 : 'Førerkort BE tilhenger',
+  competence3 : 'Førerkort S snøscooter',
+  competence4 : 'Båtførerprøven',
+  competence5 : 'Kvalifisert ATV kurs',
+  competence6 : 'Kvalifisert snøscooterkurs',
+
+  competence7 : 'Videregående førstehjelpskurs',
+  competence8 : 'Hjelpekorpsprøve (gyldighet 3 år)',
+  competence9 : 'Ambulansesertifisering (gyldig 1 år)',
+
+  competence10 : 'Maritimt VHF-sertifikat',
+  competence11 : 'Kvalifisert sjøredningskurs',
+  competence12 : 'Videregående sjøredningskurs',
+
+  competence13 : 'Kvalifisert kurs søk og redning',
+  competence14 : 'Kvalifisert kurs søk og redning sommer',
+  competence15 : 'Kvalifisert kurs søk og redning vinter',
+  competence16 : 'Vaktlederkurs',
+  competence17 : 'Distriktsensorkurs (gyldighet 3 år)',
 };
 
 /**************************************************/
@@ -285,6 +307,28 @@ let no = {
   upcomingEventLocation: 'Adresse',
   upcomingEventCity: 'By',
   upcomingEventReadmore: 'Les mer',
+
+  // Skills from competence
+  competence1 : 'Førerkort 160 utrykningskjøring',
+  competence2 : 'Førerkort BE tilhenger',
+  competence3 : 'Førerkort S snøscooter',
+  competence4 : 'Båtførerprøven',
+  competence5 : 'Kvalifisert ATV kurs',
+  competence6 : 'Kvalifisert snøscooterkurs',
+
+  competence7 : 'Videregående førstehjelpskurs',
+  competence8 : 'Hjelpekorpsprøve (gyldighet 3 år)',
+  competence9 : 'Ambulansesertifisering (gyldig 1 år)',
+
+  competence10 : 'Maritimt VHF-sertifikat',
+  competence11 : 'Kvalifisert sjøredningskurs',
+  competence12 : 'Videregående sjøredningskurs',
+
+  competence13 : 'Kvalifisert kurs søk og redning',
+  competence14 : 'Kvalifisert kurs søk og redning sommer',
+  competence15 : 'Kvalifisert kurs søk og redning vinter',
+  competence16 : 'Vaktlederkurs',
+  competence17 : 'Distriktsensorkurs (gyldighet 3 år)',
 };
 
 // Language selection
