@@ -2,12 +2,12 @@
 import * as React from 'react';
 import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 
-import { User, userService } from '../services/userService';
-import { Event, eventService } from '../services/eventService';
-
 import { lang, en, no } from '../util/lang';
 import { switchMonth } from '../util/modules';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
+
+import { User, Event, userService } from '../services/userService';
+import { Entry, eventService } from '../services/eventService';
 
 class Events extends React.Component<{}> {
 

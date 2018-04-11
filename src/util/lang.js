@@ -15,6 +15,8 @@ let en = {
   loggedInMsg: 'My Events: ',
   signedUpMsg: 'User account created, please wait for confirmation.',
   forgotPassMsg: 'Page under construction.',
+  forgotPassHeadline: 'Please enter your email below and you will recieve a new generated password',
+  forgotPassButtonText: 'Reset password',
   competence: 'Competence',
   noCompetence: 'No competence registered',
   userInfo: 'Bio',
@@ -132,6 +134,7 @@ let en = {
   // News
   newsheading: 'News',
   newsText: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+  newsSource: 'Source: www.rodekors.no',
 
   //Upcoming Events (at homepage)
   upcomingEventsHeadline: 'Upcoming events',
@@ -156,6 +159,8 @@ let no = {
   loggedInMsg: 'Mine Arrangementer: ',
   signedUpMsg: 'Brukerkonto opprettet, vennligst vent på godkjenning.',
   forgotPassMsg: 'Side under konstruksjon.',
+  forgotPassHeadline: 'Vennligst før inn din epost nedenfor, så vil du få tilsendt et nytt generert passord',
+  forgotPassButtonText: 'Reset passord',
   competence: 'Kompetanse',
   noCompetence: 'Ingen kompetanse registrert',
   userInfo: 'Personalia',
@@ -273,6 +278,7 @@ let no = {
   // News
   newsheading: 'Nyheter',
   newsText: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+  newsSource: 'Kilde: www.rodekors.no',
 
   //Upcoming Events (at homepage)
   upcomingEventsHeadline: 'Kommende arrangementer',
