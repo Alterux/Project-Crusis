@@ -1,5 +1,6 @@
 .textBoxWrapper {
-  position: fixed;
+  min-width: 21em;
+  max-width: 43em;
   /* background-color: #f1f1f1; */
 }
 
