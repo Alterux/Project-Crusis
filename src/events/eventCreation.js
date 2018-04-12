@@ -114,7 +114,8 @@ class EventCreation extends React.Component<{}>{
           eventHolder.startDate = new Date(startYear, startMonth, startDay, startHour, startMinute);
           eventHolder.endDate = new Date(endYear, endMonth, endDay, endHour, endMinute);
 
-          eventService.createEvent(eventHolder).then((success: Success, error: Error) => { if(errorMessage) console.log(error)});
+          eventService.createEvent(eventHolder).catch((error: Error) => { if(errorMessage) console.log(error)})
+          .then(() => {/*bedre redirect?*/ });
           //TODO push correct create event to history
           //history.push('/event/' + this.props.match.params.id);
         }
