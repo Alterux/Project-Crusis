@@ -98,6 +98,20 @@ class EventService {
       });
     });
   }
+
+  createEvent(newEvent: Event): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('INSERT INTO `Events` ( `name`, `location`, `city`, `startDate`, `endDate`, `details`) VALUES (?, ?, ?, ?, ?, ?)',
+       [newEvent.name, newEvent.location, newEvent.city, newEvent.startDate, newEvent.endDate, newEvent.details], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
 }
 
 let eventService = new EventService();
