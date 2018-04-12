@@ -131,7 +131,6 @@ class EventCreation extends React.Component<{ match: { params: { id: number } } 
 
         this.forceUpdate();
 
-
       // get participants
       let getParticipants = () => {
         eventService.getParticipants(this.props.match.params.id).then((participants) => {
