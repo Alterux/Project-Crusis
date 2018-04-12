@@ -2,17 +2,7 @@
 .home-headlines{
   font-size: 2em;
 }
-.news {
-  border-style: solid;
-  border-color: black;
-  border-width: 0.01em;
-  width: 35%;
-  height: 60%;
-  float: right;
-  font-size: 0.9em;
-  margin-top: 2em;
 
-}
 #news-image {
   padding-left: 0.5em;
   padding-top: 2em;
@@ -114,14 +104,26 @@
     to {top:0; opacity:1}
 }
 
-/*Upcoming events */
-.upcomingEvents {
+.news {
   border-style: solid;
   border-color: black;
   border-width: 0.01em;
-  width: 35%;
+  /* width: 35%;
   height: 60%;
-  float: right;
+  float: right; */
+  font-size: 0.9em;
+  margin-top: 2em;
+}
+
+/*Upcoming events */
+.upcomingEvents {
+  /* box-shadow: 0px 0px 5px; */
+  border-style: solid;
+  border-color: black;
+  border-width: 0.01em;
+  /* width: 35%;
+  height: 60%; */
+  /* float: right; */
   font-size: 0.9em;
   margin-top: 2em;
   padding-top: 0.5em;
@@ -134,4 +136,13 @@
 
 .upcomingEvents-events {
   font-size: 1.1em;
+}
+
+.rightContainer {
+  float: right;
+  width: 30em;
+  /* box-shadow: 0px 0px 5px;
+  position:fixed;
+  right: 0;
+  max-width: 45em; */
 }
