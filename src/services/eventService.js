@@ -33,6 +33,19 @@ class EventService {
     });
   }
 
+  getUserEvents(id: number): Promise<Event[]> {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM Events e, Participants WHERE e.id = events_id AND users_id = ?', [id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
   getEvent(id: number): Promise<Event[]> {
     return new Promise((resolve, reject) => {
       connection.query('SELECT * FROM Events WHERE id=?', [id], (error, result) => {
