@@ -41,23 +41,19 @@
 /*POPUPBOX-EVENT */
 
 .popupstyle {
-    display: none; /* Hidden by default */
-    position: relative; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 5.5em; /* Location of the box */
-    padding-left: 1em;
-    left: 0;
-    top: 0;
-    width: 40%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    display: none;
+    position: fixed;
+    z-index: 1;
+    /* width: 40%; */
+    /* height: 100%; */
+    overflow: auto;
 }
 .popupcontent {
     background-color: #fefefe;
-    margin: auto;
+    /* margin: auto; */
     padding: 0px;
     border: 1px solid #888;
-    width: 65%;
+    /* width: 65%; */
     box-shadow: 2px 2px grey;
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0,4s;

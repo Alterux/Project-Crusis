@@ -33,6 +33,11 @@ class EventCreation extends React.Component<{}>{
     inputEndMinute: any,
   }
 
+  signedInUser = {};
+  event = [];
+  participants = [];
+  isParticipant: boolean;
+
    render() {
       let saveEventButton = <div className="saveEventButton"><button ref="createEventButton">{lang.save}</button></div>;
 
