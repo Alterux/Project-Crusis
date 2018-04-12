@@ -48,7 +48,25 @@ class SignIn extends React.Component<{}> {
   componentDidMount() {
     if(menu) menu.forceUpdate();
 
+    // listen for enter on username input
+    this.refs.signInUsername.onkeydown = (e) => {
+      if (e.keyCode === 13) {
+        submit();
+      }
+    }
+
+    // listen for enter on password input
+    this.refs.signInPassword.onkeydown = (e) => {
+      if (e.keyCode === 13) {
+        submit();
+      }
+    }
+
     this.refs.signInButton.onclick = () => {
+      submit();
+    }
+
+    let submit = () => {
       let hashedPass = this.hashCode(this.refs.signInPassword.value + this.refs.signInUsername.value);
       userService.signIn(this.refs.signInUsername.value, hashedPass).then(() => {
         history.push('/');
@@ -57,7 +75,7 @@ class SignIn extends React.Component<{}> {
         // Output is only the errormessage from lang.js.
         if(errorMessage) errorMessage.set(String(error).slice(7));
       });
-    };
+    }
   }
 }
 

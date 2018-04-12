@@ -64,7 +64,11 @@ class EventDetails extends React.Component<{ match: { params: { id: number } } }
       endMinute = ("0" + endMinute).slice(-2);
     }
 
-    let editEventButton = <div className="editEventButton"><button ref="editEventButton">{lang.edit}</button></div>
+    let editEventButton;
+
+    if (this.signedInUser.userType > 1) {
+      editEventButton = <div className="editEventButton"><button ref="editEventButton">{lang.edit}</button></div>
+    }
 
     // user has reported interest
     if (this.isParticipant) {

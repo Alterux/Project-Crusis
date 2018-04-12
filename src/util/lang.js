@@ -15,11 +15,16 @@ let en = {
   loggedInMsg: 'My Events: ',
   signedUpMsg: 'User account created, please wait for confirmation.',
   forgotPassMsg: 'Page under construction.',
+  forgotPassHeadline: 'Please enter your email below and you will recieve a new generated password',
+  forgotPassButtonText: 'Reset password',
   competence: 'Competence',
+  noCompetence: 'No competence registered',
   userInfo: 'Bio',
 
   edit: 'Edit',
   save: 'Save',
+  add: 'Add',
+  remove: 'Remove',
   accept: 'Accept',
   reject: 'Reject',
   delete: 'Delete',
@@ -129,12 +134,35 @@ let en = {
   // News
   newsheading: 'News',
   newsText: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+  newsSource: 'Source: www.rodekors.no',
 
   //Upcoming Events (at homepage)
   upcomingEventsHeadline: 'Upcoming events',
   upcomingEventLocation: 'Address',
   upcomingEventCity: 'City',
   upcomingEventReadmore: 'Read more',
+
+  // Skills from competence
+  competence1 : 'Førerkort 160 utrykningskjøring',
+  competence2 : 'Førerkort BE tilhenger',
+  competence3 : 'Førerkort S snøscooter',
+  competence4 : 'Båtførerprøven',
+  competence5 : 'Kvalifisert ATV kurs',
+  competence6 : 'Kvalifisert snøscooterkurs',
+
+  competence7 : 'Videregående førstehjelpskurs',
+  competence8 : 'Hjelpekorpsprøve (gyldighet 3 år)',
+  competence9 : 'Ambulansesertifisering (gyldig 1 år)',
+
+  competence10 : 'Maritimt VHF-sertifikat',
+  competence11 : 'Kvalifisert sjøredningskurs',
+  competence12 : 'Videregående sjøredningskurs',
+
+  competence13 : 'Kvalifisert kurs søk og redning',
+  competence14 : 'Kvalifisert kurs søk og redning sommer',
+  competence15 : 'Kvalifisert kurs søk og redning vinter',
+  competence16 : 'Vaktlederkurs',
+  competence17 : 'Distriktsensorkurs (gyldighet 3 år)',
 };
 
 /**************************************************/
@@ -153,11 +181,16 @@ let no = {
   loggedInMsg: 'Mine Arrangementer: ',
   signedUpMsg: 'Brukerkonto opprettet, vennligst vent på godkjenning.',
   forgotPassMsg: 'Side under konstruksjon.',
+  forgotPassHeadline: 'Vennligst før inn din epost nedenfor, så vil du få tilsendt et nytt generert passord',
+  forgotPassButtonText: 'Reset passord',
   competence: 'Kompetanse',
+  noCompetence: 'Ingen kompetanse registrert',
   userInfo: 'Personalia',
 
   edit: 'Rediger',
   save: 'Lagre',
+  add: 'Legg til',
+  remove: 'Fjern',
   accept: 'Godta',
   reject: 'Avslå',
   delete: 'Slett',
@@ -267,12 +300,35 @@ let no = {
   // News
   newsheading: 'Nyheter',
   newsText: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+  newsSource: 'Kilde: www.rodekors.no',
 
   //Upcoming Events (at homepage)
   upcomingEventsHeadline: 'Kommende arrangementer',
   upcomingEventLocation: 'Adresse',
   upcomingEventCity: 'By',
   upcomingEventReadmore: 'Les mer',
+
+  // Skills from competence
+  competence1 : 'Førerkort 160 utrykningskjøring',
+  competence2 : 'Førerkort BE tilhenger',
+  competence3 : 'Førerkort S snøscooter',
+  competence4 : 'Båtførerprøven',
+  competence5 : 'Kvalifisert ATV kurs',
+  competence6 : 'Kvalifisert snøscooterkurs',
+
+  competence7 : 'Videregående førstehjelpskurs',
+  competence8 : 'Hjelpekorpsprøve (gyldighet 3 år)',
+  competence9 : 'Ambulansesertifisering (gyldig 1 år)',
+
+  competence10 : 'Maritimt VHF-sertifikat',
+  competence11 : 'Kvalifisert sjøredningskurs',
+  competence12 : 'Videregående sjøredningskurs',
+
+  competence13 : 'Kvalifisert kurs søk og redning',
+  competence14 : 'Kvalifisert kurs søk og redning sommer',
+  competence15 : 'Kvalifisert kurs søk og redning vinter',
+  competence16 : 'Vaktlederkurs',
+  competence17 : 'Distriktsensorkurs (gyldighet 3 år)',
 };
 
 // Language selection

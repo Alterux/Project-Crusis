@@ -15,6 +15,7 @@ class User {
   birthDate: string;
   age: number;
   city: string;
+  competence: string;
 }
 
 class UserService {
@@ -63,6 +64,19 @@ class UserService {
     return new Promise((resolve, reject) => {
       connection.query('UPDATE Users SET firstName=?, middleName=?, lastName=?, birthDate=?, city=?, userType=? WHERE id=?;',
       [firstName, middleName, lastName, birthDate, city, userType, id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve();
+      });
+    });
+  }
+
+  editCompetence(competence: string, id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('UPDATE Users SET competence=? WHERE id=?;', [competence, id], (error, result) => {
         if(error) {
           reject(error);
           return;
