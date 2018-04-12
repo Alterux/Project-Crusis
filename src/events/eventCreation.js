@@ -14,7 +14,7 @@ import { switchMonth } from '../util/modules';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
 import { inputDays, inputMonths, inputYears, inputHours, inputMinutes } from '../util/selectOptions';
 
-class EventCreation extends React.component{
+class EventCreation extends React.Component<{}>{
   refs: {
     createEventButton: HTMLInputElement,
     inputName: HTMLInputElement,
@@ -34,14 +34,7 @@ class EventCreation extends React.component{
   }
 
    render() {
-      let event = this.event;
-      let listParticipants = [];
-
-      let saveEventButton = <div className="saveEventButton"><button ref="saveEventButton">{lang.save}</button></div>
-
-      for (let participant of this.participants) {
-        listParticipants.push(<li key={participant.id}><Link to={'/user/' + participant.id}>{participant.firstName} {participant.middleName} {participant.lastName}</Link></li>)
-      }
+      let saveEventButton = <div className="saveEventButton"><button ref="createEventButton">{lang.save}</button></div>;
 
       return (
         <div className='textBoxWrapper'>
@@ -90,66 +83,42 @@ class EventCreation extends React.component{
    componentDidMount() {
      let signedInUser = userService.getSignedInUser();
      if(signedInUser) {
-       this.signedInUser = signedInUser;
+       //this.signedInUser = signedInUser;
 
-        // save event button
-        if (this.refs.createEventButton) {
-          this.refs.createEventButton.onclick = () => {
+      // save event button
+      if (this.refs.createEventButton) {
+        this.refs.createEventButton.onclick = () => {
 
-            // input values
-            let name = this.refs.inputName.value;
-            let location = this.refs.inputLocation.value;
-            let city = this.refs.inputCity.value;
-            let details = this.refs.inputDetails.value;
+          let eventHolder = new Event();
 
-            // start date
-            let startDay = this.refs.inputStartDay.value;
-            let startMonth = this.refs.inputStartMonth.value;
-            let startYear = this.refs.inputStartYear.value;
-            let startHour = this.refs.inputStartHour.value;
-            let startMinute = this.refs.inputStartMinute.value;
+          // input values
+          eventHolder.name = this.refs.inputName.value;
+          eventHolder.location = this.refs.inputLocation.value;
+          eventHolder.city = this.refs.inputCity.value;
+          eventHolder.details = this.refs.inputDetails.value;
 
-            // end date
-            let endDay = this.refs.inputEndDay.value;
-            let endMonth = this.refs.inputEndMonth.value;
-            let endYear = this.refs.inputEndYear.value;
-            let endHour = this.refs.inputEndHour.value;
-            let endMinute = this.refs.inputEndMinute.value;
+          // start date
+          let startDay = this.refs.inputStartDay.value;
+          let startMonth = this.refs.inputStartMonth.value;
+          let startYear = this.refs.inputStartYear.value;
+          let startHour = this.refs.inputStartHour.value;
+          let startMinute = this.refs.inputStartMinute.value;
 
-            let startDate = startYear + '-' + startMonth + '-' + startDay + '-' + startHour + '-' + startMinute;
-            let endDate = endYear + '-' + endMonth + '-' + endDay + '-' + endHour + '-' + endMinute;
+          // end date
+          let endDay = this.refs.inputEndDay.value;
+          let endMonth = this.refs.inputEndMonth.value;
+          let endYear = this.refs.inputEndYear.value;
+          let endHour = this.refs.inputEndHour.value;
+          let endMinute = this.refs.inputEndMinute.value;
 
-            eventService.editEvent(this.props.match.params.id, name, location, city, startDate, endDate, details).catch((error: Error) => { if(errorMessage) console.log(error)});
-            history.push('/event/' + this.props.match.params.id);
-          }
+          eventHolder.startDate = new Date(startYear, startMonth, startDay, startHour, startMinute);
+          eventHolder.endDate = new Date(endYear, endMonth, endDay, endHour, endMinute);
+
+          eventService.createEvent(eventHolder).then((success: Success, error: Error) => { if(errorMessage) console.log(error)});
+          //TODO push correct create event to history
+          //history.push('/event/' + this.props.match.params.id);
         }
-
-        this.forceUpdate();
-
-      })
-      .catch((error: Error) => {
-        if(errorMessage) console.log(error);
-      });
-
-      // get participants
-      let getParticipants = () => {
-        eventService.getParticipants(this.props.match.params.id).then((participants) => {
-          this.participants = participants;
-
-          for (let participant of participants) {
-            if (participant.id === signedInUser.id) {
-              this.isParticipant = true;
-            }
-          }
-          this.forceUpdate();
-
-
-
-        }).catch((error: Error) => {
-          if(errorMessage) console.log(error);
-        });
       }
-      getParticipants();
     }
   }
 }
