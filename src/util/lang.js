@@ -19,6 +19,7 @@ let en = {
   forgotPassButtonText: 'Reset password',
   competence: 'Competence',
   noCompetence: 'No competence registered',
+  noName: 'No name',
   userInfo: 'Bio',
 
   edit: 'Edit',
@@ -186,6 +187,7 @@ let no = {
   forgotPassButtonText: 'Reset passord',
   competence: 'Kompetanse',
   noCompetence: 'Ingen kompetanse registrert',
+  noName: 'Uten navn',
   userInfo: 'Personalia',
 
   edit: 'Rediger',
