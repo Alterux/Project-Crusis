@@ -130,6 +130,7 @@ let en = {
   tableDate: 'Date',
   tableTime: 'Time',
   tableDuration: 'Duration',
+  createEvent: 'Create event',
 
   // News
   newsheading: 'News',
@@ -296,6 +297,7 @@ let no = {
   tableDate: 'Dato',
   tableTime: 'Tid',
   tableDuration: 'Varighet',
+  createEvent: 'Nytt arrangement',
 
   // News
   newsheading: 'Nyheter',

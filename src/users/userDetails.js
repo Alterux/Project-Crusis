@@ -166,18 +166,18 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
           <div><input type='checkbox' ref='competence9' />Ambulansesertifisering (gyldig 1 år)</div>
 
           <div className='title'><h3>Sjøredning</h3></div>
-          <div><input type='checkbox' ref='competence10' c/>Maritimt VHF-sertifikat</div>
-          <div><input type='checkbox' ref='competence11' c/>Kvalifisert sjøredningskurs</div>
-          <div><input type='checkbox' ref='competence12' c/>Videregående sjøredningskurs</div>
+          <div><input type='checkbox' ref='competence10' />Maritimt VHF-sertifikat</div>
+          <div><input type='checkbox' ref='competence11' />Kvalifisert sjøredningskurs</div>
+          <div><input type='checkbox' ref='competence12' />Videregående sjøredningskurs</div>
 
           <div className='title'><h3>Søk og redning</h3></div>
-          <div><input type='checkbox' ref='competence13' c/>Kvalifisert kurs søk og redning</div>
-          <div><input type='checkbox' ref='competence14' c/>Kvalifisert kurs søk og redning sommer</div>
-          <div><input type='checkbox' ref='competence15' c/>Kvalifisert kurs søk og redning vinter</div>
+          <div><input type='checkbox' ref='competence13' />Kvalifisert kurs søk og redning</div>
+          <div><input type='checkbox' ref='competence14' />Kvalifisert kurs søk og redning sommer</div>
+          <div><input type='checkbox' ref='competence15' />Kvalifisert kurs søk og redning vinter</div>
 
           <div className='title'><h3>Ledelse</h3></div>
-          <div><input type='checkbox' ref='competence16' c/>Vaktlederkurs</div>
-          <div><input type='checkbox' ref='competence17' c/>Distriktsensorkurs (gyldighet 3 år)</div>
+          <div><input type='checkbox' ref='competence16' />Vaktlederkurs</div>
+          <div><input type='checkbox' ref='competence17' />Distriktsensorkurs (gyldighet 3 år)</div>
         </form>
       );
     }

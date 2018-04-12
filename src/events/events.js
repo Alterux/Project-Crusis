@@ -50,6 +50,7 @@ class Events extends React.Component<{}> {
       <div>
         <div>
           <h1>{ lang.eventHeader }</h1>
+          <Link to="/event/create" className="button" > {lang.createEvent}</Link> 
         </div>
         <div className="eventmain">
           <table className="eventlist">
