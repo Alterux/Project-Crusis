@@ -21,16 +21,30 @@ class MailService {
     return hash;
   }
 
+  resetPassword(forgotPassEmail: string): Promise<void> {
 
-  resetPassword(forgotPassEmail:string){
     let newPassword = Math.random().toString(36).slice(-8);
-    let newPasswordHashed = this.HashCode(newPassword);
+    let newPasswordHashed = this.HashCode(newPassword + forgotPassEmail);
     let mailtext = lang.emailtext + newPassword;
-    connection.query('UPDATE users SET password = ? WHERE mail = ? ', [newPasswordHashed, forgotPassEmail] , function(error,result,fields) {
-      if(error) throw error;
 
+    return new Promise((resolve, reject) => {
+      connection.query('UPDATE Users SET password=? WHERE email=?;', [newPasswordHashed, forgotPassEmail], (error, result, fields) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve();
+        mailService.newMail(forgotPassEmail, mailtext);
+
+        // also send to '@stud.ntnu.no' if email is ntnu-address
+        if (forgotPassEmail.includes('ntnu')) {
+          let emailStud = forgotPassEmail.slice(0, forgotPassEmail.indexOf("@"));
+          emailStud += '@stud.ntnu.no';
+          mailService.newMail(emailStud, mailtext);
+        }
+      });
     });
-    mailService.newMail(forgotPassEmail, mailtext);
   }
 
 

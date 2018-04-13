@@ -153,6 +153,19 @@ class UserService {
     });
   }
 
+  checkEmail(email: string): Promise<User[]> {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM Users WHERE email=?', [email], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
   deleteUser(id: number): Promise<void> {
     return new Promise((resolve, reject) => {
       connection.query('DELETE FROM Users WHERE id=?;', [id], (error, result) => {
