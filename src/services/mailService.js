@@ -1,3 +1,5 @@
+let nodemailer = require('nodemailer');
+
 // @flow
 import * as mysql from 'mysql';
 import { connection } from './connect';
@@ -33,7 +35,6 @@ class MailService {
 
 
   newMail(forgotPassEmail:string, mailtext:string) {
-    let nodemailer = require('nodemailer');
     // Generate test SMTP service account from ethereal.email
   // Only needed if you don't have a real mail account for testing
     nodemailer.createTestAccount((err, account) => {
