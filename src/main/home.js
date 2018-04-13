@@ -51,6 +51,7 @@ class Home extends React.Component<{}> {
 
           // popup content
           popupBodyContent.innerHTML = event.details;
+          popupBodyContent.innerHTML += "<br /><br /><a href='"+'#/event/'+ event.id + "'}>" + lang.upcomingEventReadmore + "</a>";
 
           // popup style
           popup.style.left = coords.clientX - 20 + 'px';
@@ -137,6 +138,7 @@ class Home extends React.Component<{}> {
       eventService.getUserEvents(signedInUser.id).then((events) => {
 
         for (let event of events) {
+          let id = event.id;
           let title = event.name;
           let details = event.details;
 
@@ -158,7 +160,7 @@ class Home extends React.Component<{}> {
           if (endDay < 10) endDay = '0' + endDay;
           let end = endYear + '-' + endMonth + '-' + endDay;
 
-          this.events.push({title: title, start: start, end: end, details: details});
+          this.events.push({id: id, title: title, start: start, end: end, details: details});
         }
 
         this.forceUpdate();
