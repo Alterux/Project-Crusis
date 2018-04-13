@@ -19,10 +19,7 @@ let en = {
   forgotPassButtonText: 'Reset password',
   competence: 'Competence',
   noCompetence: 'No competence registered',
-<<<<<<< HEAD
-=======
   noName: 'No name',
->>>>>>> 7cf29918a433e47c0bd7c94c24235b1a44c18f00
   userInfo: 'Bio',
 
   //Forgot password email
@@ -194,10 +191,7 @@ let no = {
   forgotPassButtonText: 'Reset passord',
   competence: 'Kompetanse',
   noCompetence: 'Ingen kompetanse registrert',
-<<<<<<< HEAD
-=======
   noName: 'Uten navn',
->>>>>>> 7cf29918a433e47c0bd7c94c24235b1a44c18f00
   userInfo: 'Personalia',
 
   //Forgot password email
