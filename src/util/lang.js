@@ -22,6 +22,10 @@ let en = {
   noName: 'No name',
   userInfo: 'Bio',
 
+  //Forgot password email
+  emailsubject: 'New password',
+  emailtext: 'You have been sent a new password connected to your user: ',
+
   edit: 'Edit',
   save: 'Save',
   add: 'Add',
@@ -189,6 +193,10 @@ let no = {
   noCompetence: 'Ingen kompetanse registrert',
   noName: 'Uten navn',
   userInfo: 'Personalia',
+
+  //Forgot password email
+  emailsubject: 'Nytt passord',
+  emailtext: 'Du har fått tilsendt et nytt passord til din bruker: ',
 
   edit: 'Rediger',
   save: 'Lagre',
