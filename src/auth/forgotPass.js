@@ -47,7 +47,11 @@ class ForgotPass extends React.Component<{}> {
         //Validate
         validateEmail();
 
+<<<<<<< HEAD
         if (!forgotPassEmail || !forgotPassEmail.match(MAILFORMAT)) {
+=======
+        if (!forgotPassEmail || this.errorEmail) {
+>>>>>>> 7cf29918a433e47c0bd7c94c24235b1a44c18f00
           console.log('Password reset failed');
           this.errorEmail=true
         } else {

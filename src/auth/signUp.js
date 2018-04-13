@@ -28,7 +28,7 @@ class SignUp extends React.Component<{}> {
   }
 
   setState: any;
-  accountCreated: number;
+  accountCreated: boolean = false;
   errorEmail: boolean;
   errorPass: boolean;
   errorPassMatch: boolean;
@@ -59,7 +59,7 @@ class SignUp extends React.Component<{}> {
     let errorBirth = this.errorBirth;
     let errorCity = this.errorCity;
 
-    if (accountCreated === 1) {
+    if (accountCreated === true) {
       return (
         <div>
           <div id="title">
@@ -175,11 +175,11 @@ class SignUp extends React.Component<{}> {
         } else {
           // validation pass
           userService.signUp(userName, hashedPass, firstName, middleName, lastName, birthDate, city).then(() => {
-            this.accountCreated = 1;
-            this.forceUpdate();
+            this.accountCreated = true;
           }).catch((error: Error) => {
             if(errorMessage) console.log(error);
           });
+          this.forceUpdate();
         };
       };
     };

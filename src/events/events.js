@@ -37,7 +37,7 @@ class Events extends React.Component<{}> {
 
       table.push(
         <tr key={inputs.id}>
-          <td><Link to={'/event/' + inputs.id}>{inputs.name}</Link></td>
+          <td><Link to={'/event/' + inputs.id}>{inputs.name ? inputs.name : lang.noName}</Link></td>
           <td>{inputs.location}</td>
           <td>{inputs.city}</td>
           <td>{day}.{switchMonth(month)}.{year}</td>
@@ -50,7 +50,11 @@ class Events extends React.Component<{}> {
       <div>
         <div>
           <h1>{ lang.eventHeader }</h1>
+<<<<<<< HEAD
           <Link to="/event/create" className="button" > {lang.createEvent}</Link> 
+=======
+          <Link to="/event/create" className="button" > {lang.createEvent}</Link>
+>>>>>>> 7cf29918a433e47c0bd7c94c24235b1a44c18f00
         </div>
         <div className="eventmain">
           <table className="eventlist">
