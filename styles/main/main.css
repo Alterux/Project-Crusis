@@ -42,8 +42,16 @@ h3 {
   margin-bottom: 0;
 }
 
+.title {
+  margin-top: .5em;
+}
+
+.first {
+  margin-top: 0;
+}
+
 .inputForm {
-  width: 20em;
+  max-width: 20em;
   margin: auto;
   background: #f8f8f8;
   border: solid 1px #d4d4d4;

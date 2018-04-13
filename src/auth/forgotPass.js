@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
+import {mailService} from '../services/mailService';
 const history = createHashHistory();
 
 import { lang, en, no } from '../util/lang';
@@ -12,7 +13,7 @@ class ForgotPass extends React.Component<{}> {
     inputForgotPassEmail: HTMLInputElement,
     forgotPassButton: HTMLButtonElement,
   }
-  errorEmail: boolean;
+  errorEmail: boolean = false;
 
   render() {
     let errorEmail = this.errorEmail;
@@ -27,7 +28,7 @@ class ForgotPass extends React.Component<{}> {
 
           <div className="forgotnPassHeadline"><h3>{lang.forgotPassHeadline}</h3></div><br></br>
             <input className="form" placeholder="123@example.com" ref="inputForgotPassEmail" required></input>
-
+            {errorEmail ? <div className='errorInput'><i />{lang.errorEmail}</div> : null}
           <div className="forgotPassButton">
             <button className="form" id="forgotPassButton" ref="forgotPassButton">{lang.forgotPassButtonText}</button>
           </div>
@@ -38,22 +39,22 @@ class ForgotPass extends React.Component<{}> {
 
   componentDidMount() {
 
-    if (this.refs.forgotPassButton) {
       this.refs.forgotPassButton.onclick = () => {
 
         //Get value
         let forgotPassEmail = this.refs.inputForgotPassEmail.value;
 
         //Validate
-        this.refs.inputForgotPassEmail.onchange = () => {validateEmail()};
+        validateEmail();
 
-        if (this.errorEmail) {
+        if (!forgotPassEmail || !forgotPassEmail.match(MAILFORMAT)) {
           console.log('Password reset failed');
+          this.errorEmail=true
         } else {
-      // Kommer snart validateForgotPassEmail();
+          mailService.resetPassword(forgotPassEmail);
         };
       };
-    };
+
 
     //Email format
     const MAILFORMAT = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;

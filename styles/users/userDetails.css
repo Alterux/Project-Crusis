@@ -1,5 +1,6 @@
 .textBoxWrapper {
-  position: fixed;
+  min-width: 21em;
+  max-width: 43em;
   /* background-color: #f1f1f1; */
 }
 
@@ -19,8 +20,16 @@
   display: inline-block;
 }
 
-.editUserButton, .editCompetenceButton {
+.editUserButton, .editCompetenceButton, .saveCompetenceButton {
   float: right;
+}
+
+.addCompetenceButton {
+  margin-top: .5em;
+}
+
+.removeCompetenceButton {
+  float: left;
 }
 
 .userDetailsBox {
@@ -32,4 +41,9 @@
   display: absolute;
   float: right;
   margin-left: .5em;
+}
+
+.competence {
+  margin: 0;
+  padding-left: 1em;
 }

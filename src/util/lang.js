@@ -18,10 +18,17 @@ let en = {
   forgotPassHeadline: 'Please enter your email below and you will recieve a new generated password',
   forgotPassButtonText: 'Reset password',
   competence: 'Competence',
+  noCompetence: 'No competence registered',
   userInfo: 'Bio',
+
+  //Forgot password email
+  emailsubject: 'New password',
+  emailtext: 'You have been sent a new password connected to your user: ',
 
   edit: 'Edit',
   save: 'Save',
+  add: 'Add',
+  remove: 'Remove',
   accept: 'Accept',
   reject: 'Reject',
   delete: 'Delete',
@@ -127,6 +134,7 @@ let en = {
   tableDate: 'Date',
   tableTime: 'Time',
   tableDuration: 'Duration',
+  createEvent: 'Create event',
 
   // News
   newsheading: 'News',
@@ -138,6 +146,28 @@ let en = {
   upcomingEventLocation: 'Address',
   upcomingEventCity: 'City',
   upcomingEventReadmore: 'Read more',
+
+  // Skills from competence
+  competence1 : 'Førerkort 160 utrykningskjøring',
+  competence2 : 'Førerkort BE tilhenger',
+  competence3 : 'Førerkort S snøscooter',
+  competence4 : 'Båtførerprøven',
+  competence5 : 'Kvalifisert ATV kurs',
+  competence6 : 'Kvalifisert snøscooterkurs',
+
+  competence7 : 'Videregående førstehjelpskurs',
+  competence8 : 'Hjelpekorpsprøve (gyldighet 3 år)',
+  competence9 : 'Ambulansesertifisering (gyldig 1 år)',
+
+  competence10 : 'Maritimt VHF-sertifikat',
+  competence11 : 'Kvalifisert sjøredningskurs',
+  competence12 : 'Videregående sjøredningskurs',
+
+  competence13 : 'Kvalifisert kurs søk og redning',
+  competence14 : 'Kvalifisert kurs søk og redning sommer',
+  competence15 : 'Kvalifisert kurs søk og redning vinter',
+  competence16 : 'Vaktlederkurs',
+  competence17 : 'Distriktsensorkurs (gyldighet 3 år)',
 };
 
 /**************************************************/
@@ -159,10 +189,17 @@ let no = {
   forgotPassHeadline: 'Vennligst før inn din epost nedenfor, så vil du få tilsendt et nytt generert passord',
   forgotPassButtonText: 'Reset passord',
   competence: 'Kompetanse',
+  noCompetence: 'Ingen kompetanse registrert',
   userInfo: 'Personalia',
+
+  //Forgot password email
+  emailsubject: 'Nytt passord',
+  emailtext: 'Du har fått tilsendt et nytt passord til din bruker: ',
 
   edit: 'Rediger',
   save: 'Lagre',
+  add: 'Legg til',
+  remove: 'Fjern',
   accept: 'Godta',
   reject: 'Avslå',
   delete: 'Slett',
@@ -268,6 +305,7 @@ let no = {
   tableDate: 'Dato',
   tableTime: 'Tid',
   tableDuration: 'Varighet',
+  createEvent: 'Nytt arrangement',
 
   // News
   newsheading: 'Nyheter',
@@ -279,6 +317,28 @@ let no = {
   upcomingEventLocation: 'Adresse',
   upcomingEventCity: 'By',
   upcomingEventReadmore: 'Les mer',
+
+  // Skills from competence
+  competence1 : 'Førerkort 160 utrykningskjøring',
+  competence2 : 'Førerkort BE tilhenger',
+  competence3 : 'Førerkort S snøscooter',
+  competence4 : 'Båtførerprøven',
+  competence5 : 'Kvalifisert ATV kurs',
+  competence6 : 'Kvalifisert snøscooterkurs',
+
+  competence7 : 'Videregående førstehjelpskurs',
+  competence8 : 'Hjelpekorpsprøve (gyldighet 3 år)',
+  competence9 : 'Ambulansesertifisering (gyldig 1 år)',
+
+  competence10 : 'Maritimt VHF-sertifikat',
+  competence11 : 'Kvalifisert sjøredningskurs',
+  competence12 : 'Videregående sjøredningskurs',
+
+  competence13 : 'Kvalifisert kurs søk og redning',
+  competence14 : 'Kvalifisert kurs søk og redning sommer',
+  competence15 : 'Kvalifisert kurs søk og redning vinter',
+  competence16 : 'Vaktlederkurs',
+  competence17 : 'Distriktsensorkurs (gyldighet 3 år)',
 };
 
 // Language selection

@@ -6,8 +6,8 @@ import { lang, en, no } from '../util/lang';
 import { switchMonth } from '../util/modules';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
 
-import { User, Event, userService } from '../services/userService';
-import { Entry, eventService } from '../services/eventService';
+import { User, userService } from '../services/userService';
+import { Event, eventService } from '../services/eventService';
 
 class Events extends React.Component<{}> {
 
@@ -50,6 +50,7 @@ class Events extends React.Component<{}> {
       <div>
         <div>
           <h1>{ lang.eventHeader }</h1>
+          <Link to="/event/create" className="button" > {lang.createEvent}</Link> 
         </div>
         <div className="eventmain">
           <table className="eventlist">
