@@ -14,6 +14,7 @@ import { inputDays, inputMonths, inputYears } from '../util/selectOptions';
 
 class SignUp extends React.Component<{}> {
   refs: {
+    inputPhone: HTMLInputElement,
     inputUsername: HTMLInputElement,
     inputPassword: HTMLInputElement,
     inputPasswordMatch: HTMLInputElement,
@@ -23,18 +24,24 @@ class SignUp extends React.Component<{}> {
     inputBirthDay: HTMLInputElement,
     inputBirthMonth: HTMLInputElement,
     inputBirthYear: HTMLInputElement,
+    inputAddress: HTMLInputElement,
+    inputPostcode: HTMLInputElement,
     inputCity: HTMLInputElement,
     inputButton: HTMLButtonElement
   }
 
   setState: any;
   accountCreated: boolean = false;
+  errorValidation: boolean = false;
+  errorPhone: boolean;
   errorEmail: boolean;
   errorPass: boolean;
   errorPassMatch: boolean;
   errorFirstName: boolean;
   errorLastName: boolean;
   errorBirth: boolean;
+  errorAddress: boolean;
+  errorPostcode: boolean;
   errorCity: boolean;
 
   hashCode(str: string) {
@@ -51,12 +58,15 @@ class SignUp extends React.Component<{}> {
 
   render() {
     let accountCreated = this.accountCreated;
+    let errorPhone = this.errorPhone;
     let errorEmail = this.errorEmail;
     let errorPass = this.errorPass;
     let errorPassMatch = this.errorPassMatch;
     let errorFirstName = this.errorFirstName;
     let errorLastName = this.errorLastName;
     let errorBirth = this.errorBirth;
+    let errorAddress = this.errorAddress;
+    let errorPostcode = this.errorPostcode;
     let errorCity = this.errorCity;
 
     if (accountCreated === true) {
@@ -91,6 +101,12 @@ class SignUp extends React.Component<{}> {
                 {errorPassMatch ? <div className='errorInput'><i />{lang.errorPassMatch}</div> : null}
             </div>
 
+            <div className="inputFormPhone">
+              <h3>{lang.phone}</h3>
+              <input className="form" type='text' ref='inputPhone' placeholder={lang.phone} required />
+                {errorPhone ? <div className='errorInput'><i />{lang.errorPhone}</div> : null}
+            </div>
+
             <div className="inputFormName">
               <h3>{lang.name}</h3>
               <input className="form" type='text' ref='inputFirstname' placeholder={lang.firstName} required />
@@ -110,7 +126,11 @@ class SignUp extends React.Component<{}> {
 
             <div className="inputFormAddress">
               <h3>{lang.address}</h3>
-              <input className="form" type='text' ref='inputCity' placeholder={lang.city} required />
+              <input className="form" type='text' ref='inputAddress' placeholder={lang.address} required />
+                {errorAddress ? <div className='errorInput'><i />{lang.errorAddress}</div> : null}
+              <input className="form postcode" type='text' ref='inputPostcode' placeholder={lang.postcode} required />
+                {errorPostcode ? <div className='errorInput'><i />{lang.errorPostcode}</div> : null}
+              <input className="form city" type='text' ref='inputCity' placeholder={lang.city} required />
                 {errorCity ? <div className='errorInput'><i />{lang.errorCity}</div> : null}
             </div>
 
@@ -129,19 +149,23 @@ class SignUp extends React.Component<{}> {
     if(menu) menu.forceUpdate();
 
     // on input change => set to validate on input
-    this.refs.inputUsername.onchange = () => {validateEmail(); this.refs.inputUsername.oninput = () => {validateEmail()}};
-    this.refs.inputPassword.onchange = () => {validatePassword(); this.refs.inputPassword.oninput = () => {validatePassword()}};
-    this.refs.inputPasswordMatch.onchange = () => {validatePasswordMatch(); this.refs.inputPasswordMatch.oninput = () => {validatePasswordMatch()}};
-    this.refs.inputFirstname.onchange = () => {validateFirstName(); this.refs.inputFirstname.oninput = () => {validateFirstName()};};
-    this.refs.inputMiddlename.onchange = () => {validateMiddleName()};
-    this.refs.inputLastname.onchange = () => {validateLastName(); this.refs.inputLastname.oninput = () => {validateLastName()}};
-    this.refs.inputCity.onchange = () => {validateCity(); this.refs.inputCity.oninput = () => {validateCity()}};
+    this.refs.inputPhone.onchange = () => {validatePhone(); this.refs.inputPhone.oninput = () => {validatePhone()}}
+    this.refs.inputUsername.onchange = () => {validateEmail(); this.refs.inputUsername.oninput = () => {validateEmail()}}
+    this.refs.inputPassword.onchange = () => {validatePassword(); this.refs.inputPassword.oninput = () => {validatePassword()}}
+    this.refs.inputPasswordMatch.onchange = () => {validatePasswordMatch(); this.refs.inputPasswordMatch.oninput = () => {validatePasswordMatch()}}
+    this.refs.inputFirstname.onchange = () => {validateFirstName(); this.refs.inputFirstname.oninput = () => {validateFirstName()}}
+    this.refs.inputMiddlename.onchange = () => {validateMiddleName()}
+    this.refs.inputLastname.onchange = () => {validateLastName(); this.refs.inputLastname.oninput = () => {validateLastName()}}
+    this.refs.inputAddress.onchange = () => {validateAddress(); this.refs.inputAddress.oninput = () => {validateAddress()}}
+    this.refs.inputPostcode.onchange = () => {validatePostcode(); this.refs.inputPostcode.oninput = () => {validatePostcode()}}
+    this.refs.inputCity.onchange = () => {validateCity(); this.refs.inputCity.oninput = () => {validateCity()}}
 
     // button loaded and clicked
     if (this.refs.inputButton) {
       this.refs.inputButton.onclick = () => {
 
         // get values
+        let phone = parseInt(this.refs.inputPhone.value);
         let userName = this.refs.inputUsername.value;
         let hashedPass = this.hashCode(this.refs.inputPassword.value + this.refs.inputUsername.value);
         let firstName = this.refs.inputFirstname.value;
@@ -151,38 +175,41 @@ class SignUp extends React.Component<{}> {
         let birthMonth = this.refs.inputBirthMonth.value;
         let birthDay = this.refs.inputBirthDay.value;
         let birthDate = birthYear + '-' + birthMonth + '-' + birthDay;
+        let address = this.refs.inputAddress.value;
+        let postcode = parseInt(this.refs.inputPostcode.value);
         let city = this.refs.inputCity.value;
 
         // birth validation only after button clicked
-        this.refs.inputBirthYear.onchange = () => {validateBirth()};
-        this.refs.inputBirthMonth.onchange = () => {validateBirth()};
-        this.refs.inputBirthDay.onchange = () => {validateBirth()};
+        this.refs.inputBirthYear.onchange = () => {validateBirth()}
+        this.refs.inputBirthMonth.onchange = () => {validateBirth()}
+        this.refs.inputBirthDay.onchange = () => {validateBirth()}
 
         // final validation
-        validateEmail();
-        validatePassword();
-        validatePasswordMatch();
-        validateFirstName();
-        validateLastName();
-        validateBirth();
-        validateBirth();
-        validateBirth();
-        validateCity();
+        validatePhone(); this.refs.inputPhone.oninput = () => {validatePhone()}
+        validateEmail(); this.refs.inputUsername.oninput = () => {validateEmail()}
+        validatePassword(); this.refs.inputPassword.oninput = () => {validatePassword()}
+        validatePasswordMatch(); this.refs.inputPasswordMatch.oninput = () => {validatePasswordMatch()}
+        validateFirstName(); this.refs.inputFirstname.oninput = () => {validateFirstName()}
+        validateMiddleName();
+        validateLastName(); this.refs.inputLastname.oninput = () => {validateLastName()}
+        validateAddress(); this.refs.inputAddress.oninput = () => {validateAddress()}
+        validatePostcode(); this.refs.inputPostcode.oninput = () => {validatePostcode()}
+        validateCity(); this.refs.inputCity.oninput = () => {validateCity()}
 
         // validation fail
-        if (this.errorEmail || this.errorPass || this.errorPassMatch || this.errorFirstName || this.errorLastName || this.errorBirth || this.errorCity) {
+        if (this.errorValidation) {
           console.log('signup error');
         } else {
           // validation pass
-          userService.signUp(userName, hashedPass, firstName, middleName, lastName, birthDate, city).then(() => {
+          userService.signUp(userName, hashedPass, phone, firstName, middleName, lastName, birthDate, address, postcode, city).then(() => {
             this.accountCreated = true;
+            this.forceUpdate();
           }).catch((error: Error) => {
             if(errorMessage) console.log(error);
           });
-          this.forceUpdate();
-        };
-      };
-    };
+        }
+      }
+    }
 
     // constants for validating email and password
     const MAILFORMAT = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -190,31 +217,48 @@ class SignUp extends React.Component<{}> {
     const UPPERCASE = /[A-Z]/g;
     const NUMBERS = /[0-9]/g;
 
+    // phone validation
+    let validatePhone = () => {
+      let phone = this.refs.inputPhone.value;
+      if (!phone || isNaN(phone) || phone.length < 5) {
+        this.errorPhone = true;
+        this.errorValidation = true;
+        this.refs.inputPhone.setCustomValidity('invalid');
+      } else {
+        this.errorPhone = false;
+        this.refs.inputPhone.setCustomValidity('');
+      }
+      this.forceUpdate();
+    }
+
     // email validation
     let validateEmail = () => {
       let userName = this.refs.inputUsername.value;
       if (!userName || !userName.match(MAILFORMAT)) {
         this.errorEmail = true;
+        this.errorValidation = true;
         this.refs.inputUsername.setCustomValidity('invalid');
       } else {
         this.errorEmail = false;
         this.refs.inputUsername.setCustomValidity('');
-      };
+      }
       this.forceUpdate();
-    };
+    }
 
     // password validation
     let validatePassword = () => {
       let password = this.refs.inputPassword.value;
       if (!password || password.length < 8 || !password.match(LOWERCASE) || !password.match(UPPERCASE) || !password.match(NUMBERS)) {
         this.errorPass = true;
+        this.errorValidation = true;
         this.refs.inputPassword.setCustomValidity('invalid');
       } else {
         this.errorPass = false;
+        this.errorValidation = false;
         this.refs.inputPassword.setCustomValidity('');
-      };
+      }
       this.forceUpdate();
-    };
+    }
 
     // password confirmation
     let validatePasswordMatch = () => {
@@ -222,24 +266,28 @@ class SignUp extends React.Component<{}> {
       let passwordMatch = this.refs.inputPasswordMatch.value;
       if (!this.errorPass && (!passwordMatch || passwordMatch !== password)) {
         this.errorPassMatch = true;
+        this.errorValidation = true;
         this.refs.inputPasswordMatch.setCustomValidity('invalid');
       } else {
         this.errorPassMatch = false;
+        this.errorValidation = false;
         this.refs.inputPasswordMatch.setCustomValidity('');
-      };
+      }
       this.forceUpdate();
-    };
+    }
 
     // firstname validation
     let validateFirstName = () => {
       let firstName = this.refs.inputFirstname.value;
       if (!firstName) {
         this.errorFirstName = true;
+        this.errorValidation = true;
       } else {
         this.errorFirstName = false;
-      };
+        this.errorValidation = false;
+      }
       this.forceUpdate();
-    };
+    }
 
     // middlename validation
     let validateMiddleName = () => {
@@ -247,20 +295,22 @@ class SignUp extends React.Component<{}> {
       if (middleName) {
         this.refs.inputMiddlename.style.border = 'solid 1px #00b251';
         this.refs.inputMiddlename.style.borderRight = 'solid 3px #00b251';
-      };
+      }
       this.forceUpdate();
-    };
+    }
 
     // lastname validation
     let validateLastName = () => {
       let lastName = this.refs.inputLastname.value;
       if (!lastName) {
         this.errorLastName = true;
+        this.errorValidation = true;
       } else {
         this.errorLastName = false;
-      };
+        this.errorValidation = false;
+      }
       this.forceUpdate();
-    };
+    }
 
     // birthdate validation
     let validateBirth = () => {
@@ -269,24 +319,56 @@ class SignUp extends React.Component<{}> {
       let birthDay = this.refs.inputBirthDay.value;
       if (!birthYear || !birthMonth || !birthDay) {
         this.errorBirth = true;
+        this.errorValidation = true;
       } else {
         this.errorBirth = false;
-      };
+        this.errorValidation = false;
+      }
       this.forceUpdate();
-    };
+    }
+
+    // address validation
+    let validateAddress = () => {
+      let address = this.refs.inputAddress.value;
+      if (!address) {
+        this.errorAddress = true;
+        this.errorValidation = true;
+      } else {
+        this.errorAddress = false;
+        this.errorValidation = false;
+      }
+      this.forceUpdate();
+    }
+
+    // city validation
+    let validatePostcode = () => {
+      let postcode = this.refs.inputPostcode.value;
+      if (!postcode || isNaN(postcode) || postcode.length !== 4) {
+        this.errorPostcode = true;
+        this.errorValidation = true;
+        this.refs.inputPostcode.setCustomValidity('invalid');
+      } else {
+        this.errorPostcode = false;
+        this.errorValidation = false;
+        this.refs.inputPostcode.setCustomValidity('');
+      }
+      this.forceUpdate();
+    }
 
     // city validation
     let validateCity = () => {
       let city = this.refs.inputCity.value;
       if (!city) {
         this.errorCity = true;
+        this.errorValidation = true;
       } else {
         this.errorCity = false;
-      };
+        this.errorValidation = false;
+      }
       this.forceUpdate();
-    };
+    }
 
-  };
-};
+  }
+}
 
 export { SignUp };

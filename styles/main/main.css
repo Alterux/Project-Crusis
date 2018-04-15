@@ -76,6 +76,17 @@ h3 {
   margin-right: 1.43em;
 }
 
+.postcode {
+  width: 5em;
+  padding-left: .2em;
+  margin-right: 1.43em;
+}
+
+.city {
+  width: 13.5em;
+  padding-left: .2em;
+}
+
 .month {
   width: 7em;
 }
