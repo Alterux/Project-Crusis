@@ -23,6 +23,7 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
     removeCompetenceButton: HTMLInputElement,
     inputFirstName: HTMLInputElement,
 
+    competence0: HTMLInputElement,
     competence1: HTMLInputElement,
     competence2: HTMLInputElement,
     competence3: HTMLInputElement,
@@ -127,13 +128,10 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
     }
 
     let competenceShow = () => {
-      if (!user.competence || parseInt(user.competence) === 0) {
-        listSkills.push(<li>{lang.noCompetence}</li>);
-      // prints no competence if user has not registered competence
-      } else {
+      if (user.competence) {
         for (let skill of skills) {
           let skillName = lang['competence' + skill];
-          listSkills.push(<li>{skillName}</li>);
+          listSkills.push(<li key={skill}>{skillName}</li>);
         }
       }
 
@@ -153,6 +151,7 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
       return (
         <form>
           <div className='first title'><h3>Førerkort</h3></div>
+          <div><input type='checkbox' ref='competence0' />Ingen kompetanse registrert</div>
           <div><input type='checkbox' ref='competence1' />Førerkort 160 utrykningskjøring</div>
           <div><input type='checkbox' ref='competence2' />Førerkort BE tilhenger</div>
           <div><input type='checkbox' ref='competence3' />Førerkort S snøscooter</div>
@@ -278,7 +277,7 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
           this.refs.saveCompetenceButton.onclick = () => {
 
             let competence = '';
-            for (let i = 1; i < 18; i++) {
+            for (let i = 0; i < 18; i++) {
               if (this.refs['competence' + i].checked) {
                 competence += i + ',';
               }

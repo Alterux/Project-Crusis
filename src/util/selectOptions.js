@@ -3,7 +3,7 @@ import * as React from 'react';
 import { lang, en, no } from './lang';
 
 let inputUserType = (ref: string, className: string) => { return (
-  <select /*className="form formUserType" id="inputUserType"*/ className={className} ref={ref} required>
+  <select className={className} ref={ref} required>
     <option value="1">{lang.user}</option>
     <option value="2">{lang.leader}</option>
     <option value="3">{lang.admin}</option>
@@ -11,8 +11,8 @@ let inputUserType = (ref: string, className: string) => { return (
 )};
 
 let inputHours = (ref: string, className: string) => { return (
-  <select className={className} ref={ref} required>
-    <option value="" disabled selected>{lang.hour}</option>
+  <select className={className} defaultValue="" ref={ref} required>
+    <option value="" disabled>{lang.hour}</option>
     <option value="0">00</option>
     <option value="1">01</option>
     <option value="2">02</option>
@@ -41,8 +41,8 @@ let inputHours = (ref: string, className: string) => { return (
 )};
 
 let inputMinutes = (ref: string, className: string) => { return (
-  <select className={className} ref={ref} required>
-    <option value="" disabled selected>{lang.minute}</option>
+  <select className={className} defaultValue="" ref={ref} required>
+    <option value="" disabled>{lang.minute}</option>
     <option value="0">00</option>
     <option value="1">01</option>
     <option value="2">02</option>
@@ -107,8 +107,8 @@ let inputMinutes = (ref: string, className: string) => { return (
 )};
 
 let inputDays = (ref: string, className: string) => { return (
-  <select className={className} /*className="form formBirth" id="inputBirthDay" ref="inputBirthDay"*/ ref={ref} required>
-    <option value="" disabled selected>{lang.day}</option>
+  <select className={className} defaultValue="" ref={ref} required>
+    <option value="" disabled>{lang.day}</option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -144,8 +144,8 @@ let inputDays = (ref: string, className: string) => { return (
 )};
 
 let inputMonths = (ref: string, className: string) => { return (
-  <select className={className} /*className="form formBirth" id="inputBirthMonth" ref="inputBirthMonth"*/ ref={ref} required>
-    <option value="" disabled selected>{lang.month}</option>
+  <select className={className} defaultValue="" ref={ref} required>
+    <option value="" disabled>{lang.month}</option>
     <option value="1">{lang.jan}</option>
     <option value="2">{lang.feb}</option>
     <option value="3">{lang.mar}</option>
@@ -162,8 +162,8 @@ let inputMonths = (ref: string, className: string) => { return (
 )};
 
 let inputYears = (ref: string, className: string) => { return (
-  <select className={className} /*className="form formBirth" id="inputBirthYear" ref="inputBirthYear"*/ ref={ref} required>
-    <option value="" disabled selected>{lang.year}</option>
+  <select className={className} defaultValue="" ref={ref} required>
+    <option value="" disabled>{lang.year}</option>
     <option value="2018">2018</option>
     <option value="2017">2017</option>
     <option value="2016">2016</option>

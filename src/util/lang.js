@@ -8,6 +8,7 @@ let en = {
   events: 'Events',
   members: 'Members',
   newMembers: 'New Members',
+  interested: 'Interested',
   participants: 'Participants',
 
   title: 'Red Cross',
@@ -156,6 +157,7 @@ let en = {
   upcomingEventReadmore: 'Read more',
 
   // Skills from competence
+  competence0 : 'Ingen kompetanse registrert',
   competence1 : 'Førerkort 160 utrykningskjøring',
   competence2 : 'Førerkort BE tilhenger',
   competence3 : 'Førerkort S snøscooter',
@@ -187,6 +189,7 @@ let no = {
   events: 'Arrangementer',
   members: 'Medlemmer',
   newMembers: 'Nye Medlemmer',
+  interested: 'Interesserte',
   participants: 'Deltakere',
 
   title: 'Røde Kors',
@@ -335,6 +338,7 @@ let no = {
   upcomingEventReadmore: 'Les mer',
 
   // Skills from competence
+  competence0 : 'Ingen kompetanse registrert',
   competence1 : 'Førerkort 160 utrykningskjøring',
   competence2 : 'Førerkort BE tilhenger',
   competence3 : 'Førerkort S snøscooter',

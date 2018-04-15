@@ -20,12 +20,12 @@ class EventDetails extends React.Component<{ match: { params: { id: number } } }
 
   signedInUser = {};
   event = {};
-  participants = [];
-  isParticipant: boolean = false;
+  interested = [];
+  isuser: boolean = false;
 
   render() {
     let event = this.event;
-    let listParticipants = [];
+    let listInterested = [];
     let eventButton;
 
     let startDay;
@@ -71,15 +71,15 @@ class EventDetails extends React.Component<{ match: { params: { id: number } } }
     }
 
     // user has reported interest
-    if (this.isParticipant) {
+    if (this.isuser) {
       eventButton = <div className="unapplyEventButton"><button ref="unapplyEventButton">{lang.reportNotInterested}</button></div>
     // user has not reported interest
     } else {
       eventButton = <div className="applyEventButton"><button ref="applyEventButton">{lang.reportInterested}</button></div>
     }
 
-    for (let participant of this.participants) {
-      listParticipants.push(<li key={participant.id}><Link to={'/user/' + participant.id}>{participant.firstName} {participant.middleName} {participant.lastName}</Link></li>)
+    for (let user of this.interested) {
+      listInterested.push(<li key={user.id}><Link to={'/user/' + user.id}>{user.firstName} {user.middleName} {user.lastName}</Link></li>)
     }
 
     return (
@@ -116,8 +116,8 @@ class EventDetails extends React.Component<{ match: { params: { id: number } } }
         </div>
         <div className='competenceBox'>
           <div className='textBox'>
-            <h3>{lang.participants}</h3>
-            {listParticipants}
+            <h3>{lang.interested}</h3>
+            {listInterested}
           </div>
         </div>
       </div>
@@ -138,14 +138,14 @@ class EventDetails extends React.Component<{ match: { params: { id: number } } }
         if(errorMessage) console.log(error);
       });
 
-      // get participants
-      let getParticipants = () => {
-        eventService.getParticipants(this.props.match.params.id).then((participants) => {
-          this.participants = participants;
+      // get interested
+      let getInterested = () => {
+        eventService.getInterested(this.props.match.params.id).then((interested) => {
+          this.interested = interested;
 
-          for (let participant of participants) {
-            if (participant.id === signedInUser.id) {
-              this.isParticipant = true;
+          for (let user of interested) {
+            if (user.id === signedInUser.id) {
+              this.isuser = true;
             }
           }
           this.forceUpdate();
@@ -162,9 +162,9 @@ class EventDetails extends React.Component<{ match: { params: { id: number } } }
             this.refs.applyEventButton.disabled = false;
             this.refs.applyEventButton.onclick = () => {
               this.refs.applyEventButton.disabled = true;
-              this.isParticipant = true;
+              this.isuser = true;
               eventService.applyEvent(signedInUser.id, this.props.match.params.id);
-              getParticipants();
+              getInterested();
             }
           }
 
@@ -173,9 +173,9 @@ class EventDetails extends React.Component<{ match: { params: { id: number } } }
             this.refs.unapplyEventButton.disabled = false;
             this.refs.unapplyEventButton.onclick = () => {
               this.refs.unapplyEventButton.disabled = true;
-              this.isParticipant = false;
+              this.isuser = false;
               eventService.unapplyEvent(signedInUser.id);
-              getParticipants();
+              getInterested();
             }
           }
 
@@ -183,7 +183,7 @@ class EventDetails extends React.Component<{ match: { params: { id: number } } }
           if(errorMessage) console.log(error);
         });
       }
-      getParticipants();
+      getInterested();
     }
   }
 }

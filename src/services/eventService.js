@@ -12,6 +12,13 @@ class Event {
   details: string;
 }
 
+class Interested {
+  id: number;
+  firstName: string;
+  middleName: string;
+  lastName: string;
+}
+
 class Participant {
   id: number;
   firstName: string;
@@ -73,9 +80,9 @@ class EventService {
     });
   }
 
-  getParticipants(id: number): Promise<Participant[]> {
+  getInterested(id: number): Promise<Interested[]> {
     return new Promise((resolve, reject) => {
-      connection.query('SELECT * FROM User u, Participant WHERE u.id = user_id AND event_id = ?', [id], (error, result) => {
+      connection.query('SELECT * FROM User u, Interested WHERE u.id = user_id AND event_id = ?', [id], (error, result) => {
         if(error) {
           reject(error);
           return;
@@ -88,7 +95,7 @@ class EventService {
 
   applyEvent(user_id: number, event_id: number): Promise<void> {
     return new Promise((resolve, reject) => {
-      connection.query('INSERT INTO Participant (user_id, event_id) VALUES (?, ?)', [user_id, event_id], (error, result) => {
+      connection.query('INSERT INTO Interested (user_id, event_id) VALUES (?, ?)', [user_id, event_id], (error, result) => {
         if(error) {
           reject(error);
           return;
@@ -101,7 +108,20 @@ class EventService {
 
   unapplyEvent(user_id: number): Promise<void> {
     return new Promise((resolve, reject) => {
-      connection.query('DELETE FROM Participant WHERE user_id=?', [user_id], (error, result) => {
+      connection.query('DELETE FROM Interested WHERE user_id=?', [user_id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
+  getParticipants(id: number): Promise<Participant[]> {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM User u, Participant WHERE u.id = user_id AND event_id = ?', [id], (error, result) => {
         if(error) {
           reject(error);
           return;
