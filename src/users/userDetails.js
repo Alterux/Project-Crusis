@@ -127,14 +127,14 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
     }
 
     let competenceShow = () => {
-      if (user.competence) {
+      if (!user.competence || parseInt(user.competence) === 0) {
+        listSkills.push(<li>{lang.noCompetence}</li>);
+      // prints no competence if user has not registered competence
+      } else {
         for (let skill of skills) {
           let skillName = lang['competence' + skill];
           listSkills.push(<li>{skillName}</li>);
         }
-      // prints no competence if user has not registered competence
-      } else {
-        listSkills.push(<li>{lang.noCompetence}</li>);
       }
 
       return (
