@@ -143,9 +143,10 @@ class UserService {
     });
   }
 
-  searchMembers(firstName: string): Promise<User[]> {
+  searchMembers(name: string): Promise<User[]> {
     return new Promise((resolve, reject) => {
-      connection.query('SELECT * FROM User WHERE firstName LIKE %?% AND userType>0', [firstName], (error, result) => {
+      // connection.query('SELECT * FROM User WHERE firstName LIKE "%"?"%" OR middleName LIKE "%"?"%" OR lastName LIKE "%"?"%" AND userType>0', [name, name, name], (error, result) => {
+      connection.query('SELECT * FROM User WHERE CONCAT(firstName, middleName, lastName) LIKE "%"?"%" AND userType>0', [name], (error, result) => {
         if(error) {
           reject(error);
           return;

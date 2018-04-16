@@ -72,18 +72,16 @@ class Members extends React.Component<{}> {
     if(signedInUser) {
       this.signedInUser = signedInUser;
 
-      let search = '';
+      let search;
       this.refs.search.oninput = () => {
         search = this.refs.search.value;
-        if (search === '') {
+        if (search) {
+          searchMembers();
+        } else {
           getMembers();
           getNewMembers();
-        } else {
-          console.log('search')
-          searchMembers();
         }
       }
-
 
       let searchMembers = () => {
         userService.searchMembers(search).then((members) => {
@@ -113,6 +111,9 @@ class Members extends React.Component<{}> {
           if(errorMessage) errorMessage.set(lang.errorMembers);
         });
       }
+
+      getMembers();
+      getNewMembers();
     }
   }
 }
