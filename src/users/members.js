@@ -10,6 +10,10 @@ import { lang, en, no } from '../util/lang';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
 
 class Members extends React.Component<{}> {
+  refs: {
+    search: HTMLInputElement
+  }
+
   signedInUser = {};
   members = [];
   newMembers = [];
@@ -30,24 +34,34 @@ class Members extends React.Component<{}> {
       case 3:
         return (
           <div>
-            {lang.members}
-            <ul>
-              {listMembers}
-            </ul>
-            {lang.newMembers}
-            <ul>
-              {listNewMembers}
-            </ul>
+            <div className='entry'>
+              <input ref='search' placeholder={lang.search}></input>
+            </div>
+            <div className='last entry'>
+              {lang.members}
+              <ul>
+                {listMembers}
+              </ul>
+              {lang.newMembers}
+              <ul>
+                {listNewMembers}
+              </ul>
+            </div>
           </div>
         );
 
       default:
         return (
           <div>
-            {lang.members}
-            <ul>
-              {listMembers}
-            </ul>
+            <div className='entry'>
+              <input ref='search' placeholder='Search'></input>
+            </div>
+            <div className='last entry'>
+              {lang.members}
+              <ul>
+                {listMembers}
+              </ul>
+            </div>
           </div>
         );
     }
@@ -58,22 +72,47 @@ class Members extends React.Component<{}> {
     if(signedInUser) {
       this.signedInUser = signedInUser;
 
+      let search = '';
+      this.refs.search.oninput = () => {
+        search = this.refs.search.value;
+        if (search === '') {
+          getMembers();
+          getNewMembers();
+        } else {
+          console.log('search')
+          searchMembers();
+        }
+      }
+
+
+      let searchMembers = () => {
+        userService.searchMembers(search).then((members) => {
+          this.members = members;
+          this.forceUpdate();
+        }).catch((error: Error) => {
+          if(errorMessage) console.log(error); //errorMessage.set(lang.errorMembers);
+        });
+      }
+
       // Get members
-      userService.getMembers(signedInUser.id).then((members) => {
-        this.members = members;
-        this.forceUpdate();
-      }).catch((error: Error) => {
-        if(errorMessage) errorMessage.set(lang.errorMembers);
-      });
+      let getMembers = () => {
+        userService.getMembers(signedInUser.id).then((members) => {
+          this.members = members;
+          this.forceUpdate();
+        }).catch((error: Error) => {
+          if(errorMessage) errorMessage.set(lang.errorMembers);
+        });
+      }
 
       // Get new members
-      userService.getNewMembers(signedInUser.id).then((newMembers) => {
-        this.newMembers = newMembers;
-        this.forceUpdate();
-      }).catch((error: Error) => {
-        if(errorMessage) errorMessage.set(lang.errorMembers);
-      });
-
+      let getNewMembers = () => {
+        userService.getNewMembers(signedInUser.id).then((newMembers) => {
+          this.newMembers = newMembers;
+          this.forceUpdate();
+        }).catch((error: Error) => {
+          if(errorMessage) errorMessage.set(lang.errorMembers);
+        });
+      }
     }
   }
 }

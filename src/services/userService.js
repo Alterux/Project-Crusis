@@ -143,6 +143,19 @@ class UserService {
     });
   }
 
+  searchMembers(firstName: string): Promise<User[]> {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM User WHERE firstName LIKE %?% AND userType>0', [firstName], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
   getUser(id: number): Promise<User[]> {
     return new Promise((resolve, reject) => {
       connection.query('SELECT * FROM User where id=?', [id], (error, result) => {

@@ -6,11 +6,11 @@ class ErrorMessage extends React.Component<{}> {
     closeButton: HTMLButtonElement
   };
 
-  message = '';
+  message: string = '';
 
   render() {
     // Only show when this.message is not empty
-    let displayValue;
+    let displayValue: string;
     if(this.message=='') displayValue = 'none';
     else displayValue = 'inline';
 
