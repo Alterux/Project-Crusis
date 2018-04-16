@@ -185,7 +185,6 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
     }
 
     let competenceEdit = () => {
-
       return (
         <div className="textBox">
           {saveCompetenceButton}

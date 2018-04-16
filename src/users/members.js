@@ -111,7 +111,6 @@ class Members extends React.Component<{}> {
           if(errorMessage) errorMessage.set(lang.errorMembers);
         });
       }
-
       getMembers();
       getNewMembers();
     }
