@@ -118,11 +118,14 @@ class UserDetails extends React.Component<{ match: { params: { id: number } } }>
       return (
         <div className="textBox">
           {userButton}
-          <img className="accountImg" src="resources/default.png" alt="Account Image" width="50px" height="50px"></img><br />
-          <br />{user.firstName} {user.middleName} {user.lastName}<br />
-          <br />{lang.age}: {age}<br />
-          <br />{lang.city}: {user.city}<br />
-          <br />{userTypeMsg}
+          <div className='entry'><img className="accountImg" src="resources/default.png" alt="Account Image" width="50px" height="50px"></img></div>
+          <div className='bold entry'>{user.firstName} {user.middleName} {user.lastName}</div>
+          <div className='entry'><span className='bold'>{lang.email}:</span> {user.email}</div>
+          <div className='entry'><span className='bold'>{lang.age}:</span> {age}</div>
+          <div className='entry'><span className='bold'>{lang.address}:</span> {user.address}</div>
+          <div className='entry'><span className='bold'>{lang.postcode}:</span> {user.postcode}</div>
+          <div className='entry'><span className='bold'>{lang.city}:</span> {user.city}</div>
+          <div className='last entry'>{userTypeMsg}</div>
         </div>
       );
     }

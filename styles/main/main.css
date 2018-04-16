@@ -50,6 +50,10 @@ h3 {
   margin-top: 0;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .inputForm {
   max-width: 20em;
   margin: auto;
