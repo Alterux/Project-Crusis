@@ -10,9 +10,13 @@ import { User, userService } from '../services/userService';
 import { Event, eventService } from '../services/eventService';
 
 class Events extends React.Component<{}> {
+  refs: {
+    search: HTMLInputElement
+  }
 
+  signedInUser = {};
   events = [];
-  data = []
+  data = [];
 
   render() {
     let table = [];
@@ -46,21 +50,30 @@ class Events extends React.Component<{}> {
       );
     }
 
-    return (
-      <div>
-        <div>
-          <h1>{ lang.eventHeader }</h1>
+    let createEvent = () => {
+      return (
+        <div className='entry'>
+          <h1>{lang.eventHeader}</h1>
           <Link to="/event/create" className="button" > {lang.createEvent}</Link>
         </div>
-        <div className="eventmain">
+      );
+    }
+
+    return (
+      <div>
+        {this.signedInUser.userType > 1 ? createEvent() : null}
+        <div className='entry'>
+          <input ref='search' placeholder={lang.search}></input>
+        </div>
+        <div className="last entry eventmain">
           <table className="eventlist">
             <thead>
               <tr>
-                <th>{ lang.tableName }</th>
-                <th>{ lang.tableLocation }</th>
-                <th>{ lang.tableCity }</th>
-                <th>{ lang.tableDate }</th>
-                <th>{ lang.tableDuration }</th>
+                <th>{lang.tableName}</th>
+                <th>{lang.tableLocation}</th>
+                <th>{lang.tableCity}</th>
+                <th>{lang.tableDate}</th>
+                <th>{lang.tableDuration}</th>
               </tr>
             </thead>
             <tbody>
@@ -76,16 +89,41 @@ class Events extends React.Component<{}> {
   componentDidMount() {
     let signedInUser = userService.getSignedInUser();
     if(signedInUser) {
-      eventService.getEvents().then((response) => {
+      this.signedInUser = signedInUser;
 
-        for (let item of response) {
-          this.events.push(item);
+      let search;
+      this.refs.search.oninput = () => {
+        this.events = [];
+        search = this.refs.search.value;
+        if (search) {
+          searchEvents();
+        } else {
+          getEvents();
         }
+      }
 
+      let searchEvents = () => {
+        eventService.searchEvents(search).then((events) => {
+          for (let event of events) {
+            this.events.push(event);
+          }
           this.forceUpdate();
         }).catch((error: Error) => {
           if(errorMessage) console.log(error);
         });
+      }
+
+      let getEvents = () => {
+        eventService.getEvents().then((events) => {
+          for (let event of events) {
+            this.events.push(event);
+          }
+          this.forceUpdate();
+        }).catch((error: Error) => {
+          if(errorMessage) console.log(error);
+        });
+      }
+      getEvents();
     }
   }
 }

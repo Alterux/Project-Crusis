@@ -66,6 +66,19 @@ class EventService {
     });
   }
 
+  searchEvents(name: string): Promise<Event[]> {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM Event WHERE name LIKE "%"?"%"', [name], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
   editEvent(id: number, name: string, location: string, city: string, startDate: string, endDate: string, details: string): Promise<void> {
     return new Promise((resolve, reject) => {
       connection.query('UPDATE Event SET name=?, location=?, city=?, startDate=?, endDate=?, details=? WHERE id=?;',
