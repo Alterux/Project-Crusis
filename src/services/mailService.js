@@ -1,14 +1,12 @@
+// @flow
 let nodemailer = require('nodemailer');
 
-// @flow
 import * as mysql from 'mysql';
 import { connection } from './connect';
 
 import { lang, en, no } from '../util/lang';
 
-
 class MailService {
-
 
   HashCode(str: string) {
     let hash = 0;
