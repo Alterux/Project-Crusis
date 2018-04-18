@@ -9,10 +9,13 @@ import { Event, eventService } from '../services/eventService';
 import { lang, en, no } from '../util/lang';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
 
-class Members extends React.Component<{}> {
+type Props = {};
+type State = {};
+
+class Members extends React.Component<Props, State> {
   refs: {
     search: HTMLInputElement
-  }
+  };
 
   signedInUser = {};
   members = [];

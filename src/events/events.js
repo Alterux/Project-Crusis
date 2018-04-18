@@ -9,10 +9,13 @@ import { ErrorMessage, errorMessage } from '../util/errorMessage';
 import { User, userService } from '../services/userService';
 import { Event, eventService } from '../services/eventService';
 
-class Events extends React.Component<{}> {
+type Props = {};
+type State = {};
+
+class Events extends React.Component<Props, State> {
   refs: {
     search: HTMLInputElement
-  }
+  };
 
   signedInUser = {};
   events = [];

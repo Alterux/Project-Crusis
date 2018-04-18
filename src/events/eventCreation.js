@@ -14,7 +14,10 @@ import { switchMonth } from '../util/modules';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
 import { inputDays, inputMonths, inputYears, inputHours, inputMinutes } from '../util/selectOptions';
 
-class EventCreation extends React.Component<{}>{
+type Props = {};
+type State = {};
+
+class EventCreation extends React.Component<Props, State>{
   refs: {
     createEventButton: HTMLInputElement,
     inputName: HTMLInputElement,
@@ -31,7 +34,7 @@ class EventCreation extends React.Component<{}>{
     inputEndYear: any,
     inputEndHour: any,
     inputEndMinute: any,
-  }
+  };
 
   signedInUser = {};
   event = [];

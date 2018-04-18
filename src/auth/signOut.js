@@ -8,7 +8,10 @@ import { Menu, menu } from '../main/menu';
 
 import { lang, en, no } from '../util/lang';
 
-class SignOut extends React.Component<{}> {
+type Props = {};
+type State = {};
+
+class SignOut extends React.Component<Props, State> {
 
   render() {
     return (<div></div>);

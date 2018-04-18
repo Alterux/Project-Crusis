@@ -9,7 +9,10 @@ import { Event, eventService } from '../services/eventService';
 import { lang, en, no } from '../util/lang';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
 
-class Menu extends React.Component<{}> {
+type Props = {};
+type State = {};
+
+class Menu extends React.Component<Props, State> {
   render() {
     let signedInUser = userService.getSignedInUser();
     if(signedInUser) {

@@ -10,11 +10,13 @@ import { User, userService } from '../services/userService';
 import { lang, en, no } from '../util/lang';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
 
+type Props = {};
+
 type State = {
   emailSent: boolean,
 };
 
-class ForgotPass extends React.Component<State, {}> {
+class ForgotPass extends React.Component<Props, State> {
   state = {
     emailSent: false,
   };
@@ -22,7 +24,7 @@ class ForgotPass extends React.Component<State, {}> {
   refs: {
     inputForgotPassEmail: HTMLInputElement,
     forgotPassButton: HTMLButtonElement,
-  }
+  };
 
   setState: any;
   errorEmail: boolean = false;
@@ -98,7 +100,7 @@ class ForgotPass extends React.Component<State, {}> {
             this.refs.inputForgotPassEmail.setCustomValidity('');
             mailService.resetPassword(forgotPassEmail);
             this.forceUpdate();
-            this.setState({emailSent: true})
+            this.setState({emailSent: true});
           }
 
         }).catch((error: Error) => {

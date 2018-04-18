@@ -11,12 +11,15 @@ import { User, userService } from '../services/userService';
 import { lang, en, no } from '../util/lang';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
 
-class SignIn extends React.Component<{}> {
+type Props = {};
+type State = {};
+
+class SignIn extends React.Component<Props, State> {
   refs: {
     signInUsername: HTMLInputElement,
     signInPassword: HTMLInputElement,
     signInButton: HTMLButtonElement,
-  }
+  };
 
   hashCode(str: string) {
     let hash = 0;

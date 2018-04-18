@@ -11,12 +11,22 @@ import { lang, en, no } from '../util/lang';
 import { switchMonth } from '../util/modules';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
 
-class EventDetails extends React.Component<{ match: { params: { id: number } } }> {
+type Props = {
+  match: {
+    params: {
+      id: number
+    }
+  }
+};
+
+type State = {};
+
+class EventDetails extends React.Component<Props, State> {
   refs: {
     editEventButton: HTMLInputElement,
     applyEventButton: HTMLInputElement,
     unapplyEventButton: HTMLInputElement,
-  }
+  };
 
   signedInUser = {};
   event = {};

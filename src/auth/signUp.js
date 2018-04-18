@@ -12,7 +12,10 @@ import { lang, en, no } from '../util/lang';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
 import { inputDays, inputMonths, inputYears } from '../util/selectOptions';
 
-class SignUp extends React.Component<{}> {
+type Props = {};
+type State = {};
+
+class SignUp extends React.Component<Props, State> {
   refs: {
     inputPhone: HTMLInputElement,
     inputUsername: HTMLInputElement,
@@ -28,7 +31,7 @@ class SignUp extends React.Component<{}> {
     inputPostcode: HTMLInputElement,
     inputCity: HTMLInputElement,
     inputButton: HTMLButtonElement
-  }
+  };
 
   setState: any;
   accountCreated: boolean = false;
@@ -54,7 +57,6 @@ class SignUp extends React.Component<{}> {
     }
     return hash;
   }
-
 
   render() {
     let accountCreated = this.accountCreated;

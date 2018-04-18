@@ -12,7 +12,17 @@ import { switchMonth } from '../util/modules';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
 import { inputDays, inputMonths, inputYears, inputHours, inputMinutes } from '../util/selectOptions';
 
-class EventDetailsEdit extends React.Component<{ match: { params: { id: number } } }> {
+type Props = {
+  match: {
+    params: {
+      id: number
+    }
+  }
+};
+
+type State = {};
+
+class EventDetailsEdit extends React.Component<Props, State> {
   refs: {
     saveEventButton: HTMLInputElement,
     inputName: HTMLInputElement,
@@ -29,7 +39,7 @@ class EventDetailsEdit extends React.Component<{ match: { params: { id: number }
     inputEndYear: any,
     inputEndHour: any,
     inputEndMinute: any,
-  }
+  };
 
   signedInUser = {};
   event = {};

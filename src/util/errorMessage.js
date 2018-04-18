@@ -1,7 +1,10 @@
 // @flow
 import * as React from 'react';
 
-class ErrorMessage extends React.Component<{}> {
+type Props = {};
+type State = {};
+
+class ErrorMessage extends React.Component<Props, State> {
   refs: {
     closeButton: HTMLButtonElement
   };
