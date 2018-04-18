@@ -21,6 +21,11 @@ class User {
   competence: string;
 }
 
+class Competence {
+  id: number;
+  name: string;
+}
+
 class UserService {
   signIn(email: string, password: number): Promise<void> {
     return new Promise((resolve, reject) => {
@@ -63,10 +68,10 @@ class UserService {
     });
   }
 
-  editUser(firstName: string, middleName: string, lastName: string, birthDate: string, city: string, userType: number, id: number): Promise<void> {
+  editUser(firstName: string, middleName: string, lastName: string, birthDate: string, phone: number, address: string, postcode: number, city: string, userType: number, id: number): Promise<void> {
     return new Promise((resolve, reject) => {
-      connection.query('UPDATE User SET firstName=?, middleName=?, lastName=?, birthDate=?, city=?, userType=? WHERE id=?;',
-      [firstName, middleName, lastName, birthDate, city, userType, id], (error, result) => {
+      connection.query('UPDATE User SET firstName=?, middleName=?, lastName=?, birthDate=?, phone=?, address=?, postcode=?, city=?, userType=? WHERE id=?;',
+      [firstName, middleName, lastName, birthDate, phone, address, postcode, city, userType, id], (error, result) => {
         if(error) {
           reject(error);
           return;
@@ -77,9 +82,22 @@ class UserService {
     });
   }
 
-  editCompetence(competence: string, id: number): Promise<void> {
+  editEmail(email: string, password: number, id: number): Promise<void> {
     return new Promise((resolve, reject) => {
-      connection.query('UPDATE User SET competence=? WHERE id=?;', [competence, id], (error, result) => {
+      connection.query('UPDATE User SET email=?, password=? WHERE id=?;', [email, password, id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve();
+      });
+    });
+  }
+
+  editPassword(password: number, id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('UPDATE User SET password=? WHERE id=?;', [password, id], (error, result) => {
         if(error) {
           reject(error);
           return;
@@ -115,6 +133,58 @@ class UserService {
     if(!item) return null;
 
     return JSON.parse(item);
+  }
+
+  getCompetences(): Promise<Competence[]> {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM Competence', (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
+  getUserCompetence(id: number): Promise<Competence[]> {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT c.id, c.name FROM Competence c, UserCompetence WHERE c.id=competence_id AND user_id=?', [id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
+  addUserCompetence(user_id: number, competence_id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('INSERT INTO UserCompetence (user_id, competence_id) VALUES (?, ?);', [user_id, competence_id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve();
+      });
+    });
+  }
+
+  removeUserCompetence(user_id: number, competence_id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('DELETE FROM UserCompetence WHERE user_id=? AND competence_id=?;', [user_id, competence_id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve();
+      });
+    });
   }
 
   getMembers(id: number): Promise<User[]> {
