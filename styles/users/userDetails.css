@@ -20,8 +20,16 @@
   display: inline-block;
 }
 
-.editUserButton, .editCompetenceButton, .saveCompetenceButton {
+.editUserButton, .acceptUserButton, .rejectUserButton, .editCompetenceButton, .saveCompetenceButton {
   float: right;
+}
+
+.acceptUserButton {
+  color: green;
+}
+
+.rejectUserButton {
+  color: red;
 }
 
 .addCompetenceButton {
