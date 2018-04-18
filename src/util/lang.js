@@ -28,7 +28,11 @@ let en = {
   emailsubject: 'New password',
   emailtext: 'You have been sent a new password connected to your user: ',
 
+  change: 'Change',
+  update: 'Update',
+  back: 'Back',
   edit: 'Edit',
+  editLogin: 'Edit login',
   save: 'Save',
   add: 'Add',
   remove: 'Remove',
@@ -48,6 +52,9 @@ let en = {
   username: 'Username',
   password: 'Password',
   passwordMatch: 'Confirm Password',
+  currentPassword: 'Current Password',
+  newPassword: 'New Password',
+  newPasswordMatch: 'Confirm New Password',
   email: 'Email',
   name: 'Name',
   phone: 'Phone',
@@ -63,6 +70,7 @@ let en = {
   address: 'Address',
   postcode: 'Zip',
   city: 'City',
+  points: 'Points',
 
   signIn: 'Sign in',
   signOut: 'Sign out',
@@ -157,28 +165,36 @@ let en = {
   upcomingEventCity: 'City',
   upcomingEventReadmore: 'Read more',
 
+
   // Skills from competence
-  competence0 : 'Ingen kompetanse registrert',
-  competence1 : 'Førerkort 160 utrykningskjøring',
-  competence2 : 'Førerkort BE tilhenger',
-  competence3 : 'Førerkort S snøscooter',
-  competence4 : 'Båtførerprøven',
-  competence5 : 'Kvalifisert ATV kurs',
-  competence6 : 'Kvalifisert snøscooterkurs',
+  noCompetence: 'No competence registered',
 
-  competence7 : 'Videregående førstehjelpskurs',
-  competence8 : 'Hjelpekorpsprøve (gyldighet 3 år)',
-  competence9 : 'Ambulansesertifisering (gyldig 1 år)',
+    // Driving License
+    DL160: 'Driving License 160',
+    DLBE: 'Driving License BE',
+    DLS: 'Driving License S',
+    DLB: 'Driving License B',
+    DLAC: 'Driving License ATV Course',
+    DLSC: 'Driving License Snow Scooter Course',
 
-  competence10 : 'Maritimt VHF-sertifikat',
-  competence11 : 'Kvalifisert sjøredningskurs',
-  competence12 : 'Videregående sjøredningskurs',
+    // First Aid
+    FAAD: 'First Aid Advanced',
+    FARES: 'First Aid Rescue',
+    FAAM: 'First Aid Ambulance',
 
-  competence13 : 'Kvalifisert kurs søk og redning',
-  competence14 : 'Kvalifisert kurs søk og redning sommer',
-  competence15 : 'Kvalifisert kurs søk og redning vinter',
-  competence16 : 'Vaktlederkurs',
-  competence17 : 'Distriktsensorkurs (gyldighet 3 år)',
+    // Maritime
+    MAVHF: 'Maritime VHF',
+    MARES: 'Maritime Rescue',
+    MARESAD: 'Maritime Rescue Advanced',
+
+    // Search and Rescue
+    SAR: 'Search and Rescue',
+    SARS: 'Search and Rescue Summer',
+    SARW: 'Search and Rescue Winter',
+
+    // Management
+    LEAD: 'Leader Course',
+    DIST: 'District Sensor Course',
 };
 
 /**************************************************/
@@ -210,7 +226,11 @@ let no = {
   emailsubject: 'Nytt passord',
   emailtext: 'Du har fått tilsendt et nytt passord til din bruker: ',
 
+  change: 'Endre',
+  update: 'Oppdater',
+  back: 'Tilbake',
   edit: 'Rediger',
+  editLogin: 'Rediger login',
   save: 'Lagre',
   add: 'Legg til',
   remove: 'Fjern',
@@ -230,6 +250,9 @@ let no = {
   username: 'Brukernavn',
   password: 'Passord',
   passwordMatch: 'Bekreft Passordet',
+  currentPassword: 'Nåværende Passord',
+  newPassword: 'Nytt Passord',
+  newPasswordMatch: 'Bekreft Nytt Passord',
   email: 'Epost',
   name: 'Navn',
   phone: 'Mobilnr',
@@ -245,6 +268,7 @@ let no = {
   address: 'Adresse',
   postcode: 'Postnr',
   city: 'Poststed',
+  points: 'Poeng',
 
   signIn: 'Logg inn',
   signOut: 'Logg ut',
@@ -339,28 +363,36 @@ let no = {
   upcomingEventCity: 'By',
   upcomingEventReadmore: 'Les mer',
 
+
   // Skills from competence
-  competence0 : 'Ingen kompetanse registrert',
-  competence1 : 'Førerkort 160 utrykningskjøring',
-  competence2 : 'Førerkort BE tilhenger',
-  competence3 : 'Førerkort S snøscooter',
-  competence4 : 'Båtførerprøven',
-  competence5 : 'Kvalifisert ATV kurs',
-  competence6 : 'Kvalifisert snøscooterkurs',
+  noCompetence: 'Ingen kompetanse registrert',
 
-  competence7 : 'Videregående førstehjelpskurs',
-  competence8 : 'Hjelpekorpsprøve (gyldighet 3 år)',
-  competence9 : 'Ambulansesertifisering (gyldig 1 år)',
+    // Driving License
+    DL160: 'Førerkort 160 utrykningskjøring',
+    DLBE: 'Førerkort BE tilhenger',
+    DLS: 'Førerkort S snøscooter',
+    DLB: 'Båtførerprøven',
+    DLAC: 'Kvalifisert ATV kurs',
+    DLSC: 'Kvalifisert snøscooterkurs',
 
-  competence10 : 'Maritimt VHF-sertifikat',
-  competence11 : 'Kvalifisert sjøredningskurs',
-  competence12 : 'Videregående sjøredningskurs',
+    // First Aid
+    FAAD: 'Videregående førstehjelpskurs',
+    FARES: 'Hjelpekorpsprøve',
+    FAAM: 'Ambulansesertifisering',
 
-  competence13 : 'Kvalifisert kurs søk og redning',
-  competence14 : 'Kvalifisert kurs søk og redning sommer',
-  competence15 : 'Kvalifisert kurs søk og redning vinter',
-  competence16 : 'Vaktlederkurs',
-  competence17 : 'Distriktsensorkurs (gyldighet 3 år)',
+    // Maritime
+    MAVHF: 'Maritimt VHF-sertifikat',
+    MARES: 'Kvalifisert sjøredningskurs',
+    MARESAD: 'Videregående sjøredningskurs',
+
+    // Search and Rescue
+    SAR: 'Kvalifisert kurs søk og redning',
+    SARS: 'Kvalifisert kurs søk og redning sommer',
+    SARW: 'Kvalifisert kurs søk og redning vinter',
+
+    // Management
+    LEAD: 'Vaktlederkurs',
+    DIST: 'Distriktsensorkurs',
 };
 
 // Language selection
