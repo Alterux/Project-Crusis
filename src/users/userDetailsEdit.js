@@ -12,23 +12,38 @@ import { lang, en, no } from '../util/lang';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
 import { inputDays, inputMonths, inputYears, inputUserType } from '../util/selectOptions';
 
-class UserDetailsEdit extends React.Component<{ match: { params: { id: number } } }> {
+type Props = {
+  match: {
+    params: {
+      id: number
+    }
+  }
+};
+
+type State = {};
+
+class UserDetailsEdit extends React.Component<Props, State> {
   refs: {
     saveUserButton: HTMLInputElement,
     deactivateUserButton: HTMLInputElement,
+    inputPhone: HTMLInputElement,
+    inputUsername: HTMLInputElement,
+    inputPassword: HTMLInputElement,
+    inputPasswordMatch: HTMLInputElement,
     inputFirstName: HTMLInputElement,
     inputMiddleName: HTMLInputElement,
     inputLastName: HTMLInputElement,
-    inputBirthDay: any,
-    inputBirthMonth: any,
-    inputBirthYear: any,
+    inputBirthDay: HTMLInputElement,
+    inputBirthMonth: HTMLInputElement,
+    inputBirthYear: HTMLInputElement,
+    inputAddress: HTMLInputElement,
+    inputPostcode: HTMLInputElement,
     inputCity: HTMLInputElement,
-    inputUserType: any,
-  }
+    inputUserType: HTMLInputElement & ?number
+  };
 
-  user = {}
+  user = {};
   signedInUser = {};
-
 
   render() {
     let user = this.user;
@@ -38,7 +53,7 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
     let inputFormUserType = () => {
       if (signedInUser.userType === 3) {
         return (
-          <div className="inputFormUserType">
+          <div className='inputFormUserType'>
             <h3>{lang.userType}</h3>
             {inputUserType('inputUserType', 'form formUserType')}
           </div>
@@ -49,35 +64,47 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
     return (
       <div className='content'>
 
-        <div className="inputForm">
+        <div className='inputForm'>
 
           <div className='buttonMenu'>
-            <button ref="deactivateUserButton">{lang.delete} {lang.user}</button>
+            <button ref='deactivateUserButton'>{lang.delete} {lang.user}</button>
           </div>
 
-          <div className="inputFormName">
+          <div className='inputFormName'>
             <h3>{lang.name}</h3>
-            <input className="form" type='text' ref='inputFirstName' placeholder={lang.firstName} required />
-            <input className="form" type='text' ref='inputMiddleName' placeholder={lang.middleName} />
-            <input className="form" type='text' ref='inputLastName' placeholder={lang.lastName} required />
+            <input className='form' type='text' ref='inputFirstName' placeholder={lang.firstName} required />
+            <input className='form' type='text' ref='inputMiddleName' placeholder={lang.middleName} />
+            <input className='form' type='text' ref='inputLastName' placeholder={lang.lastName} required />
           </div>
 
-          <div className="inputFormBirth">
+          <div className='inputFormBirth'>
             <h3>{lang.birthdate}</h3>
             {inputDays('inputBirthDay', 'form birth')}
             {inputMonths('inputBirthMonth', 'form birth month')}
             {inputYears('inputBirthYear', 'form birth year')}
           </div>
 
-          <div className="inputFormAddress">
+          <div className='inputFormPhone'>
+            <h3>{lang.phone}</h3>
+            <input className='form' type='text' ref='inputPhone' placeholder={lang.phone} required />
+          </div>
+
+          {/* <div className='inputFormEmail'>
+            <h3>{lang.email}</h3>
+            <input className='form' type='text' ref='inputUsername' placeholder={lang.email} required />
+          </div> */}
+
+          <div className='inputFormAddress'>
             <h3>{lang.address}</h3>
-            <input className="form" type='text' ref='inputCity' placeholder={lang.city} required />
+            <input className='form' type='text' ref='inputAddress' placeholder={lang.address} required />
+            <input className='form postcode' type='text' ref='inputPostcode' placeholder={lang.postcode} required />
+            <input className='form city' type='text' ref='inputCity' placeholder={lang.city} required />
           </div>
 
           {inputFormUserType()}
 
-          <div className="inputFormButton">
-            <button className="form" id="signInButton" ref='saveUserButton'>{lang.saveChanges}</button>
+          <div className='inputFormButton'>
+            <button className='form' id='signInButton' ref='saveUserButton'>{lang.saveChanges}</button>
           </div>
 
         </div>
@@ -101,11 +128,14 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
         this.refs.inputFirstName.value = this.user.firstName;
         this.refs.inputMiddleName.value = this.user.middleName;
         this.refs.inputLastName.value = this.user.lastName;
-        this.refs.inputBirthDay.value = age.getDate();
-        this.refs.inputBirthMonth.value = age.getMonth() + 1;
-        this.refs.inputBirthYear.value = age.getFullYear();
+        this.refs.inputBirthDay.value = age.getDate().toString();
+        this.refs.inputBirthMonth.value = (age.getMonth() + 1).toString();
+        this.refs.inputBirthYear.value = age.getFullYear().toString();
+        this.refs.inputPhone.value = this.user.phone.toString();
+        this.refs.inputAddress.value = this.user.address;
+        this.refs.inputPostcode.value = this.user.postcode.toString();
         this.refs.inputCity.value = this.user.city;
-        if (this.refs.inputUserType) this.refs.inputUserType.value = this.user.userType;
+        if (this.refs.inputUserType) this.refs.inputUserType.value = this.user.userType.toString();
 
         // deactivate button
         this.refs.deactivateUserButton.onclick = () => {
@@ -129,12 +159,15 @@ class UserDetailsEdit extends React.Component<{ match: { params: { id: number } 
           let middleName = this.refs.inputMiddleName.value;
           let lastName = this.refs.inputLastName.value;
           let birthDate = this.refs.inputBirthYear.value + '-' + this.refs.inputBirthMonth.value + '-' + this.refs.inputBirthDay.value;
+          let phone = parseInt(this.refs.inputPhone.value);
+          let address = this.refs.inputAddress.value;
+          let postcode = parseInt(this.refs.inputPostcode.value);
           let city = this.refs.inputCity.value;
           let userType = parseInt(this.refs.inputUserType.value);
           let id = this.user.id;
 
-          userService.editUser(firstName, middleName, lastName, birthDate, city, userType, id);
-          console.log("User account updated.");
+          userService.editUser(firstName, middleName, lastName, birthDate, phone, address, postcode, city, userType, id);
+          console.log('User account updated.');
 
           history.push('/user/' + user[0].id);
         }
