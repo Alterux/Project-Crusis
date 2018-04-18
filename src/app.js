@@ -21,6 +21,7 @@ import { EventCreation } from './events/eventCreation';
 import { Members } from './users/members';
 import { UserDetails } from './users/userDetails';
 import { UserDetailsEdit } from './users/userDetailsEdit';
+import { UserLoginEdit } from './users/userLoginEdit';
 
 import { ErrorMessage, errorMessage } from './util/errorMessage';
 
@@ -41,6 +42,7 @@ if(root) {
             <Route exact path='/members' component={Members} />
             <Route exact path='/user/:id' component={UserDetails} />
             <Route exact path='/user/:id/edit' component={UserDetailsEdit} />
+            <Route exact path='/user/:id/editLogin' component={UserLoginEdit} />
             <Route exact path='/events' component={Events} />
             <Route exact path='/event/create' component={EventCreation} />
             <Route exact path='/event/:id' component={EventDetails} />
