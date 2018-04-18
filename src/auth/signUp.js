@@ -82,7 +82,7 @@ class SignUp extends React.Component<Props, State> {
             {lang.signedUpMsg}
           </div>
         </div>
-      )
+      );
     } else {
       return (
         <div>
