@@ -1,7 +1,7 @@
+// @flow
 import 'fullcalendar';
 import $ from 'jquery';
 
-// @flow
 import * as React from 'react';
 import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
@@ -14,21 +14,32 @@ import { Event, eventService } from '../services/eventService';
 import { lang, en, no } from '../util/lang';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
 
-class Home extends React.Component<{}> {
+type Props = {};
+
+type State = {
+  loaded: boolean,
+};
+
+class Home extends React.Component<Props, State> {
   state = {
-    loaded: false
-  }
+    loaded: false,
+  };
 
   events = [];
   listEvents = [];
   popupHeaderText: string;
   popupBodyText: string;
+  popupBodyContent: HTMLDivElement;
 
   render() {
+    let loaded = this.state.loaded;
     let events = this.events;
     let listEvents = this.listEvents;
     let popupHeaderText: string;
     let popupBodyText: string;
+    let popupHeaderContent: HTMLElement;
+    let popupBodyContent: HTMLElement;
+    let popup: HTMLElement;
 
     $(function() {
       $('#calendar').fullCalendar({
@@ -45,19 +56,21 @@ class Home extends React.Component<{}> {
 
         // Click-function
         eventClick: function(event, coords) {
+          if (loaded) {
 
-          // popup title
-          popupHeaderContent.innerHTML = event.title;
+            // popup title
+            popupHeaderContent.innerHTML = event.title;
 
-          // popup content
-          popupBodyContent.innerHTML = event.details;
-          popupBodyContent.innerHTML += "<br /><br /><a href='"+'#/event/'+ event.id + "'}>" + lang.upcomingEventReadmore + "</a>";
+            // popup content
+            popupBodyContent.innerHTML = event.details;
+            popupBodyContent.innerHTML += "<br /><br /><a href='"+'#/event/'+ event.id + "'}>" + lang.upcomingEventReadmore + "</a>";
 
-          // popup style
-          popup.style.left = coords.clientX - 20 + 'px';
-          popup.style.top = coords.clientY - 20 + 'px';
-          popup.style.display = "block";
-          return false;
+            // popup style
+            popup.style.left = coords.clientX - 20 + 'px';
+            popup.style.top = coords.clientY - 20 + 'px';
+            popup.style.display = "block";
+            return false;
+          }
         }
       });
     });
