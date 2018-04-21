@@ -4,7 +4,7 @@ import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-import { Menu, menu } from '../main/menu';
+import { menu } from '../main/menu';
 
 import { User, userService } from '../services/userService';
 
@@ -13,7 +13,9 @@ import { ErrorMessage, errorMessage } from '../util/errorMessage';
 import { inputDays, inputMonths, inputYears } from '../util/selectOptions';
 
 type Props = {};
-type State = {};
+type State = {
+  accountCreated: boolean,
+};
 
 class SignUp extends React.Component<Props, State> {
   refs: {
@@ -30,11 +32,14 @@ class SignUp extends React.Component<Props, State> {
     inputAddress: HTMLInputElement,
     inputPostcode: HTMLInputElement,
     inputCity: HTMLInputElement,
-    inputButton: HTMLButtonElement
-  };
+    inputButton: HTMLButtonElement,
+    backButton: HTMLButtonElement
+  }
 
-  setState: any;
-  accountCreated: boolean = false;
+  state = {
+    accountCreated: false,
+  }
+
   errorValidation: boolean = false;
   errorPhone: boolean;
   errorEmail: boolean;
@@ -59,7 +64,6 @@ class SignUp extends React.Component<Props, State> {
   }
 
   render() {
-    let accountCreated = this.accountCreated;
     let errorPhone = this.errorPhone;
     let errorEmail = this.errorEmail;
     let errorPass = this.errorPass;
@@ -71,27 +75,32 @@ class SignUp extends React.Component<Props, State> {
     let errorPostcode = this.errorPostcode;
     let errorCity = this.errorCity;
 
-    if (accountCreated === true) {
+    if (this.state.accountCreated) {
       return (
-        <div>
+        <div className="signInPage">
           <div id="title">
             <img id="logo" src="resources/logo.svg"></img>
             <div className="titleText"><h1>{lang.title}</h1></div>
           </div>
-          <div className="inputForm">
+          <div className="big-entry inputForm">
             {lang.signedUpMsg}
+          </div>
+          <div className='big-entry inputForm'>
+            <div className='inputFormButton'>
+              <button className='lonely form inputButton backButton' ref='backButton'>{lang.back}</button>
+            </div>
           </div>
         </div>
       );
     } else {
       return (
-        <div>
+        <div className="signInPage">
           <div id="title">
             <img id="logo" src="resources/logo.svg"></img>
             <div className="titleText"><h1>{lang.title}</h1></div>
           </div>
 
-          <div className="inputForm">
+          <div className="big-entry inputForm">
             <form>
 
             <div className="inputFormAuth">
@@ -140,7 +149,11 @@ class SignUp extends React.Component<Props, State> {
               <button className="form" id="signInButton" ref='inputButton'>{lang.signUp}</button>
             </div>
             </form>
-
+          </div>
+          <div className='big-entry inputForm'>
+            <div className='inputFormButton'>
+              <button className='lonely form inputButton backButton' ref='backButton'>{lang.back}</button>
+            </div>
           </div>
         </div>
       );
@@ -149,6 +162,11 @@ class SignUp extends React.Component<Props, State> {
 
   componentDidMount() {
     if(menu) menu.forceUpdate();
+
+    // back button
+    this.refs.backButton.onclick = () => {
+      history.push('/signIn');
+    }
 
     // on input change => set to validate on input
     this.refs.inputPhone.onchange = () => {validatePhone(); this.refs.inputPhone.oninput = () => {validatePhone()}}
@@ -204,8 +222,7 @@ class SignUp extends React.Component<Props, State> {
         } else {
           // validation pass
           userService.signUp(userName, hashedPass, phone, firstName, middleName, lastName, birthDate, address, postcode, city).then(() => {
-            this.accountCreated = true;
-            this.forceUpdate();
+            this.setState({accountCreated: true});
           }).catch((error: Error) => {
             if(errorMessage) console.log(error);
           });
