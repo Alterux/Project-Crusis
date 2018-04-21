@@ -26,7 +26,7 @@ class MailService {
     let mailtext = lang.emailtext + newPassword;
 
     return new Promise((resolve, reject) => {
-      connection.query('UPDATE Users SET password=? WHERE email=?;', [newPasswordHashed, forgotPassEmail], (error, result, fields) => {
+      connection.query('UPDATE User SET password=? WHERE email=?;', [newPasswordHashed, forgotPassEmail], (error, result, fields) => {
         if(error) {
           reject(error);
           return;
