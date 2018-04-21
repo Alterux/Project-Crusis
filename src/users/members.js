@@ -36,34 +36,38 @@ class Members extends React.Component<Props, State> {
 
       case 3:
         return (
-          <div>
-            <div className='entry'>
-              <input ref='search' placeholder={lang.search}></input>
-            </div>
-            <div className='last entry'>
-              {lang.members}
-              <ul>
-                {listMembers}
-              </ul>
-              {lang.newMembers}
-              <ul>
-                {listNewMembers}
-              </ul>
+          <div className='contentWrapper'>
+            <div className='textBoxWrapper'>
+              <div className='entry'>
+                <input ref='search' placeholder={lang.search}></input>
+              </div>
+              <div className='last entry'>
+                {lang.members}
+                <ul>
+                  {listMembers}
+                </ul>
+                {lang.newMembers}
+                <ul>
+                  {listNewMembers}
+                </ul>
+              </div>
             </div>
           </div>
         );
 
       default:
         return (
-          <div>
-            <div className='entry'>
-              <input ref='search' placeholder='Search'></input>
-            </div>
-            <div className='last entry'>
-              {lang.members}
-              <ul>
-                {listMembers}
-              </ul>
+          <div className='contentWrapper'>
+            <div className='textBoxWrapper'>
+              <div className='entry'>
+                <input ref='search' placeholder='Search'></input>
+              </div>
+              <div className='last entry'>
+                {lang.members}
+                <ul>
+                  {listMembers}
+                </ul>
+              </div>
             </div>
           </div>
         );
