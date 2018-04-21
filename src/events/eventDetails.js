@@ -6,6 +6,7 @@ const history = createHashHistory();
 
 import { User, userService } from '../services/userService';
 import { Event, eventService } from '../services/eventService';
+import { EventRole, roleService } from '../services/roleService';
 
 import { lang, en, no } from '../util/lang';
 import { switchMonth } from '../util/modules';
@@ -30,13 +31,33 @@ class EventDetails extends React.Component<Props, State> {
 
   signedInUser = {};
   event = {};
+  roles = [];
   interested = [];
   isuser: boolean = false;
 
   render() {
     let event = this.event;
+    let listRoles = [];
     let listInterested = [];
     let eventButton;
+
+    let attendanceDay;
+    let attendanceMonth;
+    let attendanceMonthName;
+    let attendanceYear;
+    let attendanceHour;
+    let attendanceMinute;
+    if (event.attendanceDate) {
+      let date = new Date(event.attendanceDate);
+      attendanceDay = date.getDate();
+      attendanceMonth = date.getMonth() + 1;
+      attendanceMonthName = switchMonth(attendanceMonth);
+      attendanceYear = date.getFullYear();
+      attendanceHour = date.getHours();
+      attendanceHour = ("0" + attendanceHour).slice(-2);
+      attendanceMinute = date.getMinutes();
+      attendanceMinute = ("0" + attendanceMinute).slice(-2);
+    }
 
     let startDay;
     let startMonth;
@@ -45,7 +66,7 @@ class EventDetails extends React.Component<Props, State> {
     let startHour;
     let startMinute;
     if (event.startDate) {
-      let date  = new Date(event.startDate);
+      let date = new Date(event.startDate);
       startDay = date.getDate();
       startMonth = date.getMonth() + 1;
       startMonthName = switchMonth(startMonth);
@@ -63,7 +84,7 @@ class EventDetails extends React.Component<Props, State> {
     let endHour;
     let endMinute;
     if (event.endDate) {
-      let date  = new Date(event.endDate);
+      let date = new Date(event.endDate);
       endDay = date.getDate();
       endMonth = date.getMonth() + 1;
       endMonthName = switchMonth(endMonth);
@@ -88,46 +109,64 @@ class EventDetails extends React.Component<Props, State> {
       eventButton = <div className="applyEventButton"><button ref="applyEventButton">{lang.reportInterested}</button></div>
     }
 
+    // list roles with quantity for event
+    for (let role of this.roles) {
+      listRoles.push(<li key={role.id}>{role.name}: {role.quantity}</li>)
+    }
+
+    // list interested users
     for (let user of this.interested) {
       listInterested.push(<li key={user.id}><Link to={'/user/' + user.id}>{user.firstName} {user.middleName} {user.lastName}</Link></li>)
     }
 
     return (
-      <div className='textBoxWrapper'>
-        <div className='userDetailsBox'>
-          <div className='textBox'>
-            {editEventButton}
-            {eventButton}
-            <div className='entry'>
-              <h3>{lang.name}</h3>
-              {event.name}
-            </div>
-            <div className='entry'>
-              <h3>{lang.location}</h3>
-              {event.location}
-            </div>
-            <div className='entry'>
-              <h3>{lang.city}</h3>
-              {event.city}
-            </div>
-            <div className='entry'>
-              <h3>{lang.startDate}</h3>
-              {startDay}.{startMonthName}.{startYear}, {startHour}:{startMinute}
-            </div>
-            <div className='entry'>
-              <h3>{lang.endDate}</h3>
-              {endDay}.{endMonthName}.{endYear}, {endHour}:{endMinute}
-            </div>
-            <div className='last entry'>
-              <h3>{lang.details}</h3>
-              {event.details}
+      <div className='contentWrapper'>
+        <div className='textBoxWrapper'>
+          <div className='userDetailsBox'>
+            <div className='textBox'>
+              {editEventButton}
+              {eventButton}
+              <div className='entry'>
+                <h3>{lang.name}</h3>
+                {event.name}
+              </div>
+              <div className='entry'>
+                <h3>{lang.address}</h3>
+                <div>{event.address},</div>
+                <div>{event.postcode} {event.city}</div>
+              </div>
+              <div className='entry'>
+                <h3>{lang.details}</h3>
+                {event.details}
+              </div>
+              <div className='entry'>
+                <h3>{lang.equipment}</h3>
+                {event.equipment}
+              </div>
+              <div className='entry'>
+                <h3>{lang.attendanceDate}</h3>
+                {attendanceDay}.{attendanceMonthName}.{attendanceYear}, {attendanceHour}:{attendanceMinute}
+              </div>
+              <div className='entry'>
+                <h3>{lang.startDate}</h3>
+                {startDay}.{startMonthName}.{startYear}, {startHour}:{startMinute}
+              </div>
+              <div className='entry'>
+                <h3>{lang.endDate}</h3>
+                {endDay}.{endMonthName}.{endYear}, {endHour}:{endMinute}
+              </div>
+              <div className='last entry'>
+                <h3>{lang.roles}</h3>
+                {listRoles}
+              </div>
+
             </div>
           </div>
-        </div>
-        <div className='competenceBox'>
-          <div className='textBox'>
-            <h3>{lang.interested}</h3>
-            {listInterested}
+          <div className='competenceBox'>
+            <div className='textBox'>
+              <h3>{lang.interested}</h3>
+              {listInterested}
+            </div>
           </div>
         </div>
       </div>
@@ -142,7 +181,14 @@ class EventDetails extends React.Component<Props, State> {
       // get event
       eventService.getEvent(this.props.match.params.id).then((event) => {
         this.event = event[0];
-        this.forceUpdate();
+
+        // get roles for this event
+        roleService.getEventRoles(this.props.match.params.id).then((roles) => {
+          this.roles = roles;
+          this.forceUpdate();
+        }).catch((error: Error) => {
+          if(errorMessage) console.log(error);
+        });
 
       }).catch((error: Error) => {
         if(errorMessage) console.log(error);
