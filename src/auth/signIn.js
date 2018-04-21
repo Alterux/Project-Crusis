@@ -4,7 +4,7 @@ import { Link, NavLink, HashRouter, Switch, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-import { Menu, menu } from '../main/menu';
+import { menu } from '../main/menu';
 
 import { User, userService } from '../services/userService';
 
@@ -19,6 +19,8 @@ class SignIn extends React.Component<Props, State> {
     signInUsername: HTMLInputElement,
     signInPassword: HTMLInputElement,
     signInButton: HTMLButtonElement,
+    signUpButton: HTMLButtonElement,
+    forgotPassButton: HTMLButtonElement,
   };
 
   hashCode(str: string) {
@@ -34,15 +36,23 @@ class SignIn extends React.Component<Props, State> {
 
   render() {
     return (
-      <div id="signInPage">
+      <div className="signInPage">
         <div id="title">
           <img id="logo" src="resources/logo.svg"></img>
           <div className="titleText"><h1>{lang.title}</h1></div>
         </div>
-        <div className="inputForm">
+        <div className="big-entry inputForm">
           <input className="form formAuth" id="formUser" type='text' ref='signInUsername' placeholder={lang.email} />
           <input className="form formAuth" id="formPass" type='password' ref='signInPassword' placeholder={lang.password} />
           <button className="form" id="signInButton" ref='signInButton'>{lang.signIn}</button>
+        </div>
+        <div className='inputForm'>
+          <div className='entry inputFormButton'>
+            <button className='lonely form inputButton backButton' ref='signUpButton'>{lang.signUp}</button>
+          </div>
+          <div className='inputFormButton'>
+            <button className='lonely form inputButton deleteButton' ref='forgotPassButton'>{lang.forgotPass}</button>
+          </div>
         </div>
       </div>
     );
@@ -67,6 +77,14 @@ class SignIn extends React.Component<Props, State> {
 
     this.refs.signInButton.onclick = () => {
       submit();
+    }
+
+    this.refs.signUpButton.onclick = () => {
+      history.push('/signUp');
+    }
+
+    this.refs.forgotPassButton.onclick = () => {
+      history.push('/forgotPass');
     }
 
     let submit = () => {
