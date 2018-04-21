@@ -5,11 +5,14 @@ import { connection } from './connect';
 class Event {
   id: number;
   name: string;
-  location: string;
+  details: string;
+  equipment: string;
+  address: string;
+  postcode: number;
   city: string;
+  attendanceDate: Date;
   startDate: Date;
   endDate: Date;
-  details: string;
 }
 
 class Interested {
@@ -53,6 +56,19 @@ class EventService {
     });
   }
 
+  getUserInterests(id: number): Promise<Event[]> {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM Event e, Interested WHERE e.id = event_id AND user_id = ?', [id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
   getEvent(id: number): Promise<Event[]> {
     return new Promise((resolve, reject) => {
       connection.query('SELECT * FROM Event WHERE id=?', [id], (error, result) => {
@@ -75,20 +91,6 @@ class EventService {
         }
 
         resolve(result);
-      });
-    });
-  }
-
-  editEvent(id: number, name: string, location: string, city: string, startDate: string, endDate: string, details: string): Promise<void> {
-    return new Promise((resolve, reject) => {
-      connection.query('UPDATE Event SET name=?, location=?, city=?, startDate=?, endDate=?, details=? WHERE id=?;',
-      [name, location, city, startDate, endDate, details, id], (error, result) => {
-        if(error) {
-          reject(error);
-          return;
-        }
-
-        resolve();
       });
     });
   }
@@ -145,10 +147,37 @@ class EventService {
     });
   }
 
-  createEvent(newEvent: Event): Promise<void> {
+  editEvent(name: string, details: string, equipment: string, address: string, postcode: number, city: string, attendanceDate: string, startDate: string, endDate: string, id: number): Promise<void> {
     return new Promise((resolve, reject) => {
-      connection.query('INSERT INTO `Event` ( `name`, `location`, `city`, `startDate`, `endDate`, `details`) VALUES (?, ?, ?, ?, ?, ?)',
-       [newEvent.name, newEvent.location, newEvent.city, newEvent.startDate, newEvent.endDate, newEvent.details], (error, result) => {
+      connection.query('UPDATE Event SET name=?, details=?, equipment=?, address=?, postcode=?, city=?, attendanceDate=?, startDate=?, endDate=? WHERE id=?',
+       [name, details, equipment, address, postcode, city, attendanceDate, startDate, endDate, id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
+  createEvent(name: string, details: string, equipment: string, address: string, postcode: number, city: string, attendanceDate: string, startDate: string, endDate: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('INSERT INTO Event (name, details, equipment, address, postcode, city, attendanceDate, startDate, endDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+       [name, details, equipment, address, postcode, city, attendanceDate, startDate, endDate], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
+  getCreatedEvent(): Promise<Event[]> {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM Event WHERE id = LAST_INSERT_ID()', (error, result) => {
         if(error) {
           reject(error);
           return;
