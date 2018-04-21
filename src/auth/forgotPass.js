@@ -24,6 +24,7 @@ class ForgotPass extends React.Component<Props, State> {
   refs: {
     inputForgotPassEmail: HTMLInputElement,
     forgotPassButton: HTMLButtonElement,
+    backButton: HTMLButtonElement,
   };
 
   setState: any;
@@ -37,16 +38,16 @@ class ForgotPass extends React.Component<Props, State> {
     let forgotPass = () => {
       if (this.state.emailSent) {
         return (
-            <div className="inputForm">
+            <div className="big-entry inputForm">
               {lang.resetPassMsg}
             </div>
         );
       } else {
         return (
-          <div className="inputForm">
+          <div className="big-entry inputForm">
 
             <div className="forgotPassHeadline"><h3>{lang.forgotPassHeadline}</h3></div><br></br>
-              <input className="form" placeholder="123@example.com" ref="inputForgotPassEmail" required></input>
+              <input className="form" placeholder={lang.email} ref="inputForgotPassEmail" required></input>
               {errorEmail ? <div className='errorInput'><i />{lang.errorEmail}</div> : null}
               {errorEmailExist ? <div className='errorInput'><i />{lang.errorEmailExist}</div> : null}
             <div className="forgotPassButton">
@@ -58,20 +59,38 @@ class ForgotPass extends React.Component<Props, State> {
     }
 
     return (
-      <div>
+      <div className="signInPage">
         <div id="title">
           <img id="logo" src="resources/logo.svg"></img>
           <div className="titleText"><h1>{lang.title}</h1></div>
         </div>
         {forgotPass()}
+        <div className='big-entry inputForm'>
+          <div className='inputFormButton'>
+            <button className='lonely form inputButton backButton' ref='backButton'>{lang.back}</button>
+          </div>
+        </div>
       </div>
     );
   };
 
   componentDidMount() {
 
+    // listen for enter on email input
+    this.refs.inputForgotPassEmail.onkeydown = (e) => {
+      if (e.keyCode === 13) {
+        validateEmail();
+      }
+    }
+
+    // forgot pass button
     this.refs.forgotPassButton.onclick = () => {
       validateEmail();
+    }
+
+    // back button
+    this.refs.backButton.onclick = () => {
+      history.push('/signIn');
     }
 
     //Email format
