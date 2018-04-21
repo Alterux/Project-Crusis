@@ -24,12 +24,14 @@
   padding-top: 0.5em;
 }
 
-
+.fc-scroller, .fc-day-grid-container {
+  overflow-y: hidden !important;
+  height: 100% !important;
+}
 
 /*Calendar-window */
 #calendarwindow {
-  width: 50%;
-  height: 60%;
+  width: 30em;
   margin-top: 2em;
   border-style: solid;
   border-color: black;
@@ -61,14 +63,25 @@
     animation-duration: 0,3s
 }
 .popupheader {
-    padding: 5px 16px;
-    background-color: #F6511D;
+    padding: .5em;
+    background-color: #1b9dec;
     color: white;
     font-size: 1em;
+    overflow: hidden;
+}
+
+#popupHeaderContent {
+  float: left;
+}
+
+.close {
+  margin-left: .3em;
+  margin-top: -.2em;
+  margin-bottom: -.5em;
 }
 
 .popupbody {
-  padding: 2px 16px;
+  padding: .5em;
   font-size: 0.8em;
 }
 .popupbuttonposition {
