@@ -6,7 +6,7 @@ import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
 import { Home } from './main/home';
-import { Menu, BottomBar } from './main/menu';
+import { Menu } from './main/menu';
 
 import { SignIn } from './auth/signIn';
 import { SignUp } from './auth/signUp';
@@ -49,7 +49,6 @@ if(root) {
             <Route exact path='/event/:id/edit' component={EventDetailsEdit} />
           </Switch>
         </div>
-        <BottomBar />
       </div>
     </HashRouter>
   ), root);
