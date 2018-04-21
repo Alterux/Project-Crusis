@@ -66,40 +66,42 @@ class UserLoginEdit extends React.Component<Props, State> {
     }
 
     return (
-      <div className='content'>
+      <div className='contentWrapper'>
+        <div className='textBoxWrapper'>
 
-        <div className='big-entry inputForm'>
-          <div className='inputFormButton'>
-            <button className='lonely form inputButton backButton' ref='backButton'>{lang.back}</button>
+          <div className='big-entry inputForm'>
+            <div className='inputFormEmail'>
+              <h3>{lang.change} {lang.email}</h3>
+              <input className='form' type='email' ref='inputEmail' placeholder={lang.email} required />
+              <input className='form' type='password' ref='inputPassword' placeholder={lang.password} required />
+            </div>
+            <div className='inputFormButton'>
+              <button className='form' id='signInButton' ref='saveEmailButton'>{lang.update} {lang.email}</button>
+            </div>
           </div>
-        </div>
 
-        <div className='big-entry inputForm'>
-          <div className='inputFormEmail'>
-            <h3>{lang.change} {lang.email}</h3>
-            <input className='form' type='text' ref='inputEmail' placeholder={lang.email} required />
-            <input className='form' type='text' ref='inputPassword' placeholder={lang.password} required />
+          <div className='big-entry inputForm'>
+            <div className='inputFormPassword'>
+              <h3>{lang.change} {lang.password}</h3>
+              <input className='form' type='password' ref='inputCurrentPassword' placeholder={lang.currentPassword} required />
+              <input className='form' type='password' ref='inputNewPassword' placeholder={lang.newPassword} required />
+              <input className='form' type='password' ref='inputNewPasswordMatch' placeholder={lang.newPasswordMatch} required />
+            </div>
+            <div className='inputFormButton'>
+              <button className='form' id='signInButton' ref='savePasswordButton'>{lang.update} {lang.password}</button>
+            </div>
           </div>
-          <div className='inputFormButton'>
-            <button className='form' id='signInButton' ref='saveEmailButton'>{lang.update} {lang.email}</button>
-          </div>
-        </div>
 
-        <div className='big-entry inputForm'>
-          <div className='inputFormPassword'>
-            <h3>{lang.change} {lang.password}</h3>
-            <input className='form' type='text' ref='inputCurrentPassword' placeholder={lang.currentPassword} required />
-            <input className='form' type='text' ref='inputNewPassword' placeholder={lang.newPassword} required />
-            <input className='form' type='text' ref='inputNewPasswordMatch' placeholder={lang.newPasswordMatch} required />
+          <div className='big-entry inputForm'>
+            <div className='inputFormButton'>
+              <button className='lonely form inputButton backButton' ref='backButton'>{lang.back}</button>
+            </div>
           </div>
-          <div className='inputFormButton'>
-            <button className='form' id='signInButton' ref='savePasswordButton'>{lang.update} {lang.password}</button>
-          </div>
-        </div>
 
-        <div className='inputForm'>
-          <div className='inputFormButton'>
-            <button className='lonely form inputButton deleteButton' ref='deactivateUserButton'>{lang.delete} {lang.user}</button>
+          <div className='inputForm'>
+            <div className='inputFormButton'>
+              <button className='lonely form inputButton deleteButton' ref='deactivateUserButton'>{lang.delete} {lang.user}</button>
+            </div>
           </div>
         </div>
       </div>
