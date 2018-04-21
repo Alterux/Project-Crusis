@@ -29,9 +29,41 @@ h3 {
   font-size: 1em;
 }
 
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=time]::-webkit-inner-spin-button,
+input[type=time]::-webkit-outer-spin-button {
+  margin-top: .5em;
+}
+
 .content {
-  margin: 8px;
   flex: 1 0 auto;
+  background-color: #f6f4ee;
+}
+
+.contentWrapper {
+  box-shadow: 0px 0px 5px;
+  min-width: 23em;
+  max-width: 65em;
+  height: 100%;
+  min-height: 94.2vh;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -.5em;
+  padding-bottom: 1em;
+  background-color: #ffffff;
+}
+
+.textBoxWrapper {
+  /* max-width: 50em; */
+  padding: 1em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .big-entry {
@@ -113,6 +145,25 @@ h3 {
   background-color: #bd0500;
 }
 
+.inputRoles {
+  width: 12em;
+}
+
+.inputQuantity {
+  width: 3em;
+}
+
+.removeInputButton {
+  width: 3em;
+  margin: 0;
+  margin-left: .5em;
+}
+
+.addInputButton {
+  width: 3em;
+  margin: 0;
+}
+
 .deleteButton:hover {
   background-color: #b30602;
 }
@@ -127,19 +178,44 @@ h3 {
   margin-right: 1.43em;
 }
 
+.addRemoveButton {
+  width: 3em;
+}
+
 .postcode {
   width: 5em;
-  padding-left: .2em;
   margin-right: 1.43em;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.right-correction {
+  margin-top: -1.1em;
 }
 
 .city {
   width: 13.5em;
-  padding-left: .2em;
 }
 
 .month {
   width: 7em;
+}
+
+.date {
+  width: 10em;
+  padding-left: .5em;
+}
+
+.time {
+  width: 7em;
+  margin-right: 0;
+  padding-left: .5em;
 }
 
 .year {
