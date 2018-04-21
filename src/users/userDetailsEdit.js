@@ -24,6 +24,7 @@ type State = {};
 
 class UserDetailsEdit extends React.Component<Props, State> {
   refs: {
+    backButton: HTMLInputElement,
     saveUserButton: HTMLInputElement,
     deactivateUserButton: HTMLInputElement,
     inputPhone: HTMLInputElement,
@@ -62,51 +63,48 @@ class UserDetailsEdit extends React.Component<Props, State> {
     }
 
     return (
-      <div className='content'>
+      <div className='contentWrapper'>
+        <div className='textBoxWrapper'>
 
-        <div className='inputForm'>
+          <div className='big-entry inputForm'>
+            <div className='inputFormName'>
+              <h3>{lang.name}</h3>
+              <input className='form' type='text' ref='inputFirstName' placeholder={lang.firstName} required />
+              <input className='form' type='text' ref='inputMiddleName' placeholder={lang.middleName} />
+              <input className='form' type='text' ref='inputLastName' placeholder={lang.lastName} required />
+            </div>
 
-          <div className='buttonMenu'>
-            <button ref='deactivateUserButton'>{lang.delete} {lang.user}</button>
+            <div className='inputFormBirth'>
+              <h3>{lang.birthdate}</h3>
+              {inputDays('inputBirthDay', 'form birth')}
+              {inputMonths('inputBirthMonth', 'form birth month')}
+              {inputYears('inputBirthYear', 'form birth year')}
+            </div>
+
+            <div className='inputFormPhone'>
+              <h3>{lang.phone}</h3>
+              <input className='form' type='text' ref='inputPhone' placeholder={lang.phone} required />
+            </div>
+
+            <div className='inputFormAddress'>
+              <h3>{lang.address}</h3>
+              <input className='form' type='text' ref='inputAddress' placeholder={lang.address} required />
+              <input className='form postcode' type='text' ref='inputPostcode' placeholder={lang.postcode} required />
+              <input className='form city' type='text' ref='inputCity' placeholder={lang.city} required />
+            </div>
+
+            {inputFormUserType()}
+
+            <div className='inputFormButton'>
+              <button className='form' id='signInButton' ref='saveUserButton'>{lang.saveChanges}</button>
+            </div>
           </div>
 
-          <div className='inputFormName'>
-            <h3>{lang.name}</h3>
-            <input className='form' type='text' ref='inputFirstName' placeholder={lang.firstName} required />
-            <input className='form' type='text' ref='inputMiddleName' placeholder={lang.middleName} />
-            <input className='form' type='text' ref='inputLastName' placeholder={lang.lastName} required />
+          <div className='big-entry inputForm'>
+            <div className='inputFormButton'>
+              <button className='lonely form inputButton backButton' ref='backButton'>{lang.back}</button>
+            </div>
           </div>
-
-          <div className='inputFormBirth'>
-            <h3>{lang.birthdate}</h3>
-            {inputDays('inputBirthDay', 'form birth')}
-            {inputMonths('inputBirthMonth', 'form birth month')}
-            {inputYears('inputBirthYear', 'form birth year')}
-          </div>
-
-          <div className='inputFormPhone'>
-            <h3>{lang.phone}</h3>
-            <input className='form' type='text' ref='inputPhone' placeholder={lang.phone} required />
-          </div>
-
-          {/* <div className='inputFormEmail'>
-            <h3>{lang.email}</h3>
-            <input className='form' type='text' ref='inputUsername' placeholder={lang.email} required />
-          </div> */}
-
-          <div className='inputFormAddress'>
-            <h3>{lang.address}</h3>
-            <input className='form' type='text' ref='inputAddress' placeholder={lang.address} required />
-            <input className='form postcode' type='text' ref='inputPostcode' placeholder={lang.postcode} required />
-            <input className='form city' type='text' ref='inputCity' placeholder={lang.city} required />
-          </div>
-
-          {inputFormUserType()}
-
-          <div className='inputFormButton'>
-            <button className='form' id='signInButton' ref='saveUserButton'>{lang.saveChanges}</button>
-          </div>
-
         </div>
       </div>
     );
@@ -123,6 +121,11 @@ class UserDetailsEdit extends React.Component<Props, State> {
         this.user = user[0];
         this.forceUpdate();
 
+        // back button
+        this.refs.backButton.onclick = () => {
+          history.push('/user/' + user[0].id);
+        }
+
         let age = new Date(user[0].birthDate);
 
         this.refs.inputFirstName.value = this.user.firstName;
@@ -136,21 +139,6 @@ class UserDetailsEdit extends React.Component<Props, State> {
         this.refs.inputPostcode.value = this.user.postcode.toString();
         this.refs.inputCity.value = this.user.city;
         if (this.refs.inputUserType) this.refs.inputUserType.value = this.user.userType.toString();
-
-        // deactivate button
-        this.refs.deactivateUserButton.onclick = () => {
-          let result = confirm(lang.confirmUserDelete);
-          if (result) {
-            userService.editUserType(-this.user.userType, this.props.match.params.id);
-            if (this.user.id === signedInUser.id) {
-              localStorage.removeItem('signedInUser');
-              history.push('/');
-            } else {
-              history.push('/members');
-            }
-            this.forceUpdate();
-          }
-        }
 
         // save button
         this.refs.saveUserButton.onclick = () => {
