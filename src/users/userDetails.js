@@ -74,10 +74,6 @@ class UserDetails extends React.Component<Props, State> {
 
     // prints competence separated by comma
     let listSkills = [];
-    let skills;
-    if (user.competence) {
-      skills = user.competence.split(',');
-    }
 
     let editCompetence = this.editCompetence;
 
@@ -197,7 +193,7 @@ class UserDetails extends React.Component<Props, State> {
       let userCompetence = [];
       for (let competence of this.competences) {
         let cname = competence.name;
-        listCompetences.push(<div><input type='checkbox' ref={cname} />{lang[cname]}</div>);
+        listCompetences.push(<div key={cname}><input type='checkbox' ref={cname} />{lang[cname]}</div>);
       }
 
       return (
@@ -219,18 +215,20 @@ class UserDetails extends React.Component<Props, State> {
     }
 
     return (
-      <div className="textBoxWrapper">
-        <div className="userDetailsBox">
-          <div className="textBoxHead">
-            <h3 className="textBoxTitle">{lang.userInfo}</h3>
+      <div className='contentWrapper'>
+        <div className="textBoxWrapper">
+          <div className="userDetailsBox">
+            <div className="textBoxHead">
+              <h3 className="textBoxTitle">{lang.userInfo}</h3>
+            </div>
+            {userDetailsShow()}
           </div>
-          {userDetailsShow()}
-        </div>
-        <div className="competenceBox">
-          <div className="textBoxHead">
-            <h3 className="textBoxTitle">{lang.competence}</h3>
+          <div className="competenceBox">
+            <div className="textBoxHead">
+              <h3 className="textBoxTitle">{lang.competence}</h3>
+            </div>
+            {editCompetence ? competenceEdit() : competenceShow()}
           </div>
-          {editCompetence ? competenceEdit() : competenceShow()}
         </div>
       </div>
     );
