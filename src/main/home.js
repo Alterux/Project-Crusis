@@ -32,91 +32,86 @@ class Home extends React.Component<Props, State> {
   popupBodyContent: HTMLDivElement;
 
   render() {
-    let loaded = this.state.loaded;
     let events = this.events;
     let listEvents = this.listEvents;
-    let popupHeaderText: string;
-    let popupBodyText: string;
-    let popupHeaderContent: HTMLElement;
-    let popupBodyContent: HTMLElement;
-    let popup: HTMLElement;
 
-    $(function() {
-      $('#calendar').fullCalendar({
+    if (this.state.loaded) {
+      $(function() {
+        $('#calendar').fullCalendar({
 
-        //Customization of the calendar
-        weekNumberCalculation: "ISO",
-        monthNames: [lang.jan, lang.feb, lang.mar, lang.apr, lang.may, lang.jun, lang.jul, lang.aug, lang.sep, lang.oct, lang.nov, lang.dec],
-        monthNamesShort: [lang.jan.slice(0, 3), lang.feb.slice(0, 3), lang.mar.slice(0, 3), lang.apr.slice(0, 3), lang.may.slice(0, 3), lang.jun.slice(0, 3), lang.jul.slice(0, 3), lang.aug.slice(0, 3), lang.sep.slice(0, 3), lang.oct.slice(0, 3), lang.nov.slice(0, 3), lang.dec.slice(0, 3)],
-        dayNames: [lang.mon, lang.tue, lang.wed, lang.thu, lang.fri, lang.sat, lang.sun],
-        dayNamesShort: [lang.sun.slice(0, 3), lang.mon.slice(0, 3), lang.tue.slice(0, 3), lang.wed.slice(0, 3), lang.thu.slice(0, 3), lang.fri.slice(0, 3), lang.sat.slice(0, 3)],
-        buttonText: {today:lang.tod},
-        aspectRatio: 1.5,
-        events: events,
+          //Customization of the calendar
+          weekNumberCalculation: "ISO",
+          monthNames: [lang.jan, lang.feb, lang.mar, lang.apr, lang.may, lang.jun, lang.jul, lang.aug, lang.sep, lang.oct, lang.nov, lang.dec],
+          monthNamesShort: [lang.jan.slice(0, 3), lang.feb.slice(0, 3), lang.mar.slice(0, 3), lang.apr.slice(0, 3), lang.may.slice(0, 3), lang.jun.slice(0, 3), lang.jul.slice(0, 3), lang.aug.slice(0, 3), lang.sep.slice(0, 3), lang.oct.slice(0, 3), lang.nov.slice(0, 3), lang.dec.slice(0, 3)],
+          dayNames: [lang.mon, lang.tue, lang.wed, lang.thu, lang.fri, lang.sat, lang.sun],
+          dayNamesShort: [lang.sun.slice(0, 3), lang.mon.slice(0, 3), lang.tue.slice(0, 3), lang.wed.slice(0, 3), lang.thu.slice(0, 3), lang.fri.slice(0, 3), lang.sat.slice(0, 3)],
+          buttonText: {today:lang.tod},
+          aspectRatio: 1.5,
+          events: events,
 
-        // Click-function
-        eventClick: function(event, coords) {
-          if (loaded) {
-
-            // popup title
+          // Click-function
+          eventClick: function(event, coords) {
+            // popup title // $FlowFixMe
             popupHeaderContent.innerHTML = event.title;
 
-            // popup content
+            // popup content // $FlowFixMe
             popupBodyContent.innerHTML = event.details;
             popupBodyContent.innerHTML += "<br /><br /><a href='"+'#/event/'+ event.id + "'}>" + lang.upcomingEventReadmore + "</a>";
 
-            // popup style
+            // popup style // $FlowFixMe
             popup.style.left = coords.clientX - 20 + 'px';
             popup.style.top = coords.clientY - 20 + 'px';
             popup.style.display = "block";
             return false;
           }
-        }
+        });
       });
-    });
+    }
 
     let signedInUser = userService.getSignedInUser();
 
     return (
-      <div>
-        <div className='home-headlines'>
-          <h3>{lang.loggedInMsg}</h3>
-        </div>
-        <div id='calendarwindow'>
-          {this.state.loaded ? <div id="calendar"></div> : null}
-          <div className='popupstyle' id='popup' ref='popup'>
-            <div className='popupcontent'>
-              <div className='popupheader'>
-                <span className='close'>&times;</span>
-                <div id='popupHeaderContent'></div>
+      <div className='contentWrapper'>
+        <div className='textBoxWrapper'>
+          <div className='home-headlines'>
+            <h3>{lang.loggedInMsg}</h3>
+          </div>
+          <div id='calendarwindow'>
+            {this.state.loaded ? <div id="calendar"></div> : null}
+            <div className='popupstyle' id='popup' ref='popup'>
+              <div className='popupcontent'>
+                <div className='popupheader'>
+                  <span className='close'>&times;</span>
+                  <div id='popupHeaderContent'></div>
+                </div>
+                <div className='popupbody'>
+                  <div id='popupBodyContent'></div>
+                </div>
               </div>
-              <div className='popupbody'>
-                <div id='popupBodyContent'></div>
+            </div>
+          </div>
+          <div className='rightContainer'>
+            <div className="news">
+              <div className="newsheading">
+                <h3>{lang.newsheading}</h3>
+              </div>
+              <div className="newsText">
+                {lang.newsText}
+              </div>
+              <img src="http://www.stiftelsen-uni.no/r/img/P2191.jpg" id="news-image"></img>
+            </div>
+            <div className="upcomingEvents">
+              <div className="upcomingEvents-headline entry">
+                <h3>{lang.upcomingEventsHeadline}</h3>
+              </div>
+              <div className="upcomingEvents-events">
+                <ul>
+                  {listEvents}
+                </ul>
               </div>
             </div>
+            <div>
           </div>
-        </div>
-        <div className='rightContainer'>
-          <div className="news">
-            <div className="newsheading">
-              <h3>{lang.newsheading}</h3>
-            </div>
-            <div className="newsText">
-              {lang.newsText}
-            </div>
-            <img src="http://www.stiftelsen-uni.no/r/img/P2191.jpg" id="news-image"></img>
-          </div>
-          <div className="upcomingEvents">
-            <div className="upcomingEvents-headline entry">
-              <h3>{lang.upcomingEventsHeadline}</h3>
-            </div>
-            <div className="upcomingEvents-events">
-              <ul>
-                {listEvents}
-              </ul>
-            </div>
-          </div>
-          <div>
         </div>
       </div>
     </div>
@@ -133,7 +128,7 @@ class Home extends React.Component<Props, State> {
         for (let event of events) {
           this.listEvents.push(
             <li key={event.id}>
-              {event.name} - {event.location} - {event.city}
+              {event.name} - {event.address} - {event.city}
               <div className='entry'>
                 <Link to={'/event/' + event.id}>
                   {lang.upcomingEventReadmore}
@@ -148,7 +143,7 @@ class Home extends React.Component<Props, State> {
       });
 
       // get events user participates in and add to calendar
-      eventService.getUserEvents(signedInUser.id).then((events) => {
+      eventService.getUserInterests(signedInUser.id).then((events) => {
 
         for (let event of events) {
           let id = event.id;
