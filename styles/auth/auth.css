@@ -1,3 +1,16 @@
+.signInPage {
+  margin-top: 1em;
+  background-color: #ffffff;
+  min-height: 100vh;
+  height: 96vh;
+}
+
+.langSelectAuth {
+  position: absolute;
+  top: .5em;
+  right: .5em;
+}
+
 #signInBar {
   flex-shrink: 0;
   box-shadow: none;
@@ -13,13 +26,6 @@
   position: absolute;
   top: .8em;
   right: 1em;
-}
-
-#signOut {
-  position: absolute;
-  margin-right: .5em;
-  right: .5em;
-  top: .8em;
 }
 
   /****************/
@@ -74,6 +80,7 @@
 
   width: 25em;
   margin: auto;
+  padding-top: .5em;
   margin-top: -1em;
   vertical-align: middle;
   overflow: hidden;
