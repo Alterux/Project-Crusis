@@ -15,6 +15,7 @@ let en = {
   welcomeMsg: 'Welcome to Red Cross!',
   loggedInMsg: 'My Events: ',
   signedUpMsg: 'User account created, please wait for confirmation.',
+  eventCreatedMsg: 'Event created.',
   resetPassMsg: 'Password sent, please log in with the password receieved in your email.',
   forgotPassMsg: 'Page under construction.',
   forgotPassHeadline: 'Please enter your email below and you will recieve a new generated password',
@@ -31,6 +32,7 @@ let en = {
   change: 'Change',
   update: 'Update',
   back: 'Back',
+  toEvent: 'To the Event',
   edit: 'Edit',
   editLogin: 'Edit login',
   save: 'Save',
@@ -64,13 +66,18 @@ let en = {
   birthdate: 'Date of birth',
   startDate: 'Start date',
   endDate: 'End date',
+  attendanceDate: 'Attendance Date',
   location: 'Location',
   details: 'Details',
+  equipment: 'Equipment',
   age: 'Age',
   address: 'Address',
   postcode: 'Zip',
   city: 'City',
   points: 'Points',
+  theTime: 'Time',
+  roles: 'Roles',
+  quantity: 'Quantity',
 
   signIn: 'Sign in',
   signOut: 'Sign out',
@@ -165,6 +172,9 @@ let en = {
   upcomingEventCity: 'City',
   upcomingEventReadmore: 'Read more',
 
+  // Roles
+  noRole: 'No Role',
+  pickRole: 'Pick Role',
 
   // Skills from competence
   noCompetence: 'No competence registered',
@@ -213,6 +223,7 @@ let no = {
   welcomeMsg: 'Velkommen til Røde Kors!',
   loggedInMsg: 'Mine Arrangementer: ',
   signedUpMsg: 'Brukerkonto opprettet, vennligst vent på godkjenning.',
+  eventCreatedMsg: 'Arrangement opprettet.',
   resetPassMsg: 'Passord sendt, vennligst logg inn med passord mottatt i epost.',
   forgotPassMsg: 'Side under konstruksjon.',
   forgotPassHeadline: 'Vennligst før inn din epost nedenfor, så vil du få tilsendt et nytt generert passord',
@@ -229,6 +240,7 @@ let no = {
   change: 'Endre',
   update: 'Oppdater',
   back: 'Tilbake',
+  toEvent: 'Til Arrangementet',
   edit: 'Rediger',
   editLogin: 'Rediger login',
   save: 'Lagre',
@@ -262,13 +274,18 @@ let no = {
   birthdate: 'Fødselsdato',
   startDate: 'Startdato',
   endDate: 'Sluttdato',
+  attendanceDate: 'Oppmøtedato',
   location: 'Sted',
   details: 'Detaljer',
+  equipment: 'Verktøy',
   age: 'Alder',
   address: 'Adresse',
   postcode: 'Postnr',
   city: 'Poststed',
   points: 'Poeng',
+  theTime: 'Klokkeslett',
+  roles: 'Roller',
+  quantity: 'Antall',
 
   signIn: 'Logg inn',
   signOut: 'Logg ut',
@@ -363,6 +380,9 @@ let no = {
   upcomingEventCity: 'By',
   upcomingEventReadmore: 'Les mer',
 
+  // Roles
+  noRole: 'Ingen Rolle',
+  pickRole: 'Velg Rolle',
 
   // Skills from competence
   noCompetence: 'Ingen kompetanse registrert',
