@@ -250,7 +250,7 @@ class EventDetails extends React.Component<Props, State> {
             this.refs.unapplyEventButton.onclick = () => {
               this.refs.unapplyEventButton.disabled = true;
               this.isuser = false;
-              eventService.unapplyEvent(signedInUser.id);
+              eventService.unapplyEvent(signedInUser.id, this.props.match.params.id);
               getInterested();
             }
           }
