@@ -8,12 +8,13 @@ let en = {
   events: 'Events',
   members: 'Members',
   newMembers: 'New Members',
+  deactivatedMembers: 'Deactivated Members',
   interested: 'Interested',
   participants: 'Participants',
 
   title: 'Red Cross',
   welcomeMsg: 'Welcome to Red Cross!',
-  loggedInMsg: 'My Events: ',
+  loggedInMsg: 'My Events',
   signedUpMsg: 'User account created, please wait for confirmation.',
   eventCreatedMsg: 'Event created.',
   resetPassMsg: 'Password sent, please log in with the password receieved in your email.',
@@ -43,6 +44,7 @@ let en = {
   delete: 'Delete',
   search: 'Search',
   deactivate: 'Deactivate',
+  reactivate: 'Reactivate',
   contact: 'Contact',
   reportInterested: 'Report interest',
   reportNotInterested: 'Remove interest',
@@ -99,6 +101,7 @@ let en = {
   errorEmail: 'Please enter a valid email-address!',
   errorEmailExist: 'The email-address does not exist!',
   errorPass: 'Please enter a valid password!',
+  errorPassInfo: 'Minimum 8 characters including capital letters & numbers',
   errorPassMatch: 'Passwords do not match!',
   errorPhone: 'Please enter your phone number!',
   errorFirstName: 'Please enter your first name!',
@@ -108,11 +111,17 @@ let en = {
   errorPostcode: 'Please enter a valid zip code!',
   errorCity: 'Please enter your city!',
 
+  noError: 'Everything looks fine',
+  notFilled: 'Please fill the input fields',
   switchLanguage: 'Bytt til Norsk',
   saveChanges: 'Save changes',
   confirmSignOut: 'Log out?',
   confirmUserDelete: 'Delete user?',
+  confirmUserActivate: 'Are you sure you want to accept this account?',
+  confirmUserDelete: 'Are you sure you want to reject this account?',
   confirmUserDeactivate: 'Are you sure you want to deactivate this account?',
+  confirmUserReactivate: 'Are you sure you want to reactivate this account?',
+  confirmEventDelete: 'Are you sure you want to delete this event?',
   optional: 'Optional',
 
   // Dates
@@ -163,7 +172,7 @@ let en = {
 
   // News
   newsheading: 'News',
-  newsText: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+  newsText: 'Heavy rain and mild weather on an already unstable snow cover lead to a large and very high snowfall for northern parts of Trøndelag and Nordland. People should stay far away from landslides and follow information from local road authorities, police and municipalities.',
   newsSource: 'Source: www.rodekors.no',
 
   //Upcoming Events (at homepage)
@@ -175,6 +184,23 @@ let en = {
   // Roles
   noRole: 'No Role',
   pickRole: 'Pick Role',
+
+    // Rolenames
+    SLEAD: 'Shift Leader',
+    MED: 'Medic',
+    AMBAS: 'Ambulance Assistant',
+    AMBDR: 'Ambulance Driver',
+    AMB3: 'Ambulance of 3',
+    BOATDR: 'Boat Driver',
+    BOATAS: 'Boat Assistant',
+    BOATCR: 'Boat Crew',
+    SCAS: 'Scooter Assistant',
+    SCDR: 'Scooter Driver',
+    SC3: 'Scooter of 3',
+    ATVDR: 'ATV Driver',
+    DISTS: 'District Sensor',
+    TRAIN: 'Trainee',
+    MARK: 'Marker',
 
   // Skills from competence
   noCompetence: 'No competence registered',
@@ -216,12 +242,13 @@ let no = {
   events: 'Arrangementer',
   members: 'Medlemmer',
   newMembers: 'Nye Medlemmer',
+  deactivatedMembers: 'Deaktiverte Medlemmer',
   interested: 'Interesserte',
   participants: 'Deltakere',
 
   title: 'Røde Kors',
   welcomeMsg: 'Velkommen til Røde Kors!',
-  loggedInMsg: 'Mine Arrangementer: ',
+  loggedInMsg: 'Mine Arrangementer',
   signedUpMsg: 'Brukerkonto opprettet, vennligst vent på godkjenning.',
   eventCreatedMsg: 'Arrangement opprettet.',
   resetPassMsg: 'Passord sendt, vennligst logg inn med passord mottatt i epost.',
@@ -251,6 +278,7 @@ let no = {
   delete: 'Slett',
   search: 'Søk',
   deactivate: 'Deaktiver',
+  reactivate: 'Reaktiver',
   contact: 'Kontakt',
   reportInterested: 'Meld interresse',
   reportNotInterested: 'Fjern interresse',
@@ -307,6 +335,7 @@ let no = {
   errorEmail: 'Vennligst skriv inn en gyldig epost-adresse!',
   errorEmailExist: 'Epost-adressen eksisterer ikke!',
   errorPass: 'Vennligst skriv inn et gyldig passord!',
+  errorPassInfo: 'Minimum åtte tegn med små og store bokstaver og tall',
   errorPassMatch: 'Passordene stemmer ikke overens!',
   errorPhone: 'Vennligst skriv inn mobilnummeret ditt!',
   errorFirstName: 'Vennligst skriv inn fornavnet ditt!',
@@ -316,11 +345,17 @@ let no = {
   errorPostcode: 'Vennligst skriv inn et gyldig postnummer!',
   errorCity: 'Vennligst skriv inn poststedet ditt!',
 
+  noError: 'Alt ser bra ut',
+  notFilled: 'Vennligst fyll ut feltene',
   switchLanguage: 'Change to English',
   saveChanges: 'Lagre endringer',
   confirmSignOut: 'Logg ut?',
   confirmUserDelete: 'Slett brukeren?',
+  confirmUserActivate: 'Er du sikker på at du vil godta denne kontoen?',
+  confirmUserDelete: 'Er du sikker på at du vil avslå denne kontoen?',
   confirmUserDeactivate: 'Er du sikker på at du vil deaktivere denne kontoen?',
+  confirmUserReactivate: 'Er du sikker på at du vil reaktivere denne kontoen?',
+  confirmEventDelete: 'Er du sikker på at du vil slette dette arrangementet?',
   optional: 'Valgfritt',
 
   // Dates
@@ -371,7 +406,7 @@ let no = {
 
   // News
   newsheading: 'Nyheter',
-  newsText: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+  newsText: 'Kraftig regn og mildt vær på et allerede meget ustabilt snødekke fører til stor og meget stor snøskredfare for nordlige deler av Trøndelag og Nordland. Folk bør holde seg langt unna skredterreng og følge informasjon fra lokale veimyndigheter, politi og kommune.',
   newsSource: 'Kilde: www.rodekors.no',
 
   //Upcoming Events (at homepage)
@@ -383,6 +418,23 @@ let no = {
   // Roles
   noRole: 'Ingen Rolle',
   pickRole: 'Velg Rolle',
+
+    // Rolenames
+    SLEAD: 'Vaktleder',
+    MED: 'Sanitet',
+    AMBAS: 'Ambulansemedhjelper',
+    AMBDR: 'Ambulansesjåfør',
+    AMB3: '3 Manns Ambulanse',
+    BOATDR: 'Båtfører',
+    BOATAS: 'Båtmedhjelper',
+    BOATCR: 'Båtmannskap',
+    SCAS: 'Scootermedhjelper',
+    SCDR: 'Scootersjåfør',
+    SC3: '3 Manns Scooter',
+    ATVDR: 'ATV Sjåfør',
+    DISTS: 'Distriktsensor',
+    TRAIN: 'Under Opplæring',
+    MARK: 'Markør',
 
   // Skills from competence
   noCompetence: 'Ingen kompetanse registrert',
