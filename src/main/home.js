@@ -71,7 +71,7 @@ class Home extends React.Component<Props, State> {
     let signedInUser = userService.getSignedInUser();
 
     return (
-      <div className='contentWrapper'>
+      <div className='full home contentWrapper'>
         <div className='textBoxWrapper'>
           <div className='home-headlines'>
             <h3>{lang.loggedInMsg}</h3>
