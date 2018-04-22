@@ -70,11 +70,11 @@ class EventDetailsEdit extends React.Component<Props, State>{
    let selectRoles = [];
 
    for (let role of this.roles) {
-     listRoles.push(<option ref={role.id.toString()} value={role.id}>{role.name}</option>);
+     listRoles.push(<option ref={role.id.toString()} value={role.id}>{lang[role.name]}</option>);
    }
 
    for (let role of this.selectedRoles) {
-     listRoles.splice(role, 1, (<option ref={role.toString()} value={role + 1} disabled>{this.roles[role].name}</option>));
+     listRoles.splice(role, 1, (<option ref={role.toString()} value={role + 1} disabled>{lang[this.roles[role].name]}</option>));
    }
 
    let addRoleInput = () => {
@@ -190,7 +190,11 @@ class EventDetailsEdit extends React.Component<Props, State>{
    }
 
    return (
-      <div className='contentWrapper'>
+      <div className='full contentWrapper'>
+        <div id="title">
+          <img id="logo" src="resources/logo.svg"></img>
+          <div className="titleText"><h1>{lang.title}</h1></div>
+        </div>
         <div className='textBoxWrapper'>
           {createEvent()}
         </div>
