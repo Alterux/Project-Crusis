@@ -32,6 +32,8 @@ class UserDetails extends React.Component<Props, State> {
     contactUserButton: HTMLInputElement,
     acceptUserButton: HTMLInputElement,
     rejectUserButton: HTMLInputElement,
+    deactivateUserButton: HTMLInputElement,
+    reactivateUserButton: HTMLInputElement,
     editUserButton: HTMLInputElement,
     editLoginButton: HTMLInputElement,
     editCompetenceButton: HTMLInputElement,
@@ -104,6 +106,8 @@ class UserDetails extends React.Component<Props, State> {
     let editLoginButton;
     let acceptUserButton;
     let rejectUserButton;
+    let deactivateUserButton;
+    let reactivateUserButton;
     // competence buttons
     let editCompetenceButton;
     let saveCompetenceButton;
@@ -116,8 +120,10 @@ class UserDetails extends React.Component<Props, State> {
       // user buttons
       editUserButton = <div className="editUserButton"><button ref="editUserButton">{lang.edit}</button></div>;
       editLoginButton = <div className="editLoginButton"><button ref="editLoginButton">{lang.editLogin}</button></div>;
-      acceptUserButton = <div className="acceptUserButton"><button ref="acceptUserButton" className="acceptUserButton">{lang.accept}</button></div>;
-      rejectUserButton = <div className="rejectUserButton"><button ref="rejectUserButton" className="rejectUserButton">{lang.reject}</button></div>
+      acceptUserButton = <div className="acceptUserButton"><button ref="acceptUserButton" className="acceptButton acceptUserButton">{lang.accept}</button></div>;
+      rejectUserButton = <div className="rejectUserButton"><button ref="rejectUserButton" className="deleteButton rejectUserButton">{lang.reject}</button></div>
+      deactivateUserButton = <div className="deactivateUserButton"><button ref="deactivateUserButton" className="deleteButton deactivateUserButton">{lang.deactivate}</button></div>
+      reactivateUserButton = <div className="reactivateUserButton"><button ref="reactivateUserButton" className="deleteButton reactivateUserButton">{lang.reactivate}</button></div>
       // competence buttons
       editCompetenceButton = <div className="editCompetenceButton"><button ref="editCompetenceButton">{lang.edit}</button></div>;
       saveCompetenceButton = <div className="saveCompetenceButton"><button ref="saveCompetenceButton">{lang.save}</button></div>;
@@ -147,15 +153,16 @@ class UserDetails extends React.Component<Props, State> {
       } return false;
     }
 
+    let isDeactivated = (): boolean => {
+      if (user.userType < 0) {
+        return true;
+      } return false;
+    }
+
     let userDetailsShow = () => {
       return (
         <div className="textBox">
           {!isNewUser() && isAdmin() || isSelf() ? editUserButton : null}
-          {!isNewUser() && isAdmin() || isSelf() ? editLoginButton : null}
-          {isNewUser() && isAdmin() ? acceptUserButton : null}
-          {isNewUser() && isAdmin() ? rejectUserButton : null}
-          <div className='entry'><img className="accountImg" src="resources/default.png" alt="Account Image" width="50px" height="50px"></img></div>
-          <div className='bold entry'>{user.firstName} {user.middleName} {user.lastName}</div>
           <div className='entry'><span className='bold'>{lang.age}: </span>{age}</div>
           <div className='entry'><span className='bold'>{lang.phone}: </span>{user.phone}</div>
           <div className='entry'><span className='bold'>{lang.email}: </span>{user.email}</div>
@@ -178,7 +185,7 @@ class UserDetails extends React.Component<Props, State> {
 
       return (
         <div className="textBox">
-          {isAdmin() || isLeader() ? editCompetenceButton : null}
+          {!isNewUser() && (isAdmin() || isLeader()) ? editCompetenceButton : null}
           <div className='last entry'>
             <ul className='competence'>
               {listSkills}
@@ -217,6 +224,17 @@ class UserDetails extends React.Component<Props, State> {
     return (
       <div className='contentWrapper'>
         <div className="textBoxWrapper">
+          <div className='userNameBox'>
+            <div className='accountImgContainer'><img className="accountImg" src="resources/default.png" alt="Account Image"></img></div>
+            <div className='bold userName'>{user.firstName} {user.middleName} {user.lastName}</div>
+            <div className='userButtons'>
+              {!isNewUser() && isAdmin() || isSelf() ? editLoginButton : null}
+              {!isNewUser() && !isDeactivated() && isAdmin() && !isSelf() ? deactivateUserButton : null}
+              {!isNewUser() && isDeactivated() && isAdmin() && !isSelf() ? reactivateUserButton : null}
+              {isNewUser() && isAdmin() ? acceptUserButton : null}
+              {isNewUser() && isAdmin() ? rejectUserButton : null}
+            </div>
+          </div>
           <div className="userDetailsBox">
             <div className="textBoxHead">
               <h3 className="textBoxTitle">{lang.userInfo}</h3>
@@ -264,13 +282,50 @@ class UserDetails extends React.Component<Props, State> {
         this.age = age;
         this.forceUpdate();
 
+        // deactivate user button
+        if (this.refs.deactivateUserButton) {
+          this.refs.deactivateUserButton.onclick = () => {
+            let result = confirm(lang.confirmUserDeactivate);
+            if (result) {
+              userService.editUserType(-this.user.userType, this.props.match.params.id);
+              if (this.user.id === signedInUser.id) {
+                localStorage.removeItem('signedInUser');
+                history.push('/');
+              } else {
+                history.push('/members');
+              }
+              this.forceUpdate();
+            }
+          }
+        }
+
+        // reactivate user button
+        if (this.refs.reactivateUserButton) {
+          this.refs.reactivateUserButton.onclick = () => {
+            let result = confirm(lang.confirmUserReactivate);
+            if (result) {
+              userService.editUserType(-this.user.userType, this.props.match.params.id);
+              if (this.user.id === signedInUser.id) {
+                localStorage.removeItem('signedInUser');
+                history.push('/');
+              } else {
+                history.push('/members');
+              }
+              this.forceUpdate();
+            }
+          }
+        }
+
         // Accept and reject buttons
         if (this.refs.acceptUserButton && this.refs.rejectUserButton) {
 
           // Accept button
           this.refs.acceptUserButton.onclick = () => {
-            userService.editUserType(1, user[0].id);
-            history.push('/members');
+            let result = confirm(lang.confirmUserActivate);
+            if (result) {
+              userService.editUserType(1, user[0].id);
+              history.push('/members');
+            }
           }
 
           // Reject button
