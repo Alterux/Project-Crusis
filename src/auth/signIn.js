@@ -12,9 +12,18 @@ import { lang, en, no } from '../util/lang';
 import { ErrorMessage, errorMessage } from '../util/errorMessage';
 
 type Props = {};
-type State = {};
+
+type State = {
+  inputsFilled: boolean,
+  errorLogin: boolean,
+};
 
 class SignIn extends React.Component<Props, State> {
+  state = {
+    inputsFilled: false,
+    errorLogin: false,
+  };
+
   refs: {
     signInUsername: HTMLInputElement,
     signInPassword: HTMLInputElement,
@@ -34,12 +43,34 @@ class SignIn extends React.Component<Props, State> {
     return hash;
   }
 
+  noError() {
+    if (this.state.inputsFilled) {
+      return (
+        <div className='noError'><h3>{lang.noError}</h3></div>
+      );
+    } else {
+      return (
+        <div className='notFilled'><h3>{lang.notFilled}</h3></div>
+      );
+    }
+  }
+
+  errorLogin() {
+    return (
+      <div className='last errorInput'>{lang.errorLogin}</div>
+    );
+  }
+
   render() {
     return (
       <div className="signInPage">
         <div id="title">
           <img id="logo" src="resources/logo.svg"></img>
           <div className="titleText"><h1>{lang.title}</h1></div>
+        </div>
+        <div className="big-entry inputForm">
+          <div className='status'>Status</div>
+          {this.state.errorLogin ? this.errorLogin() : this.noError()}
         </div>
         <div className="big-entry inputForm">
           <input className="form formAuth" id="formUser" type='text' ref='signInUsername' placeholder={lang.email} />
@@ -60,6 +91,18 @@ class SignIn extends React.Component<Props, State> {
 
   componentDidMount() {
     if(menu) menu.forceUpdate();
+
+    // on input change => set to validate on input
+    window.onchange = () => {
+      let userName = this.refs.signInUsername.value;
+      let password = this.refs.signInPassword.value;
+
+      if (!userName || !password) {
+        this.setState({inputsFilled: false});
+      } else {
+        this.setState({inputsFilled: true});
+      }
+    }
 
     // listen for enter on username input
     this.refs.signInUsername.onkeydown = (e) => {
@@ -94,7 +137,10 @@ class SignIn extends React.Component<Props, State> {
       }).catch((error: Error) => {
         // Converts error to string og removes "Error: " from the beginning.
         // Output is only the errormessage from lang.js.
-        if(errorMessage) errorMessage.set(String(error).slice(7));
+        if(errorMessage) {
+          console.log(error);
+          this.setState({errorLogin: true})
+        }
       });
     }
   }
