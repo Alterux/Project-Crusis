@@ -13,11 +13,20 @@ import { ErrorMessage, errorMessage } from '../util/errorMessage';
 import { inputDays, inputMonths, inputYears } from '../util/selectOptions';
 
 type Props = {};
+
 type State = {
+  inputsFilled: boolean,
+  errorSignUp: boolean,
   accountCreated: boolean,
 };
 
 class SignUp extends React.Component<Props, State> {
+  state = {
+    inputsFilled: false,
+    errorSignUp: false,
+    accountCreated: false,
+  }
+
   refs: {
     inputPhone: HTMLInputElement,
     inputUsername: HTMLInputElement,
@@ -34,10 +43,6 @@ class SignUp extends React.Component<Props, State> {
     inputCity: HTMLInputElement,
     inputButton: HTMLButtonElement,
     backButton: HTMLButtonElement
-  }
-
-  state = {
-    accountCreated: false,
   }
 
   errorValidation: boolean = false;
@@ -61,6 +66,35 @@ class SignUp extends React.Component<Props, State> {
         hash = hash & hash; // Convert to 32bit integer
     }
     return hash;
+  }
+
+  noError() {
+    if (this.state.inputsFilled) {
+      return (
+        <div className='noError'><h3>{lang.noError}</h3></div>
+      );
+    } else {
+      return (
+        <div className='notFilled'><h3>{lang.notFilled}</h3></div>
+      );
+    }
+  }
+
+  errorSignUp() {
+    return (
+      <div>
+        {this.errorEmail ? <div className='errorInput'>{lang.errorEmail}</div> : null}
+        {this.errorPass ? <div className='errorInput'>{lang.errorPass}</div> : null}
+        {this.errorPassMatch ? <div className='errorInput'>{lang.errorPassMatch}</div> : null}
+        {this.errorPhone ? <div className='errorInput'>{lang.errorPhone}</div> : null}
+        {this.errorFirstName ? <div className='errorInput'>{lang.errorFirstName}</div> : null}
+        {this.errorLastName ? <div className='errorInput'>{lang.errorLastName}</div> : null}
+        {this.errorBirth ? <div className='errorInput'>{lang.errorBirth}</div> : null}
+        {this.errorAddress ? <div className='errorInput'>{lang.errorAddress}</div> : null}
+        {this.errorPostcode ? <div className='errorInput'>{lang.errorPostcode}</div> : null}
+        {this.errorCity ? <div className='last errorInput'>{lang.errorCity}</div> : null}
+      </div>
+    );
   }
 
   render() {
@@ -101,30 +135,30 @@ class SignUp extends React.Component<Props, State> {
           </div>
 
           <div className="big-entry inputForm">
+            <div className='status'>Status</div>
+            {this.state.errorSignUp ? this.errorSignUp() : this.noError()}
+          </div>
+
+          <div className="big-entry inputForm">
             <form>
 
             <div className="inputFormAuth">
               <input className="form formAuth" id="formUser" type='email' ref='inputUsername' placeholder={lang.email} required />
-                {errorEmail ? <div className='errorInput'><i />{lang.errorEmail}</div> : null}
               <input className="form formAuth" id="formPass" type='password' ref='inputPassword' placeholder={lang.password} required />
-                {errorPass ? <div className='errorInput'><i />{lang.errorPass}</div> : null}
+              {this.errorPass ? <div className='details errorInput'>{lang.errorPassInfo}</div> : null}
               <input className="form formAuth" id="formPass" type='password' ref='inputPasswordMatch' placeholder={lang.passwordMatch} required />
-                {errorPassMatch ? <div className='errorInput'><i />{lang.errorPassMatch}</div> : null}
             </div>
 
             <div className="inputFormPhone">
               <h3>{lang.phone}</h3>
               <input className="form" type='text' ref='inputPhone' placeholder={lang.phone} required />
-                {errorPhone ? <div className='errorInput'><i />{lang.errorPhone}</div> : null}
             </div>
 
             <div className="inputFormName">
               <h3>{lang.name}</h3>
               <input className="form" type='text' ref='inputFirstname' placeholder={lang.firstName} required />
-                {errorFirstName ? <div className='errorInput'><i />{lang.errorFirstName}</div> : null}
               <input className="form" type='text' ref='inputMiddlename' placeholder={lang.middleName} />
               <input className="form" type='text' ref='inputLastname' placeholder={lang.lastName} required />
-                {errorLastName ? <div className='errorInput'><i />{lang.errorLastName}</div> : null}
             </div>
 
             <div className="inputFormBirth">
@@ -132,17 +166,13 @@ class SignUp extends React.Component<Props, State> {
               {inputDays('inputBirthDay', 'form birth')}
               {inputMonths('inputBirthMonth', 'form birth month')}
               {inputYears('inputBirthYear', 'form birth year')}
-                {errorBirth ? <div className='errorInput'><i />{lang.errorBirth}</div> : null}
             </div>
 
             <div className="inputFormAddress">
               <h3>{lang.address}</h3>
               <input className="form" type='text' ref='inputAddress' placeholder={lang.address} required />
-                {errorAddress ? <div className='errorInput'><i />{lang.errorAddress}</div> : null}
               <input className="form postcode" type='text' ref='inputPostcode' placeholder={lang.postcode} required />
-                {errorPostcode ? <div className='errorInput'><i />{lang.errorPostcode}</div> : null}
               <input className="form city" type='text' ref='inputCity' placeholder={lang.city} required />
-                {errorCity ? <div className='errorInput'><i />{lang.errorCity}</div> : null}
             </div>
 
             <div className="inputFormButton">
@@ -169,6 +199,35 @@ class SignUp extends React.Component<Props, State> {
     }
 
     // on input change => set to validate on input
+    window.onchange = () => {
+      let phone = this.refs.inputPhone.value;
+      let userName = this.refs.inputUsername.value;
+      let password = this.refs.inputPassword.value;
+      let passwordMatch = this.refs.inputPasswordMatch.value;
+      let firstName = this.refs.inputFirstname.value;
+      let lastName = this.refs.inputLastname.value;
+      let birthYear = this.refs.inputBirthYear.value;
+      let birthMonth = this.refs.inputBirthMonth.value;
+      let birthDay = this.refs.inputBirthDay.value;
+      let address = this.refs.inputAddress.value;
+      let postcode = this.refs.inputPostcode.value;
+      let city = this.refs.inputCity.value;
+
+      if (!phone || !userName || !password || !passwordMatch || !firstName || !lastName || !birthDay || !birthMonth || !birthYear || !address || !postcode || !city) {
+        console.log('has no value')
+      } else {
+        this.setState({inputsFilled: true});
+      }
+
+      if (this.errorPhone || this.errorEmail || this.errorPass || this.errorPassMatch || this.errorFirstName || this.errorLastName || this.errorBirth || this.errorAddress || this.errorPostcode || this.errorCity) {
+        this.errorValidation = true;
+        this.setState({errorSignUp: true});
+      } else {
+        this.errorValidation = false;
+        this.setState({errorSignUp: false});
+      }
+    }
+
     this.refs.inputPhone.onchange = () => {validatePhone(); this.refs.inputPhone.oninput = () => {validatePhone()}}
     this.refs.inputUsername.onchange = () => {validateEmail(); this.refs.inputUsername.oninput = () => {validateEmail()}}
     this.refs.inputPassword.onchange = () => {validatePassword(); this.refs.inputPassword.oninput = () => {validatePassword()}}
@@ -212,17 +271,23 @@ class SignUp extends React.Component<Props, State> {
         validateFirstName(); this.refs.inputFirstname.oninput = () => {validateFirstName()}
         validateMiddleName();
         validateLastName(); this.refs.inputLastname.oninput = () => {validateLastName()}
+        validateBirth();
         validateAddress(); this.refs.inputAddress.oninput = () => {validateAddress()}
         validatePostcode(); this.refs.inputPostcode.oninput = () => {validatePostcode()}
         validateCity(); this.refs.inputCity.oninput = () => {validateCity()}
 
         // validation fail
         if (this.errorValidation) {
+          this.setState({errorSignUp: true});
           console.log('signup error');
         } else {
           // validation pass
           userService.signUp(userName, hashedPass, phone, firstName, middleName, lastName, birthDate, address, postcode, city).then(() => {
             this.setState({accountCreated: true});
+            // back button
+            this.refs.backButton.onclick = () => {
+              history.push('/signIn');
+            }
           }).catch((error: Error) => {
             if(errorMessage) console.log(error);
           });
@@ -273,7 +338,6 @@ class SignUp extends React.Component<Props, State> {
         this.refs.inputPassword.setCustomValidity('invalid');
       } else {
         this.errorPass = false;
-        this.errorValidation = false;
         this.refs.inputPassword.setCustomValidity('');
       }
       this.forceUpdate();
@@ -283,13 +347,12 @@ class SignUp extends React.Component<Props, State> {
     let validatePasswordMatch = () => {
       let password = this.refs.inputPassword.value;
       let passwordMatch = this.refs.inputPasswordMatch.value;
-      if (!this.errorPass && (!passwordMatch || passwordMatch !== password)) {
+      if (!passwordMatch || passwordMatch !== password) {
         this.errorPassMatch = true;
         this.errorValidation = true;
         this.refs.inputPasswordMatch.setCustomValidity('invalid');
       } else {
         this.errorPassMatch = false;
-        this.errorValidation = false;
         this.refs.inputPasswordMatch.setCustomValidity('');
       }
       this.forceUpdate();
@@ -303,7 +366,6 @@ class SignUp extends React.Component<Props, State> {
         this.errorValidation = true;
       } else {
         this.errorFirstName = false;
-        this.errorValidation = false;
       }
       this.forceUpdate();
     }
@@ -326,7 +388,6 @@ class SignUp extends React.Component<Props, State> {
         this.errorValidation = true;
       } else {
         this.errorLastName = false;
-        this.errorValidation = false;
       }
       this.forceUpdate();
     }
@@ -341,7 +402,6 @@ class SignUp extends React.Component<Props, State> {
         this.errorValidation = true;
       } else {
         this.errorBirth = false;
-        this.errorValidation = false;
       }
       this.forceUpdate();
     }
@@ -354,7 +414,6 @@ class SignUp extends React.Component<Props, State> {
         this.errorValidation = true;
       } else {
         this.errorAddress = false;
-        this.errorValidation = false;
       }
       this.forceUpdate();
     }
@@ -368,7 +427,6 @@ class SignUp extends React.Component<Props, State> {
         this.refs.inputPostcode.setCustomValidity('invalid');
       } else {
         this.errorPostcode = false;
-        this.errorValidation = false;
         this.refs.inputPostcode.setCustomValidity('');
       }
       this.forceUpdate();
@@ -382,7 +440,6 @@ class SignUp extends React.Component<Props, State> {
         this.errorValidation = true;
       } else {
         this.errorCity = false;
-        this.errorValidation = false;
       }
       this.forceUpdate();
     }
