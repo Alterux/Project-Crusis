@@ -175,6 +175,19 @@ class EventService {
     });
   }
 
+  deleteEvent(id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      connection.query('DELETE FROM Event WHERE id=?', [id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
   getCreatedEvent(): Promise<Event[]> {
     return new Promise((resolve, reject) => {
       connection.query('SELECT * FROM Event WHERE id = LAST_INSERT_ID()', (error, result) => {
