@@ -63,7 +63,11 @@ class UserDetailsEdit extends React.Component<Props, State> {
     }
 
     return (
-      <div className='contentWrapper'>
+      <div className='full contentWrapper'>
+        <div id="title">
+          <img id="logo" src="resources/logo.svg"></img>
+          <div className="titleText"><h1>{lang.title}</h1></div>
+        </div>
         <div className='textBoxWrapper'>
 
           <div className='big-entry inputForm'>
@@ -151,7 +155,12 @@ class UserDetailsEdit extends React.Component<Props, State> {
           let address = this.refs.inputAddress.value;
           let postcode = parseInt(this.refs.inputPostcode.value);
           let city = this.refs.inputCity.value;
-          let userType = parseInt(this.refs.inputUserType.value);
+          let userType;
+          if (this.refs.inputUserType) {
+            userType = parseInt(this.refs.inputUserType.value);
+          } else {
+            userType = this.user.userType;
+          }
           let id = this.user.id;
 
           userService.editUser(firstName, middleName, lastName, birthDate, phone, address, postcode, city, userType, id);
