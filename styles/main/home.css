@@ -3,6 +3,15 @@
   font-size: 2em;
 }
 
+.fc-button:hover {
+  background-color: #e6e6e6;
+}
+
+.home {
+  padding: 2em;
+  padding-top: 1em;
+}
+
 #news-image {
   padding-left: 0.5em;
   padding-top: 2em;
@@ -29,14 +38,20 @@
   height: 100% !important;
 }
 
+.fc-content {
+  cursor: pointer;
+}
+
 /*Calendar-window */
 #calendarwindow {
-  width: 30em;
-  margin-top: 2em;
-  border-style: solid;
-  border-color: black;
-  border-width: 0.01em;
+  width: 40em;
   float: left;
+  padding: .5em;
+  margin-bottom: 2em;
+  display: flex;
+  align-items: center;
+  /* border: 2px solid black; */
+  box-shadow: 0px 0px 5px black;
 }
 
 
@@ -114,28 +129,18 @@
 }
 
 .news {
-  border-style: solid;
-  border-color: black;
-  border-width: 0.01em;
-  /* width: 35%;
-  height: 60%;
-  float: right; */
-  font-size: 0.9em;
-  margin-top: 2em;
+  /* border: 2px solid black; */
+  box-shadow: 0px 0px 5px black;
 }
 
 /*Upcoming events */
 .upcomingEvents {
-  /* box-shadow: 0px 0px 5px; */
-  border-style: solid;
-  border-color: black;
-  border-width: 0.01em;
-  /* width: 35%;
-  height: 60%; */
-  /* float: right; */
-  font-size: 0.9em;
-  margin-top: 2em;
+  font-size: 1em;
+  margin-top: 1em;
   padding-top: 0.5em;
+  padding-bottom: .5em;
+  /* border: 2px solid black; */
+  box-shadow: 0px 0px 5px black;
 }
 
 .upcomingEvents-headline {

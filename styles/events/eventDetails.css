@@ -1,3 +1,7 @@
-.applyEventButton, .unapplyEventButton, .editEventButton, .saveEventButton {
+.applyEventButton, .unapplyEventButton, .editEventButton, .saveEventButton, .deleteEventButton {
   float: right;
+}
+
+.deleteEventButton {
+  margin-top: -2em;
 }

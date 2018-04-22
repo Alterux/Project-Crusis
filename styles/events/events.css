@@ -1,5 +1,15 @@
 .eventmain {
+  font-size: 18px;
+  width: 100%;
+}
 
+.eventSearch {
+  display: flex;
+}
+
+.eventButton {
+  min-height: 3.3em;
+  margin-left: 1em;
 }
 
 .eventlist {

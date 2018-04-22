@@ -134,20 +134,37 @@ h1 {
   bottom: .8em;
 }
 
+.status {
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: -.2em;
+  margin-bottom: .5em;
+}
+
+.notFilled {
+  text-align: center;
+  color: #0051b2;
+}
+
+.noError {
+  text-align: center;
+  color: #008005;
+}
+
 .errorInput {
-  /* overflow: hidden; */
-  padding: .5em;
-  padding-left: 1em;
-  padding-right: 1em;
-  position: absolute;
-  border-radius: .2em;
-  max-width: 20em;
-  max-height: 5em;
-  margin-top: -3em;
-  right: 50%;
-  margin-right: 10.5em;
-  background-color: #be4b49;
-  box-shadow: 0 0 0 1px rgba(139, 3, 0, .75), 0 1px 10px rgba(0, 0, 0, .35);
+  text-align: center;
+  color: #be4b49;
+  margin-bottom: .5em;
+}
+
+.details {
+  font-size: 12px;
+  margin-bottom: 1.5em;
+}
+
+.last {
+  margin-bottom: 0;
 }
 
 i {
