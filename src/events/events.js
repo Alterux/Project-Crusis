@@ -59,9 +59,8 @@ class Events extends React.Component<Props, State> {
 
     let createEvent = () => {
       return (
-        <div className='entry'>
-          <h1>{lang.eventHeader}</h1>
-          <button ref='createEventButton'>{lang.createEvent}</button>
+        <div>
+          <button className='eventButton' ref='createEventButton'>{lang.createEvent}</button>
         </div>
       );
     }
@@ -69,9 +68,10 @@ class Events extends React.Component<Props, State> {
     return (
       <div className='contentWrapper'>
         <div className='textBoxWrapper'>
-          {this.signedInUser.userType > 1 ? createEvent() : null}
-          <div className='entry'>
-            <input ref='search' placeholder={lang.search}></input>
+          <h1>{lang.eventHeader}</h1>
+          <div className='entry eventSearch'>
+            <input className='search' ref='search' placeholder={lang.search}></input>
+            {this.signedInUser.userType > 1 ? createEvent() : null}
           </div>
           <div className="last entry eventmain">
             <table className="eventlist">
