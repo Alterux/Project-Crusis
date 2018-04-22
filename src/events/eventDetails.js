@@ -27,6 +27,7 @@ class EventDetails extends React.Component<Props, State> {
     editEventButton: HTMLInputElement,
     applyEventButton: HTMLInputElement,
     unapplyEventButton: HTMLInputElement,
+    deleteEventButton: HTMLInputElement,
   };
 
   signedInUser = {};
@@ -96,9 +97,16 @@ class EventDetails extends React.Component<Props, State> {
     }
 
     let editEventButton;
+    let deleteEventButton;
 
+    // admins and leader can change events
     if (this.signedInUser.userType > 1) {
       editEventButton = <div className="editEventButton"><button ref="editEventButton">{lang.edit}</button></div>
+    }
+
+    // only admins can delete events
+    if (this.signedInUser.userType === 3) {
+      deleteEventButton = <div className="deleteEventButton"><button className='deleteButton' ref="deleteEventButton">{lang.delete}</button></div>
     }
 
     // user has reported interest
@@ -111,7 +119,7 @@ class EventDetails extends React.Component<Props, State> {
 
     // list roles with quantity for event
     for (let role of this.roles) {
-      listRoles.push(<li key={role.id}>{role.name}: {role.quantity}</li>)
+      listRoles.push(<li key={role.id}>{lang[role.name]}: {role.quantity}</li>)
     }
 
     // list interested users
@@ -125,7 +133,6 @@ class EventDetails extends React.Component<Props, State> {
           <div className='userDetailsBox'>
             <div className='textBox'>
               {editEventButton}
-              {eventButton}
               <div className='entry'>
                 <h3>{lang.name}</h3>
                 {event.name}
@@ -159,11 +166,12 @@ class EventDetails extends React.Component<Props, State> {
                 <h3>{lang.roles}</h3>
                 {listRoles}
               </div>
-
+              {deleteEventButton}
             </div>
           </div>
           <div className='competenceBox'>
             <div className='textBox'>
+              {eventButton}
               <h3>{lang.interested}</h3>
               {listInterested}
             </div>
@@ -210,6 +218,18 @@ class EventDetails extends React.Component<Props, State> {
           if (this.refs.editEventButton) {
             this.refs.editEventButton.onclick = () => {
               history.push('/event/' + this.props.match.params.id + '/edit/');
+            }
+          }
+
+          // delete event button
+          if (this.refs.deleteEventButton) {
+            this.refs.deleteEventButton.onclick = () => {
+              let result = confirm(lang.confirmEventDelete);
+              if (result) {
+                eventService.deleteEvent(this.props.match.params.id);
+                  history.push('/events');
+                this.forceUpdate();
+              }
             }
           }
 
