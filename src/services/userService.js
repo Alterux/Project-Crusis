@@ -213,9 +213,48 @@ class UserService {
     });
   }
 
+  getDeactivatedMembers(id: number): Promise<User[]> {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM User where id!=? AND userType<0', [id], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
   searchMembers(name: string): Promise<User[]> {
     return new Promise((resolve, reject) => {
       connection.query('SELECT * FROM User WHERE CONCAT(firstName, middleName, lastName) LIKE "%"?"%" AND userType>0', [name], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
+  searchNewMembers(name: string): Promise<User[]> {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM User WHERE CONCAT(firstName, middleName, lastName) LIKE "%"?"%" AND userType=0', [name], (error, result) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      });
+    });
+  }
+
+  searchDeactivatedMembers(name: string): Promise<User[]> {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM User WHERE CONCAT(firstName, middleName, lastName) LIKE "%"?"%" AND userType<0', [name], (error, result) => {
         if(error) {
           reject(error);
           return;
