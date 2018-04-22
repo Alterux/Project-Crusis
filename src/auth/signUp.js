@@ -199,32 +199,34 @@ class SignUp extends React.Component<Props, State> {
     }
 
     // on input change => set to validate on input
-    window.onchange = () => {
-      let phone = this.refs.inputPhone.value;
-      let userName = this.refs.inputUsername.value;
-      let password = this.refs.inputPassword.value;
-      let passwordMatch = this.refs.inputPasswordMatch.value;
-      let firstName = this.refs.inputFirstname.value;
-      let lastName = this.refs.inputLastname.value;
-      let birthYear = this.refs.inputBirthYear.value;
-      let birthMonth = this.refs.inputBirthMonth.value;
-      let birthDay = this.refs.inputBirthDay.value;
-      let address = this.refs.inputAddress.value;
-      let postcode = this.refs.inputPostcode.value;
-      let city = this.refs.inputCity.value;
+    if (this.refs.inputUsername) {
+      window.onchange = () => {
+        let phone = this.refs.inputPhone.value;
+        let userName = this.refs.inputUsername.value;
+        let password = this.refs.inputPassword.value;
+        let passwordMatch = this.refs.inputPasswordMatch.value;
+        let firstName = this.refs.inputFirstname.value;
+        let lastName = this.refs.inputLastname.value;
+        let birthYear = this.refs.inputBirthYear.value;
+        let birthMonth = this.refs.inputBirthMonth.value;
+        let birthDay = this.refs.inputBirthDay.value;
+        let address = this.refs.inputAddress.value;
+        let postcode = this.refs.inputPostcode.value;
+        let city = this.refs.inputCity.value;
 
-      if (!phone || !userName || !password || !passwordMatch || !firstName || !lastName || !birthDay || !birthMonth || !birthYear || !address || !postcode || !city) {
-        console.log('has no value')
-      } else {
-        this.setState({inputsFilled: true});
-      }
+        if (!phone || !userName || !password || !passwordMatch || !firstName || !lastName || !birthDay || !birthMonth || !birthYear || !address || !postcode || !city) {
+          console.log('Not all input fields are filled')
+        } else {
+          this.setState({inputsFilled: true});
+        }
 
-      if (this.errorPhone || this.errorEmail || this.errorPass || this.errorPassMatch || this.errorFirstName || this.errorLastName || this.errorBirth || this.errorAddress || this.errorPostcode || this.errorCity) {
-        this.errorValidation = true;
-        this.setState({errorSignUp: true});
-      } else {
-        this.errorValidation = false;
-        this.setState({errorSignUp: false});
+        if (this.errorPhone || this.errorEmail || this.errorPass || this.errorPassMatch || this.errorFirstName || this.errorLastName || this.errorBirth || this.errorAddress || this.errorPostcode || this.errorCity) {
+          this.errorValidation = true;
+          this.setState({errorSignUp: true});
+        } else {
+          this.errorValidation = false;
+          this.setState({errorSignUp: false});
+        }
       }
     }
 

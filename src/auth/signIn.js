@@ -93,14 +93,16 @@ class SignIn extends React.Component<Props, State> {
     if(menu) menu.forceUpdate();
 
     // on input change => set to validate on input
-    window.onchange = () => {
-      let userName = this.refs.signInUsername.value;
-      let password = this.refs.signInPassword.value;
+    if (this.refs.signInUsername) {
+      window.onchange = () => {
+        let userName = this.refs.signInUsername.value;
+        let password = this.refs.signInPassword.value;
 
-      if (!userName || !password) {
-        this.setState({inputsFilled: false});
-      } else {
-        this.setState({inputsFilled: true});
+        if (!userName || !password) {
+          this.setState({inputsFilled: false});
+        } else {
+          this.setState({inputsFilled: true});
+        }
       }
     }
 
