@@ -121,9 +121,9 @@ class EventService {
     });
   }
 
-  unapplyEvent(user_id: number): Promise<void> {
+  unapplyEvent(user_id: number, event_id: number): Promise<void> {
     return new Promise((resolve, reject) => {
-      connection.query('DELETE FROM Interested WHERE user_id=?', [user_id], (error, result) => {
+      connection.query('DELETE FROM Interested WHERE user_id=? AND event_id = ?', [user_id, event_id], (error, result) => {
         if(error) {
           reject(error);
           return;
