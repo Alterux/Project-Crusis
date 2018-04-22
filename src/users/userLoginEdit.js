@@ -27,7 +27,6 @@ class UserLoginEdit extends React.Component<Props, State> {
     backButton: HTMLInputElement,
     saveEmailButton: HTMLInputElement,
     savePasswordButton: HTMLInputElement,
-    deactivateUserButton: HTMLInputElement,
     inputEmail: HTMLInputElement,
     inputPassword: HTMLInputElement,
     inputCurrentPassword: HTMLInputElement,
@@ -66,7 +65,11 @@ class UserLoginEdit extends React.Component<Props, State> {
     }
 
     return (
-      <div className='contentWrapper'>
+      <div className='full contentWrapper'>
+        <div id="title">
+          <img id="logo" src="resources/logo.svg"></img>
+          <div className="titleText"><h1>{lang.title}</h1></div>
+        </div>
         <div className='textBoxWrapper'>
 
           <div className='big-entry inputForm'>
@@ -92,15 +95,9 @@ class UserLoginEdit extends React.Component<Props, State> {
             </div>
           </div>
 
-          <div className='big-entry inputForm'>
-            <div className='inputFormButton'>
-              <button className='lonely form inputButton backButton' ref='backButton'>{lang.back}</button>
-            </div>
-          </div>
-
           <div className='inputForm'>
             <div className='inputFormButton'>
-              <button className='lonely form inputButton deleteButton' ref='deactivateUserButton'>{lang.delete} {lang.user}</button>
+              <button className='lonely form inputButton backButton' ref='backButton'>{lang.back}</button>
             </div>
           </div>
         </div>
@@ -161,21 +158,6 @@ class UserLoginEdit extends React.Component<Props, State> {
             history.push('/user/' + user[0].id);
           } else {
             console.log('Incorrect password!')
-          }
-        }
-
-        // deactivate button
-        this.refs.deactivateUserButton.onclick = () => {
-          let result = confirm(lang.confirmUserDelete);
-          if (result) {
-            userService.editUserType(-this.user.userType, this.props.match.params.id);
-            if (this.user.id === signedInUser.id) {
-              localStorage.removeItem('signedInUser');
-              history.push('/');
-            } else {
-              history.push('/members');
-            }
-            this.forceUpdate();
           }
         }
       }).catch((error: Error) => {
