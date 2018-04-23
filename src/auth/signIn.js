@@ -106,14 +106,14 @@ class SignIn extends React.Component<Props, State> {
     }
 
     // listen for enter on username input
-    this.refs.signInUsername.onkeydown = (e: number) => {
+    this.refs.signInUsername.onkeydown = (e: KeyboardEventListener) => {
       if (e.keyCode === 13) {
         submit();
       }
     }
 
     // listen for enter on password input
-    this.refs.signInPassword.onkeydown = (e: number) => {
+    this.refs.signInPassword.onkeydown = (e: KeyboardEventListener) => {
       if (e.keyCode === 13) {
         submit();
       }

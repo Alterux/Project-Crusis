@@ -76,7 +76,7 @@ class ForgotPass extends React.Component<Props, State> {
   componentDidMount() {
 
     // listen for enter on email input
-    this.refs.inputForgotPassEmail.onkeydown = (e: number) => {
+    this.refs.inputForgotPassEmail.onkeydown = (e: KeyboardEventListener) => {
       if (e.keyCode === 13) {
         validateEmail();
       }
