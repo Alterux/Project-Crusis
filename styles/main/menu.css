@@ -49,13 +49,12 @@
 .menuWrapper {
   margin-top: -1em;
   max-width: 100%;
-  /* max-width: 65em; */
   margin-left: auto;
   margin-right: auto;
 }
 
 #menuBar {
-  margin-bottom: .1em;
+  margin-bottom: 0em;
   max-height: 10em;
   height: 3em;
   z-index: 1;

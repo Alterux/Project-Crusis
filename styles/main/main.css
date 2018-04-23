@@ -67,7 +67,7 @@ input[type=time]::-webkit-outer-spin-button {
   min-width: 23em;
   max-width: 65em;
   height: 100%;
-  min-height: 94.2vh;
+  min-height: 92vh;
   overflow: hidden;
   margin-left: auto;
   margin-right: auto;
@@ -140,8 +140,6 @@ input[type=time]::-webkit-outer-spin-button {
   max-width: 20em;
   margin-left: auto;
   margin-right: auto;
-  /* background: #f8f8f8; */
-  /* border: solid 1px #d4d4d4; */
 }
 
 .form {

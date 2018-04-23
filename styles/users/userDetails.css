@@ -1,8 +1,6 @@
 .textBox {
   display: inline-block;
   width: 18em;
-  /* background: #f8f8f8; */
-  /* border: solid 1px #d4d4d4; */
   padding: .5em;
   font-size: 18px;
   border: 1px solid black;

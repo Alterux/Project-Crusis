@@ -50,7 +50,6 @@
   margin-bottom: 2em;
   display: flex;
   align-items: center;
-  /* border: 2px solid black; */
   box-shadow: 0px 0px 5px black;
 }
 
@@ -61,8 +60,6 @@
     display: none;
     position: fixed;
     z-index: 1;
-    /* width: 40%; */
-    /* height: 100%; */
     overflow: auto;
 }
 .popupcontent {
@@ -111,12 +108,13 @@
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close:hover, .close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
 }
+
+
 /* Add Animation */
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0}
@@ -129,7 +127,6 @@
 }
 
 .news {
-  /* border: 2px solid black; */
   box-shadow: 0px 0px 5px black;
 }
 
@@ -139,7 +136,6 @@
   margin-top: 1em;
   padding-top: 0.5em;
   padding-bottom: .5em;
-  /* border: 2px solid black; */
   box-shadow: 0px 0px 5px black;
 }
 
@@ -155,8 +151,4 @@
 .rightContainer {
   float: right;
   width: 30em;
-  /* box-shadow: 0px 0px 5px;
-  position:fixed;
-  right: 0;
-  max-width: 45em; */
 }

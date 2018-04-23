@@ -2,13 +2,13 @@
   margin-top: 1em;
   background-color: #ffffff;
   min-height: 100vh;
-  height: 96vh;
+  height: 100%;
 }
 
 .langSelectAuth {
   position: absolute;
-  top: .5em;
-  right: .5em;
+  top: 0.9em;
+  right: 6.5em;
 }
 
 #signInBar {
@@ -76,8 +76,6 @@
 }
 
 #title {
-  /* box-shadow: 0px 0px 5px; */
-
   width: 25em;
   margin: auto;
   padding-top: .5em;
@@ -181,9 +179,9 @@ i {
   background-position: 0 -36px;
 }
 
-/****************/
+/***************************/
 /* Forgotten password page */
-/****************/
+/***************************/
 
 
 #forgotPassButton {
