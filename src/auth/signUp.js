@@ -198,37 +198,41 @@ class SignUp extends React.Component<Props, State> {
     }
 
     // on input change => set to validate on input
-    if (this.refs.inputUsername) {
-      this.refs.signUpForm.onchange = () => {
-        let phone = this.refs.inputPhone.value;
-        let userName = this.refs.inputUsername.value;
-        let password = this.refs.inputPassword.value;
-        let passwordMatch = this.refs.inputPasswordMatch.value;
-        let firstName = this.refs.inputFirstname.value;
-        let lastName = this.refs.inputLastname.value;
-        let birthYear = this.refs.inputBirthYear.value;
-        let birthMonth = this.refs.inputBirthMonth.value;
-        let birthDay = this.refs.inputBirthDay.value;
-        let address = this.refs.inputAddress.value;
-        let postcode = this.refs.inputPostcode.value;
-        let city = this.refs.inputCity.value;
+    this.refs.signUpForm.onchange = () => {
+      checkFilled();
 
-        if (!phone || !userName || !password || !passwordMatch || !firstName || !lastName || !birthDay || !birthMonth || !birthYear || !address || !postcode || !city) {
-          console.log('Not all input fields are filled')
-        } else {
-          this.setState({inputsFilled: true});
-        }
-
-        if (this.errorPhone || this.errorEmail || this.errorPass || this.errorPassMatch || this.errorFirstName || this.errorLastName || this.errorBirth || this.errorAddress || this.errorPostcode || this.errorCity) {
-          this.errorValidation = true;
-          this.setState({errorSignUp: true});
-        } else {
-          this.errorValidation = false;
-          this.setState({errorSignUp: false});
-        }
+      if (this.errorPhone || this.errorEmail || this.errorPass || this.errorPassMatch || this.errorFirstName || this.errorLastName || this.errorBirth || this.errorAddress || this.errorPostcode || this.errorCity) {
+        this.errorValidation = true;
+        this.setState({errorSignUp: true});
+      } else {
+        this.errorValidation = false;
+        this.setState({errorSignUp: false});
       }
     }
 
+    // check if all inputs are filled
+    let checkFilled = () => {
+      let phone = this.refs.inputPhone.value;
+      let userName = this.refs.inputUsername.value;
+      let password = this.refs.inputPassword.value;
+      let passwordMatch = this.refs.inputPasswordMatch.value;
+      let firstName = this.refs.inputFirstname.value;
+      let lastName = this.refs.inputLastname.value;
+      let birthYear = this.refs.inputBirthYear.value;
+      let birthMonth = this.refs.inputBirthMonth.value;
+      let birthDay = this.refs.inputBirthDay.value;
+      let address = this.refs.inputAddress.value;
+      let postcode = this.refs.inputPostcode.value;
+      let city = this.refs.inputCity.value;
+
+      if (!phone || !userName || !password || !passwordMatch || !firstName || !lastName || !birthDay || !birthMonth || !birthYear || !address || !postcode || !city) {
+        this.setState({inputsFilled: false});
+      } else {
+        this.setState({inputsFilled: true});
+      }
+    }
+
+    // validation for each input field
     this.refs.inputPhone.onchange = () => {validatePhone(); this.refs.inputPhone.oninput = () => {validatePhone()}}
     this.refs.inputUsername.onchange = () => {validateEmail(); this.refs.inputUsername.oninput = () => {validateEmail()}}
     this.refs.inputPassword.onchange = () => {validatePassword(); this.refs.inputPassword.oninput = () => {validatePassword()}}
@@ -243,55 +247,58 @@ class SignUp extends React.Component<Props, State> {
     // button loaded and clicked
     if (this.refs.inputButton) {
       this.refs.inputButton.onclick = () => {
+        checkFilled();
+        // if inputs are filled, then proceed
+        if (this.state.inputsFilled) {
+          // get values
+          let phone = parseInt(this.refs.inputPhone.value);
+          let userName = this.refs.inputUsername.value;
+          let hashedPass = this.hashCode(this.refs.inputPassword.value + this.refs.inputUsername.value);
+          let firstName = this.refs.inputFirstname.value;
+          let middleName = this.refs.inputMiddlename.value;
+          let lastName = this.refs.inputLastname.value;
+          let birthYear = this.refs.inputBirthYear.value;
+          let birthMonth = this.refs.inputBirthMonth.value;
+          let birthDay = this.refs.inputBirthDay.value;
+          let birthDate = birthYear + '-' + birthMonth + '-' + birthDay;
+          let address = this.refs.inputAddress.value;
+          let postcode = parseInt(this.refs.inputPostcode.value);
+          let city = this.refs.inputCity.value;
 
-        // get values
-        let phone = parseInt(this.refs.inputPhone.value);
-        let userName = this.refs.inputUsername.value;
-        let hashedPass = this.hashCode(this.refs.inputPassword.value + this.refs.inputUsername.value);
-        let firstName = this.refs.inputFirstname.value;
-        let middleName = this.refs.inputMiddlename.value;
-        let lastName = this.refs.inputLastname.value;
-        let birthYear = this.refs.inputBirthYear.value;
-        let birthMonth = this.refs.inputBirthMonth.value;
-        let birthDay = this.refs.inputBirthDay.value;
-        let birthDate = birthYear + '-' + birthMonth + '-' + birthDay;
-        let address = this.refs.inputAddress.value;
-        let postcode = parseInt(this.refs.inputPostcode.value);
-        let city = this.refs.inputCity.value;
+          // birth validation only after button clicked
+          this.refs.inputBirthYear.onchange = () => {validateBirth()}
+          this.refs.inputBirthMonth.onchange = () => {validateBirth()}
+          this.refs.inputBirthDay.onchange = () => {validateBirth()}
 
-        // birth validation only after button clicked
-        this.refs.inputBirthYear.onchange = () => {validateBirth()}
-        this.refs.inputBirthMonth.onchange = () => {validateBirth()}
-        this.refs.inputBirthDay.onchange = () => {validateBirth()}
+          // final validation
+          validatePhone(); this.refs.inputPhone.oninput = () => {validatePhone()}
+          validateEmail(); this.refs.inputUsername.oninput = () => {validateEmail()}
+          validatePassword(); this.refs.inputPassword.oninput = () => {validatePassword()}
+          validatePasswordMatch(); this.refs.inputPasswordMatch.oninput = () => {validatePasswordMatch()}
+          validateFirstName(); this.refs.inputFirstname.oninput = () => {validateFirstName()}
+          validateMiddleName();
+          validateLastName(); this.refs.inputLastname.oninput = () => {validateLastName()}
+          validateBirth();
+          validateAddress(); this.refs.inputAddress.oninput = () => {validateAddress()}
+          validatePostcode(); this.refs.inputPostcode.oninput = () => {validatePostcode()}
+          validateCity(); this.refs.inputCity.oninput = () => {validateCity()}
 
-        // final validation
-        validatePhone(); this.refs.inputPhone.oninput = () => {validatePhone()}
-        validateEmail(); this.refs.inputUsername.oninput = () => {validateEmail()}
-        validatePassword(); this.refs.inputPassword.oninput = () => {validatePassword()}
-        validatePasswordMatch(); this.refs.inputPasswordMatch.oninput = () => {validatePasswordMatch()}
-        validateFirstName(); this.refs.inputFirstname.oninput = () => {validateFirstName()}
-        validateMiddleName();
-        validateLastName(); this.refs.inputLastname.oninput = () => {validateLastName()}
-        validateBirth();
-        validateAddress(); this.refs.inputAddress.oninput = () => {validateAddress()}
-        validatePostcode(); this.refs.inputPostcode.oninput = () => {validatePostcode()}
-        validateCity(); this.refs.inputCity.oninput = () => {validateCity()}
-
-        // validation fail
-        if (this.errorValidation) {
-          this.setState({errorSignUp: true});
-          console.log('signup error');
-        } else {
-          // validation pass
-          userService.signUp(userName, hashedPass, phone, firstName, middleName, lastName, birthDate, address, postcode, city).then(() => {
-            this.setState({accountCreated: true});
-            // back button
-            this.refs.backButton.onclick = () => {
-              history.push('/signIn');
-            }
-          }).catch((error: Error) => {
-            if(errorMessage) console.log(error);
-          });
+          // validation fail
+          if (this.errorValidation) {
+            this.setState({errorSignUp: true});
+            console.log('signup error');
+          } else {
+            // validation pass
+            userService.signUp(userName, hashedPass, phone, firstName, middleName, lastName, birthDate, address, postcode, city).then(() => {
+              this.setState({accountCreated: true});
+              // back button
+              this.refs.backButton.onclick = () => {
+                history.push('/signIn');
+              }
+            }).catch((error: Error) => {
+              if(errorMessage) console.log(error);
+            });
+          }
         }
       }
     }

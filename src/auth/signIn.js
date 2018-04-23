@@ -93,8 +93,13 @@ class SignIn extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    // on input change => set to validate on input
+    // on input change check if inputs are filled
     this.refs.signInForm.onchange = () => {
+      checkFilled();
+    }
+
+    // check if inputs are filled
+    let checkFilled = () => {
       let userName = this.refs.signInUsername.value;
       let password = this.refs.signInPassword.value;
 
@@ -136,15 +141,20 @@ class SignIn extends React.Component<Props, State> {
 
     // try to submit, check for error
     let submit = () => {
-      let hashedPass = this.hashCode(this.refs.signInPassword.value + this.refs.signInUsername.value);
-      userService.signIn(this.refs.signInUsername.value, hashedPass).then(() => {
-        history.push('/');
-      }).catch((error: Error) => {
-        if(errorMessage) {
-          console.log(error);
-          this.setState({errorLogin: true})
-        }
-      });
+      // check if inputs are filled
+      checkFilled();
+      // if inputs are filled, try to log in
+      if (this.state.inputsFilled) {
+        let hashedPass = this.hashCode(this.refs.signInPassword.value + this.refs.signInUsername.value);
+        userService.signIn(this.refs.signInUsername.value, hashedPass).then(() => {
+          history.push('/');
+        }).catch((error: Error) => {
+          if(errorMessage) {
+            console.log(error);
+            this.setState({errorLogin: true})
+          }
+        });
+      }
     }
   }
 }
