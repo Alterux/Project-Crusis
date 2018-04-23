@@ -95,7 +95,7 @@ class UserDetails extends React.Component<Props, State> {
         userTypeName = lang.admin;
         break;
       default:
-        userTypeName = ""
+        userTypeName = ''
     }
 
     // user details
@@ -118,15 +118,15 @@ class UserDetails extends React.Component<Props, State> {
       userAddress = <div className='entry'><span className='bold'>{lang.address}: </span>{user.address}, {user.postcode} {user.city}</div>;
       userPoints = <div className='entry'><span className='bold'>{lang.points}: </span>{user.points}</div>;
       // user buttons
-      editUserButton = <div className="editUserButton"><button ref="editUserButton">{lang.edit}</button></div>;
-      editLoginButton = <div className="editLoginButton"><button ref="editLoginButton">{lang.editLogin}</button></div>;
-      acceptUserButton = <div className="acceptUserButton"><button ref="acceptUserButton" className="acceptButton acceptUserButton">{lang.accept}</button></div>;
-      rejectUserButton = <div className="rejectUserButton"><button ref="rejectUserButton" className="deleteButton rejectUserButton">{lang.reject}</button></div>
-      deactivateUserButton = <div className="deactivateUserButton"><button ref="deactivateUserButton" className="deleteButton deactivateUserButton">{lang.deactivate}</button></div>
-      reactivateUserButton = <div className="reactivateUserButton"><button ref="reactivateUserButton" className="deleteButton reactivateUserButton">{lang.reactivate}</button></div>
+      editUserButton = <div className='editUserButton'><button ref='editUserButton'>{lang.edit}</button></div>;
+      editLoginButton = <div className='editLoginButton'><button ref='editLoginButton'>{lang.editLogin}</button></div>;
+      acceptUserButton = <div className='acceptUserButton'><button ref='acceptUserButton' className='acceptButton acceptUserButton'>{lang.accept}</button></div>;
+      rejectUserButton = <div className='rejectUserButton'><button ref='rejectUserButton' className='deleteButton rejectUserButton'>{lang.reject}</button></div>
+      deactivateUserButton = <div className='deactivateUserButton'><button ref='deactivateUserButton' className='deleteButton deactivateUserButton'>{lang.deactivate}</button></div>
+      reactivateUserButton = <div className='reactivateUserButton'><button ref='reactivateUserButton' className='deleteButton reactivateUserButton'>{lang.reactivate}</button></div>
       // competence buttons
-      editCompetenceButton = <div className="editCompetenceButton"><button ref="editCompetenceButton">{lang.edit}</button></div>;
-      saveCompetenceButton = <div className="saveCompetenceButton"><button ref="saveCompetenceButton">{lang.save}</button></div>;
+      editCompetenceButton = <div className='editCompetenceButton'><button ref='editCompetenceButton'>{lang.edit}</button></div>;
+      saveCompetenceButton = <div className='saveCompetenceButton'><button ref='saveCompetenceButton'>{lang.save}</button></div>;
     }
 
     let isAdmin = (): boolean => {
@@ -161,7 +161,7 @@ class UserDetails extends React.Component<Props, State> {
 
     let userDetailsShow = () => {
       return (
-        <div className="textBox">
+        <div className='textBox'>
           {!isNewUser() && isAdmin() || isSelf() ? editUserButton : null}
           <div className='entry'><span className='bold'>{lang.age}: </span>{age}</div>
           <div className='entry'><span className='bold'>{lang.phone}: </span>{user.phone}</div>
@@ -184,7 +184,7 @@ class UserDetails extends React.Component<Props, State> {
       }
 
       return (
-        <div className="textBox">
+        <div className='textBox'>
           {!isNewUser() && (isAdmin() || isLeader()) ? editCompetenceButton : null}
           <div className='last entry'>
             <ul className='competence'>
@@ -212,7 +212,7 @@ class UserDetails extends React.Component<Props, State> {
 
     let competenceEdit = () => {
       return (
-        <div className="textBox">
+        <div className='textBox'>
           {saveCompetenceButton}
           <div className='last entry'>
             {checkCompetence()}
@@ -223,9 +223,9 @@ class UserDetails extends React.Component<Props, State> {
 
     return (
       <div className='contentWrapper'>
-        <div className="textBoxWrapper">
+        <div className='textBoxWrapper'>
           <div className='userNameBox'>
-            <div className='accountImgContainer'><img className="accountImg" src="resources/default.png" alt="Account Image"></img></div>
+            <div className='accountImgContainer'><img className='accountImg' src='resources/default.png' alt='Account Image'></img></div>
             <div className='bold userName'>{user.firstName} {user.middleName} {user.lastName}</div>
             <div className='userButtons'>
               {!isNewUser() && isAdmin() || isSelf() ? editLoginButton : null}
@@ -235,15 +235,15 @@ class UserDetails extends React.Component<Props, State> {
               {isNewUser() && isAdmin() ? rejectUserButton : null}
             </div>
           </div>
-          <div className="userDetailsBox">
-            <div className="textBoxHead">
-              <h3 className="textBoxTitle">{lang.userInfo}</h3>
+          <div className='userDetailsBox'>
+            <div className='textBoxHead'>
+              <h3 className='textBoxTitle'>{lang.userInfo}</h3>
             </div>
             {userDetailsShow()}
           </div>
-          <div className="competenceBox">
-            <div className="textBoxHead">
-              <h3 className="textBoxTitle">{lang.competence}</h3>
+          <div className='competenceBox'>
+            <div className='textBoxHead'>
+              <h3 className='textBoxTitle'>{lang.competence}</h3>
             </div>
             {editCompetence ? competenceEdit() : competenceShow()}
           </div>
@@ -407,7 +407,7 @@ class UserDetails extends React.Component<Props, State> {
         // Contact button
         if (this.refs.contactUserButton) {
           this.refs.contactUserButton.onclick = () => {
-            console.log("Contact Button Pressed");
+            console.log('Contact Button Pressed');
           }
         }
       }).catch((error: Error) => {

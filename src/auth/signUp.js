@@ -110,14 +110,15 @@ class SignUp extends React.Component<Props, State> {
     let errorPostcode = this.errorPostcode;
     let errorCity = this.errorCity;
 
+    // display after account has been created
     if (this.state.accountCreated) {
       return (
-        <div className="signInPage">
-          <div id="title">
-            <img id="logo" src="resources/logo.svg"></img>
-            <div className="titleText"><h1>{lang.title}</h1></div>
+        <div className='signInPage'>
+          <div id='title'>
+            <img id='logo' src='resources/logo.svg'></img>
+            <div className='titleText'><h1>{lang.title}</h1></div>
           </div>
-          <div className="big-entry inputForm">
+          <div className='big-entry inputForm'>
             {lang.signedUpMsg}
           </div>
           <div className='big-entry inputForm'>
@@ -127,57 +128,58 @@ class SignUp extends React.Component<Props, State> {
           </div>
         </div>
       );
+      // display if account has not been created yet
     } else {
       return (
-        <div className="signInPage">
-          <div id="title">
-            <img id="logo" src="resources/logo.svg"></img>
-            <div className="titleText"><h1>{lang.title}</h1></div>
+        <div className='signInPage'>
+          <div id='title'>
+            <img id='logo' src='resources/logo.svg'></img>
+            <div className='titleText'><h1>{lang.title}</h1></div>
           </div>
 
-          <div className="big-entry inputForm">
+          <div className='big-entry inputForm'>
             <div className='status'>Status</div>
             {this.state.errorSignUp ? this.errorSignUp() : this.noError()}
           </div>
 
-          <div className="big-entry inputForm">
+          <div className='big-entry inputForm'>
             <form ref='signUpForm'>
 
-            <div className="inputFormAuth">
-              <input className="form formAuth" id="formUser" type='email' ref='inputUsername' placeholder={lang.email} required />
-              <input className="form formAuth" id="formPass" type='password' ref='inputPassword' placeholder={lang.password} required />
+            <div className='inputFormAuth'>
+              <input className='form formAuth' id='formUser' type='email' ref='inputUsername' placeholder={lang.email} required />
+              <input className='form formAuth' id='formPass' type='password' ref='inputPassword' placeholder={lang.password} required />
               {this.errorPass ? <div className='details errorInput'>{lang.errorPassInfo}</div> : null}
-              <input className="form formAuth" id="formPass" type='password' ref='inputPasswordMatch' placeholder={lang.passwordMatch} required />
+              <input className='form formAuth' id='formPass' type='password' ref='inputPasswordMatch' placeholder={lang.passwordMatch} required />
             </div>
 
-            <div className="inputFormPhone">
+            <div className='inputFormPhone'>
               <h3>{lang.phone}</h3>
-              <input className="form" type='text' ref='inputPhone' placeholder={lang.phone} required />
+              <input className='form' type='text' ref='inputPhone' placeholder={lang.phone} required />
             </div>
 
-            <div className="inputFormName">
+            <div className='inputFormName'>
               <h3>{lang.name}</h3>
-              <input className="form" type='text' ref='inputFirstname' placeholder={lang.firstName} required />
-              <input className="form" type='text' ref='inputMiddlename' placeholder={lang.middleName} />
-              <input className="form" type='text' ref='inputLastname' placeholder={lang.lastName} required />
+              <input className='form' type='text' ref='inputFirstname' placeholder={lang.firstName} required />
+              <input className='form' type='text' ref='inputMiddlename' placeholder={lang.middleName} />
+              <input className='form' type='text' ref='inputLastname' placeholder={lang.lastName} required />
             </div>
 
-            <div className="inputFormBirth">
+            <div className='inputFormBirth'>
               <h3>{lang.birthdate}</h3>
               {inputDays('inputBirthDay', 'form birth')}
               {inputMonths('inputBirthMonth', 'form birth month')}
               {inputYears('inputBirthYear', 'form birth year')}
             </div>
 
-            <div className="inputFormAddress">
+            <div className='inputFormAddress'>
               <h3>{lang.address}</h3>
-              <input className="form" type='text' ref='inputAddress' placeholder={lang.address} required />
-              <input className="form postcode" type='text' ref='inputPostcode' placeholder={lang.postcode} required />
-              <input className="form city" type='text' ref='inputCity' placeholder={lang.city} required />
+              <input className='form' type='text' ref='inputAddress' placeholder={lang.address} required />
+              <input className='form postcode' type='text' ref='inputPostcode' placeholder={lang.postcode} required />
+              <input className='form city' type='text' ref='inputCity' placeholder={lang.city} required />
             </div>
 
-            <div className="inputFormButton">
-              <button className="form" id="signInButton" ref='inputButton'>{lang.signUp}</button>
+            <div className='inputFormButton'>
+              <button className='form' id='signInButton' ref='inputButton'>{lang.signUp}</button>
             </div>
             </form>
           </div>
@@ -200,7 +202,7 @@ class SignUp extends React.Component<Props, State> {
     // on input change => set to validate on input
     this.refs.signUpForm.onchange = () => {
       checkFilled();
-
+      // validate each input field
       if (this.errorPhone || this.errorEmail || this.errorPass || this.errorPassMatch || this.errorFirstName || this.errorLastName || this.errorBirth || this.errorAddress || this.errorPostcode || this.errorCity) {
         this.errorValidation = true;
         this.setState({errorSignUp: true});
@@ -225,6 +227,7 @@ class SignUp extends React.Component<Props, State> {
       let postcode = this.refs.inputPostcode.value;
       let city = this.refs.inputCity.value;
 
+      // make sure all input fields are filled
       if (!phone || !userName || !password || !passwordMatch || !firstName || !lastName || !birthDay || !birthMonth || !birthYear || !address || !postcode || !city) {
         this.setState({inputsFilled: false});
       } else {

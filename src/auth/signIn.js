@@ -64,20 +64,20 @@ class SignIn extends React.Component<Props, State> {
 
   render() {
     return (
-      <div className="signInPage">
-        <div id="title">
-          <img id="logo" src="resources/logo.svg"></img>
-          <div className="titleText"><h1>{lang.title}</h1></div>
+      <div className='signInPage'>
+        <div id='title'>
+          <img id='logo' src='resources/logo.svg'></img>
+          <div className='titleText'><h1>{lang.title}</h1></div>
         </div>
-        <div className="big-entry inputForm">
+        <div className='big-entry inputForm'>
           <div className='status'>Status</div>
           {this.state.errorLogin ? this.errorLogin() : this.noError()}
         </div>
-        <div className="big-entry inputForm">
+        <div className='big-entry inputForm'>
           <form ref='signInForm'>
-            <input className="form formAuth" id="formUser" type='text' ref='signInUsername' placeholder={lang.email} />
-            <input className="form formAuth" id="formPass" type='password' ref='signInPassword' placeholder={lang.password} />
-            <button className="form" id="signInButton" ref='signInButton'>{lang.signIn}</button>
+            <input className='form formAuth' id='formUser' type='text' ref='signInUsername' placeholder={lang.email} />
+            <input className='form formAuth' id='formPass' type='password' ref='signInPassword' placeholder={lang.password} />
+            <button className='form' id='signInButton' ref='signInButton'>{lang.signIn}</button>
           </form>
         </div>
         <div className='inputForm'>

@@ -40,7 +40,7 @@ class Home extends React.Component<Props, State> {
         $('#calendar').fullCalendar({
 
           //Customization of the calendar
-          weekNumberCalculation: "ISO",
+          weekNumberCalculation: 'ISO',
           monthNames: [lang.jan, lang.feb, lang.mar, lang.apr, lang.may, lang.jun, lang.jul, lang.aug, lang.sep, lang.oct, lang.nov, lang.dec],
           monthNamesShort: [lang.jan.slice(0, 3), lang.feb.slice(0, 3), lang.mar.slice(0, 3), lang.apr.slice(0, 3), lang.may.slice(0, 3), lang.jun.slice(0, 3), lang.jul.slice(0, 3), lang.aug.slice(0, 3), lang.sep.slice(0, 3), lang.oct.slice(0, 3), lang.nov.slice(0, 3), lang.dec.slice(0, 3)],
           dayNames: [lang.mon, lang.tue, lang.wed, lang.thu, lang.fri, lang.sat, lang.sun],
@@ -56,12 +56,12 @@ class Home extends React.Component<Props, State> {
 
             // popup content // $FlowFixMe
             popupBodyContent.innerHTML = event.details;
-            popupBodyContent.innerHTML += "<br /><br /><a href='"+'#/event/'+ event.id + "'}>" + lang.upcomingEventReadmore + "</a>";
+            popupBodyContent.innerHTML += '<br /><br /><a href="'+"#/event/"+ event.id + '"}>' + lang.upcomingEventReadmore + '</a>';
 
             // popup style // $FlowFixMe
             popup.style.left = coords.clientX - 20 + 'px';
             popup.style.top = coords.clientY - 20 + 'px';
-            popup.style.display = "block";
+            popup.style.display = 'block';
             return false;
           }
         });
@@ -77,7 +77,7 @@ class Home extends React.Component<Props, State> {
             <h3>{lang.loggedInMsg}</h3>
           </div>
           <div id='calendarwindow'>
-            {this.state.loaded ? <div id="calendar"></div> : null}
+            {this.state.loaded ? <div id='calendar'></div> : null}
             <div className='popupstyle' id='popup' ref='popup'>
               <div className='popupcontent'>
                 <div className='popupheader'>
@@ -91,20 +91,20 @@ class Home extends React.Component<Props, State> {
             </div>
           </div>
           <div className='rightContainer'>
-            <div className="news">
-              <div className="newsheading">
+            <div className='news'>
+              <div className='newsheading'>
                 <h3>{lang.newsheading}</h3>
               </div>
-              <div className="newsText">
+              <div className='newsText'>
                 {lang.newsText}
               </div>
-              <img src="http://www.stiftelsen-uni.no/r/img/P2191.jpg" id="news-image"></img>
+              <img src='http://www.stiftelsen-uni.no/r/img/P2191.jpg' id='news-image'></img>
             </div>
-            <div className="upcomingEvents">
-              <div className="upcomingEvents-headline entry">
+            <div className='upcomingEvents'>
+              <div className='upcomingEvents-headline entry'>
                 <h3>{lang.upcomingEventsHeadline}</h3>
               </div>
-              <div className="upcomingEvents-events">
+              <div className='upcomingEvents-events'>
                 <ul>
                   {listEvents}
                 </ul>
@@ -154,6 +154,7 @@ class Home extends React.Component<Props, State> {
           let startDate = event.startDate;
           let endDate = event.endDate;
 
+          // start date
           let startYear = startDate.getFullYear();
           let startMonth = startDate.getMonth() + 1;
           if (startMonth < 10) startMonth = '0' + startMonth;
@@ -161,6 +162,7 @@ class Home extends React.Component<Props, State> {
           if (startDay < 10) startDay = '0' + startDay;
           let start = startYear + '-' + startMonth + '-' + startDay;
 
+          // end date
           let endYear = endDate.getFullYear();
           let endMonth = endDate.getMonth() + 1;
           if (endMonth < 10) endMonth = '0' + endMonth;
@@ -170,8 +172,6 @@ class Home extends React.Component<Props, State> {
 
           this.events.push({id: id, title: title, start: start, end: end, details: details});
         }
-
-        this.forceUpdate();
         this.setState({loaded: true});
 
         }).catch((error: Error) => {
@@ -192,12 +192,6 @@ class Home extends React.Component<Props, State> {
     span.onclick = () => {
         this.refs.popup.style.display = 'none';
     }
-
-    // window.onclick = (event) => {
-    //   if (this.refs.popup.style.display === 'block') {
-    //     // this.refs.popup.style.display = 'none';
-    //   }
-    // }
   }
 }
 

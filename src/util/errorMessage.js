@@ -18,7 +18,7 @@ class ErrorMessage extends React.Component<Props, State> {
     else displayValue = 'inline';
 
     return (
-      <div className="errorMessage" style={{display: displayValue}}>
+      <div className='errorMessage' style={{display: displayValue}}>
         <b><font color='red'>{this.message} </font></b>
         <button ref='closeButton'>x</button>
       </div>
