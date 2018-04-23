@@ -1,1 +1,1 @@
-# electron-react-promise-flow-example
+# Gruppeprosjekt for emnet Objekt Orientert Programmering av Team 27
