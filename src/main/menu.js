@@ -30,9 +30,9 @@ class Menu extends React.Component<Props, State> {
       );
     }
 
-    if(signedInUser) {
-      return (
-        <div id="menuBar" className="toolBar">
+    let toolBar = () => {
+      if(signedInUser) {
+        return (
           <div className='menuWrapper'>
             <div id="menuItems">
               <NavLink className='leftMost navLink' activeClassName='active' exact to='/'>{lang.home}</NavLink>{' '}
@@ -43,17 +43,21 @@ class Menu extends React.Component<Props, State> {
             <div id="signOut">
               <NavLink className='rightMost navLink' activeClassName='active' to='/signout'>{lang.signOut}</NavLink>{' '}
             </div>
-            {langSelect()}
           </div>
-        </div>
-      );
+        );
+      }
     }
+
+
     return (
-      <div className='langSelectAuth'>
-        <select name="lang" id="lang" ref="lang">
-          <option value="en">English</option>
-          <option value="no">Norsk</option>
-        </select>
+      <div id="menuBar" className="toolBar">
+        {toolBar()}
+        <div className='langSelectAuth'>
+          <select name="lang" id="lang" ref="lang">
+            <option value="en">English</option>
+            <option value="no">Norsk</option>
+          </select>
+        </div>
       </div>
     );
   }
