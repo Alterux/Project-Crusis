@@ -51,7 +51,6 @@ class UserLoginEdit extends React.Component<Props, State> {
   render() {
     let user = this.user;
     let signedInUser = this.signedInUser;
-    let userTypeMsg;
 
     let inputFormUserType = () => {
       if (signedInUser.userType === 3) {
