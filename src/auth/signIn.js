@@ -27,6 +27,7 @@ class SignIn extends React.Component<Props, State> {
   refs: {
     signInUsername: HTMLInputElement,
     signInPassword: HTMLInputElement,
+    signInForm: HTMLFormElement,
     signInButton: HTMLButtonElement,
     signUpButton: HTMLButtonElement,
     forgotPassButton: HTMLButtonElement,
@@ -73,9 +74,11 @@ class SignIn extends React.Component<Props, State> {
           {this.state.errorLogin ? this.errorLogin() : this.noError()}
         </div>
         <div className="big-entry inputForm">
-          <input className="form formAuth" id="formUser" type='text' ref='signInUsername' placeholder={lang.email} />
-          <input className="form formAuth" id="formPass" type='password' ref='signInPassword' placeholder={lang.password} />
-          <button className="form" id="signInButton" ref='signInButton'>{lang.signIn}</button>
+          <form ref='signInForm'>
+            <input className="form formAuth" id="formUser" type='text' ref='signInUsername' placeholder={lang.email} />
+            <input className="form formAuth" id="formPass" type='password' ref='signInPassword' placeholder={lang.password} />
+            <button className="form" id="signInButton" ref='signInButton'>{lang.signIn}</button>
+          </form>
         </div>
         <div className='inputForm'>
           <div className='entry inputFormButton'>
@@ -90,55 +93,53 @@ class SignIn extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    if(menu) menu.forceUpdate();
-
     // on input change => set to validate on input
-    if (this.refs.signInUsername) {
-      window.onchange = () => {
-        let userName = this.refs.signInUsername.value;
-        let password = this.refs.signInPassword.value;
+    this.refs.signInForm.onchange = () => {
+      let userName = this.refs.signInUsername.value;
+      let password = this.refs.signInPassword.value;
 
-        if (!userName || !password) {
-          this.setState({inputsFilled: false});
-        } else {
-          this.setState({inputsFilled: true});
-        }
+      if (!userName || !password) {
+        this.setState({inputsFilled: false});
+      } else {
+        this.setState({inputsFilled: true});
       }
     }
 
     // listen for enter on username input
-    this.refs.signInUsername.onkeydown = (e) => {
+    this.refs.signInUsername.onkeydown = (e: number) => {
       if (e.keyCode === 13) {
         submit();
       }
     }
 
     // listen for enter on password input
-    this.refs.signInPassword.onkeydown = (e) => {
+    this.refs.signInPassword.onkeydown = (e: number) => {
       if (e.keyCode === 13) {
         submit();
       }
     }
 
+    // log in
     this.refs.signInButton.onclick = () => {
       submit();
     }
 
+    // sign up
     this.refs.signUpButton.onclick = () => {
       history.push('/signUp');
     }
 
+    // forgot password
     this.refs.forgotPassButton.onclick = () => {
       history.push('/forgotPass');
     }
 
+    // try to submit, check for error
     let submit = () => {
       let hashedPass = this.hashCode(this.refs.signInPassword.value + this.refs.signInUsername.value);
       userService.signIn(this.refs.signInUsername.value, hashedPass).then(() => {
         history.push('/');
       }).catch((error: Error) => {
-        // Converts error to string og removes "Error: " from the beginning.
-        // Output is only the errormessage from lang.js.
         if(errorMessage) {
           console.log(error);
           this.setState({errorLogin: true})

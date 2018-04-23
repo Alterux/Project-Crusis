@@ -28,6 +28,7 @@ class SignUp extends React.Component<Props, State> {
   }
 
   refs: {
+    signUpForm: HTMLFormElement,
     inputPhone: HTMLInputElement,
     inputUsername: HTMLInputElement,
     inputPassword: HTMLInputElement,
@@ -140,7 +141,7 @@ class SignUp extends React.Component<Props, State> {
           </div>
 
           <div className="big-entry inputForm">
-            <form>
+            <form ref='signUpForm'>
 
             <div className="inputFormAuth">
               <input className="form formAuth" id="formUser" type='email' ref='inputUsername' placeholder={lang.email} required />
@@ -191,8 +192,6 @@ class SignUp extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    if(menu) menu.forceUpdate();
-
     // back button
     this.refs.backButton.onclick = () => {
       history.push('/signIn');
@@ -200,7 +199,7 @@ class SignUp extends React.Component<Props, State> {
 
     // on input change => set to validate on input
     if (this.refs.inputUsername) {
-      window.onchange = () => {
+      this.refs.signUpForm.onchange = () => {
         let phone = this.refs.inputPhone.value;
         let userName = this.refs.inputUsername.value;
         let password = this.refs.inputPassword.value;

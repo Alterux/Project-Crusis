@@ -27,7 +27,6 @@ class ForgotPass extends React.Component<Props, State> {
     backButton: HTMLButtonElement,
   };
 
-  setState: any;
   errorEmail: boolean = false;
   errorEmailExist: boolean = false;
 
@@ -77,7 +76,7 @@ class ForgotPass extends React.Component<Props, State> {
   componentDidMount() {
 
     // listen for enter on email input
-    this.refs.inputForgotPassEmail.onkeydown = (e) => {
+    this.refs.inputForgotPassEmail.onkeydown = (e: number) => {
       if (e.keyCode === 13) {
         validateEmail();
       }

@@ -18,8 +18,6 @@ class SignOut extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    if(menu) menu.forceUpdate();
-
     let result = confirm(lang.confirmSignOut);
     if (result) {
       localStorage.removeItem('signedInUser');
