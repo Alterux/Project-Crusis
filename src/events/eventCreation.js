@@ -64,21 +64,21 @@ class EventCreation extends React.Component<Props, State>{
    let selectRoles = [];
 
    for (let role of this.roles) {
-     listRoles.push(<option key={role.id.toString()} ref={role.id.toString()} value={role.id}>{lang[role.name]}</option>);
+     listRoles.push(<option ref={role.id.toString()} value={role.id}>{lang[role.name]}</option>);
    }
 
    for (let role of this.selectedRoles) {
-     listRoles.splice(role, 1, (<option key={role.toString()} ref={role.toString()} value={role + 1} disabled>{lang[this.roles[role].name]}</option>));
+     listRoles.splice(role, 1, (<option ref={role.toString()} value={role + 1} disabled>{lang[this.roles[role].name]}</option>));
    }
 
    let addRoleInput = () => {
      for (var i = 2; i < this.state.roleInputs; i++) {
        inputRoles.push(
-         <div >
-           <div key={'role'+i} className='float-left'>
+         <div>
+           <div className='float-left'>
              <select className='form inputRoles' ref={'inputRole'+i} required>{listRoles}</select>
            </div>
-           <div key={'quantity'+i} className='float-right'>
+           <div className='float-right'>
              <input className="form inputQuantity" type='number' ref={'inputQuantity'+i} min='1' defaultValue='1' placeholder={lang.quantity} required />
            </div>
          </div>
@@ -218,7 +218,9 @@ class EventCreation extends React.Component<Props, State>{
 
    componentDidMount() {
      let addRoleInput = () => {
+       // repeat for each roleinput
        for (var i = 2; i < this.state.roleInputs; i++) {
+         // remove roles from selectedRoles array
          this.refs.removeRoleButton.onclick = () => {
            for (var i = 0; i < this.state.roleInputs; i++) {
              let id = this.refs['inputRole'+i].value;
@@ -245,6 +247,7 @@ class EventCreation extends React.Component<Props, State>{
 
      // add role button
      this.refs.addRoleButton.onclick = () => {
+       // add roles to selectedRoles array
        for (var i = 0; i < this.state.roleInputs; i++) {
          let id = this.refs['inputRole'+i].value;
          this.selectedRoles.push(id - 1);

@@ -208,20 +208,17 @@ class EventDetailsEdit extends React.Component<Props, State>{
   }
 
    componentDidMount() {
-     let removeRoleInput = () => {
-       this.refs.removeRoleButton.onclick = () => {
-         for (var i = 0; i < this.state.roleInputs; i++) {
-           let id = this.refs['inputRole'+i].value;
-           this.selectedRoles.splice(id - 1, 1);
-         }
-         this.setState({roleInputs: this.state.roleInputs-1});
-       }
-     }
-     removeRoleInput();
-
      let addRoleInput = () => {
+       // repeat for each roleinput
        for (var i = 2; i < this.state.roleInputs; i++) {
-         removeRoleInput();
+         // remove roles from selectedRoles array
+         this.refs.removeRoleButton.onclick = () => {
+           for (var i = 0; i < this.state.roleInputs; i++) {
+             let id = this.refs['inputRole'+i].value;
+             this.selectedRoles.splice(id - 1, 1);
+           }
+           this.setState({roleInputs: this.state.roleInputs-1});
+         }
        }
      }
      let signedInUser = userService.getSignedInUser();
@@ -241,6 +238,7 @@ class EventDetailsEdit extends React.Component<Props, State>{
 
      // add role button
      this.refs.addRoleButton.onclick = () => {
+       // add roles to selectedRoles array
        for (var i = 0; i < this.state.roleInputs; i++) {
          let id = this.refs['inputRole'+i].value;
          this.selectedRoles.push(id - 1);
