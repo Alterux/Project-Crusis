@@ -1,8 +1,8 @@
 import * as mysql from 'mysql';
 
 // Setup database server reconnection when server timeouts connection:
-let connection = mysql.createConnection;
-function connect() {
+let connection: Function = mysql.createConnection;
+function connect(): Function {
   connection = mysql.createConnection({
     host: 'mysql.stud.iie.ntnu.no',
     user: 'g_oops_27',
@@ -11,7 +11,7 @@ function connect() {
   });
 
   // Connect to MySQL-server
-  connection.connect((error) => {
+  connection.connect((error: string) => {
     if (error) throw error; // If error, show error in console and return from this function
   });
 

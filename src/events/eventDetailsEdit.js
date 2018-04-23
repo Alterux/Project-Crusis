@@ -214,7 +214,7 @@ class EventDetailsEdit extends React.Component<Props, State>{
          // remove roles from selectedRoles array
          this.refs.removeRoleButton.onclick = () => {
            for (var i = 0; i < this.state.roleInputs; i++) {
-             let id = this.refs['inputRole'+i].value;
+             let id: number = this.refs['inputRole'+i].value;
              this.selectedRoles.splice(id - 1, 1);
            }
            this.setState({roleInputs: this.state.roleInputs-1});
@@ -240,7 +240,7 @@ class EventDetailsEdit extends React.Component<Props, State>{
      this.refs.addRoleButton.onclick = () => {
        // add roles to selectedRoles array
        for (var i = 0; i < this.state.roleInputs; i++) {
-         let id = this.refs['inputRole'+i].value;
+         let id: number = this.refs['inputRole'+i].value;
          this.selectedRoles.push(id - 1);
        }
        this.setState({roleInputs: this.state.roleInputs+1});
@@ -326,8 +326,8 @@ class EventDetailsEdit extends React.Component<Props, State>{
             // add new roles to event
             for (var i = 0; i < this.state.roleInputs; i++) {
               if (!this.eventRoles.includes(parseInt(this.refs['inputRole'+i].value))) {
-                let roleId = this.refs['inputRole'+i].value;
-                let quantity = this.refs['inputQuantity'+i].value;
+                let roleId: number = this.refs['inputRole'+i].value;
+                let quantity: number = this.refs['inputQuantity'+i].value;
                 roleService.createEventRole(this.props.match.params.id, roleId, quantity).then(() => {
                 }).catch((error: Error) => {if(errorMessage) console.log(error)});
               }
