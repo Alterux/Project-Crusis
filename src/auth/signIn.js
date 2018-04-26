@@ -93,6 +93,8 @@ class SignIn extends React.Component<Props, State> {
   }
 
   componentDidMount() {
+    if (menu) menu.forceUpdate();
+
     // on input change => set to validate on input
     this.refs.signInForm.onchange = () => {
       let userName = this.refs.signInUsername.value;
