@@ -29,10 +29,10 @@ let root = document.getElementById('root');
 if(root) {
   ReactDOM.render((
     <HashRouter>
-      <div className="main">
+      <div className='main'>
         <ErrorMessage />
         <Menu />
-        <div className="content">
+        <div className='content'>
           <Switch>
             <Route exact path='/signin' component={SignIn} />
             <Route exact path='/signup' component={SignUp} />

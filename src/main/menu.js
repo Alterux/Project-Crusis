@@ -19,28 +19,18 @@ class Menu extends React.Component<Props, State> {
 
   render() {
     let signedInUser = userService.getSignedInUser();
-    let langSelect = () => {
-      return(
-        <div id="langSelect">
-          <select name="lang" id="lang" ref="lang">
-            <option value="en">English</option>
-            <option value="no">Norsk</option>
-          </select>
-        </div>
-      );
-    }
 
     let toolBar = () => {
       if(signedInUser) {
         return (
           <div className='menuWrapper'>
-            <div id="menuItems">
+            <div id='menuItems'>
               <NavLink className='leftMost navLink' activeClassName='active' exact to='/'>{lang.home}</NavLink>{' '}
               <NavLink className='navLink' activeClassName='active' to={'/user/' + signedInUser.id}>{lang.myPage}</NavLink>{' '}
               <NavLink className='navLink' activeClassName='active' to='/events'>{lang.events}</NavLink>{' '}
               <NavLink className='navLink' activeClassName='active' to='/members'>{lang.members}</NavLink>{' '}
             </div>
-            <div id="signOut">
+            <div id='signOut'>
               <NavLink className='rightMost navLink' activeClassName='active' to='/signout'>{lang.signOut}</NavLink>{' '}
             </div>
           </div>
@@ -48,14 +38,13 @@ class Menu extends React.Component<Props, State> {
       }
     }
 
-
     return (
-      <div id="menuBar" className="toolBar">
+      <div id='menuBar' className='toolBar'>
         {toolBar()}
         <div className='langSelectAuth'>
-          <select name="lang" id="lang" ref="lang">
-            <option value="en">English</option>
-            <option value="no">Norsk</option>
+          <select name='lang' id='lang' ref='lang'>
+            <option value='en'>English</option>
+            <option value='no'>Norsk</option>
           </select>
         </div>
       </div>

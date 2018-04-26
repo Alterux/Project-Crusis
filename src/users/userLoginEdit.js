@@ -51,7 +51,6 @@ class UserLoginEdit extends React.Component<Props, State> {
   render() {
     let user = this.user;
     let signedInUser = this.signedInUser;
-    let userTypeMsg;
 
     let inputFormUserType = () => {
       if (signedInUser.userType === 3) {
@@ -66,9 +65,9 @@ class UserLoginEdit extends React.Component<Props, State> {
 
     return (
       <div className='full contentWrapper'>
-        <div id="title">
-          <img id="logo" src="resources/logo.svg"></img>
-          <div className="titleText"><h1>{lang.title}</h1></div>
+        <div id='title'>
+          <img id='logo' src='resources/logo.svg'></img>
+          <div className='titleText'><h1>{lang.title}</h1></div>
         </div>
         <div className='textBoxWrapper'>
 

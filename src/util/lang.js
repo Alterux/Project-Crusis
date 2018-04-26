@@ -469,7 +469,7 @@ let no = {
 
 // Language selection
 let lang;
-switch (localStorage.getItem("lang")) {
+switch (localStorage.getItem('lang')) {
   case 'en':
     lang = en;
     break;

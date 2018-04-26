@@ -27,6 +27,7 @@ class Events extends React.Component<Props, State> {
 
   render() {
     let table = [];
+    // get days, months and years
     for (let inputs of this.events) {
       let day = inputs.startDate.getDate();
       let month = inputs.startDate.getMonth() + 1;
@@ -41,11 +42,12 @@ class Events extends React.Component<Props, State> {
         let minutes = Math.floor((endDate - startDate) / (1000 * 60) % 60); // duration in minutes
 
         if (days) {
-          return (days + "d " + hours + "h " + minutes + "min");
+          return (days + 'd ' + hours + 'h ' + minutes + 'min');
         }
-        return (hours + "h " + minutes + "min");
+        return (hours + 'h ' + minutes + 'min');
       }
 
+      // push to events table
       table.push(
         <tr key={inputs.id}>
           <td><Link to={'/event/' + inputs.id}>{inputs.name ? inputs.name : lang.noName}</Link></td>
@@ -57,6 +59,7 @@ class Events extends React.Component<Props, State> {
       );
     }
 
+    // create event button
     let createEvent = () => {
       return (
         <div>
@@ -73,8 +76,8 @@ class Events extends React.Component<Props, State> {
             <input className='search' ref='search' placeholder={lang.search}></input>
             {this.signedInUser.userType > 1 ? createEvent() : null}
           </div>
-          <div className="last entry eventmain">
-            <table className="eventlist">
+          <div className='last entry eventmain'>
+            <table className='eventlist'>
               <thead>
                 <tr>
                   <th>{lang.tableName}</th>
@@ -100,6 +103,7 @@ class Events extends React.Component<Props, State> {
       this.signedInUser = signedInUser;
 
       let search;
+      // search field
       this.refs.search.oninput = () => {
         this.events = [];
         search = this.refs.search.value;
@@ -110,6 +114,7 @@ class Events extends React.Component<Props, State> {
         }
       }
 
+      // search function
       let searchEvents = () => {
         eventService.searchEvents(search).then((events) => {
           for (let event of events) {

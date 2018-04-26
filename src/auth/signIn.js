@@ -64,20 +64,20 @@ class SignIn extends React.Component<Props, State> {
 
   render() {
     return (
-      <div className="signInPage">
-        <div id="title">
-          <img id="logo" src="resources/logo.svg"></img>
-          <div className="titleText"><h1>{lang.title}</h1></div>
+      <div className='signInPage'>
+        <div id='title'>
+          <img id='logo' src='resources/logo.svg'></img>
+          <div className='titleText'><h1>{lang.title}</h1></div>
         </div>
-        <div className="big-entry inputForm">
+        <div className='big-entry inputForm'>
           <div className='status'>Status</div>
           {this.state.errorLogin ? this.errorLogin() : this.noError()}
         </div>
-        <div className="big-entry inputForm">
+        <div className='big-entry inputForm'>
           <form ref='signInForm'>
-            <input className="form formAuth" id="formUser" type='text' ref='signInUsername' placeholder={lang.email} />
-            <input className="form formAuth" id="formPass" type='password' ref='signInPassword' placeholder={lang.password} />
-            <button className="form" id="signInButton" ref='signInButton'>{lang.signIn}</button>
+            <input className='form formAuth' id='formUser' type='text' ref='signInUsername' placeholder={lang.email} />
+            <input className='form formAuth' id='formPass' type='password' ref='signInPassword' placeholder={lang.password} />
+            <button className='form' id='signInButton' ref='signInButton'>{lang.signIn}</button>
           </form>
         </div>
         <div className='inputForm'>
@@ -93,10 +93,13 @@ class SignIn extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    if (menu) menu.forceUpdate();
-
-    // on input change => set to validate on input
+    // on input change check if inputs are filled
     this.refs.signInForm.onchange = () => {
+      checkFilled();
+    }
+
+    // check if inputs are filled
+    let checkFilled = () => {
       let userName = this.refs.signInUsername.value;
       let password = this.refs.signInPassword.value;
 
@@ -108,14 +111,14 @@ class SignIn extends React.Component<Props, State> {
     }
 
     // listen for enter on username input
-    this.refs.signInUsername.onkeydown = (e: number) => {
+    this.refs.signInUsername.onkeydown = (e: KeyboardEventListener) => {
       if (e.keyCode === 13) {
         submit();
       }
     }
 
     // listen for enter on password input
-    this.refs.signInPassword.onkeydown = (e: number) => {
+    this.refs.signInPassword.onkeydown = (e: KeyboardEventListener) => {
       if (e.keyCode === 13) {
         submit();
       }
@@ -138,15 +141,20 @@ class SignIn extends React.Component<Props, State> {
 
     // try to submit, check for error
     let submit = () => {
-      let hashedPass = this.hashCode(this.refs.signInPassword.value + this.refs.signInUsername.value);
-      userService.signIn(this.refs.signInUsername.value, hashedPass).then(() => {
-        history.push('/');
-      }).catch((error: Error) => {
-        if(errorMessage) {
-          console.log(error);
-          this.setState({errorLogin: true})
-        }
-      });
+      // check if inputs are filled
+      checkFilled();
+      // if inputs are filled, try to log in
+      if (this.state.inputsFilled) {
+        let hashedPass = this.hashCode(this.refs.signInPassword.value + this.refs.signInUsername.value);
+        userService.signIn(this.refs.signInUsername.value, hashedPass).then(() => {
+          history.push('/');
+        }).catch((error: Error) => {
+          if(errorMessage) {
+            console.log(error);
+            this.setState({errorLogin: true})
+          }
+        });
+      }
     }
   }
 }

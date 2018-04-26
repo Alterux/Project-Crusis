@@ -69,14 +69,17 @@ class EventDetailsEdit extends React.Component<Props, State>{
    let listRoles = [];
    let selectRoles = [];
 
+   // roles
    for (let role of this.roles) {
      listRoles.push(<option ref={role.id.toString()} value={role.id}>{lang[role.name]}</option>);
    }
 
+   // selected roles
    for (let role of this.selectedRoles) {
      listRoles.splice(role, 1, (<option ref={role.toString()} value={role + 1} disabled>{lang[this.roles[role].name]}</option>));
    }
 
+   // role inputs
    let addRoleInput = () => {
      for (var i = 2; i < this.state.roleInputs; i++) {
        inputRoles.push(
@@ -85,71 +88,72 @@ class EventDetailsEdit extends React.Component<Props, State>{
              <select className='form inputRoles' ref={'inputRole'+i} required>{listRoles}</select>
            </div>
            <div className='float-right'>
-             <input className="form inputQuantity" type='number' ref={'inputQuantity'+i} min='1' defaultValue='1' placeholder={lang.quantity} required />
+             <input className='form inputQuantity' type='number' ref={'inputQuantity'+i} min='1' defaultValue='1' placeholder={lang.quantity} required />
            </div>
          </div>
        );
      }
    }
 
-   let createEvent = () => {
+   // edit event inputs
+   let editEvent = () => {
      return (
-       <div className="inputForm">
+       <div className='inputForm'>
          <form>
 
-         <div className="entry inputFormName">
+         <div className='entry inputFormName'>
            <h3>{lang.name}</h3>
-           <input className="form" type='text' ref='inputName' placeholder={lang.name} required />
+           <input className='form' type='text' ref='inputName' placeholder={lang.name} required />
          </div>
 
-         <div className="entry inputFormDetails">
+         <div className='entry inputFormDetails'>
            <h3>{lang.details}</h3>
-           <textarea className="form" type='text' rows="4" cols="36" ref='inputDetails' placeholder={lang.details} required></textarea>
+           <textarea className='form' type='text' rows='4' cols='36' ref='inputDetails' placeholder={lang.details} required></textarea>
            <h3>{lang.equipment}</h3>
-           <textarea className="form" type='text' rows="4" cols="36" ref='inputEquipment' placeholder={lang.equipment} required></textarea>
+           <textarea className='form' type='text' rows='4' cols='36' ref='inputEquipment' placeholder={lang.equipment} required></textarea>
          </div>
 
-         <div className="entry inputFormAddress">
+         <div className='entry inputFormAddress'>
            <h3>{lang.address}</h3>
-           <input className="form" type='text' ref='inputAddress' placeholder={lang.address} required />
-           <input className="form postcode" type='text' ref='inputPostcode' placeholder={lang.postcode} required />
-           <input className="form city" type='text' ref='inputCity' placeholder={lang.city} required />
+           <input className='form' type='text' ref='inputAddress' placeholder={lang.address} required />
+           <input className='form postcode' type='text' ref='inputPostcode' placeholder={lang.postcode} required />
+           <input className='form city' type='text' ref='inputCity' placeholder={lang.city} required />
          </div>
 
-         <div className="entry inputFormBirth">
+         <div className='entry inputFormBirth'>
            <div className='float-left'>
              <h3>{lang.attendanceDate}</h3>
-             <input className="form birth date" type='date' ref='inputAttendanceDate' placeholder={lang.city} required />
+             <input className='form birth date' type='date' ref='inputAttendanceDate' placeholder={lang.city} required />
            </div>
            <div className='float-right'>
              <h3>{lang.theTime}</h3>
-             <input className="form birth time" type='time' ref='inputAttendanceTime' placeholder={lang.city} required />
+             <input className='form birth time' type='time' ref='inputAttendanceTime' placeholder={lang.city} required />
            </div>
          </div>
 
-         <div className="entry inputFormBirth">
+         <div className='entry inputFormBirth'>
            <div className='float-left'>
              <h3>{lang.startDate}</h3>
-             <input className="form birth date" type='date' ref='inputStartDate' placeholder={lang.city} required />
+             <input className='form birth date' type='date' ref='inputStartDate' placeholder={lang.city} required />
            </div>
            <div className='float-right'>
              <h3>{lang.theTime}</h3>
-             <input className="form birth time" type='time' ref='inputStartTime' placeholder={lang.city} required />
+             <input className='form birth time' type='time' ref='inputStartTime' placeholder={lang.city} required />
            </div>
          </div>
 
-         <div className="entry inputFormBirth">
+         <div className='entry inputFormBirth'>
            <div className='float-left'>
              <h3>{lang.endDate}</h3>
-             <input className="form birth date" type='date' ref='inputEndDate' placeholder={lang.city} required />
+             <input className='form birth date' type='date' ref='inputEndDate' placeholder={lang.city} required />
            </div>
            <div className='float-right'>
              <h3>{lang.theTime}</h3>
-             <input className="form birth time" type='time' ref='inputEndTime' placeholder={lang.city} required />
+             <input className='form birth time' type='time' ref='inputEndTime' placeholder={lang.city} required />
            </div>
          </div>
 
-         <div className="entry inputFormRoles">
+         <div className='entry inputFormRoles'>
            {addRoleInput()}
            <div className='entry'>
              <h3>{lang.roles}</h3>
@@ -161,7 +165,7 @@ class EventDetailsEdit extends React.Component<Props, State>{
                  <select className='form inputRoles' ref='inputRole0' value='1' disabled>{listRoles}</select>
                </div>
                <div className='float-right'>
-                 <input className="form inputQuantity" type='number' ref='inputQuantity0' min='1' defaultValue='1' placeholder={lang.quantity} required />
+                 <input className='form inputQuantity' type='number' ref='inputQuantity0' min='1' defaultValue='1' placeholder={lang.quantity} required />
                </div>
              </div>
              <div>
@@ -169,19 +173,19 @@ class EventDetailsEdit extends React.Component<Props, State>{
                  <select className='form inputRoles' ref='inputRole1' value='2' disabled>{listRoles}</select>
                </div>
                <div className='float-right'>
-                 <input className="form inputQuantity" type='number' ref='inputQuantity1' min='1' defaultValue='1' placeholder={lang.quantity} required />
+                 <input className='form inputQuantity' type='number' ref='inputQuantity1' min='1' defaultValue='1' placeholder={lang.quantity} required />
                </div>
              </div>
              {inputRoles}
            </div>
-           <button className="form birth addInputButton inputButton backButton" ref='addRoleButton'>+</button>
+           <button className='form birth addInputButton inputButton backButton' ref='addRoleButton'>+</button>
            {this.state.roleInputs > 2
-             ? (<button className="form birth removeInputButton inputButton deleteButton" ref='removeRoleButton'>-</button>)
-             : <button className="form birth removeInputButton" ref='removeRoleButton' disabled>-</button>}
+             ? (<button className='form birth removeInputButton inputButton deleteButton' ref='removeRoleButton'>-</button>)
+             : <button className='form birth removeInputButton' ref='removeRoleButton' disabled>-</button>}
          </div>
 
-         <div className="inputFormButton">
-           <button className="form" id="signInButton" ref='saveEventButton'>{lang.saveChanges}</button>
+         <div className='inputFormButton'>
+           <button className='form' id='signInButton' ref='saveEventButton'>{lang.saveChanges}</button>
          </div>
          </form>
 
@@ -191,12 +195,12 @@ class EventDetailsEdit extends React.Component<Props, State>{
 
    return (
       <div className='full contentWrapper'>
-        <div id="title">
-          <img id="logo" src="resources/logo.svg"></img>
-          <div className="titleText"><h1>{lang.title}</h1></div>
+        <div id='title'>
+          <img id='logo' src='resources/logo.svg'></img>
+          <div className='titleText'><h1>{lang.title}</h1></div>
         </div>
         <div className='textBoxWrapper'>
-          {createEvent()}
+          {editEvent()}
         </div>
         <div className='big-entry inputForm'>
           <div className='inputFormButton'>
@@ -214,7 +218,7 @@ class EventDetailsEdit extends React.Component<Props, State>{
          // remove roles from selectedRoles array
          this.refs.removeRoleButton.onclick = () => {
            for (var i = 0; i < this.state.roleInputs; i++) {
-             let id = this.refs['inputRole'+i].value;
+             let id: number = this.refs['inputRole'+i].value;
              this.selectedRoles.splice(id - 1, 1);
            }
            this.setState({roleInputs: this.state.roleInputs-1});
@@ -240,7 +244,7 @@ class EventDetailsEdit extends React.Component<Props, State>{
      this.refs.addRoleButton.onclick = () => {
        // add roles to selectedRoles array
        for (var i = 0; i < this.state.roleInputs; i++) {
-         let id = this.refs['inputRole'+i].value;
+         let id: number = this.refs['inputRole'+i].value;
          this.selectedRoles.push(id - 1);
        }
        this.setState({roleInputs: this.state.roleInputs+1});
@@ -326,8 +330,8 @@ class EventDetailsEdit extends React.Component<Props, State>{
             // add new roles to event
             for (var i = 0; i < this.state.roleInputs; i++) {
               if (!this.eventRoles.includes(parseInt(this.refs['inputRole'+i].value))) {
-                let roleId = this.refs['inputRole'+i].value;
-                let quantity = this.refs['inputQuantity'+i].value;
+                let roleId: number = this.refs['inputRole'+i].value;
+                let quantity: number = this.refs['inputQuantity'+i].value;
                 roleService.createEventRole(this.props.match.params.id, roleId, quantity).then(() => {
                 }).catch((error: Error) => {if(errorMessage) console.log(error)});
               }

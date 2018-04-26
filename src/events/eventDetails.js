@@ -42,6 +42,7 @@ class EventDetails extends React.Component<Props, State> {
     let listInterested = [];
     let eventButton;
 
+    // attendance date
     let attendanceDay;
     let attendanceMonth;
     let attendanceMonthName;
@@ -55,11 +56,12 @@ class EventDetails extends React.Component<Props, State> {
       attendanceMonthName = switchMonth(attendanceMonth);
       attendanceYear = date.getFullYear();
       attendanceHour = date.getHours();
-      attendanceHour = ("0" + attendanceHour).slice(-2);
+      attendanceHour = ('0' + attendanceHour).slice(-2);
       attendanceMinute = date.getMinutes();
-      attendanceMinute = ("0" + attendanceMinute).slice(-2);
+      attendanceMinute = ('0' + attendanceMinute).slice(-2);
     }
 
+    // start date
     let startDay;
     let startMonth;
     let startMonthName;
@@ -73,11 +75,12 @@ class EventDetails extends React.Component<Props, State> {
       startMonthName = switchMonth(startMonth);
       startYear = date.getFullYear();
       startHour = date.getHours();
-      startHour = ("0" + startHour).slice(-2);
+      startHour = ('0' + startHour).slice(-2);
       startMinute = date.getMinutes();
-      startMinute = ("0" + startMinute).slice(-2);
+      startMinute = ('0' + startMinute).slice(-2);
     }
 
+    // end date
     let endDay;
     let endMonth;
     let endMonthName;
@@ -91,9 +94,9 @@ class EventDetails extends React.Component<Props, State> {
       endMonthName = switchMonth(endMonth);
       endYear = date.getFullYear();
       endHour = date.getHours();
-      endHour = ("0" + endHour).slice(-2);
+      endHour = ('0' + endHour).slice(-2);
       endMinute = date.getMinutes();
-      endMinute = ("0" + endMinute).slice(-2);
+      endMinute = ('0' + endMinute).slice(-2);
     }
 
     let editEventButton;
@@ -101,20 +104,20 @@ class EventDetails extends React.Component<Props, State> {
 
     // admins and leader can change events
     if (this.signedInUser.userType > 1) {
-      editEventButton = <div className="editEventButton"><button ref="editEventButton">{lang.edit}</button></div>
+      editEventButton = <div className='editEventButton'><button ref='editEventButton'>{lang.edit}</button></div>
     }
 
     // only admins can delete events
     if (this.signedInUser.userType === 3) {
-      deleteEventButton = <div className="deleteEventButton"><button className='deleteButton' ref="deleteEventButton">{lang.delete}</button></div>
+      deleteEventButton = <div className='deleteEventButton'><button className='deleteButton' ref='deleteEventButton'>{lang.delete}</button></div>
     }
 
     // user has reported interest
     if (this.isuser) {
-      eventButton = <div className="unapplyEventButton"><button ref="unapplyEventButton">{lang.reportNotInterested}</button></div>
+      eventButton = <div className='unapplyEventButton'><button ref='unapplyEventButton'>{lang.reportNotInterested}</button></div>
     // user has not reported interest
     } else {
-      eventButton = <div className="applyEventButton"><button ref="applyEventButton">{lang.reportInterested}</button></div>
+      eventButton = <div className='applyEventButton'><button ref='applyEventButton'>{lang.reportInterested}</button></div>
     }
 
     // list roles with quantity for event

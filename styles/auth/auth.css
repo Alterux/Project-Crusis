@@ -95,7 +95,7 @@
 }
 
 h1 {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   font-weight: 4000;
   font-size: 3.5em;
   margin: 0;
@@ -163,20 +163,6 @@ h1 {
 
 .last {
   margin-bottom: 0;
-}
-
-i {
-  position: absolute;
-  z-index: 1;
-  margin-top: -.1em;
-  margin-right: -1.15em;
-  height: 22px;
-  right: 7px;
-  width: 11px;
-  background-image: url(../../resources/arrows.png);
-  background-repeat: no-repeat;
-  background-size: auto;
-  background-position: 0 -36px;
 }
 
 /***************************/
