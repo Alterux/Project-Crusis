@@ -1,6 +1,6 @@
 # Crusis
 Våren 2018,
-Gruppeprosjekt for emnet Objekt Orientert Programmering
+Gruppeprosjekt for emnet Objekt Orientert Programmering ved NTNU.
 
 Applikasjonen er laget for Røde Kors.
 
